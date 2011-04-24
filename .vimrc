@@ -61,15 +61,16 @@ imap <F9> #include <vector> <CR>#include <list> <CR>#include <map> <CR>#include 
 
 "pandoc
 au BufNewFile,BufRead *.md,*.markdown setf pdc
+au Syntax pdc        so ~/.vim/syntax/pdc.vim
 
 "jflex
-augroup filetype
-au BufRead,BufNewFile *.flex,*.jflex setf jflex
-augroup END
-au Syntax jflex    so ~/.vim/syntax/jflex.vim
+au BufNewFile,BufRead *.flex,*.jflex setf jflex
+au Syntax jflex      so ~/.vim/syntax/jflex.vim
 
 "java cup
 au BufNewFile,BufRead *.cup setf cup
+au Syntax cup        so ~/.vim/syntax/cup.vim
 
 "tiger
-au BufNewFile,BufRead *.tig so ~/.vim/syntax/tiger.vim
+au BufNewFile,BufRead *.tig setf tiger
+au Syntax tiger      so ~/.vim/syntax/tiger.vim

@@ -107,3 +107,26 @@ if [ "$TERM" = "linux__" ]; then
 fi
 export PATH=$PATH:~/bin:/home/crazyb0y/src/arm-code-sourcey/arm-2010.09/bin:/opt/go/bin:/home/crazyb0y/.cabal/bin:/opt/jhc/usr/bin
 export JHC_LIBRARY_PATH=/opt/jhc/usr/share/jhc-0.7
+export DOWNLOAD_PATH=$HOME/Desktop
+
+gcj () {
+
+    [ -e $DOWNLOAD_PATH/*.in ] || exit 1
+
+    file=`ls $DOWNLOAD_PATH/*.in | head -n1`
+    echo "Filename $file"
+
+    problem=`basename $file | sed 's/^\([A-Z]\)-.*\.in/\1/g'`
+    testcase=`basename $file | sed 's/^\(.*\)\.in/\1/g'`
+    echo "Problem $problem"
+
+    read -p $'Is these information okay? (y/n)\n' -n 1
+    [ "$REPLY" == "y" ] || exit 1
+
+    echo
+
+    mv "$file" .
+
+    echo "./$problem $RTS < $testcase.in > $testcase.out"
+    time ./$problem $RTS < $testcase.in > $testcase.out
+}

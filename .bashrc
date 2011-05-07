@@ -111,7 +111,7 @@ export DOWNLOAD_PATH=$HOME/Desktop
 
 gcj () {
 
-    [ -e $DOWNLOAD_PATH/*.in ] || exit 1
+    [ -e $DOWNLOAD_PATH/*.in ] || return
 
     file=`ls $DOWNLOAD_PATH/*.in | head -n1`
     echo "Filename $file"
@@ -121,7 +121,7 @@ gcj () {
     echo "Problem $problem"
 
     read -p $'Is these information okay? (y/n)\n' -n 1
-    [ "$REPLY" == "y" ] || exit 1
+    [ "$REPLY" == "y" ] || return
 
     echo
 

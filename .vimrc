@@ -33,7 +33,7 @@ autocmd FileType tex :map <F6> :!evince %<.pdf<CR>
 autocmd FileType go :map <F5> :!8g %;8l -o %< %<.8<CR>
 autocmd FileType go :map <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :set softtabstop=2
-autocmd FileType haskell,lhaskell :map <F5> :!ghc --make %<CR>
+autocmd FileType haskell,lhaskell :map <F5> :!ghc --make -O -threaded %<CR>
 autocmd FileType haskell,lhaskell :map <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :map <F4> :!hlint %<CR>
 autocmd FileType lhaskell :map <F7> :set syntax=pdc<CR>

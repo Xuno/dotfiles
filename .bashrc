@@ -130,3 +130,5 @@ gcj () {
     echo "./$problem $RTS < $testcase.in > $testcase.out"
     time ./$problem $RTS < $testcase.in > $testcase.out
 }
+
+export GHCRTS="-M512m -A8m -N2"

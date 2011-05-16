@@ -131,4 +131,4 @@ gcj () {
     time ./$problem $RTS < $testcase.in > $testcase.out
 }
 
-export RTS="+RTS -M512m -A8m -N2"
+export RTS="+RTS -K512m -A8m -N2"

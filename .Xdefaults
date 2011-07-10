@@ -1,16 +1,17 @@
 
-urxvt.font: xft:monaco:size=14
-urxvt.boldFont: xft:monaco:size=14:style=bold
+urxvt.font: xft:monaco:size=14,xft:wenquanyi bitmap song:medium:pixelsize=16
+urxvt.boldFont: xft:monaco:size=14:style=bold,xft:wenquanyi bitmap song:bold:pixelsize=16
+urxvt.italicFont: xft:monaco:size=14:style=italic
+urxvt.boldItalicFont: xft:monaco:size=14:style=boldi
+
 urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
 
 urxvt.keysym.S-Escape: perl:keyboard-select:activate
-
 urxvt.keysym.C-c: perl:clipboard:copy
 urxvt.keysym.C-v: perl:clipboard:paste
+urxvt.keysym.F11: perl:fullscreen:switch
 
 urxvt.scrollstyle: plain
-
-urxvt.keysym.F11: perl:fullscreen:switch
 
 *background: #000000
 *foreground: #ffffff
@@ -31,3 +32,5 @@ urxvt.keysym.F11: perl:fullscreen:switch
 *color13: #812973
 *color14: #288787
 *color15: #aaaaaa
+
+urxvt.inputMethod: ibus

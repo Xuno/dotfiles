@@ -1,0 +1,33 @@
+
+urxvt.font: xft:monaco:size=14
+urxvt.boldFont: xft:monaco:size=14:style=bold
+urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
+
+urxvt.keysym.S-Escape: perl:keyboard-select:activate
+
+urxvt.keysym.C-c: perl:clipboard:copy
+urxvt.keysym.C-v: perl:clipboard:paste
+
+urxvt.scrollstyle: plain
+
+urxvt.keysym.F11: perl:fullscreen:switch
+
+*background: #000000
+*foreground: #ffffff
+
+*color0: #000000
+*color1: #ee6363
+*color2: #73ba3e
+*color3: #baa33e
+*color4: #3e73ba
+*color5: #ac3885
+*color6: #3ebaba
+*color7: #eeeeee
+*color8: #333333
+*color9: #cc4444
+*color10: #4d8728
+*color11: #877d28
+*color12: #284d87
+*color13: #812973
+*color14: #288787
+*color15: #aaaaaa

@@ -7,8 +7,8 @@ urxvt.boldItalicFont: xft:monaco:size=14:style=boldi
 urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
 
 urxvt.keysym.S-Escape: perl:keyboard-select:activate
-urxvt.keysym.C-c: perl:clipboard:copy
-urxvt.keysym.C-v: perl:clipboard:paste
+urxvt.keysym.C-S-c: perl:clipboard:copy
+urxvt.keysym.C-S-v: perl:clipboard:paste
 urxvt.keysym.F11: perl:fullscreen:switch
 
 urxvt.scrollstyle: plain

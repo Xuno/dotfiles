@@ -4,10 +4,13 @@ urxvt.boldFont: xft:Anonymous Pro:style=Bold:pixelsize=18,xft:wenquanyi bitmap s
 urxvt.italicFont: xft:Anonymous Pro:style=Italic:pixelsize=18,xft:wenquanyi bitmap song:medium:pixelsize=16
 urxvt.boldItalicFont: xft:Anonymous Pro:style=Bold Italic:pixelsize=18,xft:wenquanyi bitmap song:bold:pixelsize=16
 
-urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select
+urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
 
 urxvt.keysym.S-Escape: perl:keyboard-select:activate
-urxvt.keysym.F11: perl:fullscreen:switch
+urxvt.keysym.S-F11: perl:fullscreen:switch
+
+urxvt.keysym.C-A-c: perl:clipboard:copy
+urxvt.keysym.C-A-v: perl:clipboard:paste
 
 urxvt.scrollstyle: plain
 

@@ -1,14 +1,12 @@
 
-urxvt.font: xft:monaco:size=14,xft:wenquanyi bitmap song:medium:pixelsize=16
-urxvt.boldFont: xft:monaco:size=14:style=bold,xft:wenquanyi bitmap song:bold:pixelsize=16
-urxvt.italicFont: xft:monaco:size=14:style=italic
-urxvt.boldItalicFont: xft:monaco:size=14:style=boldi
+urxvt.font: xft:Anonymous Pro:style=Regular:pixelsize=18,xft:wenquanyi bitmap song:medium:pixelsize=16
+urxvt.boldFont: xft:Anonymous Pro:style=Bold:pixelsize=18,xft:wenquanyi bitmap song:bold:pixelsize=16
+urxvt.italicFont: xft:Anonymous Pro:style=Italic:pixelsize=18,xft:wenquanyi bitmap song:medium:pixelsize=16
+urxvt.boldItalicFont: xft:Anonymous Pro:style=Bold Italic:pixelsize=18,xft:wenquanyi bitmap song:bold:pixelsize=16
 
-urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
+urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select
 
 urxvt.keysym.S-Escape: perl:keyboard-select:activate
-urxvt.keysym.C-S-c: perl:clipboard:copy
-urxvt.keysym.C-S-v: perl:clipboard:paste
 urxvt.keysym.F11: perl:fullscreen:switch
 
 urxvt.scrollstyle: plain
@@ -34,3 +32,17 @@ urxvt.scrollstyle: plain
 *color15: #aaaaaa
 
 urxvt.inputMethod: ibus
+urxvt.termName: xterm
+
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintfull
+Xft.rgba: rgb
+
+urxvt.transparent:true
+urxvt.tintColor:white
+urxvt.shading:20
+
+urxvt.geometry: 96x32
+
+urxvt.saveLines: 65536

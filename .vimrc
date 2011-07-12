@@ -13,6 +13,7 @@ set display+=uhex
 
 syntax on
 filetype plugin on
+colorscheme autumn
 
 "haskell-mode
 au BufEnter *.hs compiler ghc

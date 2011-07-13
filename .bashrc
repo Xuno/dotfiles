@@ -86,7 +86,7 @@ extract () {
   fi
 }
 
-if [ "$TERM" = "linux__" ]; then
+if [ "$TERM" = "linux" ]; then
 	echo -en "\e]P0444444"
 	echo -en "\e]P1ee6363"
 	echo -en "\e]P273ba3e"
@@ -105,6 +105,11 @@ if [ "$TERM" = "linux__" ]; then
 	echo -en "\e]PFaaaaaa"
 	clear
 fi
+
+if [ "$TERM" = "xterm" ]; then
+    export TERM=xterm-256color
+fi
+
 export PATH=$PATH:~/bin:/home/crazyb0y/src/arm-code-sourcey/arm-2010.09/bin:/opt/go/bin:/home/crazyb0y/.cabal/bin:/opt/jhc/usr/bin
 export JHC_LIBRARY_PATH=/opt/jhc/usr/share/jhc-0.7
 export DOWNLOAD_PATH=$HOME/Desktop

@@ -13,7 +13,8 @@ set display+=uhex
 
 syntax on
 filetype plugin on
-colorscheme autumn
+colorscheme leo
+set t_Co=256
 
 "haskell-mode
 au BufEnter *.hs compiler ghc

@@ -13,7 +13,7 @@ set display+=uhex
 
 syntax on
 filetype plugin on
-colorscheme leo
+colorscheme herald
 set t_Co=256
 
 "haskell-mode

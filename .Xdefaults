@@ -1,8 +1,8 @@
 
-urxvt.font: xft:Anonymous Pro:style=Regular:size=14,xft:wenquanyi bitmap song:medium:pixelsize=14
-urxvt.boldFont: xft:Anonymous Pro:style=Bold:size=15,xft:wenquanyi bitmap song:bold:pixelsize=14
-urxvt.italicFont: xft:Anonymous Pro:style=Italic:size=14,xft:wenquanyi bitmap song:medium:pixelsize=14
-urxvt.boldItalicFont: xft:Anonymous Pro:style=Bold Italic:size=15,xft:wenquanyi bitmap song:bold:pixelsize=14
+urxvt.font: xft:Dina:style=Regular:size=14,xft:wenquanyi bitmap song:medium:pixelsize=14
+urxvt.boldFont: xft:Dina:style=Bold:size=15,xft:wenquanyi bitmap song:bold:pixelsize=14
+urxvt.italicFont: xft:Dina:style=Italic:size=14,xft:wenquanyi bitmap song:medium:pixelsize=14
+urxvt.boldItalicFont: xft:Dina:style=Bold Italic:size=15,xft:wenquanyi bitmap song:bold:pixelsize=14
 
 urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
 

@@ -132,8 +132,8 @@ gcj () {
 
     mv "$file" .
 
-    echo "./$problem $RTS < $testcase.in > $testcase.out"
-    time ./$problem $RTS < $testcase.in > $testcase.out
+    echo "./$problem $RTS < $testcase.in | tee $testcase.out"
+    time ./$problem $RTS < $testcase.in | tee $testcase.out
 }
 
 export RTS="+RTS -K512m -A8m -N2"

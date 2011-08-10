@@ -1,48 +1,5 @@
-txtblk='\e[0;30m' # Black - Regular
-txtred='\e[0;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtylw='\e[0;33m' # Yellow
-txtblu='\e[0;34m' # Blue
-txtpur='\e[0;35m' # Purple
-txtcyn='\e[0;36m' # Cyan
-txtwht='\e[0;37m' # White
-bldblk='\e[1;30m' # Black - Bold
-bldred='\e[1;31m' # Red
-bldgrn='\e[1;32m' # Green
-bldylw='\e[1;33m' # Yellow
-bldblu='\e[1;34m' # Blue
-bldpur='\e[1;35m' # Purple
-bldcyn='\e[1;36m' # Cyan
-bldwht='\e[1;37m' # White
-unkblk='\e[4;30m' # Black - Underline
-undred='\e[4;31m' # Red
-undgrn='\e[4;32m' # Green
-undylw='\e[4;33m' # Yellow
-undblu='\e[4;34m' # Blue
-undpur='\e[4;35m' # Purple
-undcyn='\e[4;36m' # Cyan
-undwht='\e[4;37m' # White
-bakblk='\e[40m'   # Black - Background
-bakred='\e[41m'   # Red
-badgrn='\e[42m'   # Green
-bakylw='\e[43m'   # Yellow
-bakblu='\e[44m'   # Blue
-bakpur='\e[45m'   # Purple
-bakcyn='\e[46m'   # Cyan
-bakwht='\e[47m'   # White
-txtrst='\e[0m'    # Text Reset
-txtbld='\e[1m'    # Text Bold
-
-# Check for an interactive session
-[ -z "$PS1" ] && return
-
-PROMPT_COMMAND='RET=$?;'
-RET_COLOR='$(if [[ $RET == 0 ]]; then echo -ne "$txtgrn"; else echo -ne "$txtred"; fi;)'
-#PS1="[\u@\h \W]$RET_COLOR\$$txtrst "
-#PS1='[\u@\h \W]\$ '
 PS1='`a=$?;if [ $a -ne 0 ]; then a="  "$a; echo -ne "\[\e[s\e[1A\e[$((COLUMNS-2))G\e[31m\e[1;41m${a:(-3)}\e[u\]\[\e[0m\e[7m\e[2m\]"; fi`\[\e[1;32m\]\u@\h:\[\e[0m\e[1;34m\]\W\[\e[1;34m\]\$ \[\e[0m\]'
 AWT_TOOLKIT=MToolkit
-export PATH=$PATH:/opt/android-sdk/platform-tools
 alias rm="rm -i"
 alias ls='ls --color=auto'
 alias split2flac='shntool split -o flac -t "%n.%t"'
@@ -60,7 +17,7 @@ vman () {
 }
 
 #dos2unix() { awk "{ sub(\"\r\$\", \"\"); print }" $1 > $2; }
-unix2dos() { awk "sub(\"\$\", \"\r\")" $1 > $2; }
+#unix2dos() { awk "sub(\"\$\", \"\r\")" $1 > $2; }
 
 extract () {
   if [ -f $1 ] ; then
@@ -110,8 +67,7 @@ if [ "$TERM" = "xterm" ]; then
     export TERM=xterm-256color
 fi
 
-export PATH=$PATH:~/bin:/home/crazyb0y/src/arm-code-sourcey/arm-2010.09/bin:/opt/go/bin:/home/crazyb0y/.cabal/bin:/opt/jhc/usr/bin
-export JHC_LIBRARY_PATH=/opt/jhc/usr/share/jhc-0.7
+export PATH=$PATH:~/bin:/home/crazyb0y/src/arm-code-sourcey/arm-2010.09/bin:home/crazyb0y/.cabal/bin:/opt/android-sdk/platform-tools
 export DOWNLOAD_PATH=$HOME/Desktop
 
 gcj () {

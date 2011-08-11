@@ -27,7 +27,7 @@ imap <F1> <ESC>
 autocmd FileType cpp,c,java :set cindent
 autocmd FileType cpp,c :map <F5> :make %<<CR>
 autocmd FileType cpp,c :map <F6> :!./%<<CR>
-autocmd FileType java :map <F5> :!javac %<CR>
+autocmd FileType java :map <F5> :make<CR>
 autocmd FileType java :map <F6> :!java -ea %<<CR>
 autocmd FileType tex :map <F4> :!texclear<CR>
 autocmd FileType tex :map <F5> :!xelatex %<CR>
@@ -40,6 +40,7 @@ autocmd FileType haskell,lhaskell :map <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :map <F4> :!hlint %<CR>
 autocmd FileType lhaskell :map <F7> :set syntax=pdc<CR>
 autocmd FileType lhaskell :map <F8> :set syntax=lhaskell<CR>
+autocmd FileType java set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 
 "map <c-o> :!gedit %<CR>
 "nmap <c-s> :w<CR>

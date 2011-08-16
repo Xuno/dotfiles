@@ -42,24 +42,12 @@ autocmd FileType lhaskell :map <F7> :set syntax=pdc<CR>
 autocmd FileType lhaskell :map <F8> :set syntax=lhaskell<CR>
 autocmd FileType java set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 
-"map <c-o> :!gedit %<CR>
-"nmap <c-s> :w<CR>
-"imap <c-s> <Esc>:w<CR>a
+map <c-a> ggVG
+map <c-c> "+y
+
 ab #i #include
 ab #d #define
-"ab long long<Space>long
-"ab fori for(int<Space>i=0;i
-"ab forj for(int<Space>j=0;j
-"ab fork for(int<Space>k=0;k
-"ab mp make_pair
-"ab pb push_back
-"ab xx first
-"ab yy second
-"ab vv vector
-"ab sz size()
-"ab iss istringstream
-"ab oss ostringstream
-"ab cntbit __builtin_popcount
+
 imap <F9> #include <vector> <CR>#include <list> <CR>#include <map> <CR>#include <set> <CR>#include <deque> <CR>#include <queue> <CR>#include <stack> <CR>#include <bitset> <CR>#include <algorithm> <CR>#include <functional> <CR>#include <numeric> <CR>#include <utility> <CR>#include <complex> <CR>#include <sstream> <CR>#include <iostream> <CR>#include <iomanip> <CR>#include <cstdio> <CR>#include <cmath> <CR>#include <cstdlib> <CR>#include <cstring> <CR>#include <ctime> <CR>#include <cassert> <CR>using namespace std;<CR>
 
 "pandoc

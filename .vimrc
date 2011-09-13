@@ -38,6 +38,7 @@ autocmd FileType haskell,lhaskell :set softtabstop=2
 autocmd FileType haskell,lhaskell :map <F5> :!ghc --make -O2 -threaded -rtsopts %<CR>
 autocmd FileType haskell,lhaskell :map <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :map <F4> :!hlint %<CR>
+autocmd FileType haskell,lhaskell :map <F3> :w<CR>:!quickCheck %<CR>
 autocmd FileType lhaskell :map <F7> :set syntax=pdc<CR>
 autocmd FileType lhaskell :map <F8> :set syntax=lhaskell<CR>
 autocmd FileType java set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#

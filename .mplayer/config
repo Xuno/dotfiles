@@ -1,4 +1,4 @@
-lavdopts=threads=4
+lavdopts=threads=3
 sub-fuzziness=1
 ass=1
 embeddedfonts=1
@@ -11,3 +11,4 @@ subfont-text-scale=20
 subcp=CP936
 vf-add=screenshot
 channels=2
+cache=10240

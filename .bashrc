@@ -68,7 +68,7 @@ if [ "$TERM" = "xterm" ]; then
     export TERM=xterm-256color
 fi
 
-export PATH=$PATH:~/bin:$HOME/src/arm-code-sourcey/arm-2010.09/bin:$HOME/.cabal/bin:/opt/android-sdk/platform-tools
+export PATH=$PATH:~/bin:$HOME/src/arm-code-sourcey/arm-2010.09/bin:$HOME/.cabal/bin:/opt/android-sdk/platform-tools:/usr/share/java/apache-ant/bin
 export DOWNLOAD_PATH=$HOME/Desktop
 
 gcj () {

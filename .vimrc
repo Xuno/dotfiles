@@ -11,6 +11,10 @@ set backspace=indent,eol,start
 set nostartofline
 set display+=uhex
 
+set autowrite
+set wildmenu
+command ConvertToHTML so $VIMRUNTIME/syntax/2html.vim
+
 syntax on
 filetype plugin on
 colorscheme herald

@@ -46,6 +46,9 @@ autocmd FileType haskell,lhaskell :map <F3> :w<CR>:!quickCheck %<CR>
 autocmd FileType lhaskell :map <F7> :set syntax=pdc<CR>
 autocmd FileType lhaskell :map <F8> :set syntax=lhaskell<CR>
 autocmd FileType java set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
+autocmd BufEnter *.md set syntax=pdc
 
 map <c-a> ggVG
 map <c-c> "+y

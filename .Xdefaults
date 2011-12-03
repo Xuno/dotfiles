@@ -41,7 +41,9 @@ Xft.hinting: true
 Xft.hintstyle: hintlight
 Xft.rgba: rgb
 
-urxvt.transparent: true
+urxvt.depth: 32
+urxvt.background: [80]black
+
 urxvt.tintColor: white
 urxvt.shading: 30
 

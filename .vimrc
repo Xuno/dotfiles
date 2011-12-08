@@ -48,6 +48,11 @@ autocmd FileType lhaskell :map <F8> :set syntax=lhaskell<CR>
 autocmd FileType java set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
+autocmd FileType scala :map <F4> :!fsc -shutdown<CR>
+autocmd FileType scala :map <F5> :make<CR>
+autocmd FileType scala :map <F6> :!scala Main<CR>
+autocmd FileType scala set errorformat=%f:%l:\ error:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
+autocmd FileType scala set makeprg=fsc\ %
 autocmd BufEnter *.md set syntax=pdc
 
 map <c-a> ggVG

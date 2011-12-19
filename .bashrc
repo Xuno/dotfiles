@@ -94,3 +94,27 @@ gcj () {
 }
 
 export RTS="+RTS -K512m -A8m -N2"
+
+T () {
+    for inp in *.in; do
+        cas=${inp%.in}
+        echo Test Case \#$cas
+        $@ < $cas.in > output
+        if [ $? == 0 ]; then
+            diff -b output $cas.out > /dev/null
+            if [ $? == 0 ]; then
+                echo -e "\e[0;32mPassed\e[0m"
+            else
+                echo -en "\e[0;33m"
+                cat $cas.in
+                echo -en "\e[0;34m"
+                cat $cas.out
+                echo -en "\e[0;36m"
+                cat output
+                echo -e "\e[0;31mNot Match\e[0m"
+            fi
+        else
+            echo -e "\e[0;31mFailed\e[0m"
+        fi
+    done
+}

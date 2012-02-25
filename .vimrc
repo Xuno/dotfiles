@@ -55,6 +55,9 @@ autocmd FileType scala set errorformat=%f:%l:\ error:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
 autocmd FileType scala set makeprg=fsc\ %
 autocmd BufEnter *.md set syntax=pdc
 
+" target neocomplcache version : 6.2, install ghc-mode binary first
+let g:neocomplcache_enable_at_startup = 1 
+
 map <c-a> ggVG
 map <c-c> "+y
 

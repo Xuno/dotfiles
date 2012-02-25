@@ -1,5 +1,5 @@
 
-all: build_ghcmod build_vimproc
+all: build_ghcmod build_vimproc build_necoghc
 
 build_ghcmod:
 	cp ghcmod-vim/autoload/ghcmod.vim .vim/autoload/
@@ -10,3 +10,5 @@ build_vimproc:
 	cp -r vimproc/autoload/* .vim/autoload/
 	cp vimproc/doc/vimproc.txt .vim/doc/
 	cp vimproc/plugin/vimproc.vim .vim/plugin/
+build_necoghc:
+	cp -r neco-ghc/autoload/* .vim/autoload

@@ -4,3 +4,6 @@
 [submodule "vimproc"]
 	path = vimproc
 	url = https://github.com/Shougo/vimproc.git
+[submodule "neco-ghc"]
+	path = neco-ghc
+	url = https://github.com/ujihisa/neco-ghc.git

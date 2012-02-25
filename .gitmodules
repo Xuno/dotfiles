@@ -7,3 +7,6 @@
 [submodule "neco-ghc"]
 	path = neco-ghc
 	url = https://github.com/ujihisa/neco-ghc.git
+[submodule "neocomplcache"]
+	path = neocomplcache
+	url = https://github.com/Shougo/neocomplcache.git

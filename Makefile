@@ -2,7 +2,9 @@
 all: build_ghcmod build_vimproc build_necoghc build_neocompl
 
 update:
+	git submodule sync
 	git submodule update
+	git submodule foreach 'git pull origin'
 
 build_ghcmod: update
 	cp ghcmod-vim/autoload/ghcmod.vim .vim/autoload/

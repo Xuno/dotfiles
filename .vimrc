@@ -25,6 +25,14 @@ au BufEnter *.hs compiler ghc
 au BufEnter *.lhs compiler ghc
 let g:haddock_browser="/usr/bin/firefox"
 
+" target neocomplcache version : 6.2, install ghc-mode binary first
+let g:neocomplcache_enable_at_startup = 1 
+
+" ghcmod-vim
+autocmd FileType haskell,lhaskell :map <F4> :GhcModLint<CR>
+autocmd FileType haskell,lhaskell :map <c-s-t> :GhcModType<CR>
+autocmd FileType haskell,lhaskell :map <c-s-e> :GhcModTypeClear<CR>
+
 set autoindent
 imap <F1> <ESC>
 
@@ -41,7 +49,6 @@ autocmd FileType go :map <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :set softtabstop=2
 autocmd FileType haskell,lhaskell :map <F5> :!ghc --make -O2 -threaded -rtsopts %<CR>
 autocmd FileType haskell,lhaskell :map <F6> :!./%<<CR>
-autocmd FileType haskell,lhaskell :map <F4> :!hlint %<CR>
 autocmd FileType haskell,lhaskell :map <F3> :w<CR>:!quickCheck %<CR>
 autocmd FileType lhaskell :map <F7> :set syntax=pdc<CR>
 autocmd FileType lhaskell :map <F8> :set syntax=lhaskell<CR>
@@ -54,9 +61,6 @@ autocmd FileType scala :map <F6> :!scala Main<CR>
 autocmd FileType scala set errorformat=%f:%l:\ error:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
 autocmd FileType scala set makeprg=fsc\ %
 autocmd BufEnter *.md set syntax=pdc
-
-" target neocomplcache version : 6.2, install ghc-mode binary first
-let g:neocomplcache_enable_at_startup = 1 
 
 map <c-a> ggVG
 map <c-c> "+y

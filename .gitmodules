@@ -1,0 +1,3 @@
+[submodule "ghcmod-vim"]
+	path = ghcmod-vim
+	url = https://github.com/eagletmt/ghcmod-vim.git

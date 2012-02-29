@@ -32,7 +32,6 @@ let g:neocomplcache_enable_at_startup = 1
 autocmd FileType haskell,lhaskell :map <F4> :GhcModLint<CR>
 autocmd FileType haskell,lhaskell :map <c-s-t> :GhcModType<CR>
 autocmd FileType haskell,lhaskell :map <c-s-y> :GhcModTypeClear<CR>
-autocmd FileType haskell,lhaskell :map <c-s-m> :GhcModCheck<CR>
 
 set autoindent
 imap <F1> <ESC>

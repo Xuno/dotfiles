@@ -193,11 +193,49 @@ function! ghcmod#make(type)
   return l:qflist
 endfunction
 
+function! ghcmod#expand()
+  if &l:modified
+    call ghcmod#print_warning('ghcmod#expand: the buffer has been modified but not written')
+  endif
+  let l:path = expand('%:p')
+  if empty(l:path)
+    call ghcmod#print_warning("ghcmod#expand doesn't support running on an unnamed buffer.")
+    return []
+  endif
+
+  let l:qflist = []
+  for l:line in split(vimproc#system(['ghc-mod', 'expand', l:path]), '\n')
+    let l:qf = {}
+    " path:line:col1-col2: message
+    " or path:line:col: message
+    let l:m = matchlist(l:line, '^\s*\(\f\+\):\(\d\+\):\(\d\+\)\%(-\d\+\)\?\%(:\s*\(.*\)\)\?$')
+    if !empty(l:m)
+      let [l:qf.filename, l:qf.lnum, l:qf.col, l:qf.text] = l:m[1 : 4]
+    else
+      " path:(line1,col1):(line2,col2): message
+      let l:m = matchlist(l:line, '^\s*\(\f\+\):(\(\d\+\),\(\d\+\))-(\d\+,\d\+)\%(:\s*\(.*\)\)\?$')
+      if !empty(l:m)
+        let [l:qf.filename, l:qf.lnum, l:qf.col, l:qf.text] = l:m[1 : 4]
+      else
+        " message
+        let l:qf.text = substitute(l:line, '^\s\{2\}', '', '')
+      endif
+    endif
+    call add(l:qflist, l:qf)
+  endfor
+  return l:qflist
+endfunction
+
 function! ghcmod#check_version(version)
-  call vimproc#system('ghc-mod')
-  let l:m = matchlist(vimproc#get_last_errmsg(), 'version \(\d\+\)\.\(\d\+\)\.\(\d\+\)')
+  if !exists('s:ghc_mod_version')
+    call vimproc#system('ghc-mod')
+    let l:m = matchlist(vimproc#get_last_errmsg(), 'version \(\d\+\)\.\(\d\+\)\.\(\d\+\)')
+    let s:ghc_mod_version = l:m[1 : 3]
+    call map(s:ghc_mod_version, 'str2nr(v:val)')
+  endif
+
   for l:i in range(0, 2)
-    if a:version[l:i] > str2nr(l:m[l:i+1])
+    if a:version[l:i] > s:ghc_mod_version[l:i]
       return 0
     endif
   endfor

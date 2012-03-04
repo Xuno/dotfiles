@@ -28,14 +28,11 @@ let g:haddock_browser="/usr/bin/firefox"
 " target neocomplcache version : 6.2, install ghc-mode binary first
 let g:neocomplcache_enable_at_startup = 1 
 
-" ghcmod-vim
-autocmd FileType haskell,lhaskell :map <F4> :GhcModLint<CR>
-autocmd FileType haskell,lhaskell :map <c-s-t> :GhcModType<CR>
-autocmd FileType haskell,lhaskell :map <c-s-y> :GhcModTypeClear<CR>
-
 set autoindent
 imap <F1> <ESC>
 
+autocmd BufEnter *.hsc :set filetype=haskell
+autocmd BufEnter *.hsc :map <F5> :!hsc2hs %;ghc --make -O2 -threaded -rtsopts %<.hs<CR>
 autocmd FileType cpp,c,java :set cindent
 autocmd FileType cpp,c :map <F5> :make %<<CR>
 autocmd FileType cpp,c :map <F6> :!./%<<CR>
@@ -47,6 +44,7 @@ autocmd FileType tex :map <F6> :!evince %<.pdf<CR>
 autocmd FileType go :map <F5> :!8g %;8l -o %< %<.8<CR>
 autocmd FileType go :map <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :set softtabstop=2
+autocmd FileType haskell,lhaskell :map <F4> :GhcModLint<CR>
 autocmd FileType haskell,lhaskell :map <F5> :!ghc --make -O2 -threaded -rtsopts %<CR>
 autocmd FileType haskell,lhaskell :map <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :map <F3> :w<CR>:!quickCheck %<CR>

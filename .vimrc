@@ -30,51 +30,23 @@ autocmd BufEnter *.hsc :map <F5> :!hsc2hs %;ghc --make -O2 -threaded -rtsopts %<
 autocmd FileType cpp,c,java :set cindent
 autocmd FileType cpp,c :map <F5> :make %<<CR>
 autocmd FileType cpp,c :map <F6> :!./%<<CR>
+autocmd FileType java set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 autocmd FileType java :map <F5> :make<CR>
 autocmd FileType java :map <F6> :!java -ea %<<CR>
-autocmd FileType tex :map <F4> :!texclear<CR>
 autocmd FileType tex :map <F5> :!xelatex %<CR>
 autocmd FileType tex :map <F6> :!evince %<.pdf<CR>
-autocmd FileType go :map <F5> :!8g %;8l -o %< %<.8<CR>
-autocmd FileType go :map <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :set omnifunc=necoghc#omnifunc
 autocmd FileType haskell,lhaskell :set softtabstop=2
-autocmd FileType haskell,lhaskell :map <F4> :GhcModLint<CR>
 autocmd FileType haskell,lhaskell :map <F5> :!ghc --make -O2 -threaded -rtsopts %<CR>
 autocmd FileType haskell,lhaskell :map <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :map <F3> :w<CR>:!quickCheck %<CR>
-autocmd FileType lhaskell :map <F7> :set syntax=pdc<CR>
-autocmd FileType lhaskell :map <F8> :set syntax=lhaskell<CR>
-autocmd FileType java set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
 autocmd FileType scala :map <F4> :!fsc -shutdown<CR>
 autocmd FileType scala :map <F5> :make<CR>
 autocmd FileType scala :map <F6> :!scala Main<CR>
 autocmd FileType scala set errorformat=%f:%l:\ error:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
 autocmd FileType scala set makeprg=fsc\ %
-autocmd BufEnter *.md set syntax=pdc
 
 map <c-a> ggVG
 map <c-c> "+y
 
-ab #i #include
-ab #d #define
-
 imap <F9> #include <vector> <CR>#include <list> <CR>#include <map> <CR>#include <set> <CR>#include <deque> <CR>#include <queue> <CR>#include <stack> <CR>#include <bitset> <CR>#include <algorithm> <CR>#include <functional> <CR>#include <numeric> <CR>#include <utility> <CR>#include <complex> <CR>#include <sstream> <CR>#include <iostream> <CR>#include <iomanip> <CR>#include <cstdio> <CR>#include <cmath> <CR>#include <cstdlib> <CR>#include <cstring> <CR>#include <ctime> <CR>#include <cassert> <CR>using namespace std;<CR>
-
-"pandoc
-au BufNewFile,BufRead *.md,*.markdown setf pdc
-au Syntax pdc        so ~/.vim/syntax/pdc.vim
-
-"jflex
-au BufNewFile,BufRead *.flex,*.jflex setf jflex
-au Syntax jflex      so ~/.vim/syntax/jflex.vim
-
-"java cup
-au BufNewFile,BufRead *.cup setf cup
-au Syntax cup        so ~/.vim/syntax/cup.vim
-
-"tiger
-au BufNewFile,BufRead *.tig setf tiger
-au Syntax tiger      so ~/.vim/syntax/tiger.vim

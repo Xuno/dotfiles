@@ -15,6 +15,8 @@ set autowrite
 set wildmenu
 command ConvertToHTML so $VIMRUNTIME/syntax/2html.vim
 
+call pathogen#infect()
+
 syntax on
 filetype plugin on
 colorscheme herald

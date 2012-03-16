@@ -22,14 +22,6 @@ filetype plugin on
 colorscheme herald
 set t_Co=256
 
-"haskell-mode
-au BufEnter *.hs compiler ghc
-au BufEnter *.lhs compiler ghc
-let g:haddock_browser="/usr/bin/firefox"
-
-" target neocomplcache version : 6.2, install ghc-mode binary first
-let g:neocomplcache_enable_at_startup = 1 
-
 set autoindent
 imap <F1> <ESC>
 
@@ -45,6 +37,7 @@ autocmd FileType tex :map <F5> :!xelatex %<CR>
 autocmd FileType tex :map <F6> :!evince %<.pdf<CR>
 autocmd FileType go :map <F5> :!8g %;8l -o %< %<.8<CR>
 autocmd FileType go :map <F6> :!./%<<CR>
+autocmd FileType haskell,lhaskell :set omnifunc=necoghc#omnifunc
 autocmd FileType haskell,lhaskell :set softtabstop=2
 autocmd FileType haskell,lhaskell :map <F4> :GhcModLint<CR>
 autocmd FileType haskell,lhaskell :map <F5> :!ghc --make -O2 -threaded -rtsopts %<CR>

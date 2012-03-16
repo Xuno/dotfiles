@@ -1,3 +1,6 @@
 [submodule "neco-ghc"]
 	path = neco-ghc
 	url = https://github.com/ujihisa/neco-ghc.git
+[submodule "tagbar"]
+	path = tagbar
+	url = git://github.com/majutsushi/tagbar

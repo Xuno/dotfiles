@@ -28,15 +28,16 @@ imap <F1> <ESC>
 nmap <F8> :TagbarToggle<CR>
 
 autocmd BufEnter *.hsc :set filetype=haskell
-autocmd BufEnter *.hsc :map <F5> :!hsc2hs %;ghc --make %<.hs<CR>
+autocmd BufEnter *.hsc :nmap <F5> :!hsc2hs %;ghc --make %<.hs<CR>
+
 autocmd FileType cpp,c,java :set cindent
-autocmd FileType cpp,c :map <F5> :make %<<CR>
-autocmd FileType cpp,c :map <F6> :!./%<<CR>
+autocmd FileType cpp,c :nmap <F5> :make %<<CR>
+autocmd FileType cpp,c :nmap <F6> :!./%<<CR>
 autocmd FileType java :set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-autocmd FileType java :map <F5> :make<CR>
-autocmd FileType java :map <F6> :!java -ea %<<CR>
-autocmd FileType tex :map <F5> :!xelatex %<CR>
-autocmd FileType tex :map <F6> :!evince %<.pdf<CR>
+autocmd FileType java :nmap <F5> :make<CR>
+autocmd FileType java :nmap <F6> :!java -ea %<<CR>
+autocmd FileType tex :nmap <F5> :!xelatex %<CR>
+autocmd FileType tex :nmap <F6> :!evince %<.pdf<CR>
 autocmd FileType haskell,lhaskell :set omnifunc=necoghc#omnifunc
 autocmd FileType haskell,lhaskell :set softtabstop=2
 autocmd FileType haskell,lhaskell :set makeprg=ghc\ --make\ %
@@ -48,12 +49,16 @@ autocmd FileType haskell,lhaskell :set errorformat=
                         \%+C\ \ %#%m,
                         \%W%>%f:%l:%c:,
                         \%+C\ \ %#%tarning:\ %m,
-autocmd FileType haskell,lhaskell :map <F5> :make<CR>
-autocmd FileType haskell,lhaskell :map <F6> :!./%<<CR>
-autocmd FileType scala :map <F4> :!fsc -shutdown<CR>
-autocmd FileType scala :map <F5> :make<CR>
-autocmd FileType scala :map <F6> :!scala Main<CR>
+autocmd FileType haskell,lhaskell :nmap <F5> :make<CR>
+autocmd FileType haskell,lhaskell :nmap <F6> :!./%<<CR>
+autocmd FileType haskell,lhaskell :nmap <F4> :!ghc-mod lint %<CR>
+autocmd FileType scala :nmap <F4> :!fsc -shutdown<CR>
+autocmd FileType scala :nmap <F5> :make<CR>
+autocmd FileType scala :nmap <F6> :!scala Main<CR>
 autocmd FileType scala :set makeprg=fsc\ % errorformat=%f:%l:\ error:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
+
+autocmd FileType lhaskell :nmap <F7> :set filetype=pandoc<CR>
+autocmd FileType pandoc :nmap <F7> :set filetype=lhaskell<CR>
 
 map <c-a> ggVG
 map <c-c> "+y

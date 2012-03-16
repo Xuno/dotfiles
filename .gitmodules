@@ -4,3 +4,6 @@
 [submodule "tagbar"]
 	path = tagbar
 	url = git://github.com/majutsushi/tagbar
+[submodule "vim-pandoc"]
+	path = vim-pandoc
+	url = https://github.com/vim-pandoc/vim-pandoc.git

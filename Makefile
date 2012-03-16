@@ -9,7 +9,7 @@ update:
 
 build_ghcmod: update
 	cp ghcmod-vim/autoload/ghcmod.vim .vim/autoload/
-	cp ghcmod-vim/plugin/ghcmod.vim .vim/plugin/
+	cp -r ghcmod-vim/ftplugin/* .vim/ftplugin
 
 build_vimproc: update
 	cd vimproc; make -f make_gcc.mak all

@@ -2,49 +2,53 @@ let s:ghcmod_type = {
       \ 'ix': 0,
       \ 'types': [],
       \ }
-function! s:ghcmod_type.spans(line, col)
+function! s:ghcmod_type.spans(line, col)"{{{
   if empty(self.types)
     return 0
   endif
   let [l:line1, l:col1, l:line2, l:col2] = self.types[self.ix][0]
   return l:line1 <= a:line && a:line <= l:line2 && l:col1 <= a:col && a:col <= l:col2
-endfunction
+endfunction"}}}
 
-function! s:ghcmod_type.type()
+function! s:ghcmod_type.type()"{{{
   return self.types[self.ix]
-endfunction
+endfunction"}}}
 
-function! s:ghcmod_type.incr_ix()
+function! s:ghcmod_type.incr_ix()"{{{
   let self.ix = (self.ix + 1) % len(self.types)
-endfunction
+endfunction"}}}
 
-function! s:ghcmod_type.highlight(group)
+function! s:ghcmod_type.highlight(group)"{{{
   if empty(self.types)
     return
   endif
   call ghcmod#clear_highlight()
   let [l:line1, l:col1, l:line2, l:col2] = self.types[self.ix][0]
   let w:ghcmod_type_matchid = matchadd(a:group, '\%' . l:line1 . 'l\%' . l:col1 . 'c\_.*\%' . l:line2 . 'l\%' . l:col2 . 'c')
-endfunction
+endfunction"}}}
 
-function! s:on_enter()
+function! s:highlight_group()"{{{
+  return get(g:, 'ghcmod_type_highlight', 'Search')
+endfunction"}}}
+
+function! s:on_enter()"{{{
   if exists('b:ghcmod_type')
-    call b:ghcmod_type.highlight(g:ghcmod_type_highlight)
+    call b:ghcmod_type.highlight(s:highlight_group())
   endif
-endfunction
+endfunction"}}}
 
-function! s:on_leave()
+function! s:on_leave()"{{{
   call ghcmod#clear_highlight()
-endfunction
+endfunction"}}}
 
-function! ghcmod#clear_highlight()
+function! ghcmod#clear_highlight()"{{{
   if exists('w:ghcmod_type_matchid')
     call matchdelete(w:ghcmod_type_matchid)
     unlet w:ghcmod_type_matchid
   endif
-endfunction
+endfunction"}}}
 
-function! ghcmod#type()
+function! ghcmod#type()"{{{
   if &l:modified
     call ghcmod#print_warning('ghcmod#type: the buffer has been modified but not written')
   endif
@@ -52,7 +56,7 @@ function! ghcmod#type()
   let l:col = col('.')
   if exists('b:ghcmod_type') && b:ghcmod_type.spans(l:line, l:col)
     call b:ghcmod_type.incr_ix()
-    call b:ghcmod_type.highlight(g:ghcmod_type_highlight)
+    call b:ghcmod_type.highlight(s:highlight_group())
     return b:ghcmod_type.type()
   endif
 
@@ -62,7 +66,8 @@ function! ghcmod#type()
     return ['', '']
   endif
   let l:mod = ghcmod#detect_module()
-  let l:output = vimproc#system(['ghc-mod', 'type', l:file, l:mod, l:line, l:col])
+  let l:cmd = ghcmod#build_command(['type', l:file, l:mod, l:line, l:col])
+  let l:output = vimproc#system(l:cmd)
   let l:types = []
   for l:line in split(l:output, '\n')
     let l:m = matchlist(l:line, '\(\d\+\) \(\d\+\) \(\d\+\) \(\d\+\) "\([^"]\+\)"')
@@ -80,7 +85,7 @@ function! ghcmod#type()
   let b:ghcmod_type.types = l:types
   let l:ret = b:ghcmod_type.type()
   let [l:line1, l:col1, l:line2, l:col2] = l:ret[0]
-  call b:ghcmod_type.highlight(g:ghcmod_type_highlight)
+  call b:ghcmod_type.highlight(s:highlight_group())
 
   augroup ghcmod-type-highlight
     autocmd! * <buffer>
@@ -91,16 +96,16 @@ function! ghcmod#type()
   augroup END
 
   return l:ret
-endfunction
+endfunction"}}}
 
-function! ghcmod#type_clear()
+function! ghcmod#type_clear()"{{{
   if exists('b:ghcmod_type')
     call ghcmod#clear_highlight()
     unlet b:ghcmod_type
   endif
-endfunction
+endfunction"}}}
 
-function! ghcmod#detect_module()
+function! ghcmod#detect_module()"{{{
   let l:max_lineno = min([line('$'), 11])
   for l:lineno in range(1, l:max_lineno)
     let l:line = getline(l:lineno)
@@ -111,9 +116,132 @@ function! ghcmod#detect_module()
     let l:lineno += 1
   endfor
   return 'Main'
-endfunction
+endfunction"}}}
 
-function! s:wait(proc)
+function! ghcmod#parse_make(lines)"{{{
+  " `ghc-mod check` and `ghc-mod lint` produces <NUL> characters but Vim cannot
+  " treat them correctly.  Vim converts <NUL> characters to <NL> in readfile().
+  " See also :help readfile() and :help NL-used-for-Nul.
+  let l:qflist = []
+  for l:output in a:lines
+    let l:qf = {}
+    let l:m = matchlist(l:output, '^\(\f\+\):\(\d\+\):\(\d\+\):\s*\(.*\)$')
+    let [l:qf.filename, l:qf.lnum, l:qf.col, l:rest] = l:m[1 : 4]
+    if l:rest =~# '^Warning:'
+      let l:qf.type = 'W'
+      let l:rest = matchstr(l:rest, '^Warning:\s*\zs.*$')
+    elseif l:rest =~# '^Error:'
+      let l:qf.type = 'E'
+      let l:rest = matchstr(l:rest, '^Error:\s*\zs.*$')
+    else
+      let l:qf.type = 'E'
+    endif
+    let l:texts = split(l:rest, '\n')
+    let l:qf.text = l:texts[0]
+    call add(l:qflist, l:qf)
+
+    for l:text in l:texts[1 :]
+      call add(l:qflist, {'text': l:text})
+    endfor
+  endfor
+  return l:qflist
+endfunction"}}}
+
+function! s:build_make_command(type, path)"{{{
+  let l:cmd = ghcmod#build_command([a:type])
+  if a:type ==# 'lint'
+    for l:hopt in get(g:, 'ghcmod_hlint_options', [])
+      call extend(l:cmd, ['-h', l:hopt])
+    endfor
+  endif
+  call add(l:cmd, a:path)
+  return l:cmd
+endfunction"}}}
+
+function! ghcmod#make(type)"{{{
+  if &l:modified
+    call ghcmod#print_warning('ghcmod#make: the buffer has been modified but not written')
+  endif
+  let l:path = expand('%:p')
+  if empty(l:path)
+    call ghcmod#print_warning("ghcmod#make doesn't support running on an unnamed buffer.")
+    return []
+  endif
+
+  let l:tmpfile = tempname()
+  try
+    let l:args = s:build_make_command(a:type, l:path)
+    let l:proc = vimproc#plineopen2([{'args': l:args,  'fd': { 'stdin': '', 'stdout': l:tmpfile, 'stderr': '' }}])
+    let [l:cond, l:status] = ghcmod#wait(l:proc)
+    let l:tries = 1
+    while l:cond ==# 'run'
+      if l:tries >= 50
+        call l:proc.kill(15)  " SIGTERM
+        call l:proc.waitpid()
+        throw printf('ghcmod#make: `ghc-mod %s` takes too long time!', a:type)
+      endif
+      sleep 100m
+      let [l:cond, l:status] = ghcmod#wait(l:proc)
+      let l:tries += 1
+    endwhile
+    return ghcmod#parse_make(readfile(l:tmpfile))
+  catch
+    call ghcmod#print_error(printf('%s %s', v:throwpoint, v:exception))
+  finally
+    call delete(l:tmpfile)
+  endtry
+endfunction"}}}
+
+function! s:SID_PREFIX()"{{{
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction"}}}
+
+function! s:funcref(funcname)"{{{
+  return function(s:SID_PREFIX() . a:funcname)
+endfunction"}}}
+
+function! ghcmod#async_make(type, action)"{{{
+  if &l:modified
+    call ghcmod#print_warning('ghcmod#async_make: the buffer has been modified but not written')
+  endif
+  let l:path = expand('%:p')
+  if empty(l:path)
+    call ghcmod#print_warning("ghcmod#async_make doesn't support running on an unnamed buffer.")
+    return
+  endif
+
+  let l:tmpfile = tempname()
+  let l:args = s:build_make_command(a:type, l:path)
+  let l:proc = vimproc#plineopen2([{'args': l:args,  'fd': { 'stdin': '', 'stdout': l:tmpfile, 'stderr': '' }}])
+  let l:obj = {
+        \ 'proc': l:proc,
+        \ 'tmpfile': l:tmpfile,
+        \ 'action': a:action,
+        \ 'type': a:type,
+        \ 'on_finish': s:funcref('on_finish'),
+        \ }
+  if !ghcmod#async#register(l:obj)
+    call l:proc.kill(15)
+    call l:proc.waitpid()
+    call delete(l:tmpfile)
+  endif
+endfunction"}}}
+
+function! s:on_finish(cond, status) dict"{{{
+  let l:qflist = ghcmod#parse_make(readfile(self.tmpfile))
+  call setqflist(l:qflist, self.action)
+  call delete(self.tmpfile)
+  cwindow
+  if &l:buftype ==# 'quickfix'
+    " go back to original window
+    wincmd p
+  endif
+  if empty(l:qflist)
+    echomsg printf('ghc-mod %s(async): No errors found', self.type)
+  endif
+endfunction"}}}
+
+function! ghcmod#wait(proc)"{{{
   if has_key(a:proc, 'checkpid')
     return a:proc.checkpid()
   else
@@ -131,69 +259,9 @@ function! s:wait(proc)
     endif
     return s:libcall('vp_waitpid', [a:proc.pid])
   endif
-endfunction
+endfunction"}}}
 
-function! ghcmod#make(type)
-  if &l:modified
-    call ghcmod#print_warning('ghcmod#make: the buffer has been modified but not written')
-  endif
-  let l:path = expand('%:p')
-  if empty(l:path)
-    call ghcmod#print_warning("ghcmod#make doesn't support running on an unnamed buffer.")
-    return []
-  endif
-  " `ghc-mod check` and `ghc-mod lint` produces <NUL> characters but Vim cannot
-  " treat them correctly.  Vim converts <NUL> characters to <NL> in readfile().
-  " See also :help readfile() and :help NL-used-for-Nul.
-  let l:tmpfile = tempname()
-  let l:qflist = []
-  try
-    let l:args = ['ghc-mod', a:type, l:path]
-    let l:proc = vimproc#plineopen2([{'args': l:args,  'fd': { 'stdin': '', 'stdout': l:tmpfile, 'stderr': '' }}])
-
-    let [l:cond, l:status] = s:wait(l:proc)
-    let l:tries = 1
-    while l:cond ==# 'run'
-      if l:tries >= 50
-        call l:proc.kill(15)  " SIGTERM
-        call l:proc.waitpid()
-        throw printf('ghcmod#make: `ghc-mod %s` takes too long time!', a:type)
-      endif
-      sleep 100m
-      let [l:cond, l:status] = s:wait(l:proc)
-      let l:tries += 1
-    endwhile
-
-    for l:output in readfile(l:tmpfile)
-      let l:qf = {}
-      let l:m = matchlist(l:output, '^\(\f\+\):\(\d\+\):\(\d\+\):\s*\(.*\)$')
-      let [l:qf.filename, l:qf.lnum, l:qf.col, l:rest] = l:m[1 : 4]
-      if l:rest =~# '^Warning:'
-        let l:qf.type = 'W'
-        let l:rest = matchstr(l:rest, '^Warning:\s*\zs.*$')
-      elseif l:rest =~# '^Error:'
-        let l:qf.type = 'E'
-        let l:rest = matchstr(l:rest, '^Error:\s*\zs.*$')
-      else
-        let l:qf.type = 'E'
-      endif
-      let l:texts = split(l:rest, '\n')
-      let l:qf.text = l:texts[0]
-      call add(l:qflist, l:qf)
-
-      for l:text in l:texts[1 :]
-        call add(l:qflist, {'text': l:text})
-      endfor
-    endfor
-  catch
-    call ghcmod#print_error(printf('%s %s', v:throwpoint, v:exception))
-  finally
-    call delete(l:tmpfile)
-  endtry
-  return l:qflist
-endfunction
-
-function! ghcmod#expand()
+function! ghcmod#expand()"{{{
   if &l:modified
     call ghcmod#print_warning('ghcmod#expand: the buffer has been modified but not written')
   endif
@@ -204,7 +272,8 @@ function! ghcmod#expand()
   endif
 
   let l:qflist = []
-  for l:line in split(vimproc#system(['ghc-mod', 'expand', l:path]), '\n')
+  let l:cmd = ghcmod#build_command(['expand', l:path])
+  for l:line in split(vimproc#system(l:cmd), '\n')
     let l:qf = {}
     " path:line:col1-col2: message
     " or path:line:col: message
@@ -224,9 +293,9 @@ function! ghcmod#expand()
     call add(l:qflist, l:qf)
   endfor
   return l:qflist
-endfunction
+endfunction"}}}
 
-function! ghcmod#check_version(version)
+function! ghcmod#check_version(version)"{{{
   if !exists('s:ghc_mod_version')
     call vimproc#system('ghc-mod')
     let l:m = matchlist(vimproc#get_last_errmsg(), 'version \(\d\+\)\.\(\d\+\)\.\(\d\+\)')
@@ -240,16 +309,27 @@ function! ghcmod#check_version(version)
     endif
   endfor
   return 1
-endfunction
+endfunction"}}}
 
-function! ghcmod#print_error(msg)
+function! ghcmod#build_command(args)"{{{
+  let l:cmd = ['ghc-mod']
+  for l:opt in get(g:, 'ghcmod_ghc_options', [])
+    call extend(l:cmd, ['-g', l:opt])
+  endfor
+  call extend(l:cmd, a:args)
+  return l:cmd
+endfunction"}}}
+
+function! ghcmod#print_error(msg)"{{{
   echohl ErrorMsg
   echomsg a:msg
   echohl None
-endfunction
+endfunction"}}}
 
-function! ghcmod#print_warning(msg)
+function! ghcmod#print_warning(msg)"{{{
   echohl WarningMsg
   echomsg a:msg
   echohl None
-endfunction
+endfunction"}}}
+
+" vim: set ts=2 sw=2 et fdm=marker:

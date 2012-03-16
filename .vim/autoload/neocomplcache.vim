@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: neocomplcache.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 26 Feb 2012.
+" Last Modified: 06 Mar 2012.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -64,9 +64,6 @@ function! neocomplcache#enable() "{{{
           \ call s:do_auto_complete('CursorMovedI')
   endif
   "}}}
-
-  " Disable beep.
-  set vb t_vb=
 
   " Initialize"{{{
   let s:is_enabled = 1
@@ -1259,6 +1256,15 @@ function! neocomplcache#print_debug(expr)"{{{
   if g:neocomplcache_enable_debug
     echomsg string(a:expr)
   endif
+endfunction"}}}
+function! neocomplcache#get_temporary_directory()"{{{
+  let directory = neocomplcache#util#substitute_path_separator(
+        \ neocomplcache#util#expand(g:neocomplcache_temporary_dir))
+  if !isdirectory(directory)
+    call mkdir(directory, 'p')
+  endif
+
+  return directory
 endfunction"}}}
 
 " For unite source.

@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/vim-pandoc"]
 	path = .vim/bundle/vim-pandoc
 	url = git://github.com/vim-pandoc/vim-pandoc.git
+[submodule ".vim/bundle/html-template-syntax"]
+	path = .vim/bundle/html-template-syntax
+	url = git://github.com/pbrisbin/html-template-syntax.git

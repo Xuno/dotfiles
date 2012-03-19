@@ -10,3 +10,9 @@
 [submodule ".vim/bundle/html-template-syntax"]
 	path = .vim/bundle/html-template-syntax
 	url = git://github.com/pbrisbin/html-template-syntax.git
+[submodule ".vim/bundle/ghcmod-vim"]
+	path = .vim/bundle/ghcmod-vim
+	url = git://github.com/eagletmt/ghcmod-vim.git
+[submodule ".vim/bundle/vimproc"]
+	path = .vim/bundle/vimproc
+	url = git://github.com/Shougo/vimproc.git

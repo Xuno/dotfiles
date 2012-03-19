@@ -27,6 +27,10 @@ imap <F1> <ESC>
 
 nmap <F8> :TagbarToggle<CR>
 
+let g:ghcmod_ghc_options=['-w']
+
+autocmd BufWritePost *.hs,*.lhs GhcModCheckAsync
+
 autocmd BufEnter *.hsc :set filetype=haskell
 autocmd BufEnter *.hsc :nmap <F5> :!hsc2hs %;ghc --make %<.hs<CR>
 
@@ -49,9 +53,12 @@ autocmd FileType haskell,lhaskell :set errorformat=
                         \%+C\ \ %#%m,
                         \%W%>%f:%l:%c:,
                         \%+C\ \ %#%tarning:\ %m,
+autocmd FileType haskell,lhaskell :nmap <F4> :GhcModLintAsync<CR>
 autocmd FileType haskell,lhaskell :nmap <F5> :make<CR>
 autocmd FileType haskell,lhaskell :nmap <F6> :!./%<<CR>
-autocmd FileType haskell,lhaskell :nmap <F4> :!ghc-mod lint %<CR>
+autocmd FileType haskell,lhaskell :nmap <F7> :GhcModExpand<CR>
+autocmd FileType haskell,lhaskell :nmap <Tab> :GhcModType<CR>
+autocmd FileType haskell,lhaskell :nmap <s-Tab> :GhcModTypeClear<CR>
 autocmd FileType scala :nmap <F4> :!fsc -shutdown<CR>
 autocmd FileType scala :nmap <F5> :make<CR>
 autocmd FileType scala :nmap <F6> :!scala Main<CR>

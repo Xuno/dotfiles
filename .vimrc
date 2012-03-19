@@ -22,6 +22,7 @@ filetype plugin on
 colorscheme herald
 set t_Co=256
 
+set switchbuf=useopen,split
 set autoindent
 imap <F1> <ESC>
 

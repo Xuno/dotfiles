@@ -1,9 +1,9 @@
-[submodule "neco-ghc"]
-	path = neco-ghc
-	url = https://github.com/ujihisa/neco-ghc.git
-[submodule "tagbar"]
-	path = tagbar
+[submodule ".vim/bundle/neco-ghc"]
+	path = .vim/bundle/neco-ghc
+	url = git://github.com/ujihisa/neco-ghc.git
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
-[submodule "vim-pandoc"]
-	path = vim-pandoc
-	url = https://github.com/vim-pandoc/vim-pandoc.git
+[submodule ".vim/bundle/vim-pandoc"]
+	path = .vim/bundle/vim-pandoc
+	url = git://github.com/vim-pandoc/vim-pandoc.git

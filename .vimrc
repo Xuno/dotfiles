@@ -27,12 +27,12 @@ set autoindent
 set foldmethod=marker
 imap <F1> <ESC>
 
+"tagbar
 nmap <F8> :TagbarToggle<CR>
 
+"haskell related
 let g:ghcmod_ghc_options=['-w']
-
 autocmd BufWritePost *.hs,*.lhs GhcModCheckAsync
-
 autocmd BufEnter *.hsc :set filetype=haskell
 autocmd BufEnter *.hsc :nmap <F5> :!hsc2hs %;ghc --make %<.hs<CR>
 
@@ -68,6 +68,11 @@ autocmd FileType scala :set makeprg=fsc\ % errorformat=%f:%l:\ error:\ %m,%-Z%p^
 
 autocmd FileType lhaskell :nmap <F7> :set filetype=pandoc<CR>
 autocmd FileType pandoc :nmap <F7> :set filetype=lhaskell<CR>
+
+autocmd FileType pandoc :nnoremap \- yyp<c-v>$r-
+                        :nnoremap \= yyp<c-v>$r=
+                        :let b:surround_{char2nr("i")} = "_\r_"
+                        :let b:surround_{char2nr("b")} = "**\r**"
 
 map <c-a> ggVG
 map <c-c> "+y

@@ -19,8 +19,15 @@ call pathogen#infect()
 
 syntax on
 filetype plugin indent on
-colorscheme herald
-set t_Co=256
+
+if &t_Co == 256
+  colorscheme herald
+else
+  colorscheme inkpot
+endif
+
+set fileencodings=utf-8,gbk,cp936
+set fileformats=unix,dos
 
 set switchbuf=useopen,split
 set autoindent
@@ -82,5 +89,17 @@ autocmd FileType pandoc :let b:surround_{char2nr("b")} = "**\r**"
 
 map <c-a> ggVG
 map <c-c> "+y
+
+nnoremap qj :cnext<CR>
+nnoremap qk :cprev<CR>
+nnoremap qq :cc<CR>
+nnoremap qo :copen<CR>
+nnoremap qc :cclose<CR>
+nnoremap qm :make<CR>
+nnoremap qM :make<Space>
+
+highlight WhitespaceEOL ctermbg=red guibg=red
+match WhitespaceEOL /\s\+$/
+autocmd! WinEnter * match WhitespaceEOL /\s\+$/
 
 imap <F9> #include <vector> <CR>#include <list> <CR>#include <map> <CR>#include <set> <CR>#include <deque> <CR>#include <queue> <CR>#include <stack> <CR>#include <bitset> <CR>#include <algorithm> <CR>#include <functional> <CR>#include <numeric> <CR>#include <utility> <CR>#include <complex> <CR>#include <sstream> <CR>#include <iostream> <CR>#include <iomanip> <CR>#include <cstdio> <CR>#include <cmath> <CR>#include <cstdlib> <CR>#include <cstring> <CR>#include <ctime> <CR>#include <cassert> <CR>using namespace std;<CR>

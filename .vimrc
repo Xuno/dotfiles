@@ -37,30 +37,36 @@ autocmd BufEnter *.hsc :set filetype=haskell
 autocmd BufEnter *.hsc :nmap <F5> :!hsc2hs %;ghc --make %<.hs<CR>
 
 autocmd FileType cpp,c,java :set cindent
+autocmd FileType cpp,c,java :let b:surround_{char2nr("c")} = "/* \r */"
+
 autocmd FileType cpp,c :nmap <F5> :make %<<CR>
 autocmd FileType cpp,c :nmap <F6> :!./%<<CR>
+
 autocmd FileType java :set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 autocmd FileType java :nmap <F5> :make<CR>
 autocmd FileType java :nmap <F6> :!java -ea %<<CR>
 autocmd FileType tex :nmap <F5> :!xelatex %<CR>
 autocmd FileType tex :nmap <F6> :!evince %<.pdf<CR>
+
 autocmd FileType haskell,lhaskell :set omnifunc=necoghc#omnifunc
 autocmd FileType haskell,lhaskell :set softtabstop=2
 autocmd FileType haskell,lhaskell :set makeprg=ghc\ --make\ %
 autocmd FileType haskell,lhaskell :set errorformat=
-                        \%-Z\ %#,
-                        \%W%f:%l:%c:\ Warning:\ %m,
-                        \%E%f:%l:%c:\ %m,
-                        \%E%>%f:%l:%c:,
-                        \%+C\ \ %#%m,
-                        \%W%>%f:%l:%c:,
-                        \%+C\ \ %#%tarning:\ %m,
+                                      \%-Z\ %#,
+                                      \%W%f:%l:%c:\ Warning:\ %m,
+                                      \%E%f:%l:%c:\ %m,
+                                      \%E%>%f:%l:%c:,
+                                      \%+C\ \ %#%m,
+                                      \%W%>%f:%l:%c:,
+                                      \%+C\ \ %#%tarning:\ %m,
 autocmd FileType haskell,lhaskell :nmap <F4> :GhcModLintAsync<CR>
 autocmd FileType haskell,lhaskell :nmap <F5> :make<CR>
 autocmd FileType haskell,lhaskell :nmap <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :nmap <F7> :GhcModExpand<CR>
 autocmd FileType haskell,lhaskell :nmap <Tab> :GhcModType<CR>
 autocmd FileType haskell,lhaskell :nmap <s-Tab> :GhcModTypeClear<CR>
+autocmd FileType haskell,lhaskell :let b:surround_{char2nr("c")} = "{- \r -}"
+
 autocmd FileType scala :nmap <F4> :!fsc -shutdown<CR>
 autocmd FileType scala :nmap <F5> :make<CR>
 autocmd FileType scala :nmap <F6> :!scala Main<CR>
@@ -70,9 +76,9 @@ autocmd FileType lhaskell :nmap <F7> :set filetype=pandoc<CR>
 autocmd FileType pandoc :nmap <F7> :set filetype=lhaskell<CR>
 
 autocmd FileType pandoc :nnoremap \- yyp<c-v>$r-
-                        :nnoremap \= yyp<c-v>$r=
-                        :let b:surround_{char2nr("i")} = "_\r_"
-                        :let b:surround_{char2nr("b")} = "**\r**"
+autocmd FileType pandoc :nnoremap \= yyp<c-v>$r=
+autocmd FileType pandoc :let b:surround_{char2nr("i")} = "_\r_"
+autocmd FileType pandoc :let b:surround_{char2nr("b")} = "**\r**"
 
 map <c-a> ggVG
 map <c-c> "+y

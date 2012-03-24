@@ -1,3 +1,5 @@
+set nocompatible
+
 set undolevels=9999
 set history=9999
 set wildchar=<tab>
@@ -28,6 +30,8 @@ endif
 
 set fileencodings=utf-8,gbk,cp936
 set fileformats=unix,dos
+
+set textwidth=78
 
 set switchbuf=useopen,split
 set autoindent

@@ -35,6 +35,8 @@ function! haskell#indent()
       return indent(l:prev_lnum)
     elseif l:prev_line =~# '^\<data\>'
       return match(l:prev_line, '=')
+    elseif l:prev_line =~# '\[\s[^\]]*$'
+      return match(l:prev_line, '\[')
     else
       return indent(l:prev_lnum) + &shiftwidth
     endif
@@ -72,7 +74,7 @@ function! s:on_newline()
 
   " ..... = [ ...
   "         ^
-  if l:line =~# '=\s*\[\s[^\]]*$'
+  if l:line =~# '\[\s[^\]]*$'
     return match(l:line, '\[')
   endif
 

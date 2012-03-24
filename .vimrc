@@ -37,6 +37,7 @@ set switchbuf=useopen,split
 set autoindent
 set foldmethod=marker
 imap <F1> <ESC>
+nnoremap * *``
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>

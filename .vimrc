@@ -22,15 +22,15 @@ call pathogen#infect()
 syntax on
 filetype plugin indent on
 
-if &t_Co == 256
+if has("gui_running") || &t_Co == 256
   colorscheme herald
 else
-  colorscheme inkpot
+  colorscheme jellybeans
 endif
 
+set hlsearch
 set fileencodings=utf-8,gbk,cp936
 set fileformats=unix,dos
-
 set textwidth=78
 
 set switchbuf=useopen,split
@@ -107,4 +107,6 @@ autocmd FileType c,cpp,haskell,java match WhitespaceEOL /\s\+$/
 highlight OverLength ctermbg=grey guibg=grey
 autocmd FileType c,cpp,haskell,java 2match OverLength /\%80v.*/
 
-imap <F9> #include <vector> <CR>#include <list> <CR>#include <map> <CR>#include <set> <CR>#include <deque> <CR>#include <queue> <CR>#include <stack> <CR>#include <bitset> <CR>#include <algorithm> <CR>#include <functional> <CR>#include <numeric> <CR>#include <utility> <CR>#include <complex> <CR>#include <sstream> <CR>#include <iostream> <CR>#include <iomanip> <CR>#include <cstdio> <CR>#include <cmath> <CR>#include <cstdlib> <CR>#include <cstring> <CR>#include <ctime> <CR>#include <cassert> <CR>using namespace std;<CR>
+cmap w!! w !sudo tee % >/dev/null
+
+autocmd FileType cpp :imap <F9> #include <vector><CR>#include <list><CR>#include <map><CR>#include <set><CR>#include <deque><CR>#include <queue><CR>#include <stack><CR>#include <bitset><CR>#include <algorithm><CR>#include <functional><CR>#include <numeric><CR>#include <utility><CR>#include <complex><CR>#include <sstream><CR>#include <iostream><CR>#include <iomanip><CR>#include <cstdio><CR>#include <cmath><CR>#include <cstdlib><CR>#include <cstring><CR>#include <ctime><CR>#include <cassert><CR>using namespace std;<CR>

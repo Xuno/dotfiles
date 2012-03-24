@@ -101,7 +101,7 @@ function! s:on_newline()
   "          ^
   let s = match(l:line, '^\s*\zs\<\where$')
   if s > 0
-    return s + 2
+    return s + &softtabstop
   endif
 
   " xxxxxx let

@@ -51,7 +51,6 @@ autocmd BufWritePost *.hs,*.lhs GhcModCheckAsync
 autocmd BufEnter *.hsc :set filetype=haskell
 autocmd BufEnter *.hsc :nmap <silent> <F5> :!hsc2hs %;ghc --make %<.hs<CR>
 
-autocmd FileType cpp,c,java :set cindent
 autocmd FileType cpp,c,java :let b:surround_{char2nr("c")} = "/* \r */"
 
 autocmd FileType cpp,c :nmap <silent> <F5> :make %<<CR>

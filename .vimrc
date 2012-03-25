@@ -105,7 +105,7 @@ nnoremap <silent> qq :cc<CR>
 nnoremap <silent> qo :copen<CR>
 nnoremap <silent> qc :cclose<CR>
 nnoremap <silent> qm :make<CR>
-nnoremap <silent> qM :make<Space>
+nnoremap qM :make<Space>
 
 highlight WhitespaceEOL ctermbg=DarkGrey guibg=DarkGrey
 highlight OverLength ctermbg=DarkGrey guibg=DarkGrey

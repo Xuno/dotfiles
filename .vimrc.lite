@@ -53,7 +53,7 @@ nnoremap <silent> qq :cc<CR>
 nnoremap <silent> qo :copen<CR>
 nnoremap <silent> qc :cclose<CR>
 nnoremap <silent> qm :make<CR>
-nnoremap <silent> qM :make<Space>
+nnoremap qM :make<Space>
 
 cmap w!! w !sudo tee % >/dev/null
 

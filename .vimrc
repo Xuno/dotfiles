@@ -41,8 +41,8 @@ set foldmethod=marker
 
 " ThinkPad sucks
 imap <F1> <ESC>
-nnoremap <silent> <buffer> \f *``
-nnoremap <silent> <buffer> \c :nohl<CR>
+nnoremap <silent> \f *``
+nnoremap <silent> \c :nohl<CR>
 
 "tagbar
 nmap <silent> <F8> :TagbarToggle<CR>
@@ -101,13 +101,13 @@ nmap <buffer> <c-a> ggVG
 imap <buffer> <c-a> <ESC>ggVG
 nmap <buffer> <c-c> "+y
 
-nnoremap qj :cnext<CR>
-nnoremap qk :cprev<CR>
-nnoremap qq :cc<CR>
-nnoremap qo :copen<CR>
-nnoremap qc :cclose<CR>
-nnoremap qm :make<CR>
-nnoremap qM :make<Space>
+nnoremap <silent> qj :cnext<CR>
+nnoremap <silent> qk :cprev<CR>
+nnoremap <silent> qq :cc<CR>
+nnoremap <silent> qo :copen<CR>
+nnoremap <silent> qc :cclose<CR>
+nnoremap <silent> qm :make<CR>
+nnoremap <silent> qM :make<Space>
 
 highlight WhitespaceEOL ctermbg=DarkGrey guibg=DarkGrey
 highlight OverLength ctermbg=DarkGrey guibg=DarkGrey

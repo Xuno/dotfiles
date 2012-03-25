@@ -27,7 +27,7 @@ set background=dark
 if has("gui_running") || &t_Co == 256
   colorscheme herald
 else
-  colorscheme jellybeans
+  colorscheme default
 endif
 
 set hlsearch
@@ -99,7 +99,7 @@ autocmd FileType pandoc :let b:surround_{char2nr("b")} = "**\r**"
 
 nmap <buffer> <c-a> ggVG
 imap <buffer> <c-a> <ESC>ggVG
-nmap <buffer> <c-c> "+y
+vmap <buffer> <c-c> "+y
 
 nnoremap <silent> qj :cnext<CR>
 nnoremap <silent> qk :cprev<CR>

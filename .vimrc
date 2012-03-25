@@ -41,8 +41,6 @@ set foldmethod=marker
 
 " ThinkPad sucks
 imap <F1> <ESC>
-nnoremap <silent> \f *``
-nnoremap <silent> \c :nohl<CR>
 
 "tagbar
 nmap <silent> <F8> :TagbarToggle<CR>
@@ -79,9 +77,9 @@ autocmd FileType haskell,lhaskell :set softtabstop=2
 autocmd FileType haskell,lhaskell :call s:SetHaskellCompiler()
 autocmd FileType haskell,lhaskell :nmap <F4> :GhcModLintAsync<CR>
 autocmd FileType haskell,lhaskell :nmap <silent> <F6> :!./%<<CR>
-autocmd FileType haskell,lhaskell :nmap <F7> :GhcModExpand<CR>
-autocmd FileType haskell,lhaskell :nmap \t :GhcModType<CR>
-autocmd FileType haskell,lhaskell :nmap <silent> \c :GhcModTypeClear<CR>:nohl<CR>
+autocmd FileType haskell,lhaskell :nmap <S-Tab> :GhcModType<CR>
+autocmd FileType haskell,lhaskell :cmap tc GhcModTypeClear
+autocmd FileType haskell,lhaskell :cmap exp GhcModExpand
 autocmd FileType haskell,lhaskell :let b:surround_{char2nr("c")} = "{- \r -}"
 
 autocmd FileType scala :nmap <F4> :!fsc -shutdown<CR>

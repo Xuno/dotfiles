@@ -64,19 +64,20 @@ autocmd FileType java :nmap <silent> <F6> :!java -ea %<<CR>
 autocmd FileType tex :nmap <silent> <F5> :!xelatex %<CR>
 autocmd FileType tex :nmap <silent> <F6> :!evince %<.pdf<CR>
 
+function! s:SetHaskellCompiler()
+  if glob("*.cabal") != ''
+    compiler cabal
+    nmap <silent> <F5> :make build<CR>
+  else
+    compiler ghc
+    nmap <silent> <F5> :make<CR>
+  endif
+endfunction
+
 autocmd FileType haskell,lhaskell :set omnifunc=necoghc#omnifunc
 autocmd FileType haskell,lhaskell :set softtabstop=2
-autocmd FileType haskell,lhaskell :set makeprg=ghc\ --make\ %
-autocmd FileType haskell,lhaskell :set errorformat=
-                                      \%-Z\ %#,
-                                      \%W%f:%l:%c:\ Warning:\ %m,
-                                      \%E%f:%l:%c:\ %m,
-                                      \%E%>%f:%l:%c:,
-                                      \%+C\ \ %#%m,
-                                      \%W%>%f:%l:%c:,
-                                      \%+C\ \ %#%tarning:\ %m,
+autocmd FileType haskell,lhaskell :call s:SetHaskellCompiler()
 autocmd FileType haskell,lhaskell :nmap <F4> :GhcModLintAsync<CR>
-autocmd FileType haskell,lhaskell :nmap <silent> <F5> :make<CR>
 autocmd FileType haskell,lhaskell :nmap <silent> <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :nmap <F7> :GhcModExpand<CR>
 autocmd FileType haskell,lhaskell :nmap \t :GhcModType<CR>

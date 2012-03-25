@@ -84,9 +84,16 @@ function! s:on_newline()
     return indent(l:lnum) + &shiftwidth
   endif
 
-  " ....... do
+  " <space>where/else/then
+  "          ^
+  let s = match(l:line, '^\s*\zs\(\<\where\|\<then\|\<else\)$')
+  if s > 0
+    return s + &softtabstop
+  endif
+
+  " ....... do/of/then/else
   "     ^
-  if l:line =~# '\<do$'
+  if l:line =~# '\<do$\|\<of$\|\<then$\|\<else$'
     return indent(l:lnum) + &shiftwidth
   endif
 
@@ -95,13 +102,6 @@ function! s:on_newline()
   let s = match(l:line, '\<do\s\+\zs[^{]\|\<where\s\+\zs\w\|\<let\s\+\zs\S\|^\s*\zs|\s')
   if s > 0
     return s
-  endif
-
-  " <space>where
-  "          ^
-  let s = match(l:line, '^\s*\zs\<\where$')
-  if s > 0
-    return s + &softtabstop
   endif
 
   " xxxxxx let

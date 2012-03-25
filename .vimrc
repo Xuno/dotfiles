@@ -22,6 +22,8 @@ call pathogen#infect()
 syntax on
 filetype plugin indent on
 
+set background=dark
+
 if has("gui_running") || &t_Co == 256
   colorscheme herald
 else
@@ -106,9 +108,9 @@ nnoremap qc :cclose<CR>
 nnoremap qm :make<CR>
 nnoremap qM :make<Space>
 
-highlight WhitespaceEOL ctermbg=grey guibg=grey
+highlight WhitespaceEOL ctermbg=DarkGrey guibg=DarkGrey
+highlight OverLength ctermbg=DarkGrey guibg=DarkGrey
 autocmd FileType c,cpp,haskell,java match WhitespaceEOL /\s\+$/
-highlight OverLength ctermbg=grey guibg=grey
 autocmd FileType c,cpp,haskell,java 2match OverLength /\%80v.*/
 
 cmap w!! w !sudo tee % >/dev/null

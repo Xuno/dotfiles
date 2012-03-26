@@ -1,9 +1,11 @@
 
 build: .vim/bundle/vimproc/autoload/vimproc_unix.so
 
-update:
+restore:
 	git submodule sync
 	git submodule update
+
+update:
 	git submodule foreach 'git fetch origin'
 	git submodule foreach 'git merge origin/master'
 

@@ -79,8 +79,8 @@ autocmd FileType haskell,lhaskell :call s:SetHaskellCompiler()
 autocmd FileType haskell,lhaskell :nmap <F4> :GhcModLintAsync<CR>
 autocmd FileType haskell,lhaskell :nmap <silent> <F6> :!./%<<CR>
 autocmd FileType haskell,lhaskell :nmap <S-Tab> :GhcModType<CR>
-autocmd FileType haskell,lhaskell :cmap tc GhcModTypeClear
-autocmd FileType haskell,lhaskell :cmap exp GhcModExpand
+autocmd FileType haskell,lhaskell :cmap tc<CR> GhcModTypeClear<CR>
+autocmd FileType haskell,lhaskell :cmap exp<CR> GhcModExpand<CR>
 autocmd FileType haskell,lhaskell :let b:surround_{char2nr("c")} = "{- \r -}"
 autocmd FileType haskell,lhaskell :set commentstring=--\ %s
 

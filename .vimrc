@@ -52,6 +52,7 @@ autocmd BufEnter *.hsc :set filetype=haskell
 autocmd BufEnter *.hsc :nmap <silent> <F5> :!hsc2hs %;ghc --make %<.hs<CR>
 
 autocmd FileType cpp,c,java :let b:surround_{char2nr("c")} = "/* \r */"
+autocmd FileType cpp,c,java :set commentstring=//\ %s
 
 autocmd FileType cpp,c :nmap <silent> <F5> :make %<<CR>
 autocmd FileType cpp,c :nmap <silent> <F6> :!./%<<CR>
@@ -81,6 +82,7 @@ autocmd FileType haskell,lhaskell :nmap <S-Tab> :GhcModType<CR>
 autocmd FileType haskell,lhaskell :cmap tc GhcModTypeClear
 autocmd FileType haskell,lhaskell :cmap exp GhcModExpand
 autocmd FileType haskell,lhaskell :let b:surround_{char2nr("c")} = "{- \r -}"
+autocmd FileType haskell,lhaskell :set commentstring=--\ %s
 
 autocmd FileType scala :nmap <F4> :!fsc -shutdown<CR>
 autocmd FileType scala :nmap <silent> <F5> :make<CR>

@@ -39,6 +39,8 @@ set switchbuf=useopen,split
 set autoindent
 set foldmethod=marker
 
+set dict=/usr/share/dict/american-english
+
 " ThinkPad sucks
 imap <F1> <ESC>
 

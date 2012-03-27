@@ -10,14 +10,26 @@ function! haskell#indent()
   let l:current_lnum = line('.')
   let l:current_line = getline('.')
 
-  if current_line =~# '^\s*$'
+  if l:current_line =~# '^\s*$'
     return s:on_newline()
   endif
 
+  " data Person = 
+  "     { age :: Int
+  "     ...
   if l:current_line =~# '^\s*{' && l:prev_line =~# '^\<data\>'
     return &shiftwidth
   endif
 
+  " a :: b
+  "   -> c
+  if l:current_line =~# '^\s*->' && l:prev_line =~# '::'
+    return match(l:prev_line, '::')
+  endif
+
+  " let xxx
+  "     xxx
+  " in
   if l:current_line =~# '^\s*in'
     let l:lnum = l:prev_lnum
     while l:lnum >= 1
@@ -30,6 +42,20 @@ function! haskell#indent()
     return indent(l:current_lnum) - &shiftwidth
   endif
 
+  " data A = B
+  "        | C
+  "        | D
+  "
+  "
+  "      [ i
+  "      | i <- [1..10]
+  "      , even i
+  "      ]
+  "
+  " funcName n
+  "     | even n    = ...
+  "     | otherwise = ...
+  "
   if l:current_line =~# '^\s*|'
     if l:prev_line =~# '^\s*|'
       return indent(l:prev_lnum)
@@ -125,4 +151,4 @@ function! s:on_newline()
 endfunction
 
 setlocal indentexpr=haskell#indent()
-setlocal indentkeys=!^F,o,O,0{,0=in,0=\|
+setlocal indentkeys=!^F,o,O,0{,0=in,0=\|,0=\-\>

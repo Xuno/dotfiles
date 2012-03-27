@@ -125,7 +125,7 @@ function! s:on_newline()
 
   " the first token after do/where/let begins a new block by indent in haskell
   " syntax
-  let s = match(l:line, '\<do\s\+\zs[^{]\|\<where\s\+\zs\w\|\<let\s\+\zs\S\|^\s*\zs|\s')
+  let s = match(l:line, '\<do\s\+\zs[^{]\|\<where\s\+\zs\w\|\<let\s\+\zs\S')
   if s > 0
     return s
   endif

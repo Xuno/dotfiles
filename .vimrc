@@ -4,7 +4,7 @@ set nocompatible
 set undolevels=9999
 set history=9999
 set wildchar=<tab>
-set wildignore=*.o,*.bak,*~,hi,*.git
+set wildignore=*.o,*.bak,*~,*.hi,*.git
 set expandtab
 set tabstop=4
 set softtabstop=4

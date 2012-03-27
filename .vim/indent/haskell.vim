@@ -33,7 +33,7 @@ function! haskell#indent()
   if l:current_line =~# '^\s*in\>'
     let l:lnum = l:prev_lnum
     let l:min_indent = 999
-    while l:lnum >= 1 && l:lnum >= l:current_line - 99 && l:min_indent > 0
+    while l:lnum >= 1 && l:lnum >= l:prev_lnum - 99 && l:min_indent > 0
       let l:cline = getline(l:lnum)
       let l:cindent = match(l:cline, '^\s*\zs\S')
       if l:cindent >= 0 && l:cindent < l:min_indent

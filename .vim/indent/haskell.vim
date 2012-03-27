@@ -30,16 +30,21 @@ function! haskell#indent()
   " let xxx
   "     xxx
   " in
-  if l:current_line =~# '^\s*in'
+  if l:current_line =~# '^\s*in\>'
     let l:lnum = l:prev_lnum
-    while l:lnum >= 1
-      if getline(l:lnum) =~# '\<let\>'
-        let l:pos = match(getline(l:lnum), '\<let\>')
-        return l:pos
+    let l:min_indent = 999
+    while l:lnum >= 1 && l:lnum >= l:current_line - 99 && l:min_indent > 0
+      let l:cline = getline(l:lnum)
+      let l:cindent = match(l:cline, '^\s*\zs\S')
+      if l:cindent >= 0 && l:cindent < l:min_indent
+        let l:min_indent = l:cindent
+      end
+      let l:let_pos = match(l:cline, '\<let\>')
+      if l:let_pos >= 0 && l:let_pos <= l:min_indent
+        return l:let_pos
       end
       let l:lnum -= 1
     endwhile
-    return indent(l:current_lnum) - &shiftwidth
   endif
 
   " data A = B

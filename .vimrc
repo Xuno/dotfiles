@@ -1,8 +1,10 @@
+
 set nocompatible
 
 set undolevels=9999
 set history=9999
 set wildchar=<tab>
+set wildignore=*.o,*.bak,*~,hi,*.git
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -15,12 +17,8 @@ set display+=uhex
 
 set autowrite
 set wildmenu
-command ConvertToHTML so $VIMRUNTIME/syntax/2html.vim
 
-call pathogen#infect()
-
-syntax on
-filetype plugin indent on
+let mapleader = ","
 
 set background=dark
 
@@ -39,6 +37,12 @@ set switchbuf=useopen,split
 set autoindent
 set foldmethod=marker
 
+syntax on
+filetype plugin indent on
+
+command ConvertToHTML so $VIMRUNTIME/syntax/2html.vim
+call pathogen#infect()
+
 " ThinkPad sucks
 imap <F1> <ESC>
 
@@ -47,6 +51,12 @@ nmap <silent> <F8> :TagbarToggle<CR>
 
 "haskell related
 let g:ghcmod_ghc_options=['-w']
+
+autocmd BufNewFile *.sh 0put=\"#!/bin/bash\<nl>\"
+autocmd BufWritePost * if getline(1) =~ "^#!/bin/[a-z]*sh" | silent !chmod a+x <afile> | endif
+autocmd BufNewFile *.rb 0put=\"#!/usr/bin/env ruby\<nl>\"
+autocmd BufNewFile *.py 0put=\"#!/usr/bin/env python\<nl>\"
+
 autocmd BufWritePost *.hs,*.lhs GhcModCheckAsync
 autocmd BufEnter *.hsc :setlocal filetype=haskell
 autocmd BufEnter *.hsc :nmap <silent> <F5> :!hsc2hs %;ghc --make %<.hs<CR>
@@ -97,7 +107,7 @@ autocmd FileType pandoc :nnoremap <buffer> \= yyp<c-v>$r=
 autocmd FileType pandoc :let b:surround_{char2nr("i")} = "_\r_"
 autocmd FileType pandoc :let b:surround_{char2nr("b")} = "**\r**"
 
-autocmd FileType pandoc,text :setlocal dict=/usr/share/dict/american-english
+autocmd FileType pandoc,text :setlocal dict=/usr/share/dict/words
 
 nmap <buffer> <c-a> ggVG
 imap <buffer> <c-a> <ESC>ggVG
@@ -110,6 +120,11 @@ nnoremap <silent> qo :copen<CR>
 nnoremap <silent> qc :cclose<CR>
 nnoremap <silent> qm :make<CR>
 nnoremap qM :make<Space>
+
+nnoremap <silent> tj :tabprevious<CR>
+nnoremap <silent> tk :tabnext<CR>
+nnoremap <silent> to :tabnew<CR>
+nnoremap <silent> tc :tabclose<CR>
 
 highlight WhitespaceEOL ctermbg=DarkGrey guibg=DarkGrey
 highlight OverLength ctermbg=DarkGrey guibg=DarkGrey

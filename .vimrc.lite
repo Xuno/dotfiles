@@ -22,6 +22,8 @@ set switchbuf=useopen,split
 set autoindent
 set foldmethod=marker
 
+let mapleader = ","
+
 imap <F1> <ESC>
 
 autocmd FileType cpp,c :nmap <silent> <F5> :make %<<CR>
@@ -54,6 +56,11 @@ nnoremap <silent> qo :copen<CR>
 nnoremap <silent> qc :cclose<CR>
 nnoremap <silent> qm :make<CR>
 nnoremap qM :make<Space>
+
+nnoremap <silent> tj :tabprevious<CR>
+nnoremap <silent> tk :tabnext<CR>
+nnoremap <silent> to :tabnew<CR>
+nnoremap <silent> tc :tabclose<CR>
 
 cmap w!! w !sudo tee % >/dev/null
 

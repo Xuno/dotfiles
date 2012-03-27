@@ -30,18 +30,21 @@ function! haskell#indent()
   " let xxx
   "     xxx
   " in
-  if l:current_line =~# '^\s*in\>'
+  if l:current_line =~# '^\s*in\ '
     let l:lnum = l:prev_lnum
     let l:min_indent = 999
     while l:lnum >= 1 && l:lnum >= l:prev_lnum - 99 && l:min_indent > 0
       let l:cline = getline(l:lnum)
+      let l:let_pos = match(l:cline, '\<let\>')
+      echo l:let_pos
+      echo l:min_indent
+      if l:let_pos >= 0 && l:let_pos < l:min_indent
+        return l:let_pos
+      end
       let l:cindent = match(l:cline, '^\s*\zs\S')
+      echo l:cindent
       if l:cindent >= 0 && l:cindent < l:min_indent
         let l:min_indent = l:cindent
-      end
-      let l:let_pos = match(l:cline, '\<let\>')
-      if l:let_pos >= 0 && l:let_pos <= l:min_indent
-        return l:let_pos
       end
       let l:lnum -= 1
     endwhile
@@ -156,4 +159,4 @@ function! s:on_newline()
 endfunction
 
 setlocal indentexpr=haskell#indent()
-setlocal indentkeys=!^F,o,O,0{,0=in,0=\|,0=\-\>,0=\=\>
+setlocal indentkeys=!^F,o,O,0{,0=in\ ,0=\|,0=\-\>,0=\=\>

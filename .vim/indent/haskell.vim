@@ -23,7 +23,7 @@ function! haskell#indent()
 
   " a :: b
   "   -> c
-  if l:current_line =~# '^\s*->' && l:prev_line =~# '::'
+  if l:current_line =~# '^\s*\(->\|=>\)' && l:prev_line =~# '::'
     return match(l:prev_line, '::')
   endif
 
@@ -151,4 +151,4 @@ function! s:on_newline()
 endfunction
 
 setlocal indentexpr=haskell#indent()
-setlocal indentkeys=!^F,o,O,0{,0=in,0=\|,0=\-\>
+setlocal indentkeys=!^F,o,O,0{,0=in,0=\|,0=\-\>,0=\=\>

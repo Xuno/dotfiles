@@ -130,6 +130,8 @@ highlight OverLength ctermbg=DarkGrey guibg=DarkGrey
 autocmd FileType c,cpp,haskell,java match WhitespaceEOL /\s\+$/
 autocmd FileType c,cpp,haskell,java 2match OverLength /\%80v.*/
 
+cmap <silent> ccc match WhitespaceEOL /\s\+$/<CR>:2match OverLength /\%80v.*/<CR>
+
 cmap w!! w !sudo tee % >/dev/null
 
 autocmd FileType cpp :imap <F9> #include <vector><CR>#include <list><CR>#include <map><CR>#include <set><CR>#include <deque><CR>#include <queue><CR>#include <stack><CR>#include <bitset><CR>#include <algorithm><CR>#include <functional><CR>#include <numeric><CR>#include <utility><CR>#include <complex><CR>#include <sstream><CR>#include <iostream><CR>#include <iomanip><CR>#include <cstdio><CR>#include <cmath><CR>#include <cstdlib><CR>#include <cstring><CR>#include <ctime><CR>#include <cassert><CR>using namespace std;<CR>

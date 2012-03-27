@@ -53,7 +53,6 @@ nmap <silent> <F8> :TagbarToggle<CR>
 let g:ghcmod_ghc_options=['-w']
 
 autocmd BufNewFile *.sh 0put=\"#!/bin/bash\<nl>\"
-autocmd BufWritePost * if getline(1) =~ "^#!/bin/[a-z]*sh" | silent !chmod a+x <afile> | endif
 autocmd BufNewFile *.rb 0put=\"#!/usr/bin/env ruby\<nl>\"
 autocmd BufNewFile *.py 0put=\"#!/usr/bin/env python\<nl>\"
 

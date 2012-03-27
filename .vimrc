@@ -39,8 +39,6 @@ set switchbuf=useopen,split
 set autoindent
 set foldmethod=marker
 
-set dict=/usr/share/dict/american-english
-
 " ThinkPad sucks
 imap <F1> <ESC>
 
@@ -50,16 +48,16 @@ nmap <silent> <F8> :TagbarToggle<CR>
 "haskell related
 let g:ghcmod_ghc_options=['-w']
 autocmd BufWritePost *.hs,*.lhs GhcModCheckAsync
-autocmd BufEnter *.hsc :set filetype=haskell
+autocmd BufEnter *.hsc :setlocal filetype=haskell
 autocmd BufEnter *.hsc :nmap <silent> <F5> :!hsc2hs %;ghc --make %<.hs<CR>
 
 autocmd FileType cpp,c,java :let b:surround_{char2nr("c")} = "/* \r */"
-autocmd FileType cpp,c,java :set commentstring=//\ %s
+autocmd FileType cpp,c,java :setlocal commentstring=//\ %s
 
 autocmd FileType cpp,c :nmap <silent> <F5> :make %<<CR>
 autocmd FileType cpp,c :nmap <silent> <F6> :!./%<<CR>
 
-autocmd FileType java :set makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+autocmd FileType java :setlocal makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 autocmd FileType java :nmap <silent> <F5> :make<CR>
 autocmd FileType java :nmap <silent> <F6> :!java -ea %<<CR>
 autocmd FileType tex :nmap <silent> <F5> :!xelatex %<CR>
@@ -75,8 +73,8 @@ function! s:SetHaskellCompiler()
   endif
 endfunction
 
-autocmd FileType haskell,lhaskell :set omnifunc=necoghc#omnifunc
-autocmd FileType haskell,lhaskell :set softtabstop=2
+autocmd FileType haskell,lhaskell :setlocal omnifunc=necoghc#omnifunc
+autocmd FileType haskell,lhaskell :setlocal softtabstop=2
 autocmd FileType haskell,lhaskell :call s:SetHaskellCompiler()
 autocmd FileType haskell,lhaskell :nmap <F4> :GhcModLintAsync<CR>
 autocmd FileType haskell,lhaskell :nmap <silent> <F6> :!./%<<CR>
@@ -84,20 +82,22 @@ autocmd FileType haskell,lhaskell :nmap <S-Tab> :GhcModType<CR>
 autocmd FileType haskell,lhaskell :cmap tc<CR> GhcModTypeClear<CR>
 autocmd FileType haskell,lhaskell :cmap exp<CR> GhcModExpand<CR>
 autocmd FileType haskell,lhaskell :let b:surround_{char2nr("c")} = "{- \r -}"
-autocmd FileType haskell,lhaskell :set commentstring=--\ %s
+autocmd FileType haskell,lhaskell :setlocal commentstring=--\ %s
 
 autocmd FileType scala :nmap <F4> :!fsc -shutdown<CR>
 autocmd FileType scala :nmap <silent> <F5> :make<CR>
 autocmd FileType scala :nmap <silent> <F6> :!scala Main<CR>
-autocmd FileType scala :set makeprg=fsc\ % errorformat=%f:%l:\ error:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
+autocmd FileType scala :setlocal makeprg=fsc\ % errorformat=%f:%l:\ error:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
 
-autocmd FileType lhaskell :nmap <silent> <F7> :set filetype=pandoc<CR>
-autocmd FileType pandoc :nmap <silent> <F7> :set filetype=lhaskell<CR>
+autocmd FileType lhaskell :nmap <silent> <F7> :setlocal filetype=pandoc<CR>
+autocmd FileType pandoc :nmap <silent> <F7> :setlocal filetype=lhaskell<CR>
 
 autocmd FileType pandoc :nnoremap <buffer> \- yyp<c-v>$r-
 autocmd FileType pandoc :nnoremap <buffer> \= yyp<c-v>$r=
 autocmd FileType pandoc :let b:surround_{char2nr("i")} = "_\r_"
 autocmd FileType pandoc :let b:surround_{char2nr("b")} = "**\r**"
+
+autocmd FileType pandoc,text :setlocal dict=/usr/share/dict/american-english
 
 nmap <buffer> <c-a> ggVG
 imap <buffer> <c-a> <ESC>ggVG

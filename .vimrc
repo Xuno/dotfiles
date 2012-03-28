@@ -98,6 +98,12 @@ autocmd FileType scala :nmap <silent> <F5> :make<CR>
 autocmd FileType scala :nmap <silent> <F6> :!scala Main<CR>
 autocmd FileType scala :setlocal makeprg=fsc\ % errorformat=%f:%l:\ error:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
 
+let g:vimclojure#HighlightBuiltins=1
+let g:vimclojure#ParenRainbow=1
+let g:vimclojure#DynamicHighlighting=1
+"let vimclojure#NailgunClient = "/usr/bin/ng"
+"let vimclojure#WantNailgun=1
+
 autocmd FileType lhaskell :nmap <silent> <F7> :setlocal filetype=pandoc<CR>
 autocmd FileType pandoc :nmap <silent> <F7> :setlocal filetype=lhaskell<CR>
 

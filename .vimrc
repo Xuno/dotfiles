@@ -1,6 +1,9 @@
 
 set nocompatible
 
+syntax on
+filetype plugin indent on
+
 set undolevels=9999
 set history=9999
 set wildchar=<tab>
@@ -37,17 +40,15 @@ set switchbuf=useopen,split
 set autoindent
 set foldmethod=marker
 
-syntax on
-filetype plugin indent on
-
-command ConvertToHTML so $VIMRUNTIME/syntax/2html.vim
 call pathogen#infect()
 
+command ConvertToHTML so $VIMRUNTIME/syntax/2html.vim
+
 " ThinkPad sucks
-imap <F1> <ESC>
+autocmd BufEnter * imap <F1> <ESC>
 
 "tagbar
-nmap <silent> <F8> :TagbarToggle<CR>
+autocmd BufEnter * nmap <silent> <F8> :TagbarToggle<CR>
 
 "haskell related
 let g:ghcmod_ghc_options=['-w']
@@ -114,30 +115,30 @@ autocmd FileType pandoc :let b:surround_{char2nr("b")} = "**\r**"
 
 autocmd FileType pandoc,text :setlocal dict=/usr/share/dict/words
 
-nmap <buffer> <c-a> ggVG
-imap <buffer> <c-a> <ESC>ggVG
-vmap <buffer> <c-c> "+y
+autocmd BufEnter * nmap <buffer> <c-a> ggVG
+autocmd BufEnter * imap <buffer> <c-a> <ESC>ggVG
+autocmd BufEnter * vmap <buffer> <c-c> "+y
 
-nnoremap <silent> qj :cnext<CR>
-nnoremap <silent> qk :cprev<CR>
-nnoremap <silent> qq :cc<CR>
-nnoremap <silent> qo :copen<CR>
-nnoremap <silent> qc :cclose<CR>
-nnoremap <silent> qm :make<CR>
-nnoremap qM :make<Space>
+autocmd BufEnter * nnoremap <silent> qj :cnext<CR>
+autocmd BufEnter * nnoremap <silent> qk :cprev<CR>
+autocmd BufEnter * nnoremap <silent> qq :cc<CR>
+autocmd BufEnter * nnoremap <silent> qo :copen<CR>
+autocmd BufEnter * nnoremap <silent> qc :cclose<CR>
+autocmd BufEnter * nnoremap <silent> qm :make<CR>
+autocmd BufEnter * nnoremap qM :make<Space>
 
-nnoremap <silent> tj :tabprevious<CR>
-nnoremap <silent> tk :tabnext<CR>
-nnoremap <silent> to :tabnew<CR>
-nnoremap <silent> tc :tabclose<CR>
+autocmd BufEnter * nnoremap <silent> tj :tabprevious<CR>
+autocmd BufEnter * nnoremap <silent> tk :tabnext<CR>
+autocmd BufEnter * nnoremap <silent> to :tabnew<CR>
+autocmd BufEnter * nnoremap <silent> tc :tabclose<CR>
 
 highlight WhitespaceEOL ctermbg=DarkGrey guibg=DarkGrey
 highlight OverLength ctermbg=DarkGrey guibg=DarkGrey
 autocmd FileType c,cpp,haskell,java match WhitespaceEOL /\s\+$/
 autocmd FileType c,cpp,haskell,java 2match OverLength /\%80v.*/
 
-cmap <silent> ccc match WhitespaceEOL /\s\+$/<CR>:2match OverLength /\%80v.*/<CR>
+autocmd BufEnter * cmap <silent> ccc match WhitespaceEOL /\s\+$/<CR>:2match OverLength /\%80v.*/<CR>
 
-cmap w!! w !sudo tee % >/dev/null
+autocmd BufEnter * cmap w!! w !sudo tee % >/dev/null
 
 autocmd FileType cpp :imap <F9> #include <vector><CR>#include <list><CR>#include <map><CR>#include <set><CR>#include <deque><CR>#include <queue><CR>#include <stack><CR>#include <bitset><CR>#include <algorithm><CR>#include <functional><CR>#include <numeric><CR>#include <utility><CR>#include <complex><CR>#include <sstream><CR>#include <iostream><CR>#include <iomanip><CR>#include <cstdio><CR>#include <cmath><CR>#include <cstdlib><CR>#include <cstring><CR>#include <ctime><CR>#include <cassert><CR>using namespace std;<CR>

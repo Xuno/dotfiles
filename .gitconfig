@@ -1,0 +1,11 @@
+[user]
+	email = bjin1990@gmail.com
+	name = Bin Jin
+[color]
+	ui = true
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
+[alias]
+	st = status

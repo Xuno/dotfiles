@@ -30,19 +30,27 @@ function! haskell#indent()
   " let xxx
   "     xxx
   " in
-  if l:current_line =~# '^\s*in\ '
+  "
+  " if ...
+  " then ...
+  " else ...
+  if l:current_line =~# '^\s*\(in\>\|then\>\|else\)'
+    if l:current_line =~# '^\s*in\>'
+      let l:expect = '\<let\>'
+    elseif l:current_line =~# '^\s*then\>'
+      let l:expect = '\<if\>'
+    else
+      let l:expect = '\<then\>'
+    endif
     let l:lnum = l:prev_lnum
     let l:min_indent = 999
     while l:lnum >= 1 && l:lnum >= l:prev_lnum - 99 && l:min_indent > 0
       let l:cline = getline(l:lnum)
-      let l:let_pos = match(l:cline, '\<let\>')
-      echo l:let_pos
-      echo l:min_indent
-      if l:let_pos >= 0 && l:let_pos < l:min_indent
-        return l:let_pos
+      let l:expect_pos = match(l:cline, l:expect)
+      if l:expect_pos >= 0 && l:expect_pos < l:min_indent
+        return l:expect_pos
       end
       let l:cindent = match(l:cline, '^\s*\zs\S')
-      echo l:cindent
       if l:cindent >= 0 && l:cindent < l:min_indent
         let l:min_indent = l:cindent
       end
@@ -74,6 +82,11 @@ function! haskell#indent()
     else
       return indent(l:prev_lnum) + &shiftwidth
     endif
+  endif
+
+  let s = match(l:prev_line, '\<do\s\+\zs[^{]\|\<where\s\+\zs\w\|\<let\s\+\zs\S')
+  if s > 0
+    return s
   endif
 
   return indent(l:current_lnum)
@@ -131,13 +144,6 @@ function! s:on_newline()
     return indent(l:lnum) + &shiftwidth
   endif
 
-  " the first token after do/where/let begins a new block by indent in haskell
-  " syntax
-  let s = match(l:line, '\<do\s\+\zs[^{]\|\<where\s\+\zs\w\|\<let\s\+\zs\S')
-  if s > 0
-    return s
-  endif
-
   " xxxxxx let
   "            ^
   let s = match(l:line, '\zs\<let$')
@@ -159,4 +165,4 @@ function! s:on_newline()
 endfunction
 
 setlocal indentexpr=haskell#indent()
-setlocal indentkeys=!^F,o,O,0{,0=in\ ,0=\|,0=\-\>,0=\=\>
+setlocal indentkeys=!^F,o,O,0{,0=in,0=then,e,0=\|,0=\-\>,0=\=\>

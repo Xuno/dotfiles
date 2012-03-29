@@ -1,11 +1,15 @@
 [user]
-	email = bjin1990@gmail.com
-	name = Bin Jin
+    email = bjin1990@gmail.com
+    name = Bin Jin
 [color]
-	ui = true
+    ui = true
 [core]
-	editor = vim
+    editor = vim
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 [alias]
-	st = status
+    st = status
+    a = add
+    br = branch
+    ch = checkout
+    l = log

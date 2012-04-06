@@ -105,6 +105,8 @@ autocmd FileType haskell,lhaskell :cmap tc<CR> GhcModTypeClear<CR>
 autocmd FileType haskell,lhaskell :cmap exp<CR> GhcModExpand<CR>
 autocmd FileType haskell,lhaskell :let b:surround_{char2nr("c")} = "{- \r -}"
 autocmd FileType haskell,lhaskell :setlocal commentstring=--\ %s
+autocmd FileType haskell,lhaskell :nnoremap <silent> <buffer> \= :Tabularize /=<CR>
+autocmd FileType haskell,lhaskell :nnoremap <silent> <buffer> \- :Tabularize /-><CR>
 
 autocmd FileType scala :nmap <F4> :!fsc -shutdown<CR>
 autocmd FileType scala :nmap <silent> <F5> :make<CR>

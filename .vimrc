@@ -31,6 +31,8 @@ else
   colorscheme default
 endif
 
+set laststatus=2
+
 set hlsearch
 set fileencodings=utf-8,gbk,cp936
 set fileformats=unix,dos

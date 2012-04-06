@@ -1,5 +1,5 @@
 
-build: .vim/bundle/vimproc/autoload/vimproc_unix.so
+build: .vim/bundle/vimproc/autoload/vimproc_unix.so .vim/binary/ibus-disable
 
 restore:
 	git submodule sync
@@ -11,3 +11,6 @@ update:
 
 .vim/bundle/vimproc/autoload/vimproc_unix.so: .vim/bundle/vimproc/autoload/proc.c
 	cd .vim/bundle/vimproc; make -f make_unix.mak
+
+.vim/binary/ibus-disable: .vim/binary/ibus-disable.c
+	cd .vim/binary; make ibus-disable

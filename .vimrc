@@ -31,6 +31,13 @@ else
   colorscheme default
 endif
 
+if has("gui_running")
+  autocmd InsertLeave * call IBusDisable()
+  function! IBusDisable()
+    let res = system('$HOME/.vim/binary/ibus-disable')
+  endfunction
+endif
+
 set laststatus=2
 
 set hlsearch

@@ -6,6 +6,9 @@ urxvt.boldItalicFont: xft:Dina:style=Bold Italic:size=15,xft:wenquanyi bitmap so
 
 urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
 
+URxvt.copyCommand:  xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+
 urxvt.keysym.S-Escape: perl:keyboard-select:activate
 urxvt.keysym.S-F11: perl:fullscreen:switch
 

@@ -60,7 +60,7 @@ autocmd BufEnter * imap <F1> <ESC>
 autocmd BufEnter * nmap <silent> <F8> :TagbarToggle<CR>
 
 "nerdtree
-autocmd BufEnter * nmap <silent> <F10> :NERDTreeToggle<CR>
+autocmd BufEnter * nmap <silent> <F2> :NERDTreeToggle<CR>
 
 "haskell related
 let g:ghcmod_ghc_options=['-w']

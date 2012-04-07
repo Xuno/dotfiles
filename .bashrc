@@ -1,3 +1,8 @@
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/games
+export PATH=/usr/local/sbin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.cabal/bin:$PATH
+export PATH=/opt/android-sdk/platform-tools:/usr/share/java/apache-ant/bin:$PATH
+
 PS1='`a=$?;if [ $a -ne 0 ]; then a="  "$a; echo -ne "\[\e[s\e[1A\e[$((COLUMNS-2))G\e[31m\e[1;41m${a:(-3)}\e[u\]\[\e[0m\e[7m\e[2m\]"; fi`\[\e[1;32m\]\u@\h:\[\e[0m\e[1;34m\]\W\[\e[1;34m\]\$ \[\e[0m\]'
 AWT_TOOLKIT=MToolkit
 alias rm="rm -i"
@@ -7,7 +12,6 @@ alias mplayer-fb='mplayer -vo fbdev2'
 alias mencoder-android='mencoder -vf dsize=800:480:2,scale=-8:-8,harddup -oac faac -faacopts mpeg=4:object=2:raw:br=128 -of lavf -lavfopts format=mp4 -ovc x264 -sws 9 -x264encopts nocabac:level_idc=30:bframes=0:bitrate=1024:threads=auto:turbo=1:global_header:threads=auto:subq=5:frameref=6:partitions=all:trellis=1:chroma_me:me=umh'
 alias voicerec='rec -c 2 -r 44100 -s -t wav - | oggenc -q 5 --raw --raw-chan=2 --raw-rate=44100 --raw-bits=16 -'
 alias screenrec='recordmydesktop --no-sound --on-the-fly-encoding --fps 3'
-
 
 vman () {
 	export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
@@ -81,7 +85,6 @@ if [ "$TERM" = "rxvt-unicode" ]; then
     export TERM=rxvt-unicode-256color
 fi
 
-export PATH=$PATH:~/bin:$HOME/src/arm-code-sourcey/arm-2010.09/bin:$HOME/.cabal/bin:/opt/android-sdk/platform-tools:/usr/share/java/apache-ant/bin
 export DOWNLOAD_PATH=$HOME/Desktop
 
 gcj () {

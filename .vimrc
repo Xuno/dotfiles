@@ -107,6 +107,14 @@ autocmd FileType haskell,lhaskell :let b:surround_{char2nr("c")} = "{- \r -}"
 autocmd FileType haskell,lhaskell :setlocal commentstring=--\ %s
 autocmd FileType haskell,lhaskell :nnoremap <silent> <buffer> \= :Tabularize /=<CR>
 autocmd FileType haskell,lhaskell :nnoremap <silent> <buffer> \- :Tabularize /-><CR>
+autocmd FileType haskell,lhaskell :nnoremap \l :GhciLoad<CR>
+autocmd FileType haskell,lhaskell :nnoremap \s :GhciSend<Space>
+autocmd FileType haskell,lhaskell :nnoremap \B :GhciSend<Space>:break<Space>
+autocmd FileType haskell,lhaskell :nnoremap \S :GhciSend<Space>:step<CR>
+autocmd FileType haskell,lhaskell :nnoremap \m :GhciModule<Space>
+autocmd FileType haskell,lhaskell :nnoremap <silent> <buffer> \t :GhciType<CR>
+autocmd FileType haskell,lhaskell :nnoremap <silent> <buffer> \i :GhciInfo<CR>
+autocmd FileType haskell,lhaskell :nnoremap \q :GhciQuit<CR>
 
 autocmd FileType scala :nmap <F4> :!fsc -shutdown<CR>
 autocmd FileType scala :nmap <silent> <F5> :make<CR>

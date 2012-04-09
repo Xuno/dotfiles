@@ -62,6 +62,13 @@ autocmd BufEnter * nmap <silent> <F8> :TagbarToggle<CR>
 "nerdtree
 autocmd BufEnter * nmap <silent> <F2> :NERDTreeToggle<CR>
 
+"ultisnips
+let g:UltiSnipsEditSplit = 'vertical'
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories=["snippets"]
+
 "haskell related
 let g:ghcmod_ghc_options=['-w']
 
@@ -163,4 +170,4 @@ autocmd BufEnter * cmap <silent> ccc match WhitespaceEOL /\s\+$/<CR>:2match Over
 
 autocmd BufEnter * cmap w!! w !sudo tee % >/dev/null
 
-autocmd FileType cpp :imap <F9> #include <vector><CR>#include <list><CR>#include <map><CR>#include <set><CR>#include <deque><CR>#include <queue><CR>#include <stack><CR>#include <bitset><CR>#include <algorithm><CR>#include <functional><CR>#include <numeric><CR>#include <utility><CR>#include <complex><CR>#include <sstream><CR>#include <iostream><CR>#include <iomanip><CR>#include <cstdio><CR>#include <cmath><CR>#include <cstdlib><CR>#include <cstring><CR>#include <ctime><CR>#include <cassert><CR>using namespace std;<CR>
+imap <F9> headers<Tab>

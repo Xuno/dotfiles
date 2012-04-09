@@ -1,0 +1,30 @@
+snippet for "forloop" !
+for (${1:int} ${2:i} = 0; $2 < ${3:count}; ${4:$2++}) {
+	${0:/* code */}
+}
+endsnippet
+
+snippet if "if (...) ..." !
+if (${1:/* condition */}) {
+	${2:/* code */}
+}
+endsnippet
+
+snippet else "else ..." !
+else {
+	${0:/* else code */}
+}
+endsnippet
+
+snippet while "whileloop" !
+while (${1:true}) {
+	${0:/* code */}
+}
+endsnippet
+
+snippet main "main function" !b
+int main()
+{
+	$0
+}
+endsnippet

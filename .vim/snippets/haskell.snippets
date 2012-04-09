@@ -3,25 +3,21 @@ snippet pragma "Compiler pragma" !b
 endsnippet
 
 snippet as "Qualified import" !b
-import qualified ${1:Module} as ${0:Alias}
+import qualified ${1:Data.Map} as ${2:M}
 endsnippet
 
 snippet class "Type class definition" !b
-class ${1:Name} where
+class ${1:Num} ${2:a} where
 	$0
 endsnippet
 
 snippet instance "Instance definition" !b
-instance ${1:Class} ${2:Type} where
+instance ${1:Num} ${2:a} where
 	$0
 endsnippet
 
-snippet :: "Type signature" !b
-${1:name} :: ${2:Type}
-endsnippet
-
-snippet => "Class constraint" !w
-${1:Class} ${2:variable} => $2
+snippet => "Type constraint"
+(${1:Num} ${2:a}) => ${3:$2}
 endsnippet
 
 snippet func "Function definition" !b
@@ -46,9 +42,32 @@ endsnippet
 
 snippet case "Pattern match" !w
 case ${1:scrutinee} of
-	${2:pattern} -> ${3:expression}
+	${2:pattern} -> ${0:expression}
 endsnippet
 
 snippet qq "Quasi quote" !w
 [${1:quoter}| ${0:content} |]
+endsnippet
+
+snippet | "Guard" !
+| ${1:predicate} = ${2:undefined}
+endsnippet
+
+snippet [|] "List comprehension" !
+[${3:foo }$1 | ${1:x} <- ${2:xs} ]
+endsnippet
+
+snippet = "Function clause" !b
+${1:name} ${2:pattern} = ${3:undefined}
+endsnippet
+
+snippet 2= "Function clause" !b
+${1:name} ${2:pattern} = ${3:undefined}
+$1 ${4:pattern} = ${5:undefined}
+endsnippet
+
+snippet 3= "Function clause" !b
+${1:name} ${2:pattern} = ${3:undefined}
+$1 ${4:pattern} = ${5:undefined}
+$1 ${6:pattern} = ${7:undefined}
 endsnippet

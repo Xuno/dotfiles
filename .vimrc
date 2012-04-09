@@ -67,7 +67,7 @@ let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsSnippetDirectories=["snippets"]
+let g:UltiSnipsSnippetDirectories=["snips"]
 
 "haskell related
 let g:ghcmod_ghc_options=['-w']

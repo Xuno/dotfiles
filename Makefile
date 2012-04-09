@@ -1,6 +1,9 @@
 
 build: .vim/bundle/vimproc/autoload/vimproc_unix.so .vim/binary/ibus-disable
 
+init:
+	git submodule init
+
 restore:
 	git submodule sync
 	git submodule update

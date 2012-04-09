@@ -5,7 +5,8 @@ Install Script
 --------------
 
 * `make build` : build binary for `vim-proc` plugin (required by `ghc-mod`)
-* `make restore`: initialize/revert-back git submodules (mostly vim plugins)
+* `make init`: initialize git submodules
+* `make restore`: revert-back git submodules
 * `make update`: update git submodules
 
 Required Binary

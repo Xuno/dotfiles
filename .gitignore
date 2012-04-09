@@ -2,4 +2,3 @@
 *.swp
 *~
 .vim/.netrwhist
-.vim/binary/ibus-disable

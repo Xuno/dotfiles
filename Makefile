@@ -1,5 +1,5 @@
 
-build: .vim/bundle/vimproc/autoload/vimproc_unix.so .vim/binary/ibus-disable
+build: .vim/bundle/vimproc/autoload/vimproc_unix.so bin/ibus-disable
 
 init:
 	git submodule init
@@ -15,5 +15,9 @@ update:
 .vim/bundle/vimproc/autoload/vimproc_unix.so: .vim/bundle/vimproc/autoload/proc.c
 	cd .vim/bundle/vimproc; make -f make_unix.mak
 
-.vim/binary/ibus-disable: .vim/binary/ibus-disable.c
-	cd .vim/binary; make ibus-disable
+bin/ibus-disable: ibus-disable.c
+	cc $< -o $@ $$(pkg-config --cflags --libs ibus-1.0)
+
+clean:
+	rm -f .vim/bundle/vimproc/autoload/vimproc_unix.so
+	rm -f bin/ibus-disable

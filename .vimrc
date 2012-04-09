@@ -31,10 +31,10 @@ else
   colorscheme default
 endif
 
-if has("gui_running")
+if has("gui_running") && executable('ibus-disable')
   autocmd InsertLeave * call IBusDisable()
   function! IBusDisable()
-    let res = system('$HOME/.vim/binary/ibus-disable')
+    let res = system('ibus-disable')
   endfunction
 endif
 

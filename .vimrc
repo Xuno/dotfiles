@@ -157,7 +157,9 @@ autocmd BufEnter * nnoremap <silent> qm :make<CR>
 autocmd BufEnter * nnoremap qM :make<Space>
 
 autocmd BufEnter * nnoremap <silent> tj :tabprevious<CR>
+autocmd BufEnter * nnoremap <silent> th :tabprevious<CR>
 autocmd BufEnter * nnoremap <silent> tk :tabnext<CR>
+autocmd BufEnter * nnoremap <silent> tl :tabnext<CR>
 autocmd BufEnter * nnoremap <silent> to :tabnew<CR>
 autocmd BufEnter * nnoremap <silent> tc :tabclose<CR>
 

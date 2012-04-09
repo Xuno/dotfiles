@@ -58,7 +58,9 @@ nnoremap <silent> qm :make<CR>
 nnoremap qM :make<Space>
 
 nnoremap <silent> tj :tabprevious<CR>
+nnoremap <silent> th :tabprevious<CR>
 nnoremap <silent> tk :tabnext<CR>
+nnoremap <silent> tl :tabnext<CR>
 nnoremap <silent> to :tabnew<CR>
 nnoremap <silent> tc :tabclose<CR>
 

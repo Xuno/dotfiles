@@ -1,0 +1,8 @@
+#!/bin/bash
+pkgpath=`ghc-pkg field $1 haddock-html`
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+pkgpath=`echo $pkgpath | sed -s s/^.*:\ //`
+echo firefox -new-tab "file://$pkgpath/index.html"
+firefox -new-tab "file://$pkgpath/index.html" 2>&1 >/dev/null &

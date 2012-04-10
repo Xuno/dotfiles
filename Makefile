@@ -15,7 +15,7 @@ update:
 .vim/bundle/vimproc/autoload/vimproc_unix.so: .vim/bundle/vimproc/autoload/proc.c
 	cd .vim/bundle/vimproc; make -f make_unix.mak
 
-bin/ibus-disable: ibus-disable.c
+bin/ibus-disable: bin/ibus-disable.c
 	cc $< -o $@ $$(pkg-config --cflags --libs ibus-1.0)
 
 clean:

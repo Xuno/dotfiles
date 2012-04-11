@@ -52,3 +52,6 @@
 [submodule ".urxvt/urxvt-perls"]
 	path = .urxvt/urxvt-perls
 	url = git://github.com/muennich/urxvt-perls.git
+[submodule ".vim/bundle/zencoding"]
+	path = .vim/bundle/zencoding
+	url = git://github.com/mattn/zencoding-vim.git

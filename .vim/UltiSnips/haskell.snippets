@@ -16,7 +16,7 @@ instance ${1:Num} ${2:a} where
 	$0
 endsnippet
 
-snippet => "Type constraint"
+snippet => "Type constraint" !
 (${1:Num} ${2:a}) => ${3:$2}
 endsnippet
 
@@ -51,23 +51,4 @@ endsnippet
 
 snippet | "Guard" !
 | ${1:predicate} = ${2:undefined}
-endsnippet
-
-snippet [|] "List comprehension" !
-[${3:foo }$1 | ${1:x} <- ${2:xs} ]
-endsnippet
-
-snippet = "Function clause" !b
-${1:name} ${2:pattern} = ${3:undefined}
-endsnippet
-
-snippet 2= "Function clause" !b
-${1:name} ${2:pattern} = ${3:undefined}
-$1 ${4:pattern} = ${5:undefined}
-endsnippet
-
-snippet 3= "Function clause" !b
-${1:name} ${2:pattern} = ${3:undefined}
-$1 ${4:pattern} = ${5:undefined}
-$1 ${6:pattern} = ${7:undefined}
 endsnippet

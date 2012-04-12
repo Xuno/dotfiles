@@ -51,8 +51,6 @@ set foldmethod=marker
 
 call pathogen#infect()
 
-command ConvertToHTML so $VIMRUNTIME/syntax/2html.vim
-
 " ThinkPad sucks
 autocmd BufEnter * imap <F1> <ESC>
 

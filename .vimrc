@@ -68,7 +68,6 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<C-E>"
-autocmd VimEnter * :UltiSnipsAddFiletypes pandoc.mkd
 
 "haskell related
 let g:ghcmod_ghc_options=['-w']
@@ -137,6 +136,7 @@ let g:vimclojure#DynamicHighlighting=1
 
 autocmd FileType lhaskell :nmap <silent> <F7> :setlocal filetype=pandoc<CR>
 autocmd FileType pandoc :nmap <silent> <F7> :setlocal filetype=lhaskell<CR>
+autocmd FileType pandoc,lhaskell :UltiSnipsAddFiletypes mkd
 
 autocmd FileType pandoc :nnoremap <buffer> \- yyp<c-v>$r-
 autocmd FileType pandoc :nnoremap <buffer> \= yyp<c-v>$r=
@@ -144,6 +144,9 @@ autocmd FileType pandoc :let b:surround_{char2nr("i")} = "_\r_"
 autocmd FileType pandoc :let b:surround_{char2nr("b")} = "**\r**"
 
 autocmd FileType pandoc,text :setlocal dict=/usr/share/dict/words
+
+autocmd FileType css :UltiSnipsAddFiletypes css.css3
+autocmd FileType less :UltiSnipsAddFiletypes css.css3.less-elements
 
 autocmd BufEnter * nmap <buffer> <c-a> ggVG
 autocmd BufEnter * imap <buffer> <c-a> <ESC>ggVG

@@ -1,0 +1,138 @@
+
+# https://github.com/desandro/CSS3.tmbundle
+
+snippet transition "transition assisted"
+-webkit-transition: $1 $2 $3$4;
+   -moz-transition: $1 $2 $3$4;
+    -ms-transition: $1 $2 $3$4;
+     -o-transition: $1 $2 $3$4;
+        transition: ${1:color} ${2:400ms} ${3:ease-in}${4: 1s};${5: /* transition-property transition-duration(ms/s) transition-timing-function(ease-out/ease/linear/ease-in-out/ease-in/cubic-bezier(0.42, 0, 1.0, 1.0)/step-start/steps(3)/steps(3,start)/step-end) transition-delay(+-ms/s) */}
+
+endsnippet
+
+snippet transform "transform-origin"
+-webkit-transform-origin: $1 $2;
+   -moz-transform-origin: $1 $2;
+    -ms-transform-origin: $1 $2;
+     -o-transform-origin: $1 $2;
+        transform-origin: ${1:50%} ${2:100%};
+
+endsnippet
+
+snippet lingrad "background-image linear gradient"
+background-color: ${4:/* fallback color */};
+background-image: -webkit-gradient(linear, ${5:0 top}, ${6:0 bottom}, from($2), to($3));
+background-image: -webkit-linear-gradient($1, $1, $2);
+background-image:    -moz-linear-gradient($1, $1, $2);
+background-image:     -ms-linear-gradient($1, $1, $2);
+background-image:      -o-linear-gradient($1, $1, $2);
+background-image:         linear-gradient(${1:-90deg}, ${2:#000}, ${3:#fff});
+
+endsnippet
+
+snippet transform "transform-rotate"
+-webkit-transform: rotate$1($2);
+   -moz-transform: rotate$1($2);
+    -ms-transform: rotate$1($2);
+     -o-transform: rotate$1($2);
+        transform: rotate${1:X/Y}(${2:7.5deg});
+
+endsnippet
+
+snippet hsla "hsla"
+hsla(${1:0}, ${2:100}%, ${3:50}%, ${4:1.0})
+endsnippet
+
+snippet box-shadow "box-shadow extra"
+-webkit-box-shadow: $1$2 $3 $4 $5 $6;
+   -moz-box-shadow: $1$2 $3 $4 $5 $6;
+        box-shadow: ${1:inset }${2:1px} ${3:1px} ${4:3px} ${5:2px} ${6:#000}; ${7:/* inset offset-x offset-y blur spread color */}
+
+endsnippet
+
+snippet transform "transform"
+-webkit-transform: $1;
+   -moz-transform: $1;
+    -ms-transform: $1;
+     -o-transform: $1;
+        transform: ${1};
+
+endsnippet
+
+snippet transition "transition"
+-webkit-transition: $1;
+   -moz-transition: $1;
+    -ms-transition: $1;
+     -o-transition: $1;
+        transition: ${1};
+
+endsnippet
+
+snippet box-shadow "box-shadow"
+-webkit-box-shadow: $1 $2 $3 $4;
+   -moz-box-shadow: $1 $2 $3 $4;
+        box-shadow: ${1:1px} ${2:1px} ${3:3px} ${4:#000};
+
+endsnippet
+
+snippet border-radius "border-radius individual corners"
+-webkit-background-clip: padding-box; /* fix WebKit background bleed on border-radius */
+    -webkit-border-radius-top-left: $1; /* pre-Safari 5, delete unused */
+   -webkit-border-radius-top-right: $2;
+-webkit-border-radius-bottom-right: $3;
+ -webkit-border-radius-bottom-left: $4;
+                -moz-border-radius: $1 $2 $3 $4;
+                     border-radius: ${1:6px} ${2:6px} ${3:6px} ${4:6px};
+
+endsnippet
+
+snippet hsl "hsl extra"
+hsl(${1:0}, ${2:100}%, ${3:50}%) ${4:/* hue(0:red, 60:yellow, 120:green, 180:cyan, 240:blue, 300:magenta) saturation(0%:monochrome-100%:full) lightness(0%:black-100%:white) */}
+endsnippet
+
+snippet transform "transform-translate"
+-webkit-transform: translate$1($2);
+   -moz-transform: translate$1($2);
+    -ms-transform: translate$1($2);
+     -o-transform: translate$1($2);
+        transform: translate${1:X/Y}(${2:24px});
+
+endsnippet
+
+snippet transform "transform-scale"
+-webkit-transform: scale$1($2);
+   -moz-transform: scale$1($2);
+    -ms-transform: scale$1($2);
+     -o-transform: scale$1($2);
+        transform: scale${1:X/Y}(${2:1.5});
+
+endsnippet
+
+snippet border-radius "border-radius"
+-webkit-background-clip: padding-box; /* fix WebKit background bleed on border-radius */
+-webkit-border-radius: $1;
+   -moz-border-radius: $1;
+        border-radius: ${1:10px};
+
+endsnippet
+
+snippet bg-clip "bg-clip"
+-webkit-background-clip: $1-box;
+   -moz-background-clip: $1;
+        background-clip: ${1:padding | content | border}-box;
+
+endsnippet
+
+snippet transform "transform-skew"
+-webkit-transform: skew$1($2);
+   -moz-transform: skew$1($2);
+    -ms-transform: skew$1($2);
+     -o-transform: skew$1($2);
+        transform: skew${1:X/Y}(${2:9deg});
+
+endsnippet
+
+snippet hsl "hsl"
+hsl(${1:0}, ${2:100}%, ${3:50}%)
+endsnippet
+

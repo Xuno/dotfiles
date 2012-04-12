@@ -147,6 +147,7 @@ autocmd FileType pandoc,text :setlocal dict=/usr/share/dict/words
 
 autocmd FileType css :UltiSnipsAddFiletypes css.css3
 autocmd FileType less :UltiSnipsAddFiletypes css.css3.less-elements
+autocmd FileType less compiler lessc
 
 autocmd BufEnter * nmap <buffer> <c-a> ggVG
 autocmd BufEnter * imap <buffer> <c-a> <ESC>ggVG

@@ -136,7 +136,7 @@ let g:vimclojure#DynamicHighlighting=1
 
 autocmd FileType lhaskell :nmap <silent> <F7> :setlocal filetype=pandoc<CR>
 autocmd FileType pandoc :nmap <silent> <F7> :setlocal filetype=lhaskell<CR>
-autocmd FileType pandoc,lhaskell :UltiSnipsAddFiletypes mkd
+autocmd FileType pandoc,lhaskell :UltiSnipsAddFiletypes pandoc.mkd
 
 autocmd FileType pandoc :nnoremap <buffer> \- yyp<c-v>$r-
 autocmd FileType pandoc :nnoremap <buffer> \= yyp<c-v>$r=

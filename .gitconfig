@@ -13,3 +13,20 @@
     br = branch
     ch = checkout
     l = log
+    rmd = "!for f in $(git status | grep deleted | awk '{print $3}'); do git rm $f; done"
+    csub = "!subs=$(git ls-files --error-unmatch --stage -- $(git ls-files --modified) | grep \"^160000\" | cut -f2-); msg=$(echo Update submodules; echo; git submodule summary); git commit -e -m \"$msg\" --only $(echo $subs | tr \"\n\" \" \")"
+    subdo = submodule foreach git
+[push]
+    default = current
+[url "http://github.com/"]
+    insteadOf = "gh:"
+[url "git@github.com:"]
+    pushInsteadOf = "https://github.com/"
+    pushInsteadOf = "http://github.com/"
+    pushInsteadOf = "gh:"
+[url "https://gist.github.com/"]
+    insteadOf = "gist:"
+[url "git@gist.github.com:"]
+    pushInsteadOf = "https://gist.github.com/"
+    pushInsteadOf = "http://gist.github.com/"
+    pushInsteadOf = "gist:"

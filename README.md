@@ -17,3 +17,10 @@ Required Binary
 * [ctags](http://ctags.sourceforge.net/) and [lushtags](https://github.com/bitc/lushtags) for tagbar vim plugin
 * (optional) [nailgun](http://sourceforge.net/projects/nailgun/) for Clojure plugin (REPL environment, omnicomplete)
 * (optional) [pandoc](http://johnmacfarlane.net/pandoc/) for vim-pandoc plugin (document generetion)
+
+TODO
+----
+
+* tags and omnicompl suppport for C++/Java
+* tmux/screen config
+* xmonad config

@@ -74,6 +74,8 @@ autocmd BufNewFile *.sh 0put=\"#!/bin/bash\<nl>\"
 autocmd BufNewFile *.rb 0put=\"#!/usr/bin/env ruby\<nl>\"
 autocmd BufNewFile *.py 0put=\"#!/usr/bin/env python\<nl>\"
 
+autocmd FileType java,scale,less :nmap <silent> <F5> :make<CR>
+
 autocmd BufWritePost *.hs,*.lhs GhcModCheckAsync
 autocmd BufEnter *.hsc :setlocal filetype=haskell
 autocmd BufEnter *.hsc :nmap <silent> <F5> :!hsc2hs %;ghc --make %<.hs<CR>
@@ -85,7 +87,6 @@ autocmd FileType cpp,c :nmap <silent> <F5> :make %<<CR>
 autocmd FileType cpp,c :nmap <silent> <F6> :!./%<<CR>
 
 autocmd FileType java :setlocal makeprg=javac\ % errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-autocmd FileType java :nmap <silent> <F5> :make<CR>
 autocmd FileType java :nmap <silent> <F6> :!java -ea %<<CR>
 autocmd FileType tex :nmap <silent> <F5> :!xelatex %<CR>
 autocmd FileType tex :nmap <silent> <F6> :!evince %<.pdf<CR>
@@ -122,7 +123,6 @@ autocmd FileType haskell,lhaskell :nnoremap <silent> <buffer> \i :GhciInfo<CR>
 autocmd FileType haskell,lhaskell :nnoremap \q :GhciQuit<CR>
 
 autocmd FileType scala :nmap <F4> :!fsc -shutdown<CR>
-autocmd FileType scala :nmap <silent> <F5> :make<CR>
 autocmd FileType scala :nmap <silent> <F6> :!scala Main<CR>
 autocmd FileType scala :setlocal makeprg=fsc\ % errorformat=%f:%l:\ error:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
 

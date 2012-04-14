@@ -25,6 +25,10 @@ let mapleader = ","
 
 set background=dark
 
+if has("gui_running")
+  set vb t_vb=
+endif
+
 if has("gui_running") || &t_Co == 256
   colorscheme herald
 else
@@ -41,13 +45,21 @@ endif
 set laststatus=2
 
 set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 set fileencodings=utf-8,gbk,cp936
 set fileformats=unix,dos
+
+set wrap
 set textwidth=78
+set formatoptions=qrn1
 
 set switchbuf=useopen,split
 set autoindent
 set foldmethod=marker
+
+set modelines=0
 
 call pathogen#infect()
 
@@ -102,7 +114,6 @@ function! s:SetHaskellCompiler()
 endfunction
 
 autocmd FileType haskell,lhaskell :setlocal omnifunc=necoghc#omnifunc
-autocmd FileType haskell,lhaskell :setlocal softtabstop=2
 autocmd FileType haskell,lhaskell :call s:SetHaskellCompiler()
 autocmd FileType haskell,lhaskell :nmap <F4> :GhcModLintAsync<CR>
 autocmd FileType haskell,lhaskell :nmap <silent> <F6> :!./%<<CR>
@@ -147,6 +158,9 @@ autocmd FileType css :UltiSnipsAddFiletypes css.css3
 autocmd FileType less :UltiSnipsAddFiletypes css.css3.less-elements
 autocmd FileType less compiler lessc
 
+autocmd FileType vim set sw=2 sts=2
+autocmd FileType haskell set sts=2
+
 autocmd BufEnter * nmap <buffer> <c-a> ggVG
 autocmd BufEnter * imap <buffer> <c-a> <ESC>ggVG
 autocmd BufEnter * vmap <buffer> <c-c> "+y
@@ -166,6 +180,11 @@ autocmd BufEnter * nnoremap <silent> tl :tabnext<CR>
 autocmd BufEnter * nnoremap <silent> to :tabnew<CR>
 autocmd BufEnter * nnoremap <silent> tc :tabclose<CR>
 
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
 highlight WhitespaceEOL ctermbg=DarkGrey guibg=DarkGrey
 highlight OverLength ctermbg=DarkGrey guibg=DarkGrey
 autocmd FileType c,cpp,haskell,java match WhitespaceEOL /\s\+$/
@@ -174,5 +193,8 @@ autocmd FileType c,cpp,haskell,java 2match OverLength /\%80v.*/
 autocmd BufEnter * cmap <silent> ccc match WhitespaceEOL /\s\+$/<CR>:2match OverLength /\%80v.*/<CR>
 
 autocmd BufEnter * cmap w!! w !sudo tee % >/dev/null
+autocmd FocusLost * :wa
+
+"inoremap jj <ESC>
 
 imap <F9> headers<Tab>

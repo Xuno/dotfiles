@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/comment-indent"]
 	path = .vim/bundle/comment-indent
 	url = git://github.com/vim-scripts/IndentCommentPrefix.git
+[submodule ".vim/bundle/colors-badwolf"]
+	path = .vim/bundle/colors-badwolf
+	url = git://github.com/sjl/badwolf.git

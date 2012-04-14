@@ -79,6 +79,8 @@ function! haskell#indent()
       return match(l:prev_line, '=')
     elseif l:prev_line =~# '\[\s[^\]]*$'
       return match(l:prev_line, '\[')
+    elseif l:prev_line =~# '|'
+      return match(l:prev_line, '|')
     else
       return indent(l:prev_lnum) + &shiftwidth
     endif
@@ -153,15 +155,15 @@ function! s:on_newline()
 
   " case or lambda
   if l:line =~# '->\s*$'
-     return indent(l:lnum) + &shiftwidth
+    return indent(l:lnum) + &shiftwidth
   endif
 
   " deriving
   if l:line =~# '^\s*\<deriving\>'
-     return 0
+    return 0
   endif
 
-  return indent(l:lnum)
+  return -1
 endfunction
 
 setlocal indentexpr=haskell#indent()

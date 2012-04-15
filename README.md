@@ -21,7 +21,8 @@ Required Binary
 TODO
 ----
 
-* tags and omnicompl support for C++/Java
+* tags and omnicompl support for C++/Java, ctags config
 * tmux/screen config
 * xmonad config
 * proper spell, dict, textwidth setting for vim
+* try zsh, emacs, mutt, hg, vimperator

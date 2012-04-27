@@ -37,6 +37,7 @@ urxvt.keysym.C-A-v: perl:clipboard:paste
 
 urxvt.inputMethod: ibus
 urxvt.imLocale: en_US.UTF-8
+urxvt.preeditType: OverTheSpot
 
 Xft.antialias: true
 Xft.hinting: true
@@ -49,7 +50,6 @@ urxvt.background: [80]black
 urxvt.tintColor: white
 urxvt.shading: 30
 urxvt.underlineColor: yellow
-urxvt.preeditType: OverThSpot
 
 urxvt.scrollstyle: plain
 urxvt.visualBell: true

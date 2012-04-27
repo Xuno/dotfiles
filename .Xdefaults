@@ -1,13 +1,13 @@
 
-urxvt.font: xft:Dina:style=Regular:size=14,xft:wenquanyi bitmap song:medium:pixelsize=14
-urxvt.boldFont: xft:Dina:style=Bold:size=15,xft:wenquanyi bitmap song:bold:pixelsize=14
-urxvt.italicFont: xft:Dina:style=Italic:size=14,xft:wenquanyi bitmap song:medium:pixelsize=14
-urxvt.boldItalicFont: xft:Dina:style=Bold Italic:size=15,xft:wenquanyi bitmap song:bold:pixelsize=14
+urxvt.font: xft:Monaco for Powerline:regular:size=11
+urxvt.boldFont: xft:Monaco for Powerline:bold:size=11
+urxvt.italicFont: xft:Monaco for Powerline:italic:size=11
+urxvt.boldItalicFont: xft:Monaco for Powerline:bold:italic:size=11
 
 urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
 
-URxvt.copyCommand:  xclip -i -selection clipboard
-URxvt.pasteCommand: xclip -o -selection clipboard
+urxvt.copyCommand:  xclip -i -selection clipboard
+urxvt.pasteCommand: xclip -o -selection clipboard
 
 urxvt.keysym.S-Escape: perl:keyboard-select:activate
 urxvt.keysym.S-F11: perl:fullscreen:switch

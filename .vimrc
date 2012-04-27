@@ -79,6 +79,9 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<C-E>"
 
+"powerline
+let g:Powerline_symbols = 'fancy'
+
 "haskell related
 let g:ghcmod_ghc_options=['-w']
 

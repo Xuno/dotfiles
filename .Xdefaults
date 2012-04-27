@@ -15,8 +15,6 @@ urxvt.keysym.S-F11: perl:fullscreen:switch
 urxvt.keysym.C-A-c: perl:clipboard:copy
 urxvt.keysym.C-A-v: perl:clipboard:paste
 
-urxvt.scrollstyle: plain
-
 *background: #000000
 *foreground: #ffffff
 
@@ -38,6 +36,7 @@ urxvt.scrollstyle: plain
 *color15: #aaaaaa
 
 urxvt.inputMethod: ibus
+urxvt.imLocale: en_US.UTF-8
 
 Xft.antialias: true
 Xft.hinting: true
@@ -49,7 +48,11 @@ urxvt.background: [80]black
 
 urxvt.tintColor: white
 urxvt.shading: 30
+urxvt.underlineColor: yellow
+urxvt.preeditType: OverThSpot
 
-urxvt.geometry: 96x32
+urxvt.scrollstyle: plain
+urxvt.visualBell: true
+urxvt.urgentOnBell: true
 
 urxvt.saveLines: 65536

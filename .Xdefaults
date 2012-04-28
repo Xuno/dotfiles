@@ -53,6 +53,7 @@ urxvt.keysym.S-F2: command: \
 
 urxvt.inputMethod: ibus
 urxvt.imLocale: en_US.UTF-8
+urxvt.imFont: -*-medium-r-*-*-*
 
 Xft.antialias: true
 Xft.hinting: true

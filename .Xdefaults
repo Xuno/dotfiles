@@ -72,3 +72,6 @@ urxvt.visualBell: false
 urxvt.urgentOnBell: true
 
 urxvt.saveLines: 65536
+
+Xcursor.theme: Vanilla-DMZ
+Xcursor.size: 16

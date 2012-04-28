@@ -1,6 +1,6 @@
 #!/bin/sh
 
-xrdb -merge .Xdefaults
+xrdb -merge ~/.Xdefaults
 xset -b
 
 case $1 in

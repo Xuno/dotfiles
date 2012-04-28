@@ -1,15 +1,12 @@
 
 build: .vim/bundle/vimproc/autoload/vimproc_unix.so bin/ibus-disable
 
-init:
-	git submodule init
-
 restore:
 	git submodule sync
-	git submodule update
+	git submodule update --init
 
 update:
-	git submodule foreach 'git pull origin master'
+	git submodule foreach 'git fetch origin'
 
 .vim/bundle/vimproc/autoload/vimproc_unix.so: .vim/bundle/vimproc/autoload/proc.c
 	cd .vim/bundle/vimproc; make -f make_unix.mak

@@ -27,7 +27,7 @@ set background=dark
 
 if has("gui_running")
   set vb t_vb=
-  set guifont=Monaco\ for\ Powerline\ 11
+  set guifont=Dina
 endif
 
 if has("gui_running") || &t_Co == 256

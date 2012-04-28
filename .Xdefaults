@@ -67,7 +67,7 @@ urxvt.shading: 30
 urxvt.underlineColor: yellow
 
 urxvt.scrollstyle: plain
-urxvt.visualBell: true
+urxvt.visualBell: false
 urxvt.urgentOnBell: true
 
 urxvt.saveLines: 65536

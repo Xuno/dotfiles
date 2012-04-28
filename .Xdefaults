@@ -1,8 +1,8 @@
 
-!urxvt.font: xft:Monaco:regular:size=11
-!urxvt.boldFont: xft:Monaco:bold:size=11
-!urxvt.italicFont: xft:Monaco:italic:size=11
-!urxvt.boldItalicFont: xft:Monaco:bold:italic:size=11
+!urxvt.font: xft:Monaco:regular:pixelsize=12
+!urxvt.boldFont: xft:Monaco:bold:pixelsize=12
+!urxvt.italicFont: xft:Monaco:italic:pixelsize=12
+!urxvt.boldItalicFont: xft:Monaco:bold:italic:pixelsize=12
 urxvt.font: xft:Dina:style=Regular
 urxvt.boldFont: xft:Dina:style=Bold
 urxvt.italicFont: xft:Dina:style=Italic
@@ -26,10 +26,10 @@ urxvt.keysym.S-F1: command: \
     \033]713;xft:Dina:style=Bold Italic\007
 
 urxvt.keysym.S-F2: command: \
-    \033]710;xft:Monaco:regular:size=9\007 \
-    \033]711;xft:Monaco:bold:size=9\007 \
-    \033]712;xft:Monaco:italic:size=9\007 \
-    \033]713;xft:Monaco:bold:italic:size=9\007
+    \033]710;xft:Monaco:regular:pixelsize=12,xft:Dina\007 \
+    \033]711;xft:Monaco:bold:pixelsize=12,xft:Dina\007 \
+    \033]712;xft:Monaco:italic:pixelsize=12,xft:Dina\007 \
+    \033]713;xft:Monaco:bold:italic:pixelsize=12,xft:Dina\007
 
 *background: #000000
 *foreground: #ffffff

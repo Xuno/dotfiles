@@ -112,6 +112,7 @@ gcj () {
 }
 
 export RTS="+RTS -K512m -A8m -N2"
+alias ghcrts="ghc -rtsopts -threaded -O2"
 
 T () {
     for inp in *.in; do

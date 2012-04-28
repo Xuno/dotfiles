@@ -62,6 +62,7 @@ set autoindent
 set foldmethod=marker
 
 set modelines=0
+set noerrorbells
 
 call pathogen#infect()
 call pathogen#helptags()

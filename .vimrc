@@ -64,6 +64,7 @@ set foldmethod=marker
 set modelines=0
 
 call pathogen#infect()
+call pathogen#helptags()
 
 " ThinkPad sucks
 autocmd BufEnter * imap <F1> <ESC>

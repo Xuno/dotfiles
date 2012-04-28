@@ -28,6 +28,7 @@ set background=dark
 if has("gui_running")
   set vb t_vb=
   set guifont=Dina
+  set guioptions=aciML
 endif
 
 if has("gui_running") || &t_Co == 256

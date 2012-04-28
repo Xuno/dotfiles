@@ -1,8 +1,12 @@
 
-urxvt.font: xft:Monaco for Powerline:regular:size=11
-urxvt.boldFont: xft:Monaco for Powerline:bold:size=11
-urxvt.italicFont: xft:Monaco for Powerline:italic:size=11
-urxvt.boldItalicFont: xft:Monaco for Powerline:bold:italic:size=11
+!urxvt.font: xft:Monaco for Powerline:regular:size=11
+!urxvt.boldFont: xft:Monaco for Powerline:bold:size=11
+!urxvt.italicFont: xft:Monaco for Powerline:italic:size=11
+!urxvt.boldItalicFont: xft:Monaco for Powerline:bold:italic:size=11
+urxvt.font: xft:Dina:style=Regular
+urxvt.boldFont: xft:Dina:style=Bold
+urxvt.italicFont: xft:Dina:style=Italic
+urxvt.boldItalicFont: xft:Dina:style=Bold\ Italic
 
 urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
 

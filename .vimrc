@@ -85,6 +85,7 @@ let g:UltiSnipsListSnippets = "<C-E>"
 
 "powerline
 let g:Powerline_symbols = 'fancy'
+let g:Powerline_stl_path_style = 'short'
 
 "haskell related
 let g:ghcmod_ghc_options=['-w']

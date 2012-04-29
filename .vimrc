@@ -90,7 +90,10 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<C-E>"
 
 "powerline
-let g:Powerline_symbols = 'fancy'
+if $COLORTERM == "rxvt-xpm"
+  "Only use fancy symbols with font patched urxvt
+  let g:Powerline_symbols = 'fancy'
+endif
 let g:Powerline_stl_path_style = 'short'
 
 "haskell related

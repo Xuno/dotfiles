@@ -30,7 +30,7 @@ set background=dark
 
 if has("gui_running")
   set vb t_vb=
-  set guifont=Dina
+  set guifont=Dina\ 16
   set guioptions=aciML
 endif
 

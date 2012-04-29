@@ -14,6 +14,7 @@ alias mplayer-fb='mplayer -vo fbdev2'
 alias mencoder-android='mencoder -vf dsize=800:480:2,scale=-8:-8,harddup -oac faac -faacopts mpeg=4:object=2:raw:br=128 -of lavf -lavfopts format=mp4 -ovc x264 -sws 9 -x264encopts nocabac:level_idc=30:bframes=0:bitrate=1024:threads=auto:turbo=1:global_header:threads=auto:subq=5:frameref=6:partitions=all:trellis=1:chroma_me:me=umh'
 alias voicerec='rec -c 2 -r 44100 -s -t wav - | oggenc -q 5 --raw --raw-chan=2 --raw-rate=44100 --raw-bits=16 -o out.ogg -'
 alias screenrec='recordmydesktop --no-sound --on-the-fly-encoding --fps 3'
+alias ssh='ssh.sh'
 
 vman () {
 	export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \

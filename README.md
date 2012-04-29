@@ -22,6 +22,6 @@ TODO
 ----
 
 * tags and omnicompl support for C++/Java, ctags config
-* xmonad config
+* a complete xmonad config from scratch, try dzen2
 * proper spell, dict, textwidth setting for vim
-* try zsh, emacs, mutt, hg, vimperator
+* try zsh, emacs, mutt, hg, vimperator, mpd/ncmpcpp

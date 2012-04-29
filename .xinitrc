@@ -8,6 +8,8 @@ case $1 in
         exec startxfce4
         ;;
     *)
+        ~/.xmonad/bin/ibus.sh
+        ~/.xmonad/bin/tray.sh
         xmonad
         ;;
 esac

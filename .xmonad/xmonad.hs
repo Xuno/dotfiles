@@ -17,7 +17,7 @@ lightgreen = "#CEFFAC"
 myManageHook = manageDocks
 
 main = do
-    xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
+    xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.rc"
     xmonad $ myConfig
       { manageHook = myManageHook <+> manageHook defaultConfig
       , layoutHook = avoidStruts $ layoutHook defaultConfig
@@ -30,7 +30,7 @@ xmobarCurrentWorkspaceColor = lightgreen
 myXMobarPP xmproc = xmobarPP
 
    { ppOutput  = hPutStrLn xmproc
-   , ppTitle   = xmobarColor xmobarTitleColor "" . shorten 100
+   , ppTitle   = xmobarColor xmobarTitleColor "" . shorten 50
    , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
    , ppSep     = "  "
    }

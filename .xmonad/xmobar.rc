@@ -1,0 +1,6 @@
+
+Config {
+    bgColor  = "#000000",
+    fgColor  = "#ffffff",
+    position = TopSize L 95 16
+}

@@ -3,10 +3,10 @@
 !urxvt.boldFont: xft:Monaco:bold:pixelsize=12
 !urxvt.italicFont: xft:Monaco:italic:pixelsize=12
 !urxvt.boldItalicFont: xft:Monaco:bold:italic:pixelsize=12
-urxvt.font: xft:Dina:style=Regular
-urxvt.boldFont: xft:Dina:style=Bold
-urxvt.italicFont: xft:Dina:style=Italic
-urxvt.boldItalicFont: xft:Dina:style=Bold\ Italic
+urxvt.font: xft:CtrlD:style=Regular
+urxvt.boldFont: xft:CtrlD:style=Bold
+urxvt.italicFont: xft:CtrlD:style=Italic
+urxvt.boldItalicFont: xft:CtrlD:style=Bold\ Italic
 
 urxvt.perl-ext-common:  default,tabbed,fullscreen,keyboard-select,clipboard
 
@@ -20,10 +20,10 @@ urxvt.keysym.C-A-c: perl:clipboard:copy
 urxvt.keysym.C-A-v: perl:clipboard:paste
 
 urxvt.keysym.S-F1: command: \
-    \033]710;xft:Dina:style=Regular\007 \
-    \033]711;xft:Dina:style=Bold\007 \
-    \033]712;xft:Dina:style=Italic\007 \
-    \033]713;xft:Dina:style=Bold Italic\007
+    \033]710;xft:CtrlD:style=Regular\007 \
+    \033]711;xft:CtrlD:style=Bold\007 \
+    \033]712;xft:CtrlD:style=Italic\007 \
+    \033]713;xft:CtrlD:style=Bold Italic\007
 
 urxvt.keysym.S-F2: command: \
     \033]710;xft:Monaco:regular:pixelsize=12,xft:Dina\007 \

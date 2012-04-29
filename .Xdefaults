@@ -26,10 +26,10 @@ urxvt.keysym.S-F1: command: \
     \033]713;xft:CtrlD:style=Bold Italic\007
 
 urxvt.keysym.S-F2: command: \
-    \033]710;xft:Monaco:regular:pixelsize=12,xft:Dina\007 \
-    \033]711;xft:Monaco:bold:pixelsize=12,xft:Dina\007 \
-    \033]712;xft:Monaco:italic:pixelsize=12,xft:Dina\007 \
-    \033]713;xft:Monaco:bold:italic:pixelsize=12,xft:Dina\007
+    \033]710;xft:Monaco:regular:pixelsize=12,xft:CtrlD\007 \
+    \033]711;xft:Monaco:bold:pixelsize=12,xft:CtrlD\007 \
+    \033]712;xft:Monaco:italic:pixelsize=12,xft:CtrlD\007 \
+    \033]713;xft:Monaco:bold:italic:pixelsize=12,xft:CtrlD\007
 
 *background: #000000
 *foreground: #ffffff

@@ -61,7 +61,10 @@ Xft.hintstyle: hintlight
 Xft.rgba: rgb
 
 urxvt.depth: 32
-urxvt.background: [80]black
+
+! use urxvt -xrm "..."
+!urxvt.background: [80]black
+urxvt.transparent: true
 
 urxvt.tintColor: white
 urxvt.shading: 30

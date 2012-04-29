@@ -10,9 +10,12 @@ myTerm    = "urxvt"
 myModMask = mod1Mask -- Left Alt
 
 grey       = "#cccccc"
+red        = "#ff0000"
 green      = "#14ff4f"
-pink       = "#FFB6B0"
-lightgreen = "#CEFFAC"
+pink       = "#ffB6B0"
+lightgreen = "#ceffac"
+white      = "#ffffff"
+black      = "#000000"
 
 myManageHook = manageDocks
 
@@ -37,9 +40,9 @@ myXMobarPP xmproc = xmobarPP
 
 myConfig = defaultConfig
 
-  { borderWidth        = 3
+  { borderWidth        = 1
   , terminal           = myTerm
-  , normalBorderColor  = grey
+  , normalBorderColor  = black
   , focusedBorderColor = green
   }
 

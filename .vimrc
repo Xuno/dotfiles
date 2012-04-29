@@ -4,6 +4,9 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
+call pathogen#infect()
+call pathogen#helptags()
+
 set undolevels=9999
 set history=9999
 set wildchar=<tab>
@@ -32,7 +35,13 @@ if has("gui_running")
 endif
 
 if has("gui_running") || &t_Co == 256
-  colorscheme herald
+  "colorscheme herald
+  if has("gui_running")
+    let mycolors = ['badwolf', 'herald', 'molokai', 'xoria256', 'lucius', 'github', 'railscasts', 'solarized']
+  else
+    let mycolors = ['badwolf', 'herald', 'molokai', 'xoria256']
+  endif
+  exe 'colorscheme ' . mycolors[localtime() % len(mycolors)]
 else
   colorscheme default
 endif
@@ -63,9 +72,6 @@ set foldmethod=marker
 
 set modelines=0
 set noerrorbells
-
-call pathogen#infect()
-call pathogen#helptags()
 
 " ThinkPad sucks
 autocmd BufEnter * imap <F1> <ESC>

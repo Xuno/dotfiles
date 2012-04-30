@@ -4,10 +4,10 @@ Here is my configure files, use `ln -s` to put them under `$HOME`
 Install Script
 --------------
 
-* `make build` : build binary for `vim-proc` plugin (required by `ghc-mod`)
-* `make init`: initialize git submodules
+* `make build` : build binary for `vim-proc` plugin and `ibus-disable`
 * `make restore`: revert-back git submodules
-* `make update`: update git submodules
+* `make fetch`: fetch git submodules
+* `make update`: update git submodules to HEAD of fetched content
 
 Required Binary
 ---------------

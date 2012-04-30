@@ -5,8 +5,15 @@ restore:
 	git submodule sync
 	git submodule update --init
 
-update:
+fetch:
 	git submodule foreach 'git fetch origin'
+
+update:
+	git submodule foreach 'git checkout origin/master'
+	cd .vim/bundle/vim-powerline; git checkout origin/develop
+
+summary:
+	git submodule summary
 
 .vim/bundle/vimproc/autoload/vimproc_unix.so: .vim/bundle/vimproc/autoload/proc.c
 	cd .vim/bundle/vimproc; make -f make_unix.mak

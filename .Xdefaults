@@ -19,7 +19,7 @@ urxvt.keysym.S-F11: perl:fullscreen:switch
 urxvt.keysym.C-A-c: perl:clipboard:copy
 urxvt.keysym.C-A-v: perl:clipboard:paste
 
-urxvt.keysym.S-F1: command: \
+urxvt.keysym.S-F3: command: \
     \033]710;xft:CtrlD:style=Regular:pixelsize=16\007 \
     \033]711;xft:CtrlD:style=Bold:pixelsize=16\007 \
     \033]712;xft:CtrlD:style=Italic:pixelsize=16\007 \
@@ -31,7 +31,13 @@ urxvt.keysym.S-F2: command: \
     \033]712;xft:CtrlD:style=Italic:pixelsize=13\007 \
     \033]713;xft:CtrlD:style=Bold Italic:pixelsize=13\007
 
-urxvt.keysym.S-F3: command: \
+urxvt.keysym.S-F1: command: \
+    \033]710;xft:CtrlD:style=Regular:pixelsize=10\007 \
+    \033]711;xft:CtrlD:style=Bold:pixelsize=10\007 \
+    \033]712;xft:CtrlD:style=Regular:pixelsize=10\007 \
+    \033]713;xft:CtrlD:style=Bold:pixelsize=10\007
+
+urxvt.keysym.S-F4: command: \
     \033]710;xft:Monaco:regular:pixelsize=12,xft:CtrlD:pixelsize=16\007 \
     \033]711;xft:Monaco:bold:pixelsize=12,xft:CtrlD:pixelsize=16\007 \
     \033]712;xft:Monaco:italic:pixelsize=12,xft:CtrlD:pixelsize=16\007 \

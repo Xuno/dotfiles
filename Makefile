@@ -13,7 +13,7 @@ update:
 	cd .vim/bundle/vim-powerline; git checkout origin/develop
 
 summary:
-	git submodule summary
+	@git submodule summary | sed 's/  </  <<<<<<<<<<<</'
 
 .vim/bundle/vimproc/autoload/vimproc_unix.so: .vim/bundle/vimproc/autoload/proc.c
 	cd .vim/bundle/vimproc; make -f make_unix.mak

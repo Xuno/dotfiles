@@ -1,5 +1,5 @@
 #!/bin/sh
-if [[ "$COLORTERM" == "rxvt-xpm" ]]; then
-    echo -e '\u2b82'
+if [ "$COLORTERM" == "rxvt-xpm" ]; then
+    echo $'\u2b82'
 fi
 

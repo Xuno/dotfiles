@@ -38,10 +38,10 @@ endif
 
 if has("gui_running") || &t_Co == 256
   "colorscheme herald
+  let mycolors = ['badwolf', 'herald', 'molokai', 'xoria256']
   if has("gui_running")
-    let mycolors = ['badwolf', 'herald', 'molokai', 'xoria256', 'lucius', 'github', 'railscasts', 'solarized']
+    let mycolors += ['lucius', 'github', 'railscasts', 'solarized', 'solarized | set background=light']
   else
-    let mycolors = ['badwolf', 'herald', 'molokai', 'xoria256']
   endif
   exe 'colorscheme ' . mycolors[localtime() % len(mycolors)]
 else

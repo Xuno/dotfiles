@@ -30,8 +30,10 @@ set background=dark
 
 if has("gui_running")
   set vb t_vb=
-  set guifont=Dina\ 16
+  set guifont=CtrlD\ 16
   set guioptions=aciML
+  map <S-F1> :set guifont=CtrlD\ 16<CR>
+  map <S-F2> :set guifont=Monaco\ 10<CR>
 endif
 
 if has("gui_running") || &t_Co == 256
@@ -90,7 +92,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<C-E>"
 
 "powerline
-if $COLORTERM == "rxvt-xpm"
+if has("gui_running") || $COLORTERM == "rxvt-xpm"
   "Only use fancy symbols with font patched urxvt
   let g:Powerline_symbols = 'fancy'
 endif

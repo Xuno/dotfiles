@@ -33,7 +33,7 @@ if has("gui_running")
   set guifont=CtrlD\ 16
   set guioptions=aciML
   map <S-F1> :set guifont=CtrlD\ 16<CR>
-  map <S-F2> :set guifont=Monaco\ 10<CR>
+  map <S-F2> :set guifont=Monaco\ For\ Powerline\ 10<CR>
 endif
 
 if has("gui_running") || &t_Co == 256

@@ -122,6 +122,8 @@
 ##     one tab name doesn't occupy the whole tab bar.
 ##
 
+use Encode qw(decode);
+
 sub update_autohide {
    my ($self, $reconfigure) = @_;
    my $oldh = $self->{tabheight};
@@ -235,7 +237,8 @@ sub refresh {
       my $term = $self->{term};
       my @str = $term->XGetWindowProperty($term->parent, $self->{tab_title});
       if (@str && $str[2]) {
-         my $str = '| ' . $str[2];
+         my $str = '| ' . decode("utf8", $str[2]);
+         $str = $term->special_encode($str);
          my $len = length $str;
          $len = $ncol - $ofs if $ofs + $len > $ncol;
          substr $text, $ofs, $len, substr $str, 0, $len;
@@ -513,7 +516,7 @@ sub on_start {
    $self->{argv} = [ @argv ];
 
    if ($self->{tab_title}) {
-      $self->{tab_title} = $self->{term}->XInternAtom("WM_NAME", 1);
+      $self->{tab_title} = $self->{term}->XInternAtom("_NET_WM_NAME", 1);
    }
 
    $self->new_tab (@argv);

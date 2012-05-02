@@ -1,0 +1,210 @@
+
+vim default
+===========
+
+basics
+------
+
+* `.`            : repeat the last command
+* `N<cmd>`       : do the command N times
+* `u` `<C-R>`    : undo/redo
+* `q<z>q` `@<z>` : record/play macro (in <z> register)
+* `@@`           : replay last macro
+
+
+### insert mode
+
+* `i` `a`  : insert before/after current cursor
+* `I` `A`  : insert before/after current line
+* `o` `O`  : newline before/after current line
+* `<ESC>`  : exit insert mode (also `<C-[>`)
+* `R`      : replace mode
+
+### line editing
+
+* `J`       : join lines
+* `gJ`      : join lines without spaces
+* `<` `>`   : manual indent by moves
+* `<<` `>>` : manual indent by lines
+* `=`       : smart indent by moves (use `<C-F>` in insert mode)
+* `==`      : smart indent by lines
+
+### delete, changes & visual selection
+
+* `d`   : delete by moves/object selection
+* `dd`  : delete by lines
+* `D`   : alias of `d$`
+
+Examples: `dw`, `diw`, `di"` (but I prefer `vi"x`)
+
+* `c`   : change by moves/object selection
+* `cc`  : change whole line
+* `C`   : alias of `c$`
+* `r`   : replace by next character
+
+Examples: `cw`, `ciw`, `ci"`
+
+### moves & jumps
+
++-----+-----+---------------------------+
+| ->  | <-  | description               |
++=====+=====+===========================+
+| `/` | `?` | search pattern            |
++-----+-----+---------------------------+
+| `*` | `#` | search current word       |
++-----+-----+---------------------------+
+| `n` | `N` | continue previous search  |
++-----+-----+---------------------------+
+| `$` | `^` | current line (and `0`)    |
++-----+-----+---------------------------+
+| `f` | `F` | same char in same line    |
++-----+-----+---------------------------+
+| `t` | `T` | before previous result    |
++-----+-----+---------------------------+
+| `;` | `,` | repeat last `f F t T`     |
++-----+-----+---------------------------+
+| `w` | `b` | next word (and `e` `ge`)  |
++-----+-----+---------------------------+
+| `W` | `B` | next WORD (and `E` `gE`)  |
++-----+-----+---------------------------+
+| `{` | `}` | paragraph                 |
++-----+-----+---------------------------+
+| `gg`| `G` | first/last line           |
++-----+-----+---------------------------+
+
+* `<C-O>`       : jump back
+* `<C-I>`       : jump forward
+* `<C-]>`       : jump to definition via tags
+* `<C-T>`       : undo `<C-]>`
+* `<C-F/B/U/D>` : move several lines
+
+I like this [cheatsheet](https://github.com/LevelbossMike/vim_shortcut_wallpaper/raw/master/vim-shortcuts_1280x800.png)
+
+### text object selection:
+
+* `iw` `iW`    : "inner word", the current word/Word
+* `aw` `aW`    : a word", inner word plus spaces
+* ia `sp`      : between sentences / paragraphs
+* ia `([{<`    : between parentheses / brackets
+* ia `` '\` `` : quoted string
+* `it` `at`    : XML/HTML tags
+
+### visual mode
+
+* `v`     : visual mode by character (by moves/object selection)
+* `V`     : visual mode by line
+* `<C-v>` : visual mode by rectangle
+* `x`     : delete selected
+
+### copy & paste
+
+* `y`    : yank selected (in visual mode)
+* `Y`    : yank current line
+* `yw`   : yank by moves
+* `yiw`  : yank by object selections
+* `dd`   : delete current line and copy it
+* `p`    : paste after
+* `P`    : paste before
+* `ggVG` : select whole file
+* `"+y`  : copy to system clipboard
+* `"+gp` : paste from system clipboard
+
+### completion
+
+* `<C-n>` `<C-p>` : in insert mode
+* `<C-x><C-f>`    : by file name
+* `<C-x><C-o>`    : omni complete, combine with `<C-h/j/k>`
+
+commands
+--------
+
+* `:help`        : help page
+* `:w`           : save
+* `:q`           : quit (close current window)
+* `:qa`          : quit (close all windows)
+* `:q!`          : quit without save
+* `:ls`          : show buffer
+* `:make`        : compile current program
+* `:!ls`         : run shell command
+* `:map`         : make new keybinding
+* `:colorscheme` : change colorscheme
+
+windows & tabs
+--------------
+
+* `<C-W>s` `:sp`  : split current window up and down
+* `<C-W>s` `:vs`  : split current window left and right
+* `<C-W>n` `:new` : open new window up and down
+* `<C-W>q` `:q`   : close current window
+* `<C-W>o`        : close all other windows
+* `<C-W>h/j/k/l`  : move between windows
+* `<C-W>p`        : move to previous window
+* `<C-W>=`        : resize windows to euqally like
+* `<C-W>]`        : new window and jump to tag
+
+* `tabnew`
+* `tabclose`
+* `tabprevious`
+* `tabnext`
+
+folding
+-------
+
+* `zo` `zO` : open folds (recursively)
+* `zc` `zC` : close folds (recursively)
+* `zd` `zD` : delete folds (recursively)
+* `zj` `zk` : moves by folds
+
+pattern match
+-------------
+
+other useful tips
+-----------------
+
+
+vim customized
+==============
+
+basics
+------
+
+haskell setting
+---------------
+
+ultisnips
+---------
+
+vim-surround
+------------
+
+zencoding
+---------
+
+tabular
+-------
+
+vim-fugitive
+------------
+
+other useful tips
+-----------------
+
+tmux & screen
+=============
+
+TODO
+
+rxvt-unicode
+============
+
+TODO
+
+screen
+======
+
+TODO
+
+xmonad
+======
+
+TODO

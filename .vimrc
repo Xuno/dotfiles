@@ -101,6 +101,8 @@ autocmd BufNewFile *.sh 0put=\"#!/bin/bash\<nl>\"
 autocmd BufNewFile *.rb 0put=\"#!/usr/bin/env ruby\<nl>\"
 autocmd BufNewFile *.py 0put=\"#!/usr/bin/env python\<nl>\"
 
+autocmd BufEnter COMMIT_EDITMSG set ft=gitcommit
+
 autocmd FileType java,scale,less :nmap <silent> <F5> :make<CR>
 
 autocmd BufWritePost *.hs,*.lhs GhcModCheckAsync

@@ -7,10 +7,10 @@ filetype plugin indent on
 call pathogen#infect()
 call pathogen#helptags()
 
-set undolevels=9999
-set history=9999
+set undolevels=1024
+set history=1024
 set wildchar=<tab>
-set wildignore=*.o,*.bak,*~,*.hi,*.git
+set wildignore=*.o,*.bak,*~,*.hi,*.git,*.swp
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -26,8 +26,6 @@ set wildmenu
 
 let mapleader = ","
 
-set background=dark
-
 if has("gui_running")
   set vb t_vb=
   set guifont=CtrlD\ 16
@@ -36,6 +34,7 @@ if has("gui_running")
   map <S-F2> :set guifont=Monaco\ For\ Powerline\ 10<CR>
 endif
 
+set background=dark
 if has("gui_running") || &t_Co == 256
   "colorscheme herald
   let mycolors = ['badwolf', 'herald', 'molokai', 'xoria256']
@@ -75,14 +74,11 @@ set foldmethod=marker
 set modelines=0
 set noerrorbells
 
-" ThinkPad sucks
-autocmd BufEnter * imap <F1> <ESC>
-
 "tagbar
-autocmd BufEnter * nmap <silent> <F8> :TagbarToggle<CR>
+autocmd BufEnter * nmap <silent> <Leader>t :TagbarToggle<CR>
 
 "nerdtree
-autocmd BufEnter * nmap <silent> <F2> :NERDTreeToggle<CR>
+autocmd BufEnter * nmap <silent> <Leader>n :NERDTreeToggle<CR>
 
 "ultisnips
 let g:UltiSnipsEditSplit = 'vertical'
@@ -180,38 +176,31 @@ autocmd FileType less compiler lessc
 autocmd FileType vim set sw=2 sts=2
 autocmd FileType haskell set sts=2
 
-autocmd BufEnter * nmap <buffer> <c-a> ggVG
-autocmd BufEnter * imap <buffer> <c-a> <ESC>ggVG
-autocmd BufEnter * vmap <buffer> <c-c> "+y
+nmap <buffer> <c-a> ggVG
+imap <buffer> <c-a> <ESC>ggVG
+vmap <buffer> <c-c> "+y
 
-autocmd BufEnter * nnoremap <silent> qj :cnext<CR>
-autocmd BufEnter * nnoremap <silent> qk :cprev<CR>
-autocmd BufEnter * nnoremap <silent> qq :cc<CR>
-autocmd BufEnter * nnoremap <silent> qo :copen<CR>
-autocmd BufEnter * nnoremap <silent> qc :cclose<CR>
-autocmd BufEnter * nnoremap <silent> qm :make<CR>
-autocmd BufEnter * nnoremap qM :make<Space>
+nnoremap <silent> qj :cnext<CR>
+nnoremap <silent> qk :cprev<CR>
+nnoremap <silent> qq :cc<CR>
+nnoremap <silent> qo :copen<CR>
+nnoremap <silent> qc :cclose<CR>
+nnoremap <silent> qm :make<CR>
+nnoremap qM :make<Space>
 
-autocmd BufEnter * nnoremap <silent> tj :tabprevious<CR>
-autocmd BufEnter * nnoremap <silent> th :tabprevious<CR>
-autocmd BufEnter * nnoremap <silent> tk :tabnext<CR>
-autocmd BufEnter * nnoremap <silent> tl :tabnext<CR>
-autocmd BufEnter * nnoremap <silent> to :tabnew<CR>
-autocmd BufEnter * nnoremap <silent> tc :tabclose<CR>
+nnoremap <silent> tj :tabprevious<CR>
+nnoremap <silent> th :tabprevious<CR>
+nnoremap <silent> tk :tabnext<CR>
+nnoremap <silent> tl :tabnext<CR>
+nnoremap <silent> to :tabnew<CR>
+nnoremap <silent> tc :tabclose<CR>
 
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-highlight WhitespaceEOL ctermbg=DarkGrey guibg=DarkGrey
-highlight OverLength ctermbg=DarkGrey guibg=DarkGrey
-autocmd FileType c,cpp,haskell,java match WhitespaceEOL /\s\+$/
-autocmd FileType c,cpp,haskell,java 2match OverLength /\%80v.*/
-
-autocmd BufEnter * cmap <silent> ccc match WhitespaceEOL /\s\+$/<CR>:2match OverLength /\%80v.*/<CR>
-
-autocmd BufEnter * cmap w!! w !sudo tee % >/dev/null
+cmap W<CR> w !sudo tee % >/dev/null<CR>
 autocmd FocusLost * :wa
 
 "inoremap jj <ESC>

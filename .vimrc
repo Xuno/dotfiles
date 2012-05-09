@@ -76,6 +76,7 @@ set noerrorbells
 
 "tagbar
 autocmd BufEnter * nmap <silent> <Leader>t :TagbarToggle<CR>
+let g:tagbar_iconchars = ['▸', '▾']
 
 "nerdtree
 autocmd BufEnter * nmap <silent> <Leader>n :NERDTreeToggle<CR>

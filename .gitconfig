@@ -1,24 +1,29 @@
 [user]
     email = bjin@ctrl-d.org
     name = Bin Jin
-[color]
-    ui = true
 [core]
     editor = vim
-    excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore.global
+[color]
+    ui = true
 [merge]
     tool = vimdiff
 [alias]
     st = status
     a = add
+    l = log
     br = branch
     ch = checkout
-    l = log
+    co = commit
+    lg = log -p
+    df = diff
     rmd = "!for f in $(git status | grep deleted | awk '{print $3}'); do git rm $f; done"
     csub = "!subs=$(git ls-files --error-unmatch --stage -- $(git ls-files --modified) | grep \"^160000\" | cut -f2-); msg=$(echo Update submodules; echo; git submodule summary); git commit -e -m \"$msg\" --only $(echo $subs | tr \"\n\" \" \")"
     subdo = submodule foreach git
 [push]
     default = current
+[github]
+    user = bjin
 [url "http://github.com/"]
     insteadOf = "gh:"
 [url "git@github.com:"]

@@ -1,4 +1,13 @@
 set completion-ignore-case on
 set completion-prefix-display-length 2
-Control-j: menu-complete
-Control-k: menu-complete-backward
+
+set editing-mode vi
+set keymap vi
+
+#Home/End
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+
+#PageUp/PageDn
+"\e[5~": beginning-of-history
+"\e[6~": end-of-history

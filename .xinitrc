@@ -1,6 +1,7 @@
 #!/bin/sh
 
 xrdb -load ~/.Xdefaults
+xset +fp ~/.fonts
 xset -b
 xsetroot -cursor_name left_ptr
 

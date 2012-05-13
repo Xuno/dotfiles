@@ -121,6 +121,9 @@
 ## 18. When printing the tab bar, limit the length of the tab names so that
 ##     one tab name doesn't occupy the whole tab bar.
 ##
+## Added by Bin Jin:
+##
+## 19. Fix Issue regarding non-ASCII character display in Tab Title.
 
 use Encode qw(decode);
 

@@ -25,5 +25,5 @@ TODO
 * a complete xmonad config from scratch, with dzen2/conky
 * proper spell, dict, textwidth setting for vim
 * integrate gdb, cscope, ack with vim
-* try zsh, emacs, mutt, hg, vimperator/pentadactyl, mpd/ncmpcpp
+* try zsh, emacs, mutt, hg, vimperator/pentadactyl, mpd/ncmpcpp, tig, weechat
 * try nix/nixos

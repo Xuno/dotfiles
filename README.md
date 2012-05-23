@@ -27,3 +27,4 @@ TODO
 * integrate gdb, cscope, ack with vim
 * try zsh, emacs, mutt, hg, vimperator/pentadactyl, mpd/ncmpcpp, tig, weechat
 * try nix/nixos
+* cleanup vim config files

@@ -4,7 +4,7 @@ if exists("current_compiler")
 endif
 let current_compiler = "ghc"
 
-setlocal makeprg=ghc\ --make\ %
+setlocal makeprg=ghc\ --make\ -rtsopts\ -threaded\ %
 
 setlocal errorformat=
                     \%-Z\ %#,

@@ -15,7 +15,6 @@ case $1 in
     *)
         nitrogen --restore &
         ~/.xmonad/bin/ibus.sh
-        ~/.xmonad/bin/tray.sh
         xmonad
         ;;
 esac

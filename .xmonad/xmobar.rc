@@ -1,6 +1,7 @@
 
 Config {
+    font = "xft:CtrlD:pixelsize=13",
     bgColor  = "#000000",
     fgColor  = "#ffffff",
-    position = TopSize L 95 16
+    position = TopSize L 95 18
 }

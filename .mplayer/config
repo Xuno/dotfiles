@@ -8,7 +8,7 @@ ass-force-style=PlayResX=512,PlayResY=320,Name=Default,Fontname=AdobeHeitiStd,Fo
 subfont-autoscale=0
 subfont-osd-scale=20
 subfont-text-scale=20
-subcp=CP936
+subcp=unicode
 vf-add=screenshot
 channels=2
 cache=10240

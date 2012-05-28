@@ -2,6 +2,7 @@
 import XMonad
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
+import XMonad.Layout.NoBorders
 import XMonad.Util.Run (spawnPipe)
 
 import System.IO (hPutStrLn)
@@ -23,7 +24,7 @@ main = do
     xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.rc"
     xmonad $ myConfig
       { manageHook = myManageHook <+> manageHook defaultConfig
-      , layoutHook = avoidStruts $ layoutHook defaultConfig
+      , layoutHook = avoidStruts $ smartBorders $ layoutHook defaultConfig
       , logHook    = dynamicLogWithPP $ myXMobarPP xmproc
       }
 

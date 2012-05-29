@@ -2,6 +2,7 @@
 import XMonad hiding (defaultConfig)
 import qualified XMonad.StackSet as W
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
 import XMonad.Layout.NoBorders
 import XMonad.Util.Run (spawnPipe)
@@ -50,10 +51,14 @@ myLayout = avoidStruts $ smartBorders $
     ratio   = 1/2
     delta   = 3/100
 
-myManageHook = composeAll
-    [ manageDocks
-    , className =? "MPlayer" --> doFloat
-    ]
+myManageHook = composeAll $
+    manageDocks :
+    (isDialog --> doCenterFloat) :
+    [ className =? c  --> doFloat          | c <- ["MPlayer", "Gimp"]] ++
+    [ className =? c  --> doShift "1:term" | c <- []] ++
+    [ className =? c  --> doShift "2:web"  | c <- ["Firefox", "Chromium"]] ++
+    [ className =? c  --> doShift "3:misc" | c <- ["Evince", "Thunar"]] ++
+    []
 
 myXMobarPP xmproc = xmobarPP
     { ppOutput  = hPutStrLn xmproc

@@ -22,7 +22,7 @@ myManageHook = manageDocks
 
 main = do
     xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.rc"
-    spawn "killall trayer; trayer --edge top --align right --margin 0 --width 5 --widthtype percent --height 18 \
+    spawn "killall trayer; trayer --edge top --align right --margin 0 --width 5 --widthtype percent --height 20 \
             \--padding 2 --tint 0x000000 --transparent true --alpha 0"
     xmonad $ myConfig
       { manageHook = myManageHook <+> manageHook defaultConfig

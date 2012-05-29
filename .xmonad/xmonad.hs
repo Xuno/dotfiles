@@ -41,7 +41,7 @@ myConfig = XConfig
 mask = mod1Mask -- Left Alt
 mask2 = mod4Mask -- WinKey
 
-myWorkspaces = ["1:term", "2:web", "3:misc" ] ++ map show [4..9]
+myWorkspaces = ["1:web", "2:term", "3:misc" ] ++ map show [4..9]
 
 myLayout = avoidStruts $ smartBorders $ 
     (tiled ||| Mirror tiled ||| Full)
@@ -53,10 +53,11 @@ myLayout = avoidStruts $ smartBorders $
 
 myManageHook = composeAll $
     manageDocks :
-    (isDialog --> doCenterFloat) :
+    ( isDialog --> doCenterFloat) :
+    ( isFullscreen --> doFullFloat) :
     [ className =? c  --> doFloat          | c <- ["MPlayer", "Gimp"]] ++
-    [ className =? c  --> doShift "1:term" | c <- []] ++
-    [ className =? c  --> doShift "2:web"  | c <- ["Firefox", "Chromium"]] ++
+    [ className =? c  --> doShift "1:web"  | c <- ["Firefox", "Chromium"]] ++
+    [ className =? c  --> doShift "2:term" | c <- []] ++
     [ className =? c  --> doShift "3:misc" | c <- ["Evince", "Thunar"]] ++
     []
 

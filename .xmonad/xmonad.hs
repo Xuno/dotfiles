@@ -12,8 +12,10 @@ import qualified Data.Map as M
 import System.IO (hPutStrLn)
 import System.Exit
 
+import Graphics.X11.ExtraTypes.XF86
+
 main = do
-    xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.rc"
+    xmproc <- spawnPipe "killall xmobar; xmobar ~/.xmonad/xmobar.rc"
     spawn "killall trayer; trayer --edge top --align right --margin 0 --width 5 --widthtype percent --height 20 \
             \--padding 2 --tint 0x000000 --transparent true --alpha 0"
     xmonad $ myConfig { logHook = dynamicLogWithPP $ myXMobarPP xmproc }
@@ -25,7 +27,7 @@ myConfig = XConfig
   , terminal           = "urxvt"
   , normalBorderColor  = "#000000"
   , focusedBorderColor = "#f01343"
-  , modMask            = mod1Mask
+  , modMask            = mask
   , keys               = myKeys
   , logHook            = return ()
   , startupHook        = myStartupHook
@@ -34,6 +36,9 @@ myConfig = XConfig
   , handleEventHook    = const (return (All True))
   , focusFollowsMouse  = True
   }
+
+mask = mod1Mask -- Left Alt
+mask2 = mod4Mask -- WinKey
 
 myWorkspaces = ["1:term", "2:web", "3:misc" ] ++ map show [4..9]
 
@@ -61,7 +66,7 @@ myXMobarPP xmproc = xmobarPP
     xmobarCurrentWorkspaceColor = "#ceffac"
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys conf@(XConfig {XMonad.modMask = mask}) = M.fromList $
+myKeys conf = M.fromList $
     [ ((mask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     , ((mask,               xK_p     ), spawn "dmenu_run -b -f -p \">\"")
     , ((mask .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -91,7 +96,7 @@ myKeys conf@(XConfig {XMonad.modMask = mask}) = M.fromList $
     , ((mask              , xK_minus ), sendMessage (IncMasterN (-1)))
 
     , ((mask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((mask              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi")
+    , ((mask              , xK_q     ), spawn "xmonad --recompile && xmonad --restart")
     ]
     ++
     [((m .|. mask, k), windows $ f i)
@@ -102,8 +107,21 @@ myKeys conf@(XConfig {XMonad.modMask = mask}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
+    ++
+    multiKeys [(mask2, xK_Left      ), (0, xF86XK_AudioPrev       )] "ncmpcpp prev" ++
+    multiKeys [(mask2, xK_Right     ), (0, xF86XK_AudioNext       )] "ncmpcpp next" ++
+    multiKeys [(mask2, xK_Up        ), (0, xF86XK_AudioStop       )] "ncmpcpp stop" ++
+    multiKeys [(mask2, xK_Down      ), (0, xF86XK_AudioPlay       )] "ncmpcpp toggle" ++
+    multiKeys [(mask2, xK_Page_Up   ), (0, xF86XK_AudioRaiseVolume)] "amixer set Master 2dB+ unmute" ++
+    multiKeys [(mask2, xK_Page_Down ), (0, xF86XK_AudioLowerVolume)] "amixer set Master 2dB- unmute" ++
+    multiKeys [(mask2, xK_m         ), (0, xF86XK_AudioMute       )] "amixer sset Master toggle" ++
+
+    []
+  where
+    multiKeys lst action = [(x, spawn action) | x <- lst]
+
 myMouse :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
-myMouse (XConfig {XMonad.modMask = mask}) = M.fromList
+myMouse _ = M.fromList
     [ ((mask, button1), \w -> focus w >> mouseMoveWindow w
                                       >> windows W.shiftMaster)
     , ((mask, button2), windows . (W.shiftMaster .) . W.focusWindow)

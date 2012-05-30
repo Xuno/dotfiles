@@ -22,6 +22,7 @@ import System.Exit
 import Graphics.X11.ExtraTypes.XF86
 
 main = do
+    spawn "~/.xmonad/statusbar.sh"
     spawn $ "trayer --edge top --align right --margin 0 --width " ++ show trayWidth ++ 
         " --widthtype pixel --height 16 --padding 2 --tint 0x333333 --transparent true" ++
         " --alpha 0 --SetPartialStrut true --SetDockType true"
@@ -50,8 +51,21 @@ myConfig = XConfig
   }
 
 myDzenPP dzen = dzenPP
-  { ppOutput = hPutStrLn dzen
-  }
+    { ppOutput  = hPutStrLn dzen
+    , ppCurrent = dzenColor colorBlue  colorBlack . pad
+    , ppUrgent  = dzenColor colorGreen colorBlack . pad
+    , ppVisible = dzenColor colorGray  colorBlack . pad
+    , ppHidden  = dzenColor "#666666"  colorBlack . pad
+    , ppLayout  = dzenColor "#ffffff"  colorGray2 . pad
+    , ppTitle   = dzenColor colorWhite colorBlack . pad
+    }
+  where
+    colorBlue  = "#3475aa"
+    colorGray  = "#cccccc"
+    colorGray2 = "#999999"
+    colorBlack = "#333333"
+    colorGreen = "#99cc66"
+    colorWhite = "#cccccc"
 
 modm = mod1Mask -- Left Alt
 modm2 = mod4Mask -- WinKey
@@ -107,7 +121,7 @@ myKeys conf = M.fromList $
     , ((modm              , xK_minus ), sendMessage (IncMasterN (-1)))
 
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((modm              , xK_q     ), spawn "killall trayer; killall dzen2; xmonad --recompile && xmonad --restart")
+    , ((modm              , xK_q     ), spawn "killall trayer; killall dzen2; killall conky; xmonad --recompile && xmonad --restart")
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
 
     , ((modm,               xK_b     ), viewEmptyWorkspace)

@@ -7,6 +7,7 @@ xset +fp /usr/share/fonts/local
 xset fp rehash
 xset -b
 xsetroot -cursor_name left_ptr
+ibus-daemon -d --xim
 
 case $1 in
     xfce4)
@@ -14,7 +15,6 @@ case $1 in
         ;;
     *)
         nitrogen --restore &
-        ~/.xmonad/bin/ibus.sh
         xmonad
         ;;
 esac

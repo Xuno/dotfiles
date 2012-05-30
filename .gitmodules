@@ -76,6 +76,3 @@
 [submodule ".urxvt/urxvt-font-size"]
 	path = .urxvt/urxvt-font-size
 	url = git://github.com/majutsushi/urxvt-font-size.git
-[submodule ".fonts/wqy-bsong"]
-	path = .fonts/wqy-bsong
-	url = git://gist.github.com/2828025.git

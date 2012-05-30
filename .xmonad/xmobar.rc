@@ -1,7 +1,0 @@
-
-Config {
-    font = "xft:WenQuanYi Bitmap Song:pixelsize=12",
-    bgColor  = "#000000",
-    fgColor  = "#ffffff",
-    position = TopSize L 95 20
-}

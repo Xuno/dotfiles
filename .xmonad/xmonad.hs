@@ -20,10 +20,13 @@ import System.Exit
 import Graphics.X11.ExtraTypes.XF86
 
 main = do
-    xmproc <- spawnPipe "killall xmobar; xmobar ~/.xmonad/xmobar.rc"
-    spawn "killall trayer; trayer --edge top --align right --margin 0 --width 5 --widthtype percent --height 20 \
+    spawn "killall trayer; trayer --edge top --align right --margin 0 --width 5 --widthtype percent --height 16 \
             \--padding 2 --tint 0x000000 --transparent true --alpha 0"
-    xmonad $ myConfig { logHook = logHook myConfig >> dynamicLogWithPP (myXMobarPP xmproc) }
+    dzen <- spawnPipe $ "killall dzen2; dzen2 -h 16 " ++ " -ta left -fn " ++ font
+    xmonad $ myConfig { logHook = logHook myConfig >> dynamicLogWithPP (myDzenPP dzen) }
+
+font = "CtrlD-10"
+fontTitle = "WenQuanYi Micro Hei Mono-10"
 
 myConfig = XConfig
   { borderWidth        = 2
@@ -40,6 +43,11 @@ myConfig = XConfig
   , manageHook         = myManageHook
   , handleEventHook    = const (return (All True))
   , focusFollowsMouse  = True
+  }
+
+myDzenPP dzen = dzenPP
+  { ppOutput = hPutStrLn dzen
+  , ppTitle = (\t -> "^fn(" ++ fontTitle ++ ")" ++ t ++ "^fn(" ++ font ++ ")") . ppTitle dzenPP
   }
 
 modm = mod1Mask -- Left Alt
@@ -64,16 +72,6 @@ myManageHook = composeAll $
     [ className =? c  --> doShift "2:term" | c <- []] ++
     [ className =? c  --> doShift "3:misc" | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk"]] ++
     []
-
-myXMobarPP xmproc = xmobarPP
-    { ppOutput  = hPutStrLn xmproc
-    , ppTitle   = xmobarColor xmobarTitleColor "" . shorten 50
-    , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-    , ppSep     = "  "
-    }
-  where
-    xmobarTitleColor = "#ffB6B0"
-    xmobarCurrentWorkspaceColor = "#ceffac"
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf = M.fromList $

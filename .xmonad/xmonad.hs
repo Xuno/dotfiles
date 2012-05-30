@@ -25,7 +25,7 @@ main = do
     dzen <- spawnPipe $ "killall dzen2; dzen2 -h 16 " ++ " -ta left -fn " ++ font
     xmonad $ myConfig { logHook = logHook myConfig >> dynamicLogWithPP (myDzenPP dzen) }
 
-font = "CtrlD-10"
+font = "CtrlD-12"
 fontTitle = "WenQuanYi Micro Hei Mono-10"
 
 myConfig = XConfig

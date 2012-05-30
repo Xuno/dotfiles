@@ -93,7 +93,7 @@ Xcursor.theme: Vanilla-DMZ
 Xcursor.size: 16
 
 dzen2.foreground: #ffffff
-dzen2.background: #000000
+dzen2.background: #333333
 
 xscreensaver.timeout: 5
 xscreensaver.splash: false

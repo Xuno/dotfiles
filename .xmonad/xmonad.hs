@@ -22,9 +22,9 @@ import System.Exit
 import Graphics.X11.ExtraTypes.XF86
 
 main = do
-    spawn "killall trayer; trayer --edge top --align right --margin 0 --width 5 --widthtype percent --height 16 \
-            \--padding 2 --tint 0x000000 --transparent true --alpha 0"
-    dzen <- spawnPipe $ "killall dzen2; dzen2 -h 16 " ++ " -ta left -fn " ++ font
+    spawn "trayer --edge top --align right --margin 0 --width 5 --widthtype percent --height 16 \
+            \--padding 2 --tint 0x333333 --transparent true --alpha 0"
+    dzen <- spawnPipe $ "dzen2 -h 16 " ++ " -ta left -fn " ++ font
     xmonad $ myConfig { logHook = logHook myConfig >> dynamicLogWithPP (myDzenPP dzen) }
 
 font = "CtrlD-12"
@@ -106,7 +106,7 @@ myKeys conf = M.fromList $
     , ((modm              , xK_minus ), sendMessage (IncMasterN (-1)))
 
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((modm              , xK_q     ), spawn "xmonad --recompile && xmonad --restart")
+    , ((modm              , xK_q     ), spawn "killall trayer; killall dzen2; xmonad --recompile && xmonad --restart")
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
 
     , ((modm,               xK_b     ), viewEmptyWorkspace)

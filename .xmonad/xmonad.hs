@@ -52,17 +52,18 @@ myConfig = XConfig
 
 myDzenPP dzen = dzenPP
     { ppOutput  = hPutStrLn dzen
-    , ppCurrent = dzenColor colorBlue  colorBlack . pad
-    , ppUrgent  = dzenColor colorGreen colorBlack . pad
-    , ppVisible = dzenColor colorGray  colorBlack . pad
-    , ppHidden  = dzenColor "#666666"  colorBlack . pad
+    , ppCurrent = dzenColor colorBlue  colorGray3 . pad
+    , ppUrgent  = dzenColor colorGreen colorGray3 . pad
+    , ppVisible = dzenColor colorGray2 colorGray3 . pad
+    , ppHidden  = dzenColor colorGray  colorGray3 . pad
     , ppLayout  = dzenColor "#ffffff"  colorGray2 . pad
     , ppTitle   = dzenColor colorWhite colorBlack . pad
     }
   where
     colorBlue  = "#3475aa"
     colorGray  = "#cccccc"
-    colorGray2 = "#999999"
+    colorGray2 = "#888888"
+    colorGray3 = "#444444"
     colorBlack = "#333333"
     colorGreen = "#99cc66"
     colorWhite = "#cccccc"

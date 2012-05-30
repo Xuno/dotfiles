@@ -15,6 +15,8 @@ case $1 in
         ;;
     *)
         nitrogen --restore &
+        killall xcompmgr
+        xcompmgr &
         xmonad
         ;;
 esac

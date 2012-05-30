@@ -8,6 +8,7 @@ import XMonad.Actions.FindEmptyWorkspace
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.FadeInactive
 import XMonad.Layout.NoBorders
 import XMonad.Util.Run (spawnPipe)
 
@@ -34,10 +35,10 @@ myConfig = XConfig
   , layoutHook         = myLayout
   , terminal           = "urxvt"
   , normalBorderColor  = "#000000"
-  , focusedBorderColor = "#f01343"
+  , focusedBorderColor = "#ff0000"
   , modMask            = modm
   , keys               = myKeys
-  , logHook            = updatePointer (TowardsCentre 0.3 0.3)
+  , logHook            = updatePointer (TowardsCentre 0.3 0.3) >> fadeInactiveCurrentWSLogHook 0.7
   , startupHook        = myStartupHook
   , mouseBindings      = myMouse
   , manageHook         = myManageHook

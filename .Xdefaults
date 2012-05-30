@@ -77,9 +77,7 @@ Xft.rgba: rgb
 
 urxvt.depth: 32
 
-! use urxvt -xrm "..."
-!urxvt.background: [80]black
-urxvt.transparent: true
+urxvt.background: [70]black
 
 urxvt.tintColor: white
 urxvt.shading: 30

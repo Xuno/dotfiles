@@ -24,11 +24,10 @@ import Graphics.X11.ExtraTypes.XF86
 main = do
     spawn "trayer --edge top --align right --margin 0 --width 5 --widthtype percent --height 16 \
             \--padding 2 --tint 0x333333 --transparent true --alpha 0"
-    dzen <- spawnPipe $ "dzen2 -h 16 " ++ " -ta left -fn " ++ font
+    dzen <- spawnPipe $ "dzen2 -h 16 " ++ " -ta left -fn '" ++ font ++ "'"
     xmonad $ myConfig { logHook = logHook myConfig >> dynamicLogWithPP (myDzenPP dzen) }
 
-font = "CtrlD-12"
-fontTitle = "WenQuanYi Micro Hei Mono-10"
+font = "WenQuanYi Micro Hei Mono-10"
 
 myConfig = XConfig
   { borderWidth        = 2
@@ -49,7 +48,6 @@ myConfig = XConfig
 
 myDzenPP dzen = dzenPP
   { ppOutput = hPutStrLn dzen
-  , ppTitle = (\t -> "^fn(" ++ fontTitle ++ ")" ++ t ++ "^fn(" ++ font ++ ")") . ppTitle dzenPP
   }
 
 modm = mod1Mask -- Left Alt

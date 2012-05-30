@@ -22,12 +22,15 @@ import System.Exit
 import Graphics.X11.ExtraTypes.XF86
 
 main = do
-    spawn "trayer --edge top --align right --margin 0 --width 5 --widthtype percent --height 16 \
-            \--padding 2 --tint 0x333333 --transparent true --alpha 0"
-    dzen <- spawnPipe $ "dzen2 -h 16 " ++ " -ta left -fn '" ++ font ++ "'"
+    spawn $ "trayer --edge top --align right --margin 0 --width " ++ show trayWidth ++ 
+        " --widthtype pixel --height 16 --padding 2 --tint 0x333333 --transparent true" ++
+        " --alpha 0 --SetPartialStrut true --SetDockType true"
+    dzen <- spawnPipe $ "dzen2 -h 16 " ++ " -ta left -fn '" ++ font ++ "' -fg '#ffffff' -bg '#333333'"
     xmonad $ myConfig { logHook = logHook myConfig >> dynamicLogWithPP (myDzenPP dzen) }
 
 font = "WenQuanYi Micro Hei Mono-10"
+
+trayWidth = 50
 
 myConfig = XConfig
   { borderWidth        = 2

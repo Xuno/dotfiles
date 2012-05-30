@@ -94,3 +94,7 @@ Xcursor.size: 16
 
 dzen2.foreground: #ffffff
 dzen2.background: #000000
+
+xscreensaver.timeout: 5
+xscreensaver.splash: false
+xscreensaver.mode: blank

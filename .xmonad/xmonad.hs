@@ -106,6 +106,7 @@ myKeys conf = M.fromList $
 
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
     , ((modm              , xK_q     ), spawn "xmonad --recompile && xmonad --restart")
+    , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
 
     , ((modm,               xK_b     ), viewEmptyWorkspace)
     , ((modm .|. shiftMask, xK_b     ), tagToEmptyWorkspace)

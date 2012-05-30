@@ -17,6 +17,7 @@ case $1 in
         nitrogen --restore &
         killall xcompmgr
         xcompmgr &
+        xscreensaver &
         xmonad
         ;;
 esac

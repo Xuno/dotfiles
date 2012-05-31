@@ -68,10 +68,13 @@ myDzenPP dzen = dzenPP
     colorGreen = "#99cc66"
     colorWhite = "#cccccc"
 
-modm = mod1Mask -- Left Alt
+modm  = mod1Mask -- Left Alt
 modm2 = mod4Mask -- WinKey
 
-myWorkspaces = ["1:web", "2:term", "3:misc" ] ++ map show [4..9]
+myWorkspaces = [web, term, misc] ++ map show [4..9]
+web          = "1:web"
+term         = "2:term"
+misc         = "3:misc"
 
 myLayout = avoidStruts $ smartBorders $ 
     (tiled ||| Mirror tiled ||| Full)
@@ -82,14 +85,20 @@ myLayout = avoidStruts $ smartBorders $
     delta   = 3/100
 
 myManageHook = composeAll $
-    manageDocks :
-    ( isDialog --> doCenterFloat) :
-    ( isFullscreen --> doFullFloat) :
-    [ className =? c  --> doFloat          | c <- ["MPlayer", "Gimp"]] ++
-    [ className =? c  --> doShift "1:web"  | c <- ["Firefox", "Chromium"]] ++
-    [ className =? c  --> doShift "2:term" | c <- []] ++
-    [ className =? c  --> doShift "3:misc" | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk"]] ++
-    []
+    [ manageDocks
+    , isDialog          --> doCenterFloat
+    , isFullscreen      --> doFullFloat
+    , myFloats          --> doFloat
+    , myWeb             --> doShift web
+    , myTerm <&&> inWeb --> doShift term
+    , myMisc            --> doShift misc
+    ]
+  where
+    myFloats = className =? "MPlayer" <||> className =? "Gimp"
+    myWeb    = className =? "Firefox" <||> className =? "Chromium"
+    myTerm   = className =? "URxvt"
+    myMisc   = foldl (<||>) (return False) [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk"]]
+    inWeb    = fmap (==web) currentWs
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf = M.fromList $

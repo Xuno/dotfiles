@@ -109,6 +109,7 @@ autocmd FileType java,scale,less :nmap <silent> <F5> :make<CR>
 autocmd BufWritePost *.hs,*.lhs GhcModCheckAsync
 autocmd BufEnter *.hsc :setlocal filetype=haskell
 autocmd BufEnter *.hsc :nmap <silent> <F5> :!hsc2hs %;ghc --make %<.hs<CR>
+autocmd BufEnter xmonad.hs :setlocal makeprg=xmonad\ --recompile
 
 autocmd FileType cpp,c,java :let b:surround_{char2nr("c")} = "/* \r */"
 autocmd FileType cpp,c,java :setlocal commentstring=//\ %s

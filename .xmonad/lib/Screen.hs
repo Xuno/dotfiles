@@ -28,6 +28,12 @@ data Alignment = LeftA | CenterA | RightA deriving (Read, Show, Eq)
 data Width = WidthRatio Rational
            | WidthPixels Dimension
 
+splitBar :: Rectangle -> Rational -> (Rectangle, Rectangle)
+splitBar (Rectangle x y w h) r = (Rectangle x y wL h, Rectangle (x + fromIntegral wL) y wR h)
+  where
+    wL = floor (toRational w * r)
+    wR = w - wL
+
 getBarPos :: Rectangle -> Edge -> Alignment -> Width -> Dimension -> Rectangle
 getBarPos (Rectangle x y w h) edge align width height = Rectangle x' y' w' h'
   where
@@ -38,10 +44,7 @@ getBarPos (Rectangle x y w h) edge align width height = Rectangle x' y' w' h'
        | otherwise        = x + fromIntegral (w - w')
 
     calcWidth (WidthPixels wp) = wp
-    calcWidth (WidthRatio wr)  = wp
-      where
-        wp | align == RightA = floor (wr * toRational w)
-           | otherwise       = ceiling (wr * toRational w)
+    calcWidth (WidthRatio wr)  = floor (wr * toRational w)
 
     h' = height `min` h
 

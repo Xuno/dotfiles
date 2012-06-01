@@ -88,7 +88,8 @@ myManageHook = composeAll $
     , isFullscreen      --> doFullFloat
     , myFloats          --> doFloat
     , composeOne
-    [ myWeb             -?> doShift web
+    [ isGmrun           -?> idHook -- do-not shift gmrun
+    , myWeb             -?> doShift web
     , myTerm <&&> inWeb -?> doShift term
     , myMisc            -?> doShift misc
     , notTerm <&&> inT  -?> doShift misc
@@ -103,6 +104,7 @@ myManageHook = composeAll $
     inT      = fmap (==term) currentWs
     isJava   = fmap ("sun-"`isPrefixOf`) appName
     isTC     = fmap ("com-topcoder"`isPrefixOf`) className
+    isGmrun  = className =? "Gmrun"
     notTerm  = fmap not myTerm
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())

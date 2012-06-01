@@ -18,7 +18,6 @@ import Control.Monad (forM)
 import qualified Data.Colour.Names as C
 import Data.Colour.RGBSpace
 import Data.Colour.SRGB
-import Codec.Binary.UTF8.String
 
 data XMonadBarInfo = XMBarInfo
     { workspacesB :: [(String, String,    -- workspace name, layout name,  
@@ -77,10 +76,10 @@ colR = C.lightcoral
 colG = C.yellowgreen
 colB = C.lightskyblue
 
-layout_tall  = encodeString "\xEE00"
-layout_mtall = encodeString "\xEE01"
-layout_full  = encodeString "\xEE02"
-layout_grid  = encodeString "\xEE03"
+layout_tall  = "\xEE00"
+layout_mtall = "\xEE01"
+layout_full  = "\xEE02"
+layout_grid  = "\xEE03"
 
 xmonadBarPrinter :: Int -> (Dimension, Dimension) -> Printer XMonadBarInfo
 xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (printLayout +++ str " ") +=+ printTitle)
@@ -129,4 +128,4 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
         f other         = other
 
     printTitle :: Printer XMonadBarInfo
-    printTitle = rawStr "^fn(" +++ str titleFont +++ rawStr ")" +++ simple' (\conf -> utf8Encode $ snd $ screensB conf !! uid)
+    printTitle = rawStr "^fn(" +++ str titleFont +++ rawStr ")" +++ simple' (\conf -> snd $ screensB conf !! uid)

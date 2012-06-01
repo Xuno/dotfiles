@@ -30,6 +30,7 @@ import System.Environment (getArgs)
 
 import qualified Screen as Scr
 import XMonadBar
+import Codec.Binary.UTF8.String
 
 main = do
     screens <- Scr.getScreens
@@ -191,7 +192,7 @@ myLogHook dzens = do
     barInfo <- obtainBarInfo
     forM_ (zip [0..] dzens) $ \(phyID, (_, handle, rect)) -> do 
         str <- xmonadBarApply barInfo phyID
-        io $ hPutStrLn handle str
+        io $ hPutStrLn handle (utf8Encode str)
 
 myStartupHook dzens = do
     setWMName "LG3D"

@@ -1,0 +1,113 @@
+{-# LANGUAGE OverloadedStrings, DeriveDataTypeable #-}
+
+module XMonadBar where
+
+import XMonad
+import qualified XMonad.StackSet as W
+import XMonad.Hooks.UrgencyHook (readUrgents)
+import qualified XMonad.Util.ExtensibleState as S
+import XMonad.Util.WorkspaceCompare
+import XMonad.Util.NamedWindows
+
+import System.Dzen
+import qualified Data.Map as M
+import Data.Maybe (isNothing)
+import Data.List (sortBy)
+import Data.Ord (comparing)
+import Control.Monad (forM)
+import qualified Data.Colour.Names as C
+import Data.Colour.RGBSpace
+import Data.Colour.SRGB
+import Codec.Binary.UTF8.String
+
+data XMonadBarInfo = XMBarInfo
+    { workspacesB :: [(String, String,    -- workspace name, layout name,  
+                       Bool, Bool, Bool)] -- inUrgency, isEmpty, isFocused
+    , screensB    :: [(String, String)]   -- ws in this screen, title
+    }
+  deriving (Read, Show, Typeable)
+
+instance (Typeable k, Typeable a) => ExtensionClass (M.Map k a) where
+    initialValue = M.empty
+
+defaultPrinter :: Printer XMonadBarInfo
+defaultPrinter = simple' (const "xmonad: uninitialized")
+
+obtainBarInfo :: X XMonadBarInfo
+obtainBarInfo = do
+    ws <- gets windowset
+    urgents <- readUrgents
+    sortByIndex <- getSortByIndex
+    let wsps = sortByIndex ((map W.workspace (W.current ws : W.visible ws)) ++ W.hidden ws)
+        wspb = [ (W.tag wsp, layout, inU, isE, isF)
+               | wsp <- wsps
+               , let layout = description (W.layout wsp)
+                     inU    = any (\w -> maybe False (==W.tag wsp) (W.findTag w ws)) urgents
+                     isE    = isNothing (W.stack wsp)
+                     isF    = W.tag wsp == W.currentTag ws
+               ]
+        onsc = sortBy (comparing (f . W.screenDetail)) $ W.current ws : W.visible ws
+        getTitle Nothing                = Nothing
+        getTitle (Just (W.Stack f _ _)) = Just f
+        f (SD (Rectangle x y _ _)) = (x, y)
+    scrb <- forM onsc $ \scr -> do
+        let wspName = W.tag $ W.workspace scr
+            wid     = getTitle $ W.stack $ W.workspace scr
+        title <- case wid of
+            Nothing  -> return ""
+            Just xid -> fmap show $ getName xid
+        return (wspName, title)
+    return (XMBarInfo wspb scrb)
+
+xmonadBarApply :: XMonadBarInfo -> Int -> X String
+xmonadBarApply barInfo uid = do
+    oldPrinter <- S.gets (M.findWithDefault defaultPrinter uid)
+    let (output, newPrinter) = apply oldPrinter barInfo
+    S.modify (M.insert uid newPrinter)
+    return output
+
+titleFont = "WenQuanYi Micro Hei Mono-10" :: String
+fixedFont = "CtrlD-10" :: String
+
+fgC  = sRGB24 0xcc 0xcc 0xcc :: DColour
+bgC  = sRGB24 0x33 0x33 0x33 :: DColour
+bgC2 = C.lightslategray :: DColour
+colR = C.lightcoral
+colG = C.yellowgreen
+colB = C.lightskyblue
+
+xmonadBarPrinter :: Int -> (Dimension, Dimension) -> Printer XMonadBarInfo
+xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (printLayout +++ str " ") +=+ printTitle)
+  where
+    printUnderline = rawStr $ "^ib(1)^p(_LOCK_X)^pa(;+" ++ show (h-2) ++ ")^ro(9999x2)^p(_UNLOCK_X)^p()"
+    mergeDS :: DString -> DString -> DString
+    mergeDS = (+++)
+
+    concatDS :: [DString] -> DString
+    concatDS = foldr mergeDS ""
+
+    printWS :: Printer XMonadBarInfo
+    printWS = simple printer
+      where
+        printer (XMBarInfo wsp scr) = concatDS wsp'
+          where
+            multiS = length scr > 1
+            scr' = map fst scr
+            cur  = scr' !! uid
+            wsp' = [ if name == cur then ignoreBg False $ fg bgC $ bg fgC $ concatDS $ map ppWS scr' else ppWS name
+                   | (name, _, _, e, _) <- wsp
+                   , name == cur || not e && name `notElem` scr'
+                   ] :: [DString]
+            isU name = or [u | (name', _, u, _, _) <- wsp, name == name']
+            isF name = or [f | (name', _, _, _, f) <- wsp, name == name']
+            isC name = name == cur
+            ppWS :: String -> DString
+            ppWS name | isU name           = fg (C.red) ds
+                      | isC name && multiS = bg bgC2 $ fg C.snow $ ds
+                      | otherwise          = ds
+              where
+                ds = str (" " ++ name ++ " ")
+    printLayout :: Printer XMonadBarInfo
+    printLayout = ignoreBg False $ fg bgC $ bg fgC $ simple' (\conf -> concat [" " ++ la ++ " " | (_, la, _, _, f) <- workspacesB conf, f])
+    printTitle :: Printer XMonadBarInfo
+    printTitle = rawStr "^fn(" +++ str titleFont +++ rawStr ")" +++ simple' (\conf -> utf8Encode $ snd $ screensB conf !! uid)

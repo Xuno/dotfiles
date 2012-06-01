@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveDataTypeable #-}
 
 import XMonad hiding (defaultConfig)
 import qualified XMonad.StackSet as W
@@ -8,65 +9,57 @@ import XMonad.Actions.FindEmptyWorkspace
 import XMonad.Actions.PhysicalScreens
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive
 import XMonad.Layout.NoBorders
 import XMonad.Util.Run (spawnPipe)
-
-import Data.Monoid
-import qualified Data.Map as M
-
-import System.IO (hPutStrLn)
-import System.Exit
-
+import qualified XMonad.Util.ExtensibleState as S
 import Graphics.X11.ExtraTypes.XF86
 
-main = do
-    spawn "~/.xmonad/statusbar.sh"
-    spawn $ "trayer --edge top --align right --margin 0 --width " ++ show trayWidth ++ 
-        " --widthtype pixel --height 16 --padding 2 --tint 0x333333 --transparent true" ++
-        " --alpha 0 --SetPartialStrut true --SetDockType true"
-    dzen <- spawnPipe $ "dzen2 -h 16 " ++ " -ta left -fn '" ++ font ++ "' -fg '#ffffff' -bg '#333333'"
-    xmonad $ myConfig { logHook = logHook myConfig >> dynamicLogWithPP (myDzenPP dzen) }
+import Control.Monad (forM, forM_)
+import Data.Monoid
+import qualified Data.Map as M
+import Data.Colour.SRGB
 
-font = "WenQuanYi Micro Hei Mono-10"
+import System.IO
+import System.Exit
+
+import qualified Screen as Scr
+import XMonadBar
+
+main = do
+    screens <- Scr.getScreens
+    dzens <- forM screens $ \(sid, rect) -> do
+        let cmds  = Scr.rectToDzenCmdSpec rect'
+            rect' = Scr.getBarPos rect Scr.TopEdge Scr.LeftA (Scr.WidthRatio 1) barHeight
+            cmdline = unwords $ "dzen2" : cmds ++ 
+                    [ "-fn", "'" ++ fixedFont ++ "'"
+                    , "-ta", "l"
+                    , "-fg", "'" ++ sRGB24show fgC ++ "'"
+                    , "-bg", "'" ++ sRGB24show bgC ++ "'"
+                    ]
+        handle <- spawnPipe cmdline
+        return (sid, handle, rect')
+    xmonad (myConfig dzens)
 
 trayWidth = 50
+barHeight = 16
 
-myConfig = XConfig
+myConfig dzens = XConfig
   { borderWidth        = 2
   , workspaces         = myWorkspaces
   , layoutHook         = myLayout
   , terminal           = "urxvt"
-  , normalBorderColor  = "#000000"
+  , normalBorderColor  = "#cccccc"
   , focusedBorderColor = "#ff0000"
   , modMask            = modm
   , keys               = myKeys
-  , logHook            = updatePointer (TowardsCentre 0.3 0.3) >> fadeInactiveCurrentWSLogHook 0.7
-  , startupHook        = myStartupHook
+  , logHook            = myLogHook dzens
+  , startupHook        = myStartupHook dzens
   , mouseBindings      = myMouse
   , manageHook         = myManageHook
   , handleEventHook    = const (return (All True))
   , focusFollowsMouse  = True
   }
-
-myDzenPP dzen = dzenPP
-    { ppOutput  = hPutStrLn dzen
-    , ppCurrent = dzenColor colorBlue  colorGray3 . pad
-    , ppUrgent  = dzenColor colorGreen colorGray3 . pad
-    , ppVisible = dzenColor colorGray2 colorGray3 . pad
-    , ppHidden  = dzenColor colorGray  colorGray3 . pad
-    , ppLayout  = dzenColor "#ffffff"  colorGray2 . pad
-    , ppTitle   = dzenColor colorWhite colorBlack . pad
-    }
-  where
-    colorBlue  = "#3475aa"
-    colorGray  = "#cccccc"
-    colorGray2 = "#888888"
-    colorGray3 = "#444444"
-    colorBlack = "#333333"
-    colorGreen = "#99cc66"
-    colorWhite = "#cccccc"
 
 modm  = mod1Mask -- Left Alt
 modm2 = mod4Mask -- WinKey
@@ -131,7 +124,7 @@ myKeys conf = M.fromList $
     , ((modm              , xK_minus ), sendMessage (IncMasterN (-1)))
 
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((modm              , xK_q     ), spawn "killall trayer; killall dzen2; killall conky; xmonad --recompile && xmonad --restart")
+    , ((modm              , xK_q     ), spawn "xmonad --recompile && xmonad --restart")
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
 
     , ((modm,               xK_b     ), viewEmptyWorkspace)
@@ -177,4 +170,15 @@ myMouse _ = M.fromList
                                       >> windows W.shiftMaster)
     ]
 
-myStartupHook = return ()
+myLogHook dzens = do
+    updatePointer (TowardsCentre 0.3 0.3) 
+    fadeInactiveCurrentWSLogHook 0.7
+    barInfo <- obtainBarInfo
+    forM_ (zip [0..] dzens) $ \(phyID, (_, handle, rect)) -> do 
+        str <- xmonadBarApply barInfo phyID
+        io $ hPutStrLn handle str
+
+myStartupHook dzens = do
+    forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) -> do
+        S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
+    myLogHook dzens

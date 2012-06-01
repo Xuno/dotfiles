@@ -94,7 +94,7 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
             multiS = length scr > 1
             scr' = map fst scr
             cur  = scr' !! uid
-            wsp' = [ if name == cur then ignoreBg False $ fg bgC $ bg fgC $ concatDS $ map ppWS scr' else ppWS name
+            wsp' = [ if name == cur then ignoreBg False $ bg fgC $ fg bgC $ concatDS $ map ppWS scr' else ppWS name
                    | (name, _, _, e, _) <- wsp
                    , name == cur || not e && name `notElem` scr'
                    ] :: [DString]
@@ -109,7 +109,7 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
                 ds | isF name  = fg C.red (str "[") +++ str name +++ fg C.red (str "]")
                    | otherwise = str (" " ++ name ++ " ")
     printLayout :: Printer XMonadBarInfo
-    printLayout = ignoreBg False $ fg bgC $ bg fgC $ simple' printer
+    printLayout = ignoreBg False $ bg fgC $ fg bgC $ simple' printer
       where
         printer (XMBarInfo wsp scr) =
             concat [" " ++ la ++ " " | (name, la, _, _, _) <- wsp, name == cur]

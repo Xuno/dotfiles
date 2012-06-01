@@ -25,8 +25,6 @@ import Data.List (isPrefixOf)
 
 import System.IO
 import System.Exit
-import System.Posix.Unistd (usleep)
-import System.Environment (getArgs)
 
 import qualified Screen as Scr
 import XMonadBar
@@ -199,7 +197,3 @@ myStartupHook dzens = do
     forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) -> do
         S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
     myLogHook dzens
-    args <- io $ getArgs
-    when ("--resume" `elem` args || "--replace" `elem` args) $ do
-        io $ usleep 200
-        refresh

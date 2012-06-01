@@ -76,6 +76,11 @@ colR = C.lightcoral
 colG = C.yellowgreen
 colB = C.lightskyblue
 
+layout_tall  = encodeString "\xEE00"
+layout_mtall = encodeString "\xEE01"
+layout_full  = encodeString "\xEE02"
+layout_grid  = encodeString "\xEE03"
+
 xmonadBarPrinter :: Int -> (Dimension, Dimension) -> Printer XMonadBarInfo
 xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (printLayout +++ str " ") +=+ printTitle)
   where
@@ -112,8 +117,14 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
     printLayout = ignoreBg False $ bg fgC $ fg bgC $ simple' printer
       where
         printer (XMBarInfo wsp scr) =
-            concat [" " ++ la ++ " " | (name, la, _, _, _) <- wsp, name == cur]
+            concat [" " ++ f la ++ " " | (name, la, _, _, _) <- wsp, name == cur]
           where
-            cur  = fst (scr !! uid)
+            cur = fst (scr !! uid)
+
+        f "Tall"        = layout_tall
+        f "Mirror Tall" = layout_mtall
+        f "Full"        = layout_full
+        f other         = other
+
     printTitle :: Printer XMonadBarInfo
     printTitle = rawStr "^fn(" +++ str titleFont +++ rawStr ")" +++ simple' (\conf -> utf8Encode $ snd $ screensB conf !! uid)

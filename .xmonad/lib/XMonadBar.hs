@@ -109,6 +109,11 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
                 ds | isF name  = fg C.red (str "[") +++ str name +++ fg C.red (str "]")
                    | otherwise = str (" " ++ name ++ " ")
     printLayout :: Printer XMonadBarInfo
-    printLayout = ignoreBg False $ fg bgC $ bg fgC $ simple' (\conf -> concat [" " ++ la ++ " " | (_, la, _, _, f) <- workspacesB conf, f])
+    printLayout = ignoreBg False $ fg bgC $ bg fgC $ simple' printer
+      where
+        printer (XMBarInfo wsp scr) =
+            concat [" " ++ la ++ " " | (name, la, _, _, _) <- wsp, name == cur]
+          where
+            cur  = fst (scr !! uid)
     printTitle :: Printer XMonadBarInfo
     printTitle = rawStr "^fn(" +++ str titleFont +++ rawStr ")" +++ simple' (\conf -> utf8Encode $ snd $ screensB conf !! uid)

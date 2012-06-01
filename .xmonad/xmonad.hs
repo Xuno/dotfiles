@@ -10,6 +10,7 @@ import XMonad.Actions.PhysicalScreens
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.FadeInactive
+import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
 import XMonad.Util.Run (spawnPipe)
 import qualified XMonad.Util.ExtensibleState as S
@@ -82,16 +83,23 @@ myManageHook = composeAll $
     , isDialog          --> doCenterFloat
     , isFullscreen      --> doFullFloat
     , myFloats          --> doFloat
-    , myWeb             --> doShift web
-    , myTerm <&&> inWeb --> doShift term
-    , myMisc            --> doShift misc
+    , composeOne
+    [ myWeb             -?> doShift web
+    , myTerm <&&> inWeb -?> doShift term
+    , myMisc            -?> doShift misc
+    , notTerm <&&> inT  -?> doShift misc
+    ]
     ]
   where
-    myFloats = className =? "MPlayer" <||> className =? "Gimp"
+    myFloats = className =? "MPlayer" <||> className =? "Gimp" <||> isTC
     myWeb    = className =? "Firefox" <||> className =? "Chromium"
     myTerm   = className =? "URxvt"
-    myMisc   = foldl (<||>) (return False) [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk"]]
+    myMisc   = foldl (<||>) isJava [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk"]]
     inWeb    = fmap (==web) currentWs
+    inT      = fmap (==term) currentWs
+    isJava   = fmap ((=="sun-").take 4) appName
+    isTC     = fmap ((=="com-topcoder").take 12) className
+    notTerm  = fmap not myTerm
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf = M.fromList $
@@ -179,6 +187,8 @@ myLogHook dzens = do
         io $ hPutStrLn handle str
 
 myStartupHook dzens = do
+    setWMName "LG3D"
+    refresh
     forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) -> do
         S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
     myLogHook dzens

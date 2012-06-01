@@ -16,14 +16,16 @@ import XMonad.Util.Run (spawnPipe)
 import qualified XMonad.Util.ExtensibleState as S
 import Graphics.X11.ExtraTypes.XF86
 
-import Control.Monad (forM, forM_)
+import Control.Monad (forM, forM_, when)
 import Data.Monoid
 import qualified Data.Map as M
 import Data.Colour.SRGB
+import Data.List (isPrefixOf)
 
 import System.IO
 import System.Exit
 import System.Posix.Unistd (usleep)
+import System.Environment (getArgs)
 
 import qualified Screen as Scr
 import XMonadBar
@@ -98,8 +100,8 @@ myManageHook = composeAll $
     myMisc   = foldl (<||>) isJava [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk"]]
     inWeb    = fmap (==web) currentWs
     inT      = fmap (==term) currentWs
-    isJava   = fmap ((=="sun-").take 4) appName
-    isTC     = fmap ((=="com-topcoder").take 12) className
+    isJava   = fmap ("sun-"`isPrefixOf`) appName
+    isTC     = fmap ("com-topcoder"`isPrefixOf`) className
     notTerm  = fmap not myTerm
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
@@ -192,5 +194,7 @@ myStartupHook dzens = do
     forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) -> do
         S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
     myLogHook dzens
-    io $ usleep 200
-    refresh
+    args <- io $ getArgs
+    when ("--resume" `elem` args || "--replace" `elem` args) $ do
+        io $ usleep 200
+        refresh

@@ -111,7 +111,8 @@ myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,               xK_p     ), spawn "exe=`yeganesh -x -- -b -p '>'` && eval \"exec $exe\"")
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    , ((modm,               xK_F2    ), spawn "gmrun")
+    -- , ((modm .|. shiftMask, xK_p     ), dmenu + NamedScratchpad
     , ((modm .|. shiftMask, xK_c     ), kill)
 
     , ((modm,               xK_space ), sendMessage NextLayout)

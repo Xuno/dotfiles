@@ -12,6 +12,8 @@ Install Script
 Required Binary
 ---------------
 
+* [dmenu](http://tools.suckless.org/dmenu/) [dzen](https://sites.google.com/site/gotmor/dzen) and 
+  [yeganesh](http://dmwit.com/yeganesh/) for xmonad
 * [xclip](http://sourceforge.net/projects/xclip/) and [wmctrl](http://tomas.styblo.name/wmctrl/) for urxvt plugin
 * [ghc-mod](http://www.mew.org/~kazu/proj/ghc-mod/en/) for Haskell plugin (omnicomplete, compile check and hlint)
 * [ctags](http://ctags.sourceforge.net/) and [lushtags](https://github.com/bitc/lushtags) for tagbar vim plugin
@@ -22,9 +24,8 @@ TODO
 ----
 
 * tags and omnicompl support for C++/Java, ctags config
-* a complete xmonad config from scratch, with dzen2/conky
 * proper spell, dict, textwidth setting for vim
 * integrate gdb, cscope, ack with vim
-* try zsh, emacs, mutt, hg, vimperator/pentadactyl, mpd/ncmpcpp, tig, weechat, feh
+* try zsh, emacs, mutt, hg, vimperator/pentadactyl, tig, weechat, feh
 * try nix/nixos
 * cleanup vim config files

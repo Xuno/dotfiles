@@ -23,6 +23,7 @@ import Data.Colour.SRGB
 
 import System.IO
 import System.Exit
+import System.Posix.Unistd (usleep)
 
 import qualified Screen as Scr
 import XMonadBar
@@ -188,7 +189,8 @@ myLogHook dzens = do
 
 myStartupHook dzens = do
     setWMName "LG3D"
-    refresh
     forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) -> do
         S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
     myLogHook dzens
+    io $ usleep 200
+    refresh

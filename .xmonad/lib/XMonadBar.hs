@@ -106,7 +106,8 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
                       | isC name && multiS = bg bgC2 $ fg C.snow $ ds
                       | otherwise          = ds
               where
-                ds = str (" " ++ name ++ " ")
+                ds | isF name  = fg C.red (str "[") +++ str name +++ fg C.red (str "]")
+                   | otherwise = str (" " ++ name ++ " ")
     printLayout :: Printer XMonadBarInfo
     printLayout = ignoreBg False $ fg bgC $ bg fgC $ simple' (\conf -> concat [" " ++ la ++ " " | (_, la, _, _, f) <- workspacesB conf, f])
     printTitle :: Printer XMonadBarInfo

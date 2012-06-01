@@ -98,7 +98,7 @@ myManageHook = composeAll $
   where
     myFloats = className =? "MPlayer" <||> className =? "Gimp" <||> isTC
     myWeb    = className =? "Firefox" <||> className =? "Chromium"
-    myTerm   = className =? "URxvt"
+    myTerm   = className =? "URxvt" <||> className =? "Gvim"
     myMisc   = foldl (<||>) isJava [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk"]]
     inWeb    = fmap (==web) currentWs
     inT      = fmap (==term) currentWs

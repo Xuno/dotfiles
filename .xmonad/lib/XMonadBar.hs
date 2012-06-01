@@ -66,8 +66,9 @@ xmonadBarApply barInfo uid = do
     S.modify (M.insert uid newPrinter)
     return output
 
-titleFont = "WenQuanYi Micro Hei Mono-10" :: String
-fixedFont = "CtrlD-10" :: String
+titleFont  = "WenQuanYi Micro Hei Mono-10" :: String
+fixedFont  = "CtrlD:pixelsize=13" :: String
+symbolFont = "CtrlD:pixelsize=16" :: String
 
 fgC  = sRGB24 0xcc 0xcc 0xcc :: DColour
 bgC  = sRGB24 0x33 0x33 0x33 :: DColour
@@ -114,7 +115,7 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
                 ds | isF name  = fg C.red (str "[") +++ str name +++ fg C.red (str "]")
                    | otherwise = str (" " ++ name ++ " ")
     printLayout :: Printer XMonadBarInfo
-    printLayout = ignoreBg False $ bg fgC $ fg bgC $ simple' printer
+    printLayout = rawStr "^fn(" +++ str symbolFont +++ rawStr ")" +++ (ignoreBg False $ bg fgC $ fg bgC $ simple' printer)
       where
         printer (XMBarInfo wsp scr) =
             concat [" " ++ f la ++ " " | (name, la, _, _, _) <- wsp, name == cur]

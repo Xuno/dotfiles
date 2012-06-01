@@ -12,6 +12,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Grid
 import XMonad.Util.Run (spawnPipe)
 import qualified XMonad.Util.ExtensibleState as S
 import Graphics.X11.ExtraTypes.XF86
@@ -74,7 +75,7 @@ term         = "2:term"
 misc         = "3:misc"
 
 myLayout = avoidStruts $ smartBorders $ 
-    (tiled ||| Mirror tiled ||| Full)
+    (tiled ||| Mirror tiled ||| Full ||| Grid)
   where
     tiled   = Tall nmaster delta ratio
     nmaster = 1

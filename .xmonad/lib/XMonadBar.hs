@@ -125,6 +125,7 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
         f "Tall"        = layout_tall
         f "Mirror Tall" = layout_mtall
         f "Full"        = layout_full
+        f "Grid"        = layout_grid
         f other         = other
 
     printTitle :: Printer XMonadBarInfo

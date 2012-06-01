@@ -8,6 +8,7 @@ xset fp rehash
 xset -b
 xsetroot -cursor_name left_ptr
 ibus-daemon -d --xim
+urxvtd -q -o -f
 
 case $1 in
     xfce4)

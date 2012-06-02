@@ -11,6 +11,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.ICCCMFocus
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
 import XMonad.Util.Run (spawnPipe)
@@ -187,6 +188,7 @@ myMouse _ = M.fromList
 myLogHook dzens = do
     updatePointer (TowardsCentre 0.3 0.3) 
     fadeInactiveCurrentWSLogHook 0.7
+    takeTopFocus
     barInfo <- obtainBarInfo
     forM_ (zip [0..] dzens) $ \(phyID, (_, handle, rect)) -> do 
         str <- xmonadBarApply barInfo phyID

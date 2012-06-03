@@ -25,6 +25,7 @@ import Data.Monoid
 import qualified Data.Map as M
 import Data.Colour.SRGB
 import Data.List (isPrefixOf)
+import Data.Ratio
 
 import System.IO
 import System.Info
@@ -43,7 +44,7 @@ main = do
         let cmdsL = Scr.rectToDzenCmdSpec lrect
             cmdsR = Scr.rectToDzenCmdSpec rrect
             rect' = Scr.getBarPos rect Scr.TopEdge Scr.LeftA (Scr.WidthRatio 1) barHeight
-            (lrect, rrect) = Scr.splitBar rect' 0.4
+            (lrect, rrect) = Scr.splitBar rect' (45 % 100)
             cmdlineL = unwords $ "dzen2" : cmdsL ++ 
                      [ "-fn", "'" ++ fixedFont ++ "'"
                      , "-ta", "l"

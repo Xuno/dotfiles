@@ -246,7 +246,7 @@ putAll len =
     (putMPD len +++ str " ") +++
     autoPadL 1 (simple (printWrapper putCPULoad) +++ str " ") +++
     autoPadL 1 (simple (printWrapper putMem) +++ str " ") +++
-    autoPadL 1 (simple (printWrapper putTemp) +++ str " ") +++
+    autoPadL 1 (simple (printWrapper putTemp)) +++
     autoPadL 1 (simple (printWrapper putUptime) +++ str " ") +++
     autoPadL 1 (simple (printWrapper putVolume) +++ str " ") +++
     autoPadL 1 (simple (printWrapper putDate))

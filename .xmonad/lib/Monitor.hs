@@ -10,6 +10,7 @@ import Data.Char.WCWidth
 
 import System.Posix.Unistd (usleep)
 import System.Posix.Files (fileExist)
+import System.IO (hPutStrLn, stderr)
 import Data.IORef
 import Data.Maybe
 import Control.Monad
@@ -19,6 +20,7 @@ import qualified Data.ByteString.UTF8 as BS
 
 import Control.Applicative ((<$>))
 import Control.Monad (forever)
+import qualified Control.Exception as E
 
 import System.Dzen
 
@@ -227,7 +229,7 @@ takeByWC len (x:xs) | len < w   = replicate len ' '
     w = wcwidth x
 
 safeWrapper :: IO a -> IO (Maybe a)
-safeWrapper io = liftM Just io `catch` (const (return Nothing))
+safeWrapper io = liftM Just io `E.catch` (\e -> hPutStrLn stderr (show (e :: E.SomeException)) >> (return Nothing))
 
 printWrapper :: (a -> DString) -> Maybe a -> DString
 printWrapper _ Nothing  = str ""

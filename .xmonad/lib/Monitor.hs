@@ -1,17 +1,36 @@
 
+module Monitor where
+
 import Data.Time
 import System.Locale
 import Sound.ALSA.Mixer
-import Data.IORef
+import qualified Network.MPD as MPD
+import Data.Colour.SRGB
 
 import System.Posix.Unistd (usleep)
 import System.Posix.Files (fileExist)
+import Data.IORef
+import Data.Maybe
+import Control.Monad
+import Data.Ratio
+import Data.Char (isDigit)
 
 import Control.Applicative ((<$>))
 import Control.Monad (forever)
 
-getDate :: String -> IO String
-getDate format = getZonedTime >>= return . formatTime defaultTimeLocale format
+import System.Dzen
+
+import XMonadBar
+
+
+show' :: Show a => a -> DString
+show' = str . show
+
+getDate :: IO String
+getDate = getZonedTime >>= return . formatTime defaultTimeLocale "%F/%a %H:%M:%S"
+
+putDate :: String -> DString
+putDate x = foldr (+++) (str "") [if ch `elem` "/-:" then fg fgC2 s else s | ch <- x, let s = str [ch]]
 
 getVolume :: IO (Integer, Integer, Integer, Bool)
 getVolume = do
@@ -23,13 +42,58 @@ getVolume = do
     Just sw <- getChannel FrontLeft playbackSwitch
     return (min, max, vol, sw)
 
+putVolume :: (Integer, Integer, Integer, Bool) -> DString
+putVolume (minv, maxv, vol, enabled) = str lhs +++ rhs
+  where
+    ratio = min 1 $ max 0 $ (vol - minv) % maxv
+
+    lhs | not enabled   = vol_muted
+        | ratio < 1 % 3 = vol_1
+        | ratio < 2 % 3 = vol_2
+        | ratio < 3 % 3 = vol_3
+
+    rhs = show' pct +++ fg fgC2 (str "%")
+
+    pct = round (ratio * 100) :: Int
+
+    vol_muted = "\xEE20"
+    vol_1     = "\xEE21"
+    vol_2     = "\xEE22"
+    vol_3     = "\xEE23"
+
 getMem :: IO Double
 getMem = do
     [total, free] <- map (read . (!!1) . words) . take 2 . lines <$> readFile "/proc/meminfo"
     return $ (total - free) / total
 
-getUptime :: IO Double
-getUptime = read . head . words <$> readFile "/proc/uptime"
+putMem :: Double -> DString
+putMem ratio = str mem +++ fgpct (show' pct) +++ fg fgC2 (str "%")
+  where
+    pct = round ((min 1 $ max 0 $ ratio) * 100) :: Int
+
+    fgpct | pct >= 80 = fg colR
+          | pct <= 20 = fg colG
+          | otherwise = id
+
+    mem = "\xEEF2"
+
+getUptime :: IO Integer
+getUptime = max 1 . read . takeWhile isDigit . head . words <$> readFile "/proc/uptime"
+
+putUptime :: Integer -> DString
+putUptime secs = str uptime +++ lhs +++ rhs
+  where
+    uptime = "\xEEF4"
+
+    parseSs secs = (show' (secs `mod` 60) +++ fg fgC2 (str "s")) : parseMs (secs `div` 60)
+    parseMs mins = (show' (mins `mod` 60) +++ fg fgC2 (str "m")) : parseHs (mins `div` 60)
+    parseHs 0 = []
+    parseHs hour = (show' (hour `mod` 24) +++ fg fgC2 (str "h")) : parseDs (hour `div` 24)
+    parseDs 0 = []
+    parseDs days = [show' days +++ fg fgC2(str "d")]
+
+    [lhs, rhs] = take 2 $ reverse (parseSs secs)
+
 
 data ProcStat = ProcStat
     { user   :: Integer 
@@ -51,12 +115,23 @@ getCPULoad ref = do
         ratio = (fromIntegral (all - idle) / fromIntegral all)
     return $ if all <= 0 || idle < 0 || idle > all then 0 else ratio
 
+putCPULoad :: Double -> DString
+putCPULoad ratio = str cpu +++ fgpct (show' pct) +++ fg fgC2 (str "%")
+  where
+    pct = round ((min 1 $ max 0 $ ratio) * 100) :: Int
+
+    fgpct | pct >= 80 = fg colR
+          | pct <= 20 = fg colG
+          | otherwise = id
+
+    cpu = "\xEEF1"
+
 getTemp :: IO Double
 getTemp = do
     temp0 <- parse zone0
     temp1 <- parse zone1
     return $ case (temp0, temp1) of
-        (Nothing, Nothing) -> undefined
+        (Nothing, Nothing) -> error "monitor: getTemp"
         (Just a,  Just b ) -> (a + b) / 2
         (Just a,  _      ) -> a
         (_,       Just b ) -> b
@@ -67,17 +142,36 @@ getTemp = do
     zone0 = "/sys/class/thermal/thermal_zone0/temp"
     zone1 = "/sys/class/thermal/thermal_zone1/temp"
 
--- getMPD :: IO 
--- getBattery
+putTemp :: Double -> DString
+putTemp temp' = str temperature +++ fgtemp (show' temp) +++ fg fgC2 (str "\x00b0")
+  where
+    temp = round (min 200 $ max 0 $ temp') :: Int
 
-main = do
-    getDate "%F/%a %H:%M:%S" >>= putStrLn
-    getVolume >>= print
-    getMem >>= print
-    getUptime >>= print
-    getTemp >>= print
-    ref <- initPS
-    forever $ do
-        usleep (1000 * 1000)
-        getCPULoad ref >>= print . round . (*100)
-    return ()
+    fgtemp | temp >= 80 = fg colR
+           | temp <= 50 = fg colG
+           | otherwise  = id
+
+    temperature = "\xEEF5"
+
+type MPDInfo = (MPD.State, (Maybe MPD.Artist, Maybe MPD.Album, Maybe MPD.Title), (Double, MPD.Seconds))
+
+getMPD :: IO MPDInfo
+getMPD = do
+    ret <- MPD.withMPDEx "localhost" 6666 "" $ do
+        st <- MPD.status 
+        song <- MPD.currentSong
+        let get tag s = join $ fmap listToMaybe (MPD.sgGetTag tag s)
+            songTags = case song of
+                Nothing -> (Nothing, Nothing, Nothing)
+                Just s  -> (get MPD.Artist s, get MPD.Album s, get MPD.Title s)
+        return (MPD.stState st, songTags, MPD.stTime st)
+    case ret of
+        Left msg  -> error $ "monitor: getMPD - " ++ show msg
+        Right x   -> return x
+
+safeWrapper :: IO a -> IO (Maybe a)
+safeWrapper io = liftM Just io `catch` (const (return Nothing))
+
+printWrapper :: (a -> DString) -> Maybe a -> DString
+printWrapper _ Nothing  = str ""
+printWrapper f (Just a) = f a

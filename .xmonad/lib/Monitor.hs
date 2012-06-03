@@ -229,7 +229,8 @@ takeByWC len (x:xs) | len < w   = replicate len ' '
     w = wcwidth x
 
 safeWrapper :: IO a -> IO (Maybe a)
-safeWrapper io = liftM Just io `E.catch` (\e -> hPutStrLn stderr (show (e :: E.SomeException)) >> (return Nothing))
+safeWrapper io = (io >>= \r -> r `seq` return (Just r)) `E.catch` 
+    (\e -> hPutStrLn stderr (show (e :: E.SomeException)) >> (return Nothing))
 
 printWrapper :: (a -> DString) -> Maybe a -> DString
 printWrapper _ Nothing  = str ""

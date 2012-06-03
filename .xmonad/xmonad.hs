@@ -1,4 +1,6 @@
-{-# LANGUAGE DeriveDataTypeable #-}
+
+-- WARNING: must be linked with -threaded opts, so never use 
+-- "xmonad --recompile" to compile
 
 import XMonad hiding (defaultConfig)
 import qualified XMonad.StackSet as W
@@ -25,29 +27,50 @@ import Data.Colour.SRGB
 import Data.List (isPrefixOf)
 
 import System.IO
+import System.Info
 import System.Exit
+import Control.Concurrent (threadDelay, forkOS)
 
 import qualified Screen as Scr
 import XMonadBar
 import Codec.Binary.UTF8.String
+import Monitor
+import System.Dzen
 
 main = do
     screens <- Scr.getScreens
-    dzens <- forM screens $ \(sid, rect) -> do
-        let cmds  = Scr.rectToDzenCmdSpec rect'
+    ret <- forM screens $ \(sid, rect) -> do
+        let cmdsL = Scr.rectToDzenCmdSpec lrect
+            cmdsR = Scr.rectToDzenCmdSpec rrect
             rect' = Scr.getBarPos rect Scr.TopEdge Scr.LeftA (Scr.WidthRatio 1) barHeight
-            cmdline = unwords $ "dzen2" : cmds ++ 
-                    [ "-fn", "'" ++ fixedFont ++ "'"
-                    , "-ta", "l"
-                    , "-fg", "'" ++ sRGB24show fgC ++ "'"
-                    , "-bg", "'" ++ sRGB24show bgC ++ "'"
-                    ]
-        handle <- spawnPipe cmdline
-        return (sid, handle, rect')
+            (lrect, rrect) = Scr.splitBar rect' 0.4
+            cmdlineL = unwords $ "dzen2" : cmdsL ++ 
+                     [ "-fn", "'" ++ fixedFont ++ "'"
+                     , "-ta", "l"
+                     , "-fg", "'" ++ sRGB24show fgC ++ "'"
+                     , "-bg", "'" ++ sRGB24show bgC ++ "'"
+                     ]
+            cmdlineR = unwords $ "dzen2" : cmdsR ++ 
+                     [ "-fn", "'" ++ symbolFont ++ "'"
+                     , "-ta", "r"
+                     , "-fg", "'" ++ sRGB24show fgC ++ "'"
+                     , "-bg", "'" ++ sRGB24show bgC ++ "'"
+                     ]
+        handleL <- spawnPipe cmdlineL
+        handleR <- spawnPipe cmdlineR
+        return ((sid, handleL, rect'), handleR)
+    ps <- initPS
+    let dzens = map fst ret
+        hrs   = map snd ret
+        hputs s = do
+            let utf8s = utf8Encode s
+            forM_ hrs $ \hr -> hPutStrLn hr utf8s >> hFlush hr
+    forkOS (applyForever (putAll 20) (threadDelay delay >> Monitor.getAll ps) hputs)
     xmonad (myConfig dzens)
 
 trayWidth = 50
 barHeight = 16
+delay     = 500 * 1000
 
 myConfig dzens = XConfig
   { borderWidth        = 2
@@ -139,7 +162,7 @@ myKeys conf = M.fromList $
     , ((modm              , xK_minus ), sendMessage (IncMasterN (-1)))
 
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((modm              , xK_q     ), spawn "xmonad --recompile && xmonad --restart")
+    , ((modm              , xK_q     ), spawn (myRecompile ++ " && xmonad --restart"))
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
 
     , ((modm,               xK_b     ), viewEmptyWorkspace)
@@ -192,10 +215,12 @@ myLogHook dzens = do
     barInfo <- obtainBarInfo
     forM_ (zip [0..] dzens) $ \(phyID, (_, handle, rect)) -> do 
         str <- xmonadBarApply barInfo phyID
-        io $ hPutStrLn handle (utf8Encode str)
+        io $ (hPutStrLn handle (utf8Encode str) >> hFlush handle)
 
 myStartupHook dzens = do
     setWMName "LG3D"
     forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) -> do
         S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
     myLogHook dzens
+
+myRecompile = "cd ~/.xmonad; ghc --make xmonad.hs -i -ilib -fforce-recomp -v0 -threaded -o xmonad-" ++ arch ++ "-" ++ os

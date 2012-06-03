@@ -6,6 +6,7 @@ import System.Locale
 import Sound.ALSA.Mixer
 import qualified Network.MPD as MPD
 import Data.Colour.SRGB
+import Data.Char.WCWidth
 
 import System.Posix.Unistd (usleep)
 import System.Posix.Files (fileExist)
@@ -14,6 +15,7 @@ import Data.Maybe
 import Control.Monad
 import Data.Ratio
 import Data.Char (isDigit)
+import qualified Data.ByteString.UTF8 as BS
 
 import Control.Applicative ((<$>))
 import Control.Monad (forever)
@@ -22,6 +24,8 @@ import System.Dzen
 
 import XMonadBar
 
+symbolFG :: DString -> DString
+symbolFG = fg colB
 
 show' :: Show a => a -> DString
 show' = str . show
@@ -43,7 +47,7 @@ getVolume = do
     return (min, max, vol, sw)
 
 putVolume :: (Integer, Integer, Integer, Bool) -> DString
-putVolume (minv, maxv, vol, enabled) = str lhs +++ rhs
+putVolume (minv, maxv, vol, enabled) = symbolFG (str lhs) +++ rhs
   where
     ratio = min 1 $ max 0 $ (vol - minv) % maxv
 
@@ -67,7 +71,7 @@ getMem = do
     return $ (total - free) / total
 
 putMem :: Double -> DString
-putMem ratio = str mem +++ fgpct (show' pct) +++ fg fgC2 (str "%")
+putMem ratio = symbolFG (str mem) +++ fgpct (show' pct) +++ fg fgC2 (str "%")
   where
     pct = round ((min 1 $ max 0 $ ratio) * 100) :: Int
 
@@ -81,7 +85,7 @@ getUptime :: IO Integer
 getUptime = max 1 . read . takeWhile isDigit . head . words <$> readFile "/proc/uptime"
 
 putUptime :: Integer -> DString
-putUptime secs = str uptime +++ lhs +++ rhs
+putUptime secs = symbolFG (str uptime) +++ lhs +++ rhs
   where
     uptime = "\xEEF4"
 
@@ -116,7 +120,7 @@ getCPULoad ref = do
     return $ if all <= 0 || idle < 0 || idle > all then 0 else ratio
 
 putCPULoad :: Double -> DString
-putCPULoad ratio = str cpu +++ fgpct (show' pct) +++ fg fgC2 (str "%")
+putCPULoad ratio = symbolFG (str cpu) +++ fgpct (show' pct) +++ fg fgC2 (str "%")
   where
     pct = round ((min 1 $ max 0 $ ratio) * 100) :: Int
 
@@ -143,7 +147,7 @@ getTemp = do
     zone1 = "/sys/class/thermal/thermal_zone1/temp"
 
 putTemp :: Double -> DString
-putTemp temp' = str temperature +++ fgtemp (show' temp) +++ fg fgC2 (str "\x00b0")
+putTemp temp' = symbolFG (str temperature) +++ fgtemp (show' temp) +++ fg fgC2 (str "\x00b0")
   where
     temp = round (min 200 $ max 0 $ temp') :: Int
 
@@ -153,21 +157,74 @@ putTemp temp' = str temperature +++ fgtemp (show' temp) +++ fg fgC2 (str "\x00b0
 
     temperature = "\xEEF5"
 
-type MPDInfo = (MPD.State, (Maybe MPD.Artist, Maybe MPD.Album, Maybe MPD.Title), (Double, MPD.Seconds))
+type MPDInfo = (MPD.State, (Maybe String, Maybe String, Maybe String), (Double, Integer))
 
 getMPD :: IO MPDInfo
 getMPD = do
     ret <- MPD.withMPDEx "localhost" 6666 "" $ do
         st <- MPD.status 
         song <- MPD.currentSong
-        let get tag s = join $ fmap listToMaybe (MPD.sgGetTag tag s)
+        let get tag s = fmap valueToString $ join $ fmap listToMaybe (MPD.sgGetTag tag s) :: Maybe String
             songTags = case song of
                 Nothing -> (Nothing, Nothing, Nothing)
                 Just s  -> (get MPD.Artist s, get MPD.Album s, get MPD.Title s)
+            valueToString (MPD.Value bs) = BS.toString bs
         return (MPD.stState st, songTags, MPD.stTime st)
     case ret of
         Left msg  -> error $ "monitor: getMPD - " ++ show msg
         Right x   -> return x
+
+putMPD :: Int -> Printer (Maybe MPDInfo)
+putMPD limitLen = inputPrinter printer 0
+  where
+    mpd           = "\xEEF3"
+    music_stopped = "\xEE30"
+    music_play    = "\xEE31"
+    music_paused  = "\xEE32"
+
+    printer :: Integer -> Maybe MPDInfo -> (DString, Integer)
+    printer offset Nothing                                             = (str "", offset + 1)
+    printer offset (Just (MPD.Stopped, _, _))                          = (symbolFG (str music_stopped) +++ str "[off]", offset)
+    printer offset (Just (st, (artist, album, title), (usedT', allT))) =
+        (curSong +++ symbolFG state +++ timeInfo, offset + if st == MPD.Playing then 1 else 0)
+      where
+        state | st == MPD.Playing = str music_play
+              | otherwise         = str music_paused
+        usedT = round usedT' :: Integer
+        formatTime sec = show' (sec `div` 60) +++ fg fgC2 (str ":") +++ 
+            show' (sec `mod` 60 `div` 10) +++ show' (sec `mod` 60 `mod` 10)
+        timeInfo = formatTime usedT +++ fg fgC2 (str "/") +++ formatTime allT
+
+        curSong :: DString
+        curSong
+          | curSong' == "" = str ""
+          | otherwise      = foldl concatDS (symbolFG (str mpd) +++ useFont titleFont) 
+            [ if ch == '@' then fg fgC2 (str "-") else str [ch] | ch <- curSong']
+            +++ useFont symbolFont
+
+        concatDS :: DString -> DString -> DString
+        concatDS = (+++)
+
+        curSong' :: String
+        curSong' = case (artist, album, title) of
+            (Nothing, Nothing, Nothing) -> ""
+            _                           -> rotate $ formatTitle artist ++ " @ " ++ 
+                                                    formatTitle album  ++ " @ " ++
+                                                    formatTitle title  ++ " @ "
+
+        formatTitle Nothing = "Unknown"
+        formatTitle (Just a) = a
+
+        rotate str = let pos = fromIntegral (offset `mod` fromIntegral (length str))
+                         (lhs, rhs) = splitAt pos str
+                     in takeByWC limitLen (rhs ++ lhs)
+
+takeByWC :: Int -> String -> String
+takeByWC _ []                   = []
+takeByWC len (x:xs) | len < w   = replicate len ' '
+                    | otherwise = x : takeByWC (len - w) xs
+  where
+    w = wcwidth x
 
 safeWrapper :: IO a -> IO (Maybe a)
 safeWrapper io = liftM Just io `catch` (const (return Nothing))
@@ -175,3 +232,21 @@ safeWrapper io = liftM Just io `catch` (const (return Nothing))
 printWrapper :: (a -> DString) -> Maybe a -> DString
 printWrapper _ Nothing  = str ""
 printWrapper f (Just a) = f a
+
+getAll ps =
+    safeWrapper getMPD ##
+    safeWrapper (getCPULoad ps) ##
+    safeWrapper getMem ##
+    safeWrapper getTemp ##
+    safeWrapper getUptime ##
+    safeWrapper getVolume ##
+    safeWrapper getDate
+
+putAll len =
+    (putMPD len +++ str " ") +++
+    autoPadL 1 (simple (printWrapper putCPULoad) +++ str " ") +++
+    autoPadL 1 (simple (printWrapper putMem) +++ str " ") +++
+    autoPadL 1 (simple (printWrapper putTemp) +++ str " ") +++
+    autoPadL 1 (simple (printWrapper putUptime) +++ str " ") +++
+    autoPadL 1 (simple (printWrapper putVolume) +++ str " ") +++
+    autoPadL 1 (simple (printWrapper putDate))

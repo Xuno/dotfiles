@@ -82,6 +82,8 @@ layout_mtall = "\xEE01"
 layout_full  = "\xEE02"
 layout_grid  = "\xEE03"
 
+useFont fn = rawStr "^fn(" +++ str fn +++ rawStr ")" 
+
 xmonadBarPrinter :: Int -> (Dimension, Dimension) -> Printer XMonadBarInfo
 xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (printLayout +++ str " ") +=+ printTitle)
   where
@@ -115,7 +117,7 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
                 ds | isF name  = fg C.red (str "[") +++ str name +++ fg C.red (str "]")
                    | otherwise = str (" " ++ name ++ " ")
     printLayout :: Printer XMonadBarInfo
-    printLayout = rawStr "^fn(" +++ str symbolFont +++ rawStr ")" +++ (ignoreBg False $ bg fgC $ fg bgC $ simple' printer)
+    printLayout = useFont symbolFont +++ (ignoreBg False $ bg fgC $ fg bgC $ simple' printer)
       where
         printer (XMBarInfo wsp scr) =
             concat [" " ++ f la ++ " " | (name, la, _, _, _) <- wsp, name == cur]
@@ -129,4 +131,4 @@ xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
         f other         = other
 
     printTitle :: Printer XMonadBarInfo
-    printTitle = rawStr "^fn(" +++ str titleFont +++ rawStr ")" +++ simple' (\conf -> snd $ screensB conf !! uid)
+    printTitle = useFont titleFont +++ simple' (\conf -> snd $ screensB conf !! uid)

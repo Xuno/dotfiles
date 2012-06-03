@@ -19,6 +19,6 @@ case $1 in
         killall xcompmgr
         xcompmgr &
         xscreensaver &
-        xmonad
+        ~/.xmonad/xmonad-*
         ;;
 esac

@@ -66,7 +66,7 @@ main = do
         hputs s = do
             let utf8s = utf8Encode s
             forM_ hrs $ \hr -> hPutStrLn hr utf8s >> hFlush hr
-    forkOS (applyForever (putAll 20) (threadDelay delay >> Monitor.getAll ps) hputs)
+    forkOS (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
     xmonad (myConfig dzens)
 
 trayWidth = 50

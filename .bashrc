@@ -15,6 +15,8 @@ alias mencoder-android='mencoder -vf dsize=800:480:2,scale=-8:-8,harddup -oac fa
 alias voicerec='rec -c 2 -r 44100 -s -t wav - | oggenc -q 5 --raw --raw-chan=2 --raw-rate=44100 --raw-bits=16 -o out.ogg -'
 alias screenrec='recordmydesktop --no-sound --on-the-fly-encoding --fps 3'
 
+eval `dircolors ~/.dircolors`
+
 vman () {
 	export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 				  vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
@@ -50,26 +52,6 @@ extract () {
       echo "\`$1' is not a valid file"
   fi
 }
-
-if [ "$TERM" = "linux" ]; then
-	echo -en "\e]P0444444"
-	echo -en "\e]P1ee6363"
-	echo -en "\e]P273ba3e"
-	echo -en "\e]P3baa33e"
-	echo -en "\e]P43e73ba"
-	echo -en "\e]P5ac3885"
-	echo -en "\e]P63ebaba"
-	echo -en "\e]P7dddddd"
-	echo -en "\e]P8333333"
-	echo -en "\e]P9cc4444"
-	echo -en "\e]PA4d8728"
-	echo -en "\e]PB877d28"
-	echo -en "\e]PC284d87"
-	echo -en "\e]PD812973"
-	echo -en "\e]PE288787"
-	echo -en "\e]PFaaaaaa"
-	clear
-fi
 
 if [ "$TERM" = "xterm" ]; then
     export TERM=xterm-256color

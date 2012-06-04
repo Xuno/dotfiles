@@ -17,6 +17,7 @@ import Control.Monad
 import Data.Ratio
 import Data.Char (isDigit)
 import qualified Data.ByteString.UTF8 as BS
+import Control.DeepSeq
 
 import Control.Applicative ((<$>))
 import Control.Monad (forever)
@@ -228,8 +229,10 @@ takeByWC len (x:xs) | len < w   = replicate len ' '
   where
     w = wcwidth x
 
-safeWrapper :: IO a -> IO (Maybe a)
-safeWrapper io = (io >>= \r -> r `seq` return (Just r)) `E.catch` 
+instance NFData MPD.State where
+
+safeWrapper :: NFData a => IO a -> IO (Maybe a)
+safeWrapper io = (io >>= \r -> r `deepseq` return (Just r)) `E.catch` 
     (\e -> hPutStrLn stderr (show (e :: E.SomeException)) >> (return Nothing))
 
 printWrapper :: (a -> DString) -> Maybe a -> DString

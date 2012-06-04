@@ -103,10 +103,10 @@ putUptime secs = symbolFG (str uptime) +++ lhs +++ rhs
 
 
 data ProcStat = ProcStat
-    { user   :: Integer 
-    , nice   :: Integer 
-    , system :: Integer 
-    , idle   :: Integer 
+    { user   :: Integer
+    , nice   :: Integer
+    , system :: Integer
+    , idle   :: Integer
     }
 
 initPS :: IO (IORef (ProcStat, ProcStat, ProcStat))
@@ -165,7 +165,7 @@ type MPDInfo = (MPD.State, (Maybe String, Maybe String, Maybe String), (Double, 
 getMPD :: IO MPDInfo
 getMPD = do
     ret <- MPD.withMPDEx "localhost" 6666 "" $ do
-        st <- MPD.status 
+        st <- MPD.status
         song <- MPD.currentSong
         let get tag s = fmap valueToString $ join $ fmap listToMaybe (MPD.sgGetTag tag s) :: Maybe String
             songTags = case song of
@@ -194,14 +194,14 @@ putMPD limitLen = inputPrinter printer 0
         state | st == MPD.Playing = str music_play
               | otherwise         = str music_paused
         usedT = round usedT' :: Integer
-        formatTime sec = show' (sec `div` 60) +++ fg fgC2 (str ":") +++ 
+        formatTime sec = show' (sec `div` 60) +++ fg fgC2 (str ":") +++
             show' (sec `mod` 60 `div` 10) +++ show' (sec `mod` 60 `mod` 10)
         timeInfo = formatTime usedT +++ fg fgC2 (str "/") +++ formatTime allT
 
         curSong :: DString
         curSong
           | curSong' == "" = str ""
-          | otherwise      = foldl concatDS (symbolFG (str mpd) +++ useFont titleFont) 
+          | otherwise      = foldl concatDS (symbolFG (str mpd) +++ useFont titleFont)
             [ if ch == '@' then fg fgC2 (str "-") else str [ch] | ch <- curSong']
             +++ useFont symbolFont
 
@@ -211,7 +211,7 @@ putMPD limitLen = inputPrinter printer 0
         curSong' :: String
         curSong' = case (artist, album, title) of
             (Nothing, Nothing, Nothing) -> ""
-            _                           -> rotate $ formatTitle artist ++ " @ " ++ 
+            _                           -> rotate $ formatTitle artist ++ " @ " ++
                                                     formatTitle album  ++ " @ " ++
                                                     formatTitle title  ++ " @ "
 
@@ -232,7 +232,7 @@ takeByWC len (x:xs) | len < w   = replicate len ' '
 instance NFData MPD.State where
 
 safeWrapper :: NFData a => IO a -> IO (Maybe a)
-safeWrapper io = (io >>= \r -> r `deepseq` return (Just r)) `E.catch` 
+safeWrapper io = (io >>= \r -> r `deepseq` return (Just r)) `E.catch`
     (\e -> hPutStrLn stderr (show (e :: E.SomeException)) >> (return Nothing))
 
 printWrapper :: (a -> DString) -> Maybe a -> DString

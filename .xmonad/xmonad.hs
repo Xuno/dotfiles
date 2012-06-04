@@ -43,13 +43,13 @@ main = do
             cmdsR = Scr.rectToDzenCmdSpec rrect
             rect' = Scr.getBarPos rect Scr.TopEdge Scr.LeftA (Scr.WidthRatio 1) barHeight
             (lrect, rrect) = Scr.splitBar rect' (45 % 100)
-            cmdlineL = unwords $ "dzen2" : cmdsL ++ 
+            cmdlineL = unwords $ "dzen2" : cmdsL ++
                      [ "-fn", "'" ++ fixedFont ++ "'"
                      , "-ta", "l"
                      , "-fg", "'" ++ sRGB24show fgC ++ "'"
                      , "-bg", "'" ++ sRGB24show bgC ++ "'"
                      ]
-            cmdlineR = unwords $ "dzen2" : cmdsR ++ 
+            cmdlineR = unwords $ "dzen2" : cmdsR ++
                      [ "-fn", "'" ++ symbolFont ++ "'"
                      , "-ta", "r"
                      , "-fg", "'" ++ sRGB24show fgC ++ "'"
@@ -95,7 +95,7 @@ web          = "1:web"
 term         = "2:term"
 misc         = "3:misc"
 
-myLayout = avoidStruts $ smartBorders $ 
+myLayout = avoidStruts $ smartBorders $
     (tiled ||| Mirror tiled ||| Full ||| Grid)
   where
     tiled   = Tall nmaster delta ratio
@@ -208,11 +208,11 @@ myMouse _ = M.fromList
     ]
 
 myLogHook dzens = do
-    updatePointer (TowardsCentre 0.3 0.3) 
+    updatePointer (TowardsCentre 0.3 0.3)
     fadeInactiveCurrentWSLogHook 0.7
     takeTopFocus
     barInfo <- obtainBarInfo
-    forM_ (zip [0..] dzens) $ \(phyID, (_, handle, rect)) -> do 
+    forM_ (zip [0..] dzens) $ \(phyID, (_, handle, rect)) -> do
         str <- xmonadBarApply barInfo phyID
         io $ (hPutStrLn handle (utf8Encode str) >> hFlush handle)
 

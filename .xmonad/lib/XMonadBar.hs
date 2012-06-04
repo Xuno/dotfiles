@@ -19,7 +19,7 @@ import qualified Data.Colour.Names as C
 import Data.Colour.SRGB
 
 data XMonadBarInfo = XMBarInfo
-    { workspacesB :: [(String, String,    -- workspace name, layout name,  
+    { workspacesB :: [(String, String,    -- workspace name, layout name,
                        Bool, Bool, Bool)] -- inUrgency, isEmpty, isFocused
     , screensB    :: [(String, String)]   -- ws in this screen, title
     }
@@ -81,7 +81,7 @@ layout_mtall = "\xEE01"
 layout_full  = "\xEE02"
 layout_grid  = "\xEE03"
 
-useFont fn = rawStr "^fn(" +++ str fn +++ rawStr ")" 
+useFont fn = rawStr "^fn(" +++ str fn +++ rawStr ")"
 
 xmonadBarPrinter :: Int -> (Dimension, Dimension) -> Printer XMonadBarInfo
 xmonadBarPrinter uid (w, h) = printUnderline +++ ((printWS +++ str " ") +=+ (printLayout +++ str " ") +=+ printTitle)

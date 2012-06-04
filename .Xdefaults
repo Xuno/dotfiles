@@ -77,11 +77,11 @@ Xft.rgba: rgb
 
 urxvt.depth: 32
 
-urxvt.background: [70]black
+urxvt.background: [80]black
 
-urxvt.tintColor: white
-urxvt.shading: 30
 urxvt.underlineColor: yellow
+urxvt.fading: 30
+urxvt.fadeColor: #000000
 
 urxvt.scrollstyle: plain
 urxvt.visualBell: false

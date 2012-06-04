@@ -1,5 +1,6 @@
 
--- WARNING: must be linked with -threaded opts, so never use 
+-- WARNING: must be linked with -threaded opts
+-- use a patched xmonad please
 
 import XMonad hiding (defaultConfig)
 import qualified XMonad.StackSet as W
@@ -7,7 +8,6 @@ import XMonad.Actions.CycleWS
 import XMonad.Actions.UpdatePointer
 import XMonad.Actions.DwmPromote
 import XMonad.Actions.FindEmptyWorkspace
-import XMonad.Actions.PhysicalScreens
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.FadeInactive
@@ -66,13 +66,13 @@ main = do
             let utf8s = utf8Encode s
             forM_ hrs $ \hr -> hPutStrLn hr utf8s >> hFlush hr
     forkOS (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
-    xmonad (myConfig dzens)
+    xmonad (myConfig (map fst screens, dzens))
 
 trayWidth = 50
 barHeight = 16
 delay     = 500 * 1000
 
-myConfig dzens = XConfig
+myConfig (phyScreens, dzens) = XConfig
   { borderWidth        = 2
   , workspaces         = myWorkspaces
   , layoutHook         = myLayout
@@ -80,7 +80,7 @@ myConfig dzens = XConfig
   , normalBorderColor  = "#cccccc"
   , focusedBorderColor = "#ff0000"
   , modMask            = modm
-  , keys               = myKeys
+  , keys               = myKeys phyScreens
   , logHook            = myLogHook dzens
   , startupHook        = myStartupHook dzens
   , mouseBindings      = myMouse
@@ -130,8 +130,8 @@ myManageHook = composeAll $
     isGmrun  = className =? "Gmrun"
     notTerm  = fmap not myTerm
 
-myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys conf = M.fromList $
+myKeys :: [ScreenId] -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+myKeys phyScreens conf = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,               xK_p     ), spawn "exe=`yeganesh -x -- -b -p '>'` && eval \"exec $exe\"")
     , ((modm,               xK_F2    ), spawn "gmrun")
@@ -184,9 +184,9 @@ myKeys conf = M.fromList $
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
-    [((modm .|. mask, key), f sc)
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-        , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)]]
+    [((m .|. modm, k), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (k, sc) <- zip [xK_w, xK_e, xK_r] phyScreens
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     ++
     multiKeys [(modm2, xK_Left     ), (0, xF86XK_AudioPrev       )] "ncmpcpp prev" ++
     multiKeys [(modm2, xK_Right    ), (0, xF86XK_AudioNext       )] "ncmpcpp next" ++

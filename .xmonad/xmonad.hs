@@ -19,7 +19,7 @@ import XMonad.Util.Run (spawnPipe)
 import qualified XMonad.Util.ExtensibleState as S
 import Graphics.X11.ExtraTypes.XF86
 
-import Control.Monad (forM, forM_, when)
+import Control.Monad (forM, forM_)
 import Data.Monoid
 import qualified Data.Map as M
 import Data.Colour.SRGB
@@ -27,7 +27,6 @@ import Data.List (isPrefixOf)
 import Data.Ratio
 
 import System.IO
-import System.Info
 import System.Exit
 import Control.Concurrent (threadDelay, forkOS)
 
@@ -68,7 +67,6 @@ main = do
     forkOS (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
     xmonad (myConfig (map fst screens, dzens))
 
-trayWidth = 50
 barHeight = 16
 delay     = 500 * 1000
 

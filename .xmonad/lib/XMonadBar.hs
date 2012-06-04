@@ -16,7 +16,6 @@ import Data.List (sortBy)
 import Data.Ord (comparing)
 import Control.Monad (forM)
 import qualified Data.Colour.Names as C
-import Data.Colour.RGBSpace
 import Data.Colour.SRGB
 
 data XMonadBarInfo = XMBarInfo

@@ -3,9 +3,6 @@
 module Screen where
 
 import XMonad
-import XMonad.Actions.PhysicalScreens
-import qualified XMonad.StackSet as W
-import qualified XMonad.Util.ExtensibleState as S
 
 import Control.Applicative ((<$>))
 import Data.Maybe (catMaybes, isJust, fromJust)

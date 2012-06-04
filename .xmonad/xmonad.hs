@@ -1,6 +1,5 @@
 
 -- WARNING: must be linked with -threaded opts, so never use 
--- "xmonad --recompile" to compile
 
 import XMonad hiding (defaultConfig)
 import qualified XMonad.StackSet as W
@@ -163,7 +162,8 @@ myKeys conf = M.fromList $
     , ((modm              , xK_minus ), sendMessage (IncMasterN (-1)))
 
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((modm              , xK_q     ), spawn (myRecompile ++ " && xmonad --restart"))
+    , ((modm              , xK_q     ), spawn ("xmonad --recompile && xmonad --restart"))
+    , ((modm .|. shiftMask, xK_x     ), spawn ("nitrogen --restore; xmonad --restart")) -- xrandr
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
 
     , ((modm,               xK_b     ), viewEmptyWorkspace)
@@ -223,5 +223,3 @@ myStartupHook dzens = do
     forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) -> do
         S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
     myLogHook dzens
-
-myRecompile = "cd ~/.xmonad; ghc --make xmonad.hs -i -ilib -fforce-recomp -v0 -threaded -o xmonad-" ++ arch ++ "-" ++ os

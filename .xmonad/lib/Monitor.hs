@@ -56,7 +56,7 @@ putVolume (minv, maxv, vol, enabled) = symbolFG (str lhs) +++ rhs
     lhs | not enabled   = vol_muted
         | ratio < 1 % 3 = vol_1
         | ratio < 2 % 3 = vol_2
-        | ratio < 3 % 3 = vol_3
+        | otherwise     = vol_3
 
     rhs = show' pct +++ fg fgC2 (str "%")
 

@@ -1,9 +1,12 @@
 
 source ~/.pentadactyl/bookmarks
 
-set hintkeys="abcdefghijklmnopqrstuvwxyz"
+set hintkeys="ghfjtydkrusleiawoq"
 set mapleader=','
 set defsearch='ddg'
+set titlestring='Mozilla Firefox'
+set wildmode='list:longest'
+set sanitizeitems=cache,downloads,history,offlineapps
 
 nnoremap q gT
 nnoremap e gt

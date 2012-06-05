@@ -8,6 +8,9 @@ set titlestring='Mozilla Firefox'
 set wildmode='list:longest'
 set sanitizeitems=cache,downloads,history,offlineapps
 
+set passkeys+=duckduckgo.com:jk<CR>
+set passkeys+=twitter.com:jk<CR>.
+
 nnoremap q gT
 nnoremap e gt
 nnoremap Q :tabmove -1<CR>

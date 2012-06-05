@@ -1,0 +1,10 @@
+
+set hintkeys="abcdefghijklmnopqrstuvwxyz"
+set mapleader=','
+
+nnoremap q gT
+nnoremap e gt
+nnoremap Q :tabmove -1<CR>
+nnoremap E :tabmove +1<CR>
+nnoremap J 3j
+nnoremap K 4k

@@ -11,6 +11,7 @@ nnoremap Q :tabmove -1<CR>
 nnoremap E :tabmove +1<CR>
 nnoremap J 3j
 nnoremap K 4k
+nnoremap T :tabopen!<Space>
 
 set! browser.startup.homepage=https://news.ycombinator.com/news
 set! browser.tabs.closeWindowWithLastTab=false

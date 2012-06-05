@@ -30,7 +30,7 @@ silent bma -k=google http://www.google.com/ncr&hl=en
 silent bma -k=gmail https://mail.google.com/mail/?tab=wm
 silent bma -k=github https://github.com/
 silent bma -k=twitter https://twitter.com/
-silent bma -k=hn https://news.ycombinator.com/
+silent bma -k=hn https://news.ycombinator.com/news
 
 " }}}
 

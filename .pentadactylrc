@@ -1,6 +1,9 @@
 
+source ~/.pentadactyl/bookmarks
+
 set hintkeys="abcdefghijklmnopqrstuvwxyz"
 set mapleader=','
+set defsearch='ddg'
 
 nnoremap q gT
 nnoremap e gt

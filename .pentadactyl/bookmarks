@@ -1,0 +1,53 @@
+
+" {{{ Search Engine
+
+" Google
+silent bma -k=g http://google.com/search?hl=en&q=%s
+
+" Google - I'm Feeling Luck
+silent bma -k=gl http://google.com/search?hl=en&btnI=1&q=%s
+
+" Google Encrypted
+silent bma -k=ge https://encrypted.google.com/search?hl=en&q=%s
+
+" DuckDuckGo
+silent bma -k=ddg https://duckduckgo.com/?q=%s
+
+" DuckDuckGo Lite
+silent bma -k=ddgl https://duckduckgo.com/lite/?q=%s
+
+" Hoogle
+silent bma -k=hoogle http://www.haskell.org/hoogle/?hoogle=%s
+
+" Wikipedia
+silent bma -k=wiki http://en.wikipedia.org/w/index.php?search=%s
+
+" }}}
+
+" {{{ Important Sites
+
+silent bma -k=google http://www.google.com/ncr&hl=en
+silent bma -k=gmail https://mail.google.com/mail/?tab=wm
+silent bma -k=github https://github.com/
+silent bma -k=twitter https://twitter.com/
+silent bma -k=hn https://news.ycombinator.com/
+
+" }}}
+
+" {{{ Development Site
+
+silent bma -k=hackage http://hackage.haskell.org/packages/archive/pkg-list.html
+silent bma -k=hdiff http://hdiff.luite.com/
+silent bma -k=haddock file:///home/bjin/.cabal/share/doc/index.html
+silent bma -k=reddith http://www.reddit.com/r/haskell
+
+" }}}
+
+" {{{ Algorithm Competition
+silent bma -k=topcoder http://www.topcoder.com/tc
+silent bma -k=codeforces http://codeforces.com/
+" }}}
+
+" {{{ Other
+silent bma -k=bgm http://bgm.tv/
+" }}}

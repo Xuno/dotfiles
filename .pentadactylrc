@@ -8,3 +8,6 @@ nnoremap Q :tabmove -1<CR>
 nnoremap E :tabmove +1<CR>
 nnoremap J 3j
 nnoremap K 4k
+
+set! browser.tabs.closeWindowWithLastTab=false
+set! network.proxy.socks_remote_dns=true

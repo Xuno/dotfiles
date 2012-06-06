@@ -78,4 +78,4 @@
 	url = git://github.com/majutsushi/urxvt-font-size.git
 [submodule ".zsh/oh-my-zsh"]
 	path = .zsh/oh-my-zsh
-	url = git://github.com/ornicar/oh-my-zsh.git
+	url = git://github.com/robbyrussell/oh-my-zsh.git

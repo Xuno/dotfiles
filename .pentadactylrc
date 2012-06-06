@@ -24,7 +24,8 @@ nmap T :tabopen!<Space>
 nmap W :winopen<CR>
 
 nmap -builtin Y y
-map y <C-a><C-c>
+map y <pass-next-key><C-c>
+imap -builtin <C-v> <pass-next-key><C-v>
 
 cmap <C-Tab> <A-Tab>
 

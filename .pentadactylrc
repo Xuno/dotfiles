@@ -1,6 +1,8 @@
 
 source ~/.pentadactyl/bookmarks
 
+colorscheme molokai
+
 set hintkeys="ghfjtydkrusleiawoq"
 set defsearch='ddg'
 set titlestring='Mozilla Firefox'

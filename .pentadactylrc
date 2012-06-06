@@ -5,7 +5,7 @@ set hintkeys="ghfjtydkrusleiawoq"
 set mapleader=','
 set defsearch='ddg'
 set titlestring='Mozilla Firefox'
-set wildmode='list:longest'
+set altwildmode='list:longest'
 set sanitizeitems=cache,downloads,history,offlineapps
 
 set passkeys+=duckduckgo.com:jk<CR>
@@ -19,6 +19,8 @@ nnoremap J 3j
 nnoremap K 4k
 nnoremap T :tabopen!<Space>
 nnoremap W :winopen<CR>
+
+cmap <C-Tab> <A-Tab>
 
 set! browser.startup.homepage=https://news.ycombinator.com/news
 set! browser.tabs.closeWindowWithLastTab=false

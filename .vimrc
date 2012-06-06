@@ -101,6 +101,7 @@ let g:ghcmod_ghc_options=['-w']
 autocmd BufNewFile *.sh 0put=\"#!/bin/bash\<nl>\"
 autocmd BufNewFile *.rb 0put=\"#!/usr/bin/env ruby\<nl>\"
 autocmd BufNewFile *.py 0put=\"#!/usr/bin/env python\<nl>\"
+autocmd BufNewFile *.zsh 0put=\"#!/usr/bin/env zsh\<nl>\"
 
 autocmd BufEnter COMMIT_EDITMSG set ft=gitcommit
 

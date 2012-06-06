@@ -6,7 +6,7 @@ for lib ($OHMYZSH/lib/*.zsh); do
     source $lib
 done
 
-for plugin in archlinux extract; do
+for plugin in archlinux extract vi-mode; do
     source $OHMYZSH/plugins/$plugin/$plugin.plugin.zsh
 done
 

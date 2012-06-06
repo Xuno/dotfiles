@@ -14,6 +14,8 @@ for conf ($HOME/.zsh/*.zsh); do
     source $conf
 done
 
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 source $OHMYZSH/themes/re5et.zsh-theme
 
 autoload -U compinit

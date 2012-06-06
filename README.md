@@ -19,6 +19,7 @@ Required Binary
 * [ctags](http://ctags.sourceforge.net/) and [lushtags](https://github.com/bitc/lushtags) for tagbar vim plugin
 * (optional) [nailgun](http://sourceforge.net/projects/nailgun/) for Clojure plugin (REPL environment, omnicomplete)
 * (optional) [pandoc](http://johnmacfarlane.net/pandoc/) for vim-pandoc plugin (document generetion)
+* [WenQuanYi Micro Hei (Mono) font](http://wenq.org/index.cgi?MicroHei) for Chinese display
 
 TODO
 ----
@@ -26,6 +27,6 @@ TODO
 * tags and omnicompl support for C++/Java, ctags config
 * proper spell, dict, textwidth setting for vim
 * integrate gdb, cscope, ack with vim
-* try zsh, emacs, mutt, hg, tig, weechat, feh
+* try zsh, emacs, mutt, hg, uzbl, feh
 * try nix/nixos
 * cleanup vim config files

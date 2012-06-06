@@ -27,6 +27,6 @@ TODO
 * tags and omnicompl support for C++/Java, ctags config
 * proper spell, dict, textwidth setting for vim
 * integrate gdb, cscope, ack with vim
-* try zsh, emacs, mutt, hg, uzbl, feh
+* try emacs, mutt, uzbl, darcs
 * try nix/nixos
 * cleanup vim config files

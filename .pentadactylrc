@@ -8,20 +8,23 @@ set defsearch='ddg'
 set titlestring='Mozilla Firefox'
 set altwildmode='list:longest'
 set sanitizeitems=cache,downloads,history,offlineapps
+set nextpattern=\s*下一页|下一张|下页\s*,\bNext\b,^>$,^(>>|››|»)$,^(>|»),(>|»)$,\bmore\b
+set previouspattern=\s*上一页|上一张|上页\s*,\bPrev|previous\b,^<$,^(<<|‹‹|«)$,^(<|«),(<|«)$
 
 set passkeys+=duckduckgo.com:jk<CR>
 set passkeys+=twitter.com:jk<CR>.
+set maxitems=7
 
 map <C-a> <pass-next-key>
 
 nmap q gT
 nmap e gt
-nmap Q :tabmove -1<CR>
-nmap E :tabmove +1<CR>
+nmap Q -silent -ex tabmove -1
+nmap E -silent -ex tabmove +1
 nmap J 3j
 nmap K 4k
 nmap T :tabopen!<Space>
-nmap W :winopen<CR>
+nmap W -silent -ex winopen
 
 nmap -builtin Y y
 map y <pass-next-key><C-c>

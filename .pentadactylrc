@@ -2,7 +2,6 @@
 source ~/.pentadactyl/bookmarks
 
 set hintkeys="ghfjtydkrusleiawoq"
-set mapleader=','
 set defsearch='ddg'
 set titlestring='Mozilla Firefox'
 set altwildmode='list:longest'
@@ -11,14 +10,14 @@ set sanitizeitems=cache,downloads,history,offlineapps
 set passkeys+=duckduckgo.com:jk<CR>
 set passkeys+=twitter.com:jk<CR>.
 
-nnoremap q gT
-nnoremap e gt
-nnoremap Q :tabmove -1<CR>
-nnoremap E :tabmove +1<CR>
-nnoremap J 3j
-nnoremap K 4k
-nnoremap T :tabopen!<Space>
-nnoremap W :winopen<CR>
+nmap q gT
+nmap e gt
+nmap Q :tabmove -1<CR>
+nmap E :tabmove +1<CR>
+nmap J 3j
+nmap K 4k
+nmap T :tabopen!<Space>
+nmap W :winopen<CR>
 
 cmap <C-Tab> <A-Tab>
 

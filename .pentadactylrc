@@ -10,6 +10,8 @@ set sanitizeitems=cache,downloads,history,offlineapps
 set passkeys+=duckduckgo.com:jk<CR>
 set passkeys+=twitter.com:jk<CR>.
 
+map <C-a> <pass-next-key>
+
 nmap q gT
 nmap e gt
 nmap Q :tabmove -1<CR>
@@ -18,6 +20,9 @@ nmap J 3j
 nmap K 4k
 nmap T :tabopen!<Space>
 nmap W :winopen<CR>
+
+nmap -builtin Y y
+map y <C-a><C-c>
 
 cmap <C-Tab> <A-Tab>
 

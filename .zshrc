@@ -18,5 +18,7 @@ source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $OHMYZSH/themes/re5et.zsh-theme
 
+fpath=($HOME/.zsh/zsh-completions $fpath)
+
 autoload -U compinit
 compinit -i

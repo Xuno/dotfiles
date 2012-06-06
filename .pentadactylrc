@@ -27,6 +27,7 @@ nmap T :tabopen!<Space>
 nmap W -silent -ex winopen
 
 nmap -builtin Y y
+imap <C-c> <pass-next-key><C-c>
 map y <pass-next-key><C-c>
 imap -builtin <C-v> <pass-next-key><C-v>
 

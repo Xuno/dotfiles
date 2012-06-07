@@ -80,7 +80,7 @@ urxvt.depth: 32
 urxvt.background: [80]black
 
 urxvt.underlineColor: yellow
-urxvt.fading: 30
+urxvt.fading: 20
 urxvt.fadeColor: #000000
 
 urxvt.scrollstyle: plain

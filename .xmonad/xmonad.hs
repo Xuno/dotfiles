@@ -211,7 +211,7 @@ myMouse _ = M.fromList
 
 myLogHook dzens = do
     updatePointer (TowardsCentre 0.3 0.3)
-    fadeInactiveCurrentWSLogHook 0.7
+    fadeInactiveCurrentWSLogHook 0.8
     takeTopFocus
     barInfo <- obtainBarInfo
     forM_ (zip [0..] dzens) $ \(phyID, (_, handle, rect)) -> do

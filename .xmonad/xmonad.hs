@@ -154,18 +154,18 @@ myKeys phyScreens conf = M.fromList $
     , ((modm,               xK_h     ), sendMessage Shrink)
     , ((modm,               xK_l     ), sendMessage Expand)
 
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
+    , ((modm,               xK_f     ), withFocused $ windows . W.sink)
 
     , ((modm .|. shiftMask, xK_equal ), sendMessage (IncMasterN 1))
     , ((modm              , xK_minus ), sendMessage (IncMasterN (-1)))
 
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((modm              , xK_q     ), spawn ("xmonad --recompile && xmonad --restart"))
-    , ((modm .|. shiftMask, xK_x     ), spawn ("nitrogen --restore; xmonad --restart")) -- xrandr
+    , ((modm .|. shiftMask, xK_r     ), spawn ("xmonad --recompile && xmonad --restart"))
+    , ((modm .|. shiftMask, xK_n     ), spawn ("nitrogen --restore; xmonad --restart"))
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
 
-    , ((modm,               xK_b     ), viewEmptyWorkspace)
-    , ((modm .|. shiftMask, xK_b     ), tagToEmptyWorkspace)
+    , ((modm,               xK_s     ), viewEmptyWorkspace)
+    , ((modm .|. shiftMask, xK_s     ), tagToEmptyWorkspace)
 
     , ((modm,               xK_Down  ), nextWS)
     , ((modm,               xK_Up    ), prevWS)
@@ -182,9 +182,9 @@ myKeys phyScreens conf = M.fromList $
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
-    [((m .|. modm, k), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (k, sc) <- zip [xK_w, xK_e, xK_r] phyScreens
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    [ ((modm, k), screenWorkspace sc >>= flip whenJust (windows . W.view))
+    | (k, sc) <- zip [xK_q, xK_w, xK_e, xK_r, xK_t] phyScreens
+    ]
     ++
     multiKeys [(modm2, xK_Left     ), (0, xF86XK_AudioPrev       )] "ncmpcpp prev" ++
     multiKeys [(modm2, xK_Right    ), (0, xF86XK_AudioNext       )] "ncmpcpp next" ++

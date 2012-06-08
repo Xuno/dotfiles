@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/colors-badwolf"]
 	path = .vim/bundle/colors-badwolf
 	url = git://github.com/sjl/badwolf.git
+[submodule ".vim/bundle/vim-powerline"]
+	path = .vim/bundle/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline.git

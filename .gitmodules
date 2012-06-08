@@ -19,3 +19,12 @@
 [submodule ".vim/bundle/vim-unbundle"]
 	path = .vim/bundle/vim-unbundle
 	url = git://github.com/sunaku/vim-unbundle.git
+[submodule ".vim/bundle/colors-railscasts"]
+	path = .vim/bundle/colors-railscasts
+	url = git://github.com/jpo/vim-railscasts-theme.git
+[submodule ".vim/bundle/colors-solarized"]
+	path = .vim/bundle/colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule ".vim/bundle/colors-badwolf"]
+	path = .vim/bundle/colors-badwolf
+	url = git://github.com/sjl/badwolf.git

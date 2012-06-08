@@ -7,6 +7,7 @@ syntax on
 filetype plugin indent on
 
 " {{{ basics preference
+
 set expandtab
 set tabstop=4
 set softtabstop=4

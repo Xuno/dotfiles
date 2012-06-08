@@ -1,22 +1,23 @@
-{-# LANGUAGE OverloadedStrings, DeriveDataTypeable #-}
+{-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE OverloadedStrings  #-}
 
 module XMonadBar where
 
-import XMonad
-import qualified XMonad.StackSet as W
-import XMonad.Hooks.UrgencyHook (readUrgents)
-import qualified XMonad.Util.ExtensibleState as S
-import XMonad.Util.WorkspaceCompare
-import XMonad.Util.NamedWindows
+import           XMonad
+import           XMonad.Hooks.UrgencyHook     (readUrgents)
+import qualified XMonad.StackSet              as W
+import qualified XMonad.Util.ExtensibleState  as S
+import           XMonad.Util.NamedWindows
+import           XMonad.Util.WorkspaceCompare
 
-import System.Dzen
-import qualified Data.Map as M
-import Data.Maybe (isNothing)
-import Data.List (sortBy)
-import Data.Ord (comparing)
-import Control.Monad (forM)
-import qualified Data.Colour.Names as C
-import Data.Colour.SRGB
+import           Control.Monad                (forM)
+import qualified Data.Colour.Names            as C
+import           Data.Colour.SRGB
+import           Data.List                    (sortBy)
+import qualified Data.Map                     as M
+import           Data.Maybe                   (isNothing)
+import           Data.Ord                     (comparing)
+import           System.Dzen
 
 data XMonadBarInfo = XMBarInfo
     { workspacesB :: [(String, String,    -- workspace name, layout name,

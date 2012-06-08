@@ -1,31 +1,31 @@
 
 module Monitor where
 
-import Data.Time
-import System.Locale
-import Sound.ALSA.Mixer
-import qualified Network.MPD as MPD
-import Data.Colour.SRGB
-import Data.Char.WCWidth
+import           Data.Char.WCWidth
+import           Data.Colour.SRGB
+import           Data.Time
+import qualified Network.MPD          as MPD
+import           Sound.ALSA.Mixer
+import           System.Locale
 
-import System.Posix.Unistd (usleep)
-import System.Posix.Files (fileExist)
-import System.IO (hPutStrLn, stderr)
-import Data.IORef
-import Data.Maybe
-import Control.Monad
-import Data.Ratio
-import Data.Char (isDigit)
+import           Control.DeepSeq
+import           Control.Monad
 import qualified Data.ByteString.UTF8 as BS
-import Control.DeepSeq
+import           Data.Char            (isDigit)
+import           Data.IORef
+import           Data.Maybe
+import           Data.Ratio
+import           System.IO            (hPutStrLn, stderr)
+import           System.Posix.Files   (fileExist)
+import           System.Posix.Unistd  (usleep)
 
-import Control.Applicative ((<$>))
-import Control.Monad (forever)
-import qualified Control.Exception as E
+import           Control.Applicative  ((<$>))
+import qualified Control.Exception    as E
+import           Control.Monad        (forever)
 
-import System.Dzen
+import           System.Dzen
 
-import XMonadBar
+import           XMonadBar
 
 symbolFG :: DString -> DString
 symbolFG = fg colB

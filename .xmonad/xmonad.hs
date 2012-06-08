@@ -2,39 +2,39 @@
 -- WARNING: must be linked with -threaded opts
 -- use a patched xmonad please
 
-import XMonad hiding (defaultConfig)
-import qualified XMonad.StackSet as W
-import XMonad.Actions.CycleWS
-import XMonad.Actions.UpdatePointer
-import XMonad.Actions.DwmPromote
-import XMonad.Actions.FindEmptyWorkspace
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.FadeInactive
-import XMonad.Hooks.SetWMName
-import XMonad.Hooks.ICCCMFocus
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Grid
-import XMonad.Util.Run (spawnPipe)
-import qualified XMonad.Util.ExtensibleState as S
-import Graphics.X11.ExtraTypes.XF86
+import           Graphics.X11.ExtraTypes.XF86
+import           XMonad                            hiding (defaultConfig)
+import           XMonad.Actions.CycleWS
+import           XMonad.Actions.DwmPromote
+import           XMonad.Actions.FindEmptyWorkspace
+import           XMonad.Actions.UpdatePointer
+import           XMonad.Hooks.FadeInactive
+import           XMonad.Hooks.ICCCMFocus
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.SetWMName
+import           XMonad.Layout.Grid
+import           XMonad.Layout.NoBorders
+import qualified XMonad.StackSet                   as W
+import qualified XMonad.Util.ExtensibleState       as S
+import           XMonad.Util.Run                   (spawnPipe)
 
-import Control.Monad (forM, forM_)
-import Data.Monoid
-import qualified Data.Map as M
-import Data.Colour.SRGB
-import Data.List (isPrefixOf)
-import Data.Ratio
+import           Control.Monad                     (forM, forM_)
+import           Data.Colour.SRGB
+import           Data.List                         (isPrefixOf)
+import qualified Data.Map                          as M
+import           Data.Monoid
+import           Data.Ratio
 
-import System.IO
-import System.Exit
-import Control.Concurrent (threadDelay, forkOS)
+import           Control.Concurrent                (forkOS, threadDelay)
+import           System.Exit
+import           System.IO
 
-import qualified Screen as Scr
-import XMonadBar
-import Codec.Binary.UTF8.String
-import Monitor
-import System.Dzen
+import           Codec.Binary.UTF8.String
+import           Monitor
+import qualified Screen                            as Scr
+import           System.Dzen
+import           XMonadBar
 
 main = do
     screens <- Scr.getScreens

@@ -2,12 +2,12 @@
 
 module Screen where
 
-import XMonad
+import           XMonad
 
-import Control.Applicative ((<$>))
-import Data.Maybe (catMaybes, isJust, fromJust)
-import Data.List (lookup, sortBy)
-import Data.Ord (comparing)
+import           Control.Applicative ((<$>))
+import           Data.List           (lookup, sortBy)
+import           Data.Maybe          (catMaybes, fromJust, isJust)
+import           Data.Ord            (comparing)
 
 type Screens = [(ScreenId, Rectangle)]
 

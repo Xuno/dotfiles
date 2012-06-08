@@ -1,6 +1,9 @@
 [submodule ".fonts/ctrld"]
 	path = .fonts/ctrld
 	url = git://github.com/bjin/ctrld-font.git
+[submodule ".urxvt/urxvt-perls"]
+	path = .urxvt/urxvt-perls
+	url = git://github.com/muennich/urxvt-perls.git
 [submodule ".urxvt/urxvt-font-size"]
 	path = .urxvt/urxvt-font-size
 	url = git://github.com/majutsushi/urxvt-font-size.git

@@ -10,3 +10,11 @@ if has("gui_running") || &t_Co == 256
 else
   colorscheme default
 endif
+
+if &background == "dark"
+  highlight ColorColumn ctermbg=238 guibg=#444444
+else
+  highlight ColorColumn ctermbg=238 guibg=#aaaaaa
+endif
+
+autocmd ColorScheme * highlight ColorColumn ctermbg=238 guibg=#444444

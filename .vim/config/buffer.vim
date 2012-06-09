@@ -16,9 +16,6 @@ inoremap <c-l> <ESC><c-w>l
 nnoremap <silent> <c-p> :bprev<CR>
 nnoremap <silent> <c-n> :bnext<CR>
 
-inoremap <silent> <c-p> <ESC>:bprev<CR>
-inoremap <silent> <c-n> <ESC>:bnext<CR>
-
 nnoremap <silent> <Leader>q :tabprevious<CR>
 nnoremap <silent> <Leader>e :tabnext<CR>
 nnoremap <silent> <Leader>T :tabnew<CR>

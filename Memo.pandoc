@@ -111,9 +111,11 @@ I like this [cheatsheet](https://github.com/LevelbossMike/vim_shortcut_wallpaper
 
 ### completion
 
-* `<C-n>` `<C-p>` : in insert mode
+* `<C-n>` `<C-p>` : by other words in same file
 * `<C-x><C-f>`    : by file name
-* `<C-x><C-o>`    : omni complete, combine with `<C-h/j/k>`
+* `<C-x><C-o>`    : omni complete
+* `<C-x><C-k>`    : by dict
+* `<C-x>s` `z=`   : spell suggest
 
 commands
 --------
@@ -169,22 +171,24 @@ vim customized
 basics
 ------
 
-For C/C++, Java and haskell:
+### C/C++, Java and haskell:
 
 * `<Leader>c`: compile as main program file
 * `<Leader>r`: run
+* `<Leader>s`: syntax check (C/C++ and Haskell)
+* `<Leader>S`: lint check (Haskell)
 
-Windows
+### Windows
 * `<C-h/j/k/l>`: move between windows
 
-Buffers
+### Buffers
 * `<C-p/n>`: move between buffers
 
-Tabs
+### Tabs
 * `<L>q`, `<L>e`: move between tabs
 * `<L>T`, `<L>Q`: open/close tabs
 
-Quick Fixs
+### Quick Fixs
 * `qq` : first error
 * `qj` `qk`: prev/next error
 * `qo` `qc`: open/close quickfix window

@@ -154,6 +154,7 @@ folding
 * `zc` `zC` : close folds (recursively)
 * `zd` `zD` : delete folds (recursively)
 * `zj` `zk` : moves by folds
+* `zR` `zM` : open/close all folds
 
 pattern match
 -------------
@@ -167,6 +168,27 @@ vim customized
 
 basics
 ------
+
+For C/C++, Java and haskell:
+
+* `<Leader>c`: compile as main program file
+* `<Leader>r`: run
+
+Windows
+* `<C-h/j/k/l>`: move between windows
+
+Buffers
+* `<C-p/n>`: move between buffers
+
+Tabs
+* `<L>q`, `<L>e`: move between tabs
+* `<L>T`, `<L>Q`: open/close tabs
+
+Quick Fixs
+* `qq` : first error
+* `qj` `qk`: prev/next error
+* `qo` `qc`: open/close quickfix window
+* `<L>m` `<L>M`: make shortcut
 
 haskell setting
 ---------------

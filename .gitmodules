@@ -54,4 +54,13 @@
 	url = git://github.com/majutsushi/tagbar
 [submodule ".vim/bundle/clang-complete"]
 	path = .vim/bundle/clang-complete
-	url = https://github.com/Rip-Rip/clang_complete.git
+	url = git://github.com/Rip-Rip/clang_complete.git
+[submodule ".vim/bundle/vimproc"]
+	path = .vim/bundle/vimproc
+	url = git://github.com/Shougo/vimproc.git
+[submodule ".vim/ftbundle/haskell/neco-ghc"]
+	path = .vim/ftbundle/haskell/neco-ghc
+	url = git://github.com/ujihisa/neco-ghc.git
+[submodule ".vim/ftbundle/haskell/ghcmod-vim"]
+	path = .vim/ftbundle/haskell/ghcmod-vim
+	url = https://github.com/eagletmt/ghcmod-vim.git

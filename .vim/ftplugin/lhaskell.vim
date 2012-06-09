@@ -1,1 +1,0 @@
-../bundle/ghcmod-vim/ftplugin/haskell/ghcmod.vim

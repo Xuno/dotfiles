@@ -24,9 +24,8 @@ Required Binary
 TODO
 ----
 
-* tags and omnicompl support for C++/Java, ctags config
-* proper spell, dict, textwidth setting for vim
+* ctags config
+* omnicompl for Jave
 * integrate gdb, cscope, ack with vim
 * try emacs, mutt, uzbl, darcs
 * try nix/nixos
-* cleanup vim config files

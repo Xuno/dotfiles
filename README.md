@@ -15,17 +15,16 @@ Required Binary
 * [dmenu](http://tools.suckless.org/dmenu/) [dzen](https://sites.google.com/site/gotmor/dzen) and 
   [yeganesh](http://dmwit.com/yeganesh/) for xmonad
 * [xclip](http://sourceforge.net/projects/xclip/) and [wmctrl](http://tomas.styblo.name/wmctrl/) for urxvt plugin
-* [ghc-mod](http://www.mew.org/~kazu/proj/ghc-mod/en/) for Haskell plugin (omnicomplete, compile check and hlint)
 * [ctags](http://ctags.sourceforge.net/) and [lushtags](https://github.com/bitc/lushtags) for tagbar vim plugin
-* (optional) [nailgun](http://sourceforge.net/projects/nailgun/) for Clojure plugin (REPL environment, omnicomplete)
-* (optional) [pandoc](http://johnmacfarlane.net/pandoc/) for vim-pandoc plugin (document generetion)
+* [clang](http://clang.llvm.org/) for C/C++ omnicomplete and syntax check
+* [ghc-mod](http://www.mew.org/~kazu/proj/ghc-mod/en/) for Haskell omnicomplete & syntax check
 * [WenQuanYi Micro Hei (Mono) font](http://wenq.org/index.cgi?MicroHei) for Chinese display
 
 TODO
 ----
 
 * ctags config
-* omnicompl for Jave
+* omnicompl & syntax check for Java
 * integrate gdb, cscope, ack with vim
 * try emacs, mutt, uzbl, darcs
 * try nix/nixos

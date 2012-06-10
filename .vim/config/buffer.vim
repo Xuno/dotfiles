@@ -11,7 +11,12 @@ nnoremap <c-l> <c-w>l
 nnoremap <silent> <c-p> :bprev<CR>
 nnoremap <silent> <c-n> :bnext<CR>
 
-nnoremap <silent> <Leader>q :tabprevious<CR>
-nnoremap <silent> <Leader>e :tabnext<CR>
-nnoremap <silent> <Leader>T :tabnew<CR>
-nnoremap <silent> <Leader>Q :tabclose<CR>
+nnoremap <silent> [t :tabprevious<CR>
+nnoremap <silent> ]t :tabnext<CR>
+
+nnoremap <silent> <Leader>to :tabnew<CR>
+nnoremap <silent> <Leader>tc :tabclose<CR>
+nnoremap <silent> <Leader>tf :tabfirst<CR>
+nnoremap <silent> <Leader>tl :tablast<CR>
+
+autocmd VimResized * wincmd =

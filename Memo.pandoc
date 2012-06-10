@@ -148,6 +148,7 @@ windows & tabs
 * `tabclose`
 * `tabprevious`
 * `tabnext`
+* `gt` `gT`
 
 folding
 -------
@@ -185,13 +186,15 @@ basics
 * `<C-p/n>`: move between buffers
 
 ### Tabs
-* `<L>q`, `<L>e`: move between tabs
-* `<L>T`, `<L>Q`: open/close tabs
+* `[t`, `]t`: move between tabs
+* `<L>to`, `<L>tc`: open/close tab
+* `<L>tf`, `<L>tl`: first/last tab
 
 ### Quick Fixs
-* `qq` : first error
-* `qj` `qk`: prev/next error
-* `qo` `qc`: open/close quickfix window
+* `Q` : current error
+* `[q` `]q`: prev/next error
+* `<L>qo` `<L>qc`: open/close quickfix window
+* `<L>qf` `<L>ql`: first/last quickfix window
 * `<L>m` `<L>M`: make shortcut
 
 haskell setting

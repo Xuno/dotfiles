@@ -8,13 +8,22 @@ set shiftwidth=4
 
 set textwidth=78
 
-set formatoptions=croq
+set formatoptions=croqB
 
-autocmd FileType pandoc,text set formatoptions+=tB
-autocmd FileType c,cpp,java,haskell set formatoptions+=j
+autocmd FileType pandoc,text setlocal formatoptions+=t
+autocmd FileType c,cpp,java,haskell setlocal formatoptions+=lj
 
-autocmd FileType vim set ts=2 sts=2 sw=2
-autocmd FileType haskell set sts=2
+autocmd FileType vim setlocal ts=2 sts=2 sw=2
+autocmd FileType haskell setlocal sts=2
+
+autocmd FileType haskell setlocal commentstring=--%s comments=s1:{-,mb:-,ex:-},:--
+autocmd FileType c,cpp,java setlocal commentstring=//%s
+
+autocmd FileType haskell setlocal
+    \ include=^import\\s*\\(qualified\\)\\?\\s*
+    \ includeexpr=substitute(v:fname,'\\.','/','g')
+    \ suffixesadd=.hs,.lhs,.hsc
+
 
 set modeline
 set modelines=5

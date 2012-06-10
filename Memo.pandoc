@@ -183,7 +183,7 @@ basics
 * `<C-h/j/k/l>`: move between windows
 
 ### Buffers
-* `<C-p/n>`: move between buffers
+* `[b` `]b`: move between buffers
 
 ### Tabs
 * `[t`, `]t`: move between tabs

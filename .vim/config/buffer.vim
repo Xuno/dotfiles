@@ -8,10 +8,10 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-nnoremap <silent> <c-p> :bprev<CR>
-nnoremap <silent> <c-n> :bnext<CR>
+nnoremap <silent> [b :bprev<CR>
+nnoremap <silent> ]b :bnext<CR>
 
-nnoremap <silent> [t :tabprevious<CR>
+nnoremap <silent> [t :tabprev<CR>
 nnoremap <silent> ]t :tabnext<CR>
 
 nnoremap <silent> <Leader>to :tabnew<CR>

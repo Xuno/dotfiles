@@ -187,14 +187,14 @@ basics
 
 ### Tabs
 * `[t`, `]t`: move between tabs
-* `<L>to`, `<L>tc`: open/close tab
-* `<L>tf`, `<L>tl`: first/last tab
+* `<L>t`, `<L>T`: open/close tab
+* `[T`, `]T`: first/last tab
 
 ### Quick Fixs
 * `Q` : current error
 * `[q` `]q`: prev/next error
-* `<L>qo` `<L>qc`: open/close quickfix window
-* `<L>qf` `<L>ql`: first/last quickfix window
+* `<L>q` `<L>Q`: open/close quickfix window
+* `[Q` `]Q`: first/last quickfix window
 * `<L>m` `<L>M`: make shortcut
 
 haskell setting

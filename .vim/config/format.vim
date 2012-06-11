@@ -26,6 +26,7 @@ autocmd FileType haskell setlocal
     \ include=^import\\s*\\(qualified\\)\\?\\s*
     \ includeexpr=substitute(v:fname,'\\.','/','g')
     \ suffixesadd=.hs,.lhs,.hsc
+    \ iskeyword=@,48-57,_,',192-255
 
 
 set modeline

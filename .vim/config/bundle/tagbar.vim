@@ -1,6 +1,8 @@
 
 nnoremap <silent> <Leader>t :TagbarToggle<CR>
 let g:tagbar_iconchars = ['▸', '▾']
+let g:tagbar_width = 31
+let g:tagbar_compact = 1
 
 if executable('lushtags')
     let g:tagbar_type_haskell = {

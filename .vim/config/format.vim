@@ -15,7 +15,7 @@ autocmd FileType c,cpp,java,haskell setlocal formatoptions+=lj
 
 autocmd FileType vim setlocal ts=2 sts=2 sw=2
 autocmd FileType haskell setlocal sts=2
-autocmd FileType make setlocal noet
+autocmd FileType make,snippets setlocal noet
 
 autocmd FileType haskell setlocal commentstring=--%s comments=s1:{-,mb:-,ex:-},:--
 autocmd FileType c,cpp,java setlocal commentstring=//%s

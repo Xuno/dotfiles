@@ -4,6 +4,7 @@ set nocompatible
 runtime bundle/unbundle/unbundle.vim
 
 syntax on
+filetype off
 filetype plugin indent on
 
 " {{{ basics preference

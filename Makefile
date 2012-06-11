@@ -10,7 +10,7 @@ fetch:
 
 update:
 	git submodule foreach 'git checkout origin/master'
-	cd .vim/bundle/vim-powerline; git checkout origin/develop
+	cd .vim/bundle/powerline; git checkout origin/develop
 
 summary:
 	@git submodule summary | sed 's/  </  <<<<<<<<<<<</'

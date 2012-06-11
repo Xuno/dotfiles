@@ -1,7 +1,7 @@
 
 set nocompatible
 
-runtime bundle/vim-unbundle/unbundle.vim
+runtime bundle/unbundle/unbundle.vim
 
 syntax on
 filetype plugin indent on

@@ -180,22 +180,31 @@ Basics
 * `<Leader>S`: lint check (Haskell)
 
 ### Windows
+
 * `<C-h/j/k/l>`: move between windows
 
 ### Buffers
+
 * `[b` `]b`: move between buffers
 
 ### Tabs
-* `[t`, `]t`: move between tabs
-* `<L>t`, `<L>T`: open/close tab
-* `[T`, `]T`: first/last tab
+
+* `[w`, `]w`: move between tabs
+* `<L>w`, `<L>W`: open/close tab
+* `[W`, `]W`: first/last tab
 
 ### Quick Fixes
+
 * `Q` : current error
 * `[q` `]q`: prev/next error
 * `<L>q` `<L>Q`: open/close quickfix window
 * `[Q` `]Q`: first/last quickfix window
 * `<L>m` `<L>M`: make shortcut
+
+### NERDTree \& Tagbar
+
+* `<L>n` : toggle NERDTree
+* `<L>t` : toggle Tagbar
 
 Haskell setting
 ---------------

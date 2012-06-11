@@ -28,7 +28,7 @@ cabbr w!! w !sudo tee % >/dev/null
 
 " }}}
 
-" {{{ quick (and dirty) quick setting for single file C/C++, Java & Haskell hacking
+" {{{ quick (and dirty) setting for single file C/C++, Java & Haskell hacking
 
 let g:map_leader = '\'
 

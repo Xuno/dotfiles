@@ -1,8 +1,8 @@
 
-vim default
+Vim default
 ===========
 
-basics
+Basics
 ------
 
 * `.`            : repeat the last command
@@ -117,7 +117,7 @@ I like this [cheatsheet](https://github.com/LevelbossMike/vim_shortcut_wallpaper
 * `<C-x><C-k>`    : by dict
 * `<C-x>s` `z=`   : spell suggest
 
-commands
+Commands
 --------
 
 * `:help`        : help page
@@ -131,7 +131,7 @@ commands
 * `:map`         : make new keybinding
 * `:colorscheme` : change colorscheme
 
-windows & tabs
+Windows & tabs
 --------------
 
 * `<C-W>s` `:sp`  : split current window up and down
@@ -150,7 +150,7 @@ windows & tabs
 * `tabnext`
 * `gt` `gT`
 
-folding
+Folding
 -------
 
 * `zo` `zO` : open folds (recursively)
@@ -159,17 +159,17 @@ folding
 * `zj` `zk` : moves by folds
 * `zR` `zM` : open/close all folds
 
-pattern match
+Pattern match
 -------------
 
-other useful tips
+Other useful tips
 -----------------
 
 
-vim customized
+Vim customized
 ==============
 
-basics
+Basics
 ------
 
 ### C/C++, Java and haskell:
@@ -190,14 +190,14 @@ basics
 * `<L>t`, `<L>T`: open/close tab
 * `[T`, `]T`: first/last tab
 
-### Quick Fixs
+### Quick Fixes
 * `Q` : current error
 * `[q` `]q`: prev/next error
 * `<L>q` `<L>Q`: open/close quickfix window
 * `[Q` `]Q`: first/last quickfix window
 * `<L>m` `<L>M`: make shortcut
 
-haskell setting
+Haskell setting
 ---------------
 
 ultisnips
@@ -215,7 +215,7 @@ tabular
 vim-fugitive
 ------------
 
-other useful tips
+Other useful tips
 -----------------
 
 tmux & screen

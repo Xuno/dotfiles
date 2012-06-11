@@ -8,6 +8,7 @@ let g:ghcmod_ghc_options+=['-fwarn-overlapping-patterns']
 let g:ghcmod_ghc_options+=['-fwarn-name-shadowing']
 let g:ghcmod_ghc_options+=['-fwarn-unused-imports']
 let g:ghcmod_ghc_options+=['-fwarn-unused-matches']
+let g:ghcmod_hlint_options=['--ignore=Use camelCase']
 
 augroup GhcModVim
   autocmd!

@@ -4,16 +4,14 @@ module Screen where
 
 import           XMonad
 
-import           Control.Applicative ((<$>))
-import           Data.List           (lookup, sortBy)
-import           Data.Maybe          (catMaybes, fromJust, isJust)
+import           Data.List           (sortBy)
 import           Data.Ord            (comparing)
 
 type Screens = [(ScreenId, Rectangle)]
 
 getScreens :: MonadIO m => m Screens
 getScreens = do
-    dpy <- liftIO $ openDisplay ""
+    dpy   <- liftIO $ openDisplay ""
     rects <- getCleanedScreenInfo dpy
     let sortedList = sortBy (comparing (\(_, Rectangle x y _ _) -> (x, y))) (zip [0..] rects)
     return sortedList

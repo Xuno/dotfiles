@@ -2,7 +2,6 @@
 module Monitor where
 
 import           Data.Char.WCWidth
-import           Data.Colour.SRGB
 import           Data.Time
 import qualified Network.MPD          as MPD
 import           Sound.ALSA.Mixer
@@ -15,13 +14,11 @@ import           Data.Char            (isDigit)
 import           Data.IORef
 import           Data.Maybe
 import           Data.Ratio
-import           System.IO            (hPutStrLn, stderr)
+import           System.IO            (hPrint, stderr)
 import           System.Posix.Files   (fileExist)
-import           System.Posix.Unistd  (usleep)
 
 import           Control.Applicative  ((<$>))
 import qualified Control.Exception    as E
-import           Control.Monad        (forever)
 
 import           System.Dzen
 
@@ -34,7 +31,7 @@ show' :: Show a => a -> DString
 show' = str . show
 
 getDate :: IO String
-getDate = getZonedTime >>= return . formatTime defaultTimeLocale "%F/%a %H:%M:%S"
+getDate = formatTime defaultTimeLocale "%F/%a %H:%M:%S" <$> getZonedTime
 
 putDate :: String -> DString
 putDate x = foldr (+++) (str "") [if ch `elem` "/-:" then fg fgC2 s else s | ch <- x, let s = str [ch]]
@@ -44,10 +41,10 @@ getVolume = do
     Just control <- getControlByName "default" "Master"
     let Just playbackVolume = playback $ volume control
         Just playbackSwitch = playback $ switch control
-    (min, max) <- getRange playbackVolume
-    Just vol <- getChannel FrontLeft $ value $ playbackVolume
-    Just sw <- getChannel FrontLeft playbackSwitch
-    return (min, max, vol, sw)
+    (minv, maxv) <- getRange playbackVolume
+    Just vol   <- getChannel FrontLeft $ value playbackVolume
+    Just sw    <- getChannel FrontLeft playbackSwitch
+    return (minv, maxv, vol, sw)
 
 putVolume :: (Integer, Integer, Integer, Bool) -> DString
 putVolume (minv, maxv, vol, enabled) = symbolFG (str lhs) +++ rhs
@@ -76,7 +73,7 @@ getMem = do
 putMem :: Double -> DString
 putMem ratio = symbolFG (str mem) +++ fgpct (show' pct) +++ fg fgC2 (str "%")
   where
-    pct = round ((min 1 $ max 0 $ ratio) * 100) :: Int
+    pct = round (min 1 ( max 0 ratio) * 100) :: Int
 
     fgpct | pct >= 80 = fg colR
           | pct <= 20 = fg colG
@@ -88,18 +85,18 @@ getUptime :: IO Integer
 getUptime = max 1 . read . takeWhile isDigit . head . words <$> readFile "/proc/uptime"
 
 putUptime :: Integer -> DString
-putUptime secs = symbolFG (str uptime) +++ lhs +++ rhs
+putUptime s = symbolFG (str uptime) +++ lhs +++ rhs
   where
     uptime = "\xEEF4"
 
     parseSs secs = (show' (secs `mod` 60) +++ fg fgC2 (str "s")) : parseMs (secs `div` 60)
     parseMs mins = (show' (mins `mod` 60) +++ fg fgC2 (str "m")) : parseHs (mins `div` 60)
-    parseHs 0 = []
+    parseHs 0    = []
     parseHs hour = (show' (hour `mod` 24) +++ fg fgC2 (str "h")) : parseDs (hour `div` 24)
-    parseDs 0 = []
+    parseDs 0    = []
     parseDs days = [show' days +++ fg fgC2(str "d")]
 
-    [lhs, rhs] = take 2 $ reverse (parseSs secs)
+    [lhs, rhs] = take 2 $ reverse (parseSs s)
 
 
 data ProcStat = ProcStat
@@ -115,17 +112,18 @@ initPS = let zero = ProcStat 0 0 0 0 in newIORef (zero, zero, zero)
 getCPULoad :: IORef (ProcStat, ProcStat, ProcStat) -> IO Double
 getCPULoad ref = do
     (ProcStat a b c d, e, f) <- readIORef ref
-    [a', b', c', d'] <- map read . take 4 . tail . words . head . lines <$> readFile "/proc/stat"
+    [a', b', c', d'] <- map read . take 4 . tail . words . head . lines
+                          <$> readFile "/proc/stat"
     writeIORef ref (e, f, ProcStat a' b' c' d')
-    let all  = (a' + b' + c' + d') - (a + b + c + d)
-        idle = d' - d
-        ratio = (fromIntegral (all - idle) / fromIntegral all)
-    return $ if all <= 0 || idle < 0 || idle > all then 0 else ratio
+    let allT  = (a' + b' + c' + d') - (a + b + c + d)
+        idleT = d' - d
+        ratio = fromIntegral (allT - idleT) / fromIntegral allT
+    return $ if allT <= 0 || idleT < 0 || idleT > allT then 0 else ratio
 
 putCPULoad :: Double -> DString
 putCPULoad ratio = symbolFG (str cpu) +++ fgpct (show' pct) +++ fg fgC2 (str "%")
   where
-    pct = round ((min 1 $ max 0 $ ratio) * 100) :: Int
+    pct = round (min 1 (max 0 ratio) * 100) :: Int
 
     fgpct | pct >= 80 = fg colR
           | pct <= 20 = fg colG
@@ -152,7 +150,7 @@ getTemp = do
 putTemp :: Double -> DString
 putTemp temp' = symbolFG (str temperature) +++ fgtemp (show' temp) +++ fg fgC2 (str "\x00b0")
   where
-    temp = round (min 200 $ max 0 $ temp') :: Int
+    temp = round (min 200 (max 0 temp')) :: Int
 
     fgtemp | temp >= 80 = fg colR
            | temp <= 50 = fg colG
@@ -168,14 +166,14 @@ getMPD = do
         st <- MPD.status
         song <- MPD.currentSong
         let get tag s = fmap valueToString $ join $ fmap listToMaybe (MPD.sgGetTag tag s) :: Maybe String
-            songTags = case song of
+            songTags  = case song of
                 Nothing -> (Nothing, Nothing, Nothing)
                 Just s  -> (get MPD.Artist s, get MPD.Album s, get MPD.Title s)
             valueToString (MPD.Value bs) = BS.toString bs
         return (MPD.stState st, songTags, MPD.stTime st)
     case ret of
-        Left msg  -> error $ "monitor: getMPD - " ++ show msg
-        Right x   -> return x
+        Left msg -> error $ "monitor: getMPD - " ++ show msg
+        Right x  -> return x
 
 putMPD :: Int -> Printer (Maybe MPDInfo)
 putMPD limitLen = inputPrinter printer 0
@@ -194,9 +192,9 @@ putMPD limitLen = inputPrinter printer 0
         state | st == MPD.Playing = str music_play
               | otherwise         = str music_paused
         usedT = round usedT' :: Integer
-        formatTime sec = show' (sec `div` 60) +++ fg fgC2 (str ":") +++
+        formatT sec = show' (sec `div` 60) +++ fg fgC2 (str ":") +++
             show' (sec `mod` 60 `div` 10) +++ show' (sec `mod` 60 `mod` 10)
-        timeInfo = formatTime usedT +++ fg fgC2 (str "/") +++ formatTime allT
+        timeInfo = formatT usedT +++ fg fgC2 (str "/") +++ formatT allT
 
         curSong :: DString
         curSong
@@ -215,12 +213,12 @@ putMPD limitLen = inputPrinter printer 0
                                                     formatTitle album  ++ " @ " ++
                                                     formatTitle title  ++ " @ "
 
-        formatTitle Nothing = "Unknown"
+        formatTitle Nothing  = "Unknown"
         formatTitle (Just a) = a
 
-        rotate str = let pos = fromIntegral (offset `mod` fromIntegral (length str))
-                         (lhs, rhs) = splitAt pos str
-                     in takeByWC limitLen (rhs ++ lhs)
+        rotate s = let pos' = fromIntegral (offset `mod` fromIntegral (length s))
+                       (lhs, rhs) = splitAt pos' s
+                   in takeByWC limitLen (rhs ++ lhs)
 
 takeByWC :: Int -> String -> String
 takeByWC _ []                   = []
@@ -233,7 +231,7 @@ instance NFData MPD.State where
 
 safeWrapper :: NFData a => IO a -> IO (Maybe a)
 safeWrapper io = (io >>= \r -> r `deepseq` return (Just r)) `E.catch`
-    (\e -> hPutStrLn stderr (show (e :: E.SomeException)) >> (return Nothing))
+    (\e -> hPrint stderr (e :: E.SomeException) >> return Nothing)
 
 printWrapper :: (a -> DString) -> Maybe a -> DString
 printWrapper _ Nothing  = str ""

@@ -33,37 +33,35 @@ import           System.IO
 import           Codec.Binary.UTF8.String
 import           Monitor
 import qualified Screen                            as Scr
-import           System.Dzen
+import           System.Dzen                       hiding (rect, str)
 import           XMonadBar
 
 main = do
     screens <- Scr.getScreens
     ret <- forM screens $ \(sid, rect) -> do
-        let cmdsL = Scr.rectToDzenCmdSpec lrect
-            cmdsR = Scr.rectToDzenCmdSpec rrect
-            rect' = Scr.getBarPos rect Scr.TopEdge Scr.LeftA (Scr.WidthRatio 1) barHeight
+        let cmdsL          = Scr.rectToDzenCmdSpec lrect
+            cmdsR          = Scr.rectToDzenCmdSpec rrect
+            rect'          = Scr.getBarPos rect Scr.TopEdge Scr.LeftA (Scr.WidthRatio 1) barHeight
             (lrect, rrect) = Scr.splitBar rect' (45 % 100)
-            cmdlineL = unwords $ "dzen2" : cmdsL ++
-                     [ "-fn", "'" ++ fixedFont ++ "'"
-                     , "-ta", "l"
-                     , "-fg", "'" ++ sRGB24show fgC ++ "'"
-                     , "-bg", "'" ++ sRGB24show bgC ++ "'"
-                     ]
-            cmdlineR = unwords $ "dzen2" : cmdsR ++
-                     [ "-fn", "'" ++ symbolFont ++ "'"
-                     , "-ta", "r"
-                     , "-fg", "'" ++ sRGB24show fgC ++ "'"
-                     , "-bg", "'" ++ sRGB24show bgC ++ "'"
-                     ]
+            cmdlineL       = unwords $ "dzen2" : cmdsL ++
+                [ "-fn", "'" ++ fixedFont ++ "'"
+                , "-ta", "l"
+                , "-fg", "'" ++ sRGB24show fgC ++ "'"
+                , "-bg", "'" ++ sRGB24show bgC ++ "'"
+                ]
+            cmdlineR       = unwords $ "dzen2" : cmdsR ++
+                [ "-fn", "'" ++ symbolFont ++ "'"
+                , "-ta", "r"
+                , "-fg", "'" ++ sRGB24show fgC ++ "'"
+                , "-bg", "'" ++ sRGB24show bgC ++ "'"
+                ]
         handleL <- spawnPipe cmdlineL
         handleR <- spawnPipe cmdlineR
         return ((sid, handleL, rect'), handleR)
     ps <- initPS
-    let dzens = map fst ret
-        hrs   = map snd ret
-        hputs s = do
-            let utf8s = utf8Encode s
-            forM_ hrs $ \hr -> hPutStrLn hr utf8s >> hFlush hr
+    let dzens   = map fst ret
+        hrs     = map snd ret
+        hputs s = forM_ hrs $ \hr -> hPutStrLn hr (utf8Encode s) >> hFlush hr
     forkOS (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
     xmonad (myConfig (map fst screens, dzens))
 
@@ -103,7 +101,7 @@ myLayout = avoidStruts $ smartBorders $
     ratio   = 6/10
     delta   = 3/100
 
-myManageHook = composeAll $
+myManageHook = composeAll
     [ manageDocks
     , isDialog          --> doCenterFloat
     , isFullscreen      --> doFullFloat
@@ -158,9 +156,9 @@ myKeys phyScreens conf = M.fromList $
     , ((modm .|. shiftMask, xK_equal ), sendMessage (IncMasterN 1))
     , ((modm              , xK_minus ), sendMessage (IncMasterN (-1)))
 
-    , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((modm .|. shiftMask, xK_r     ), spawn ("xmonad --recompile && xmonad --restart"))
-    , ((modm .|. shiftMask, xK_n     ), spawn ("nitrogen --restore; xmonad --restart"))
+    , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
+    , ((modm .|. shiftMask, xK_r     ), spawn "xmonad --recompile && xmonad --restart")
+    , ((modm .|. shiftMask, xK_n     ), spawn "nitrogen --restore; xmonad --restart")
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
 
     , ((modm,               xK_s     ), viewEmptyWorkspace)
@@ -213,12 +211,12 @@ myLogHook dzens = do
     fadeInactiveCurrentWSLogHook 0.9
     takeTopFocus
     barInfo <- obtainBarInfo
-    forM_ (zip [0..] dzens) $ \(phyID, (_, handle, rect)) -> do
+    forM_ (zip [0..] dzens) $ \(phyID, (_, handle, _)) -> do
         str <- xmonadBarApply barInfo phyID
-        io $ (hPutStrLn handle (utf8Encode str) >> hFlush handle)
+        io (hPutStrLn handle (utf8Encode str) >> hFlush handle)
 
 myStartupHook dzens = do
     setWMName "LG3D"
-    forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) -> do
+    forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) ->
         S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
     myLogHook dzens

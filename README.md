@@ -24,7 +24,6 @@ TODO
 ----
 
 * ctags config
-* omnicompl & syntax check for Java
 * integrate gdb, cscope, ack with vim
 * try emacs, mutt, uzbl, darcs
 * try nix/nixos

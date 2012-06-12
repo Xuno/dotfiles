@@ -88,3 +88,6 @@
 [submodule ".vim/bundle/vimux"]
 	path = .vim/bundle/vimux
 	url = git://github.com/benmills/vimux.git
+[submodule ".vim/ftbundle/java/javacomplete"]
+	path = .vim/ftbundle/java/javacomplete
+	url = git://github.com/vim-scripts/javacomplete.git

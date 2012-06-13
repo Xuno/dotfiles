@@ -189,9 +189,9 @@ myKeys phyScreens conf = M.fromList $
     multiKeys [(modm2, xK_Down     ), (0, xF86XK_AudioPlay       )] "ncmpcpp toggle" ++
     multiKeys [(modm2, xK_Page_Up  ), (0, xF86XK_AudioRaiseVolume)] "amixer set Master 2dB+ unmute" ++
     multiKeys [(modm2, xK_Page_Down), (0, xF86XK_AudioLowerVolume)] "amixer set Master 2dB- unmute" ++
-    multiKeys [(modm2, xK_m        ), (0, xF86XK_AudioMute       )] "amixer sset Master toggle" ++
-    multiKeys [(modm2, xK_p        ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
-    multiKeys [(modm2 .|. shiftMask, xK_p)]                         "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'" ++
+    multiKeys [(modm2, xK_space    ), (0, xF86XK_AudioMute       )] "amixer sset Master toggle" ++
+    multiKeys [(modm2, xK_F10      ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
+    multiKeys [(modm2 .|. shiftMask, xK_F10)]                         "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'" ++
 
     []
   where

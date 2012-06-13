@@ -91,3 +91,6 @@
 [submodule ".vim/ftbundle/java/javacomplete"]
 	path = .vim/ftbundle/java/javacomplete
 	url = git://github.com/vim-scripts/javacomplete.git
+[submodule ".vim/bundle/ack"]
+	path = .vim/bundle/ack
+	url = git://github.com/mileszs/ack.vim.git

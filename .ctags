@@ -1,0 +1,9 @@
+--sort=yes
+
+--languages=-html
+--langmap=Lisp:+.clj
+
+--exclude=dist
+--exclude=.git
+--exclude=.hg
+--exclude=_darcs

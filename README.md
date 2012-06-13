@@ -23,7 +23,6 @@ Required Binary
 TODO
 ----
 
-* ctags config
-* integrate gdb, cscope, ack with vim
+* write a script to update tags file (with modification to a single file)
 * try emacs, mutt, uzbl, darcs
 * try nix/nixos

@@ -6,3 +6,4 @@ if has("gui_running") || $COLORTERM == "rxvt-xpm"
 endif
 
 let g:Powerline_stl_path_style = 'short'
+call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')

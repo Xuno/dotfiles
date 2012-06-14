@@ -9,7 +9,6 @@ xset -b
 xsetroot -cursor_name left_ptr
 ibus-daemon -d --xim
 urxvtd -q -o -f
-vim -e -c exit &
 
 case $1 in
     xfce4)

@@ -13,6 +13,8 @@ urxvt.perl-ext-common:  default,tabbedex,fullscreen,keyboard-select,clipboard,fo
 urxvt.copyCommand:  xclip -i -selection clipboard
 urxvt.pasteCommand: xclip -o -selection clipboard
 
+URxvt.tabbed.autohide: true
+
 urxvt.keysym.S-Escape: perl:keyboard-select:activate
 urxvt.keysym.S-F11: perl:fullscreen:switch
 
@@ -90,6 +92,7 @@ urxvt.fading: 20
 urxvt.fadeColor: #000000
 
 urxvt.scrollstyle: plain
+urxvt.scrollBar: false
 urxvt.visualBell: false
 urxvt.urgentOnBell: true
 

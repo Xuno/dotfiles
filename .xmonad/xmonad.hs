@@ -69,11 +69,11 @@ barHeight = 16
 delay     = 500 * 1000
 
 myConfig (phyScreens, dzens) = XConfig
-  { borderWidth        = 2
+  { borderWidth        = 3
   , workspaces         = myWorkspaces
   , layoutHook         = myLayout
   , terminal           = "urxvtc"
-  , normalBorderColor  = "#cccccc"
+  , normalBorderColor  = "#000000"
   , focusedBorderColor = "#ff0000"
   , modMask            = modm
   , keys               = myKeys phyScreens

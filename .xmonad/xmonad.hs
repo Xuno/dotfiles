@@ -19,7 +19,7 @@ import qualified XMonad.StackSet                   as W
 import qualified XMonad.Util.ExtensibleState       as S
 import           XMonad.Util.Run                   (spawnPipe)
 
-import           Control.Monad                     (forM, forM_)
+import           Control.Monad                     (forM, forM_, when)
 import           Data.Colour.SRGB
 import           Data.List                         (isPrefixOf)
 import qualified Data.Map                          as M
@@ -48,12 +48,14 @@ main = do
                 , "-ta", "l"
                 , "-fg", "'" ++ sRGB24show fgC ++ "'"
                 , "-bg", "'" ++ sRGB24show bgC ++ "'"
+                , "-e", "'onstart=lower'"
                 ]
             cmdlineR       = unwords $ "dzen2" : cmdsR ++
                 [ "-fn", "'" ++ symbolFont ++ "'"
                 , "-ta", "r"
                 , "-fg", "'" ++ sRGB24show fgC ++ "'"
                 , "-bg", "'" ++ sRGB24show bgC ++ "'"
+                , "-e", "'onstart=lower'"
                 ]
         handleL <- spawnPipe cmdlineL
         handleR <- spawnPipe cmdlineR
@@ -220,3 +222,11 @@ myStartupHook dzens = do
     forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) ->
         S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
     myLogHook dzens
+    io (threadDelay (300 * 1000))
+    withDisplay $ \dpy -> do
+        rootw <- asks theRoot
+        (_,_,wins) <- io $ queryTree dpy rootw
+        forM_ wins $ \win -> do
+            classname <- fmap resClass $ io (getClassHint dpy win)
+            when (classname == "dzen") (fadeOut 0.8 win)
+        return ()

@@ -175,6 +175,8 @@ myKeys phyScreens conf = M.fromList $
     , ((modm .|. shiftMask, xK_Right ), shiftNextScreen)
     , ((modm .|. shiftMask, xK_Left  ), shiftPrevScreen)
     , ((modm,               xK_grave ), toggleWS)
+
+    , ((modm .|. shiftMask, xK_f     ), sendMessage ToggleStruts)
     ]
     ++
     [((m .|. modm, k), windows $ f i)

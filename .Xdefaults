@@ -46,6 +46,12 @@ urxvt.keysym.S-F4: command: \
     \033]712;xft:Monaco for Powerline:italic:pixelsize=12,xft:CtrlD:pixelsize=16\007 \
     \033]713;xft:Monaco for Powerline:bold:italic:pixelsize=12,xft:CtrlD:pixelsize=16\007
 
+urxvt.keysym.S-F5: command: \
+    \033]710;xft:Consolas:style=Regular:pixelsize=14\007 \
+    \033]711;xft:Consolas:style=Bold:pixelsize=14\007 \
+    \033]712;xft:Consolas:style=Italic:pixelsize=14\007 \
+    \033]713;xft:Consolas:style=Bold Italic:pixelsize=14\007
+
 *background: #000000
 *foreground: #ffffff
 

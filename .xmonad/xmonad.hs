@@ -27,6 +27,7 @@ import           Control.Concurrent                (threadDelay)
 import           System.Exit
 import           System.IO
 import           System.Posix.Process
+import           System.Posix.Types
 
 import           Codec.Binary.UTF8.String
 import           Monitor
@@ -62,14 +63,18 @@ main = do
     let dzens   = map fst ret
         hrs     = map snd ret
         hputs s = forM_ hrs $ \hr -> hPutStrLn hr (utf8Encode s) >> hFlush hr
-    forkProcess (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
-    threadDelay (300 * 1000)
-    xmonad (myConfig (map fst screens, dzens))
+    pid <- forkProcess (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
+    threadDelay delay
+    xmonad (myConfig (map fst screens, dzens, pid))
+    killP pid
 
 barHeight = 16
 delay     = 500 * 1000
 
-myConfig (phyScreens, dzens) = XConfig
+killP :: MonadIO m => ProcessID -> m ()
+killP pid = spawn ("kill " ++ show pid)
+
+myConfig (phyScreens, dzens, pid) = XConfig
   { borderWidth        = 3
   , workspaces         = myWorkspaces
   , layoutHook         = myLayout
@@ -77,7 +82,7 @@ myConfig (phyScreens, dzens) = XConfig
   , normalBorderColor  = "#000000"
   , focusedBorderColor = "#ff0000"
   , modMask            = modm
-  , keys               = myKeys phyScreens
+  , keys               = myKeys phyScreens pid
   , logHook            = myLogHook dzens
   , startupHook        = myStartupHook dzens
   , mouseBindings      = myMouse
@@ -127,8 +132,8 @@ myManageHook = composeAll
     noShift  = className =? "Gmrun" <||> className =? "Xmessage"
     notTerm  = fmap not myTerm
 
-myKeys :: [ScreenId] -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys phyScreens conf = M.fromList $
+myKeys :: [ScreenId] -> ProcessID -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+myKeys phyScreens pid conf = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,               xK_p     ), spawn "exe=`yeganesh -x -- -b -p '>'` && eval \"exec $exe\"")
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -157,9 +162,9 @@ myKeys phyScreens conf = M.fromList $
     , ((modm .|. shiftMask, xK_equal ), sendMessage (IncMasterN 1))
     , ((modm              , xK_minus ), sendMessage (IncMasterN (-1)))
 
-    , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
-    , ((modm .|. shiftMask, xK_r     ), spawn "xmonad --recompile && xmonad --restart")
-    , ((modm .|. shiftMask, xK_n     ), spawn "nitrogen --restore; xmonad --restart")
+    , ((modm .|. shiftMask, xK_q     ), killP pid >> io exitSuccess)
+    , ((modm .|. shiftMask, xK_r     ), killP pid >> spawn "xmonad --recompile && xmonad --restart")
+    , ((modm .|. shiftMask, xK_n     ), killP pid >> spawn "nitrogen --restore; xmonad --restart")
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
 
     , ((modm,               xK_s     ), viewEmptyWorkspace)

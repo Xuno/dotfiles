@@ -11,6 +11,7 @@ import           Graphics.X11.ExtraTypes.XF86
 import           System.Exit
 import           System.IO
 import           System.Posix.Process
+import           System.Posix.Signals
 import           System.Posix.Types
 import           XMonad                            hiding (defaultConfig)
 import           XMonad.Actions.CycleWS
@@ -70,7 +71,7 @@ barHeight = 16
 delay     = 500 * 1000
 
 killP :: MonadIO m => ProcessID -> m ()
-killP pid = spawn ("kill " ++ show pid)
+killP = liftIO . signalProcess killProcess
 
 myConfig (phyScreens, dzens, pid) = XConfig
   { borderWidth        = 3

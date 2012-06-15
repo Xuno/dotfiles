@@ -1,7 +1,4 @@
 
--- WARNING: must be linked with -threaded opts
--- use a patched xmonad please
-
 import           Graphics.X11.ExtraTypes.XF86
 import           XMonad                            hiding (defaultConfig)
 import           XMonad.Actions.CycleWS
@@ -26,9 +23,10 @@ import qualified Data.Map                          as M
 import           Data.Monoid
 import           Data.Ratio
 
-import           Control.Concurrent                (forkOS, threadDelay)
+import           Control.Concurrent                (threadDelay)
 import           System.Exit
 import           System.IO
+import           System.Posix.Process
 
 import           Codec.Binary.UTF8.String
 import           Monitor
@@ -64,7 +62,8 @@ main = do
     let dzens   = map fst ret
         hrs     = map snd ret
         hputs s = forM_ hrs $ \hr -> hPutStrLn hr (utf8Encode s) >> hFlush hr
-    forkOS (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
+    forkProcess (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
+    threadDelay (300 * 1000)
     xmonad (myConfig (map fst screens, dzens))
 
 barHeight = 16
@@ -224,7 +223,6 @@ myStartupHook dzens = do
     forM_ (zip [0..] dzens) $ \(phyID, (_, _, Rectangle _ _ w h)) ->
         S.modify (M.insert phyID (xmonadBarPrinter phyID (w, h)))
     myLogHook dzens
-    io (threadDelay (300 * 1000))
     withDisplay $ \dpy -> do
         rootw <- asks theRoot
         (_,_,wins) <- io $ queryTree dpy rootw

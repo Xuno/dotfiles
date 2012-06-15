@@ -1,5 +1,17 @@
 
+import           Codec.Binary.UTF8.String
+import           Control.Concurrent                (threadDelay)
+import           Control.Monad                     (forM, forM_, when)
+import           Data.Colour.SRGB
+import           Data.List                         (isPrefixOf)
+import qualified Data.Map                          as M
+import           Data.Monoid
+import           Data.Ratio
 import           Graphics.X11.ExtraTypes.XF86
+import           System.Exit
+import           System.IO
+import           System.Posix.Process
+import           System.Posix.Types
 import           XMonad                            hiding (defaultConfig)
 import           XMonad.Actions.CycleWS
 import           XMonad.Actions.DwmPromote
@@ -16,20 +28,6 @@ import qualified XMonad.StackSet                   as W
 import qualified XMonad.Util.ExtensibleState       as S
 import           XMonad.Util.Run                   (spawnPipe)
 
-import           Control.Monad                     (forM, forM_, when)
-import           Data.Colour.SRGB
-import           Data.List                         (isPrefixOf)
-import qualified Data.Map                          as M
-import           Data.Monoid
-import           Data.Ratio
-
-import           Control.Concurrent                (threadDelay)
-import           System.Exit
-import           System.IO
-import           System.Posix.Process
-import           System.Posix.Types
-
-import           Codec.Binary.UTF8.String
 import           Monitor
 import qualified Screen                            as Scr
 import           System.Dzen                       hiding (rect, str)

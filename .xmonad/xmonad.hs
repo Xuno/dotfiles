@@ -120,7 +120,7 @@ myManageHook = composeAll
     ]
     ]
   where
-    myFloats = foldl (<||>) isTC [className =? c | c <- ["MPlayer", "Gimp", "fontforge"]]
+    myFloats = foldl (<||>) isTC [className =? c | c <- ["MPlayer", "Gimp", "fontforge", "Nitrogen"]]
     myWeb    = className =? "Firefox" <||> className =? "Chromium"
     myTerm   = className =? "URxvt" <||> className =? "Gvim"
     myMisc   = foldl (<||>) isJava [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk"]]

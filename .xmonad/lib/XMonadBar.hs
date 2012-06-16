@@ -70,7 +70,7 @@ fixedFont  = "CtrlD:pixelsize=13"          :: String
 symbolFont = "CtrlD:pixelsize=16"          :: String
 
 fgC  = sRGB24 0xcc 0xcc 0xcc :: DColour
-bgC  = sRGB24 0x33 0x33 0x33 :: DColour
+bgC  = C.black
 fgC2 = sRGB24 0x99 0x99 0x99 :: DColour
 bgC2 = C.lightslategray :: DColour
 colR = C.lightcoral

@@ -124,6 +124,8 @@
 ## Added by Bin Jin:
 ##
 ## 19. Fix Issue regarding non-ASCII character display in Tab Title.
+##
+## 20. Use default background if title bar background color is not defined.
 
 use Encode qw(decode);
 
@@ -447,15 +449,21 @@ sub on_init {
    my $titbg = $self->x_resource ("title-bg");
 
    defined $fg    or $fg    = 3;
-   defined $bg    or $bg    = 0;
    defined $tabfg or $tabfg = 0;
    defined $tabbg or $tabbg = 1;
    defined $titfg or $titfg = 2;
-   defined $titbg or $titbg = 0;
 
-   $self->{rs_tabbar} = urxvt::SET_COLOR (urxvt::DEFAULT_RSTYLE, $fg    + 2, $bg    + 2);
+   if (defined $bg) {
+       $self->{rs_tabbar} = urxvt::SET_COLOR (urxvt::DEFAULT_RSTYLE, $fg + 2, $bg + 2);
+   } else {
+       $self->{rs_tabbar} = urxvt::SET_FGCOLOR (urxvt::DEFAULT_RSTYLE, $fg + 2);
+   }
    $self->{rs_tab}    = urxvt::SET_COLOR (urxvt::DEFAULT_RSTYLE, $tabfg + 2, $tabbg + 2);
-   $self->{rs_title}  = urxvt::SET_COLOR (urxvt::DEFAULT_RSTYLE, $titfg + 2, $titbg + 2);
+   if (defined $titbg) {
+       $self->{rs_title}  = urxvt::SET_COLOR (urxvt::DEFAULT_RSTYLE, $titfg + 2, $titbg + 2);
+   } else {
+       $self->{rs_title}  = urxvt::SET_FGCOLOR (urxvt::DEFAULT_RSTYLE, $titfg + 2);
+   }
 
 
    my $timeouts = $self->x_resource ("tabbar-timeouts");

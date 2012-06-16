@@ -128,7 +128,7 @@ myManageHook = composeAll
     inT      = fmap (==term) currentWs
     isJava   = fmap ("sun-"`isPrefixOf`) appName
     isTC     = fmap ("com-topcoder"`isPrefixOf`) className
-    noShift  = className =? "Gmrun" <||> className =? "Xmessage"
+    noShift  = className =? "Gmrun" <||> className =? "Xmessage" <||> className =? "stalonetray"
     notTerm  = fmap not myTerm
 
 myKeys :: [ScreenId] -> ProcessID -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
@@ -165,6 +165,7 @@ myKeys phyScreens pid conf = M.fromList $
     , ((modm .|. shiftMask, xK_r     ), killP pid >> spawn "xmonad --recompile && xmonad --restart")
     , ((modm .|. shiftMask, xK_n     ), killP pid >> spawn "nitrogen --restore; xmonad --restart")
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
+    , ((modm .|. shiftMask, xK_t     ), spawn "stalonetray")
 
     , ((modm,               xK_s     ), viewEmptyWorkspace)
     , ((modm .|. shiftMask, xK_s     ), tagToEmptyWorkspace)

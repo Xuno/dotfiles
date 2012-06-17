@@ -210,6 +210,7 @@ putMPD limitLen = inputPrinter printer 0
         curSong' = case (artist, album, title) of
             (Nothing, Nothing, Nothing) -> ""
             _                           -> rotate $ formatTitle artist ++ " @ " ++
+                                                    formatTitle title  ++ " @ " ++
                                                     formatTitle album  ++ " @ " ++
                                                     formatTitle title  ++ " @ "
 

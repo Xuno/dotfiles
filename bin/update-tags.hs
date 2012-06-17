@@ -1,12 +1,14 @@
+{-# LANGUAGE PatternGuards #-}
 
 import Control.Applicative
+import Control.DeepSeq
 import Control.Monad
+import Data.List
 import System.Directory
 import System.Environment
 import System.FilePath
 import System.IO
 import System.Process
-import Control.DeepSeq
 
 readTagsCmd :: FilePath -> IO String
 readTagsCmd file
@@ -24,7 +26,7 @@ filterByDir test line
   where
     splitsByTab []        = [""]
     splitsByTab ('\t':xs) = "" : splitsByTab xs
-    splitsByTab (x:xs)    = let (y:ys) = splitsByTab xs in (x:y):ys
+    splitsByTab (x:xs)    = let sp = splitsByTab xs in (x:head sp):tail sp
 
 genTags :: FilePath -> FilePath -> IO ()
 genTags tags src = do
@@ -35,7 +37,7 @@ genTags tags src = do
     updates <- readTagsCmd src
     let originL  = filter (filterByDir (not.isSrc)) (lines origin)
         updatesL = filter (filterByDir isSrc) (lines updates)
-        newTags  = unlines (originL ++ updatesL)
+        newTags  = unlines $ sort (originL ++ updatesL)
     newTags `deepseq` writeFile tags newTags
 
 autogen :: FilePath -> IO ()

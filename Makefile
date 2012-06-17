@@ -1,5 +1,5 @@
 
-build: .vim/bundle/vimproc/autoload/vimproc_unix.so bin/ibus-disable
+build: .vim/bundle/vimproc/autoload/vimproc_unix.so bin/ibus-disable bin/update-tags
 
 restore:
 	git submodule sync
@@ -20,6 +20,9 @@ summary:
 
 bin/ibus-disable: bin/ibus-disable.c
 	cc $< -o $@ $$(pkg-config --cflags --libs ibus-1.0)
+
+bin/update-tags: bin/update-tags.hs
+	ghc --make $< -o $@ -O2
 
 clean:
 	rm -f .vim/bundle/vimproc/autoload/vimproc_unix.so

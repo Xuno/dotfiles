@@ -15,7 +15,8 @@ Required Binary
 * [dmenu](http://tools.suckless.org/dmenu/) [dzen](https://sites.google.com/site/gotmor/dzen) and 
   [yeganesh](http://dmwit.com/yeganesh/) for xmonad
 * [xclip](http://sourceforge.net/projects/xclip/) and [wmctrl](http://tomas.styblo.name/wmctrl/) for urxvt plugin
-* [ctags](http://ctags.sourceforge.net/) and [lushtags](https://github.com/bitc/lushtags) for tagbar vim plugin
+* [ctags](http://ctags.sourceforge.net/) [hasktags](https://github.com/chrisdone/hasktags) and 
+  [lushtags](https://github.com/bitc/lushtags) for tagbar plugin and tags file generation.
 * [clang](http://clang.llvm.org/) for C/C++ omnicomplete and syntax check
 * [ghc-mod](http://www.mew.org/~kazu/proj/ghc-mod/en/) for Haskell omnicomplete & syntax check
 * [WenQuanYi Micro Hei (Mono) font](http://wenq.org/index.cgi?MicroHei) for Chinese display
@@ -23,6 +24,5 @@ Required Binary
 TODO
 ----
 
-* write a script to update tags file (with modification to a single file)
 * try emacs, mutt, uzbl, darcs
 * try nix/nixos

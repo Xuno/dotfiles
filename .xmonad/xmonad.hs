@@ -188,7 +188,7 @@ myKeys phyScreens pid conf = M.fromList $
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
     [ ((modm, k), screenWorkspace sc >>= flip whenJust (windows . W.view))
-    | (k, sc) <- zip [xK_q, xK_w, xK_e, xK_r, xK_t] phyScreens
+    | (k, sc) <- zip [xK_q, xK_w, xK_e, xK_r, xK_t] (phyScreens ++ repeat (last phyScreens))
     ]
     ++
     multiKeys [(modm2, xK_Left     ), (0, xF86XK_AudioPrev       )] "ncmpcpp prev" ++

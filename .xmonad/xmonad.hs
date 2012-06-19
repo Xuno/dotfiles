@@ -123,7 +123,7 @@ myManageHook = composeAll
     myFloats = foldl (<||>) isTC [className =? c | c <- ["MPlayer", "Gimp", "fontforge", "Nitrogen"]]
     myWeb    = className =? "Firefox" <||> className =? "Chromium"
     myTerm   = className =? "URxvt" <||> className =? "Gvim"
-    myMisc   = foldl (<||>) isJava [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk"]]
+    myMisc   = foldl (<||>) isJava [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk", "Xpdf"]]
     inWeb    = fmap (==web) currentWs
     inT      = fmap (==term) currentWs
     isJava   = fmap ("sun-"`isPrefixOf`) appName

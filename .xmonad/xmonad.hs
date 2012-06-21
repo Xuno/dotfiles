@@ -206,12 +206,10 @@ myKeys phyScreens pid conf = M.fromList $
   where
     multiKeys lst action = [(x, spawn action) | x <- lst]
     fullScreenCurrent = do
-        mst <- gets (W.stack . W.workspace . W.current . windowset)
-        case mst of
+        mw <- gets (W.peek . windowset)
+        case mw of
             Nothing -> return ()
-            Just st -> do
-                trans <- runQuery doFullFloat (W.focus st)
-                windows (appEndo trans)
+            Just w  -> runQuery doFullFloat w >>= windows . appEndo
 
 myMouse :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
 myMouse _ = M.fromList

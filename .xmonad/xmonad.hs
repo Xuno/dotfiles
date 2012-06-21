@@ -181,6 +181,7 @@ myKeys phyScreens pid conf = M.fromList $
     , ((modm,               xK_grave ), toggleWS)
 
     , ((modm .|. shiftMask, xK_f     ), fullScreenCurrent)
+    , ((modm .|. shiftMask, xK_x     ), spawn "gksudo -m 'Enter Password to poweroff' poweroff")
     ]
     ++
     [((m .|. modm, k), windows $ f i)

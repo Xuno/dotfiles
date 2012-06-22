@@ -94,3 +94,6 @@
 [submodule ".vim/bundle/ack"]
 	path = .vim/bundle/ack
 	url = git://github.com/mileszs/ack.vim.git
+[submodule ".ls_colors"]
+	path = .ls_colors
+	url = git://github.com/trapd00r/LS_COLORS.git

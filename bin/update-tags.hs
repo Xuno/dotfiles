@@ -21,12 +21,18 @@ readTagsCmd file
 
 filterByDir :: (String -> Bool) -> String -> Bool
 filterByDir test line
-    | (_:fileName:_) <- splitsByTab line = test fileName
-    | otherwise                          = False
-  where
-    splitsByTab []        = [""]
-    splitsByTab ('\t':xs) = "" : splitsByTab xs
-    splitsByTab (x:xs)    = let sp = splitsByTab xs in (x:head sp):tail sp
+    | (_:fileName:_) <- splitByTab line = test fileName
+    | otherwise                         = False
+
+splitByTab :: String -> [String]
+splitByTab []        = [""]
+splitByTab ('\t':xs) = "" : splitByTab xs
+splitByTab (x:xs)    = let sp = splitByTab xs in (x:head sp):tail sp
+
+makeRelativeTags :: FilePath -> String -> String
+makeRelativeTags dir line
+    | (x:fn:xs) <- splitByTab line = intercalate "\t" (x:makeRelative dir fn:xs)
+    | otherwise                    = line
 
 genTags :: FilePath -> FilePath -> IO ()
 genTags tags src = do
@@ -36,7 +42,7 @@ genTags tags src = do
     origin <- readFile tags
     updates <- readTagsCmd src
     let originL  = filter (filterByDir (not.isSrc)) (lines origin)
-        updatesL = filter (filterByDir isSrc) (lines updates)
+        updatesL = map (makeRelativeTags dir) $ filter (filterByDir isSrc) (lines updates)
         newTags  = unlines $ sort (originL ++ updatesL)
     newTags `deepseq` writeFile tags newTags
 

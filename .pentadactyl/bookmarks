@@ -46,8 +46,10 @@ silent bma -k=reddith http://www.reddit.com/r/haskell
 " {{{ Algorithm Competition
 silent bma -k=topcoder http://www.topcoder.com/tc
 silent bma -k=codeforces http://codeforces.com/
+silent bma -k=euler https://projecteuler.net/problems
 " }}}
 
 " {{{ Other
 silent bma -k=bgm http://bgm.tv/
+silent bma -k=ragg https://ra.gg/
 " }}}

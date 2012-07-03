@@ -27,3 +27,4 @@ bin/update-tags: bin/update-tags.hs
 clean:
 	rm -f .vim/bundle/vimproc/autoload/vimproc_unix.so
 	rm -f bin/ibus-disable
+	rm -f bin/update-tags

@@ -1,0 +1,63 @@
+
+snippet template "Java Template" b
+
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+public class ${1:Main} implements Runnable {
+
+	public void run() {
+		try {
+			in = new BufferedReader(new InputStreamReader(System.in));
+			out = new PrintWriter(System.out);
+			st = null;
+			$0
+			in.close();
+			out.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.exit(-1);
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+	}
+
+	public static void debug(Object...os) {
+		System.err.println(Arrays.deepToString(os));
+	}
+
+	String next() throws IOException {
+		while (st == null || !st.hasMoreTokens()) {
+			String line = in.readLine();
+			if (line == null) {
+				throw new IOException("end of file");
+			}
+			st = new StringTokenizer(line);
+		}
+		return st.nextToken();
+	}
+
+	int nextInt() throws IOException {
+		return Integer.parseInt(next());
+	}
+
+	long nextLong() throws IOException {
+		return Long.parseLong(next());
+	}
+
+	double nextDouble() throws IOException {
+		return Double.parseDouble(next());
+	}
+
+	BufferedReader in;
+	StringTokenizer st;
+	PrintWriter out;
+
+	public static void main(String[] args) {
+		new Thread(new $1()).start();
+	}
+}
+endsnippet

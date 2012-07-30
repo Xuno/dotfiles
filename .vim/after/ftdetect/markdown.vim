@@ -1,2 +1,2 @@
 
-autocmd BufNewFile,BufRead *.page set filetype=markdown
+autocmd BufNewFile,BufRead *.page,*.md set filetype=markdown

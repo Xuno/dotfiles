@@ -54,6 +54,6 @@ silent bma -k=euler https://projecteuler.net/problems
 
 " {{{ Other
 silent bma -k=bgm http://bgm.tv/
-silent bma -k=ragg https://ra.gg/
+silent bma -k=bili http://www.bilibili.tv/
 silent bma -k=gitit http://localhost:5001/
 " }}}

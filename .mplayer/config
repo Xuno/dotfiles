@@ -12,3 +12,5 @@ subcp=unicode
 vf-add=screenshot
 channels=2
 cache=10240
+softvol=1
+softvol-max=256

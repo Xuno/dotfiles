@@ -8,10 +8,10 @@ urxvt.boldFont: xft:CtrlD:style=Bold:pixelsize=16
 urxvt.italicFont: xft:CtrlD:style=Italic:pixelsize=16
 urxvt.boldItalicFont: xft:CtrlD:style=Bold\ Italic:pixelsize=16
 
-urxvt.perl-ext-common:  default,tabbedex,fullscreen,keyboard-select,clipboard,font-size
+urxvt.perl-ext-common:  tabbedex,fullscreen,keyboard-select,clipboard,font-size
 
-urxvt.copyCommand:  xclip -i -selection clipboard
-urxvt.pasteCommand: xclip -o -selection clipboard
+URxvt.clipboard.copycmd:  xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
 URxvt.tabbed.autohide: true
 

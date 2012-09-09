@@ -17,7 +17,7 @@ done
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-source $OHMYZSH/themes/re5et.zsh-theme
+source $HOME/.zsh/zsh-powerline-theme/powerline.zsh-theme
 
 fpath=($HOME/.zsh/zsh-completions $fpath)
 

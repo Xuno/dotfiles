@@ -25,6 +25,9 @@ silent bma -k=wiki http://en.wikipedia.org/w/index.php?search=%s
 " WolframAlpha
 silent bma -k=walpha http://www.wolframalpha.com/input/?i=%s
 
+" Dict.cn
+silent bma -k=dict http://dict.cn/%s
+
 " }}}
 
 " {{{ Important Sites

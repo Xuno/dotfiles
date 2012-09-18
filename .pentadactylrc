@@ -17,6 +17,7 @@ set maxitems=7
 
 map <C-a> <pass-next-key>
 
+nmap D :tabopen dict <pass-next-key><C-v><CR>
 nmap q gT
 nmap e gt
 nmap Q -silent -ex tabmove -1

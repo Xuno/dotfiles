@@ -201,7 +201,8 @@ myKeys phyScreens pid conf = M.fromList $
                                            (modm, xK_bracketright)] "amixer set Master 2dB+ unmute" ++
     multiKeys [(modm2, xK_Page_Down), (0, xF86XK_AudioLowerVolume),
                                            (modm, xK_bracketleft )] "amixer set Master 2dB- unmute" ++
-    multiKeys [(modm2, xK_space    ), (0, xF86XK_AudioMute       )] "amixer sset Master toggle" ++
+    multiKeys [(modm2, xK_space    ), (0, xF86XK_AudioMute       ),
+                                           (modm, xK_backslash   )] "amixer sset Master toggle" ++
     multiKeys [(modm2, xK_F10      ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
     multiKeys [(modm2 .|. shiftMask, xK_F10)]                       "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'" ++
 

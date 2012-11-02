@@ -14,3 +14,4 @@ channels=2
 cache=10240
 softvol=1
 softvol-max=256
+heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"

@@ -74,7 +74,7 @@ urxvt.keysym.S-F5: command: \
 *color14: #288787
 *color15: #aaaaaa
 
-urxvt.inputMethod: ibus
+urxvt.inputMethod: fcitx
 urxvt.imLocale: en_US.UTF-8
 urxvt.imFont: -*-medium-r-*-*-*
 

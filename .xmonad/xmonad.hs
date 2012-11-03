@@ -21,7 +21,7 @@ import           XMonad.Actions.UpdatePointer
 import           XMonad.Hooks.FadeInactive
 import           XMonad.Hooks.ICCCMFocus
 import           XMonad.Hooks.ManageDocks
-import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.ManageHelpers        hiding (pid)
 import           XMonad.Hooks.SetWMName
 import           XMonad.Layout.Grid
 import           XMonad.Layout.NoBorders
@@ -98,7 +98,7 @@ web          = "1:web"
 term         = "2:term"
 misc         = "3:misc"
 
-myLayout = avoidStruts $ smartBorders $
+myLayout = avoidStruts $ smartBorders
     (tiled ||| Mirror tiled ||| Full ||| Grid)
   where
     tiled   = Tall nmaster delta ratio

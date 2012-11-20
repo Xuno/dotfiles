@@ -14,7 +14,6 @@ audio_output {
     type          "alsa"
     name          "local ALSA output"
     mixer_control "Master"
-    auto_resample "no"
 }
 
 audio_output {

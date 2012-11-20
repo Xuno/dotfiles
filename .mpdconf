@@ -7,6 +7,7 @@ pid_file             "/home/bjin/.mpd/mpd.pid"
 state_file           "/home/bjin/.mpd/mpdstate"
 port                 "6666"
 restore_paused       "yes"
+audio_output_format  "96000:24:2"
 samplerate_converter "Best"
 volume_normalization "yes"
 

@@ -1,0 +1,24 @@
+
+music_directory      "/home/bjin/Music"
+playlist_directory   "/home/bjin/.mpd/playlists"
+db_file              "/home/bjin/.mpd/mpd.db"
+log_file             "/home/bjin/.mpd/mpd.log"
+pid_file             "/home/bjin/.mpd/mpd.pid"
+state_file           "/home/bjin/.mpd/mpdstate"
+port                 "6666"
+restore_paused       "yes"
+samplerate_converter "Best"
+volume_normalization "yes"
+
+audio_output {
+    type          "alsa"
+    name          "local ALSA output"
+    mixer_control "Master"
+    auto_resample "no"
+}
+
+audio_output {
+    type "fifo"
+    name "fifo for visualization"
+    path "/home/bjin/.mpd/mpd.fifo"
+}

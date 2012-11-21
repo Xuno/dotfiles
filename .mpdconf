@@ -9,6 +9,7 @@ port                 "6666"
 restore_paused       "yes"
 samplerate_converter "Best"
 volume_normalization "yes"
+replaygain           "auto"
 
 audio_output {
     type          "alsa"

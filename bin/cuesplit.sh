@@ -31,6 +31,14 @@ cd "$DIR"
 TYPE=`ls -t1`
 
 case $TYPE in
+    *.tak*)
+        mkdir split
+        shnsplit -d split -f *.cue -o "flac flac -V --best -o %f -" *.tak -t "%n %p - %t"
+        rm -f split/00*pregap*
+        cuetag.sh *.cue split/*.flac
+        exit
+        ;;
+
     *.ape*)
         mkdir split
         shnsplit -d split -f *.cue -o "flac flac -V --best -o %f -" *.ape -t "%n %p - %t"
@@ -85,7 +93,7 @@ case $TYPE in
 
     * )
     echo "Error: Found no files to split!"
-    echo "       --> APE, FLAC, MP3, OGG, TTA, WV, WAV"
+    echo "       --> APE, FLAC, MP3, OGG, TTA, WV, WAV, TAK"
 esac
 exit
 

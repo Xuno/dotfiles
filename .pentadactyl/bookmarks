@@ -28,6 +28,12 @@ silent bma -k=walpha http://www.wolframalpha.com/input/?i=%s
 " Dict.cn
 silent bma -k=dict http://dict.cn/%s
 
+" MusicBrainz
+silent bma -k=mbartist http://musicbrainz.org/search?query=%s&type=artist&limit=25&method=advanced
+silent bma -k=mbgroup http://musicbrainz.org/search?query=%s&type=release_group&limit=25&method=advanced
+silent bma -k=mbalbum http://musicbrainz.org/search?query=%s&type=release&limit=25&method=advanced
+silent bma -k=mbsong http://musicbrainz.org/search?query=%s&type=recording&limit=25&method=advanced
+
 " }}}
 
 " {{{ Important Sites
@@ -59,4 +65,5 @@ silent bma -k=euler https://projecteuler.net/problems
 silent bma -k=bgm http://bgm.tv/
 silent bma -k=bili http://www.bilibili.tv/
 silent bma -k=gitit http://localhost:5001/
+silent bma -k=mb http://musicbrainz.org/
 " }}}

@@ -26,9 +26,10 @@ audio_output {
 }
 
 audio_output {
-    type "fifo"
-    name "fifo for visualization"
-    path "/home/bjin/.mpd/mpd.fifo"
+    type    "fifo"
+    name    "fifo for visualization"
+    path    "/home/bjin/.mpd/mpd.fifo"
+    enabled "no"
 }
 
 audio_output {
@@ -39,4 +40,5 @@ audio_output {
     encoder         "lame"
     bitrate         "320"
     max_clients     "3"
+    enabled         "no"
 }

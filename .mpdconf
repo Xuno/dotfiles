@@ -22,7 +22,7 @@ audio_output {
 audio_output {
     type   "alsa"
     name   "ALSA output (S/PDIF)"
-    device "hw:0,1"
+    device "iec958"
 }
 
 audio_output {

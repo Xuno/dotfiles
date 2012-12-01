@@ -5,20 +5,38 @@ db_file              "/home/bjin/.mpd/mpd.db"
 log_file             "/home/bjin/.mpd/mpd.log"
 pid_file             "/home/bjin/.mpd/mpd.pid"
 state_file           "/home/bjin/.mpd/mpdstate"
-port                 "6666"
+port                 "6600"
 restore_paused       "yes"
 samplerate_converter "Best"
 volume_normalization "yes"
 replaygain           "auto"
+audio_buffer_size    "4096"
+buffer_before_play   "20%"
 
 audio_output {
     type          "alsa"
-    name          "local ALSA output"
+    name          "ALSA output (default)"
     mixer_control "Master"
+}
+
+audio_output {
+    type   "alsa"
+    name   "ALSA output (S/PDIF)"
+    device "hw:0,1"
 }
 
 audio_output {
     type "fifo"
     name "fifo for visualization"
     path "/home/bjin/.mpd/mpd.fifo"
+}
+
+audio_output {
+    type            "httpd"
+    name            "streaming via HTTP"
+    port            "8800"
+    bind_to_address "0.0.0.0"
+    encoder         "lame"
+    bitrate         "320"
+    max_clients     "3"
 }

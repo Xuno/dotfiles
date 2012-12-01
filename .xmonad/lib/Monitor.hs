@@ -162,7 +162,7 @@ type MPDInfo = (MPD.State, (Maybe String, Maybe String, Maybe String), (Double, 
 
 getMPD :: IO MPDInfo
 getMPD = do
-    ret <- MPD.withMPDEx "localhost" 6666 "" $ do
+    ret <- MPD.withMPDEx "localhost" 6600 "" $ do
         st <- MPD.status
         song <- MPD.currentSong
         let get tag s = fmap valueToString $ join $ fmap listToMaybe (MPD.sgGetTag tag s) :: Maybe String

@@ -26,6 +26,12 @@ audio_output {
 }
 
 audio_output {
+    type   "alsa"
+    name   "ALSA output (USB)"
+    device "hw:1,0"
+}
+
+audio_output {
     type    "fifo"
     name    "fifo for visualization"
     path    "/home/bjin/.mpd/mpd.fifo"

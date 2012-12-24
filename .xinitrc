@@ -17,6 +17,9 @@ case $1 in
     xfce4)
         exec startxfce4
         ;;
+    e17)
+        exec enlightenment_start
+        ;;
     *)
         nitrogen --restore &
         killall xcompmgr

@@ -40,7 +40,7 @@ main = do
         let cmdsL          = Scr.rectToDzenCmdSpec lrect
             cmdsR          = Scr.rectToDzenCmdSpec rrect
             rect'          = Scr.getBarPos rect Scr.TopEdge Scr.LeftA (Scr.WidthRatio 1) barHeight
-            (lrect, rrect) = Scr.splitBar rect' (45 % 100)
+            (lrect, rrect) = Scr.splitBar rect' (3 % 7)
             cmdlineL       = unwords $ "dzen2" : cmdsL ++
                 [ "-fn", "'" ++ fixedFont ++ "'"
                 , "-ta", "l"

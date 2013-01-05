@@ -19,7 +19,6 @@ import           XMonad.Actions.DwmPromote
 import           XMonad.Actions.FindEmptyWorkspace
 import           XMonad.Actions.UpdatePointer
 import           XMonad.Hooks.FadeInactive
-import           XMonad.Hooks.ICCCMFocus
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers        hiding (pid)
 import           XMonad.Hooks.SetWMName
@@ -228,7 +227,6 @@ myMouse _ = M.fromList
 myLogHook dzens = do
     updatePointer (TowardsCentre 0.3 0.3)
     fadeInactiveCurrentWSLogHook 0.9
-    takeTopFocus
     barInfo <- obtainBarInfo
     forM_ (zip [0..] dzens) $ \(phyID, (_, handle, _)) -> do
         str <- xmonadBarApply barInfo phyID

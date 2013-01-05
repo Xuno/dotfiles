@@ -87,7 +87,7 @@ myConfig (phyScreens, dzens, pid) = XConfig
   , mouseBindings      = myMouse
   , manageHook         = myManageHook
   , handleEventHook    = const (return (All True))
-  , focusFollowsMouse  = True
+  , focusFollowsMouse  = False
   , clickJustFocuses   = False
   }
 

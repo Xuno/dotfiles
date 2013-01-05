@@ -88,6 +88,7 @@ myConfig (phyScreens, dzens, pid) = XConfig
   , manageHook         = myManageHook
   , handleEventHook    = const (return (All True))
   , focusFollowsMouse  = True
+  , clickJustFocuses   = False
   }
 
 modm  = mod1Mask -- Left Alt

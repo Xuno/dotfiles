@@ -35,6 +35,9 @@ silent bma -k=mbgroup http://musicbrainz.org/search?query=%s&type=release_group&
 silent bma -k=mbalbum http://musicbrainz.org/search?query=%s&type=release&limit=25&method=advanced
 silent bma -k=mbsong http://musicbrainz.org/search?query=%s&type=recording&limit=25&method=advanced
 
+" VGMdb
+silent bma -k=vgm http://vgmdb.net/search?q=%s
+
 " }}}
 
 " {{{ Important Sites

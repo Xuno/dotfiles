@@ -1,13 +1,4 @@
 lavdopts=threads=3
-sub-fuzziness=1
-ass=1
-embeddedfonts=1
-ass-line-spacing=1
-ass-font-scale=1
-ass-force-style=PlayResX=512,PlayResY=320,Name=Default,Fontname=AdobeHeitiStd,Fontsize=20,PrimaryColour=&H00ffffff,BackColour=&H00000000,OutlineColour=&H00000000,Bold=0,Italic=0,Alignment=2,BorderStyle=1,Outline=1,Shadow=0,MarginL=20,MarginR=20,MarginV=8
-subfont-autoscale=0
-subfont-osd-scale=20
-subfont-text-scale=20
 subcp=unicode
 vf-add=screenshot
 channels=2

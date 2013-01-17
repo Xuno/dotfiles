@@ -38,6 +38,12 @@ silent bma -k=mbsong http://musicbrainz.org/search?query=%s&type=recording&limit
 " VGMdb
 silent bma -k=vgm http://vgmdb.net/search?q=%s
 
+" Japanese
+silent bma -k=furigana_hiragana http://addruby.com/addruby.cgi?txt=%s&target=all&furigana=hiragana&MODE=txt&EXEC=1
+silent bma -k=furigana_roman_yomi http://addruby.com/addruby.cgi?txt=%s&target=all&furigana=roman_yomi&MODE=txt&EXEC=1
+silent bma -k=jpn2chn http://www.excite.co.jp/dictionary/japanese_chinese/?match=beginswith&search=%s
+
+
 " }}}
 
 " {{{ Important Sites

@@ -1,8 +1,6 @@
 lavdopts=threads=3
-subcp=unicode
+subcp=enca:zh:unicode
+autosub-match=fuzzy
 vf-add=screenshot
-channels=2
-cache=10240
-softvol=1
-softvol-max=256
+af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"

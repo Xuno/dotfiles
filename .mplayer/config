@@ -5,3 +5,5 @@ sub-fuzziness=1
 vf-add=screenshot
 af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
+sws=9 #lanczos
+vo=xv,

@@ -77,4 +77,5 @@ silent bma -k=bgm http://bgm.tv/
 silent bma -k=bili http://www.bilibili.tv/
 silent bma -k=gitit http://localhost:5001/
 silent bma -k=mb http://musicbrainz.org/
+silent bma -k=mal http://myanimelist.net/panel.php
 " }}}

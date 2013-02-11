@@ -123,7 +123,7 @@ myManageHook = composeAll
     myFloats = foldl (<||>) isTC [className =? c | c <- ["MPlayer", "Gimp", "fontforge", "Nitrogen"]]
     myWeb    = className =? "Firefox" <||> className =? "Chromium"
     myTerm   = className =? "URxvt" <||> className =? "Gvim"
-    myMisc   = foldl (<||>) isJava [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk", "Xpdf"]]
+    myMisc   = foldl (<||>) isJava [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk", "Xpdf", "Wine"]]
     inWeb    = fmap (==web) currentWs
     inT      = fmap (==term) currentWs
     isJava   = fmap ("sun-"`isPrefixOf`) appName
@@ -165,6 +165,7 @@ myKeys phyScreens pid conf = M.fromList $
     , ((modm .|. shiftMask, xK_r     ), killP pid >> spawn "xmonad --recompile && xmonad --restart")
     , ((modm .|. shiftMask, xK_n     ), killP pid >> spawn "nitrogen --restore; xmonad --restart")
     , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock")
+    , ((modm .|. shiftMask, xK_o     ), spawn "dm-tool switch-to-greeter")
     , ((modm .|. shiftMask, xK_t     ), spawn "stalonetray --window-type normal")
 
     , ((modm,               xK_s     ), viewEmptyWorkspace)

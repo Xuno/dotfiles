@@ -7,3 +7,5 @@ af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
 sws=9 #lanczos
 vo=xv,
+osd-color='#55FFFFFF'
+osd-border-size=0

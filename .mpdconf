@@ -15,8 +15,15 @@ buffer_before_play   "20%"
 
 audio_output {
     type          "alsa"
-    name          "ALSA output (default)"
+    name          "ALSA output (w/ dmix)"
     mixer_control "Master"
+}
+
+audio_output {
+    type          "alsa"
+    name          "ALSA output (w/o dmix)"
+    mixer_control "Master"
+    device        "hw:0,0"
 }
 
 audio_output {

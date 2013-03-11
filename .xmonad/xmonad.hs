@@ -201,17 +201,18 @@ myKeys phyScreens pid conf = M.fromList $
     multiKeys [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] "amixer set Master 2dB+ unmute" ++
     multiKeys [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] "amixer set Master 2dB- unmute" ++
     multiKeys [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] "amixer set Master toggle" ++
+    multiKey_ [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] "amixer -c 1 set PCM 2dB+ unmute" ++
+    multiKey_ [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] "amixer -c 1 set PCM 2dB- unmute" ++
+    multiKey_ [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] "amixer -c 1 set PCM toggle" ++
     multiKeys [(modm2, xK_F10         ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
 
-    [ ((modm2 .|. shiftMask, xK_F10), spawn "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'")
-    , ((modm2, xK_Page_Up),           spawn "amixer -c 1 set PCM 2dB+ unmute")
-    , ((modm2, xK_Page_Down),         spawn "amixer -c 1 set PCM 2dB- unmute")
-    , ((modm2, xK_space),             spawn "amixer -c 1 set PCM toggle")
-    , ((modm2, xK_bracketleft),       spawn "mpc -q seek -5%")
-    , ((modm2, xK_bracketright),      spawn "mpc -q seek +5%")
+    [ ((modm2 .|. shiftMask, xK_F10),   spawn "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'")
+    , ((modm2 .|. shiftMask, xK_Left),  spawn "mpc -q seek -5%")
+    , ((modm2 .|. shiftMask, xK_Right), spawn "mpc -q seek +5%")
     ]
   where
     multiKeys lst action = [(x, spawn action) | x <- lst]
+    multiKey_ lst action = [((x .|. shiftMask, y), spawn action) | (x, y) <- lst]
     fullScreenCurrent = do
         mw <- gets (W.peek . windowset)
         case mw of

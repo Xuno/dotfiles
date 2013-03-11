@@ -67,7 +67,7 @@ main = do
     killP pid
 
 barHeight = 16
-delay     = 500 * 1000
+delay     = 250 * 1000
 
 killP :: MonadIO m => ProcessID -> m ()
 killP = liftIO . signalProcess killProcess
@@ -194,20 +194,22 @@ myKeys phyScreens pid conf = M.fromList $
     | (k, sc) <- zip [xK_q, xK_w, xK_e, xK_r, xK_t] (phyScreens ++ repeat (last phyScreens))
     ]
     ++
-    multiKeys [(modm2, xK_Left     ), (0, xF86XK_AudioPrev       )] "ncmpcpp prev" ++
-    multiKeys [(modm2, xK_Right    ), (0, xF86XK_AudioNext       )] "ncmpcpp next" ++
-    multiKeys [(modm2, xK_Up       ), (0, xF86XK_AudioStop       )] "ncmpcpp stop" ++
-    multiKeys [(modm2, xK_Down     ), (0, xF86XK_AudioPlay       )] "ncmpcpp toggle" ++
-    multiKeys [(modm2, xK_Page_Up  ), (0, xF86XK_AudioRaiseVolume),
-                                           (modm, xK_bracketright)] "amixer set Master 2dB+ unmute" ++
-    multiKeys [(modm2, xK_Page_Down), (0, xF86XK_AudioLowerVolume),
-                                           (modm, xK_bracketleft )] "amixer set Master 2dB- unmute" ++
-    multiKeys [(modm2, xK_space    ), (0, xF86XK_AudioMute       ),
-                                           (modm, xK_backslash   )] "amixer sset Master toggle" ++
-    multiKeys [(modm2, xK_F10      ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
-    multiKeys [(modm2 .|. shiftMask, xK_F10)]                       "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'" ++
+    multiKeys [(modm2, xK_Left        ), (0, xF86XK_AudioPrev       )] "mpc -q prev" ++
+    multiKeys [(modm2, xK_Right       ), (0, xF86XK_AudioNext       )] "mpc -q next" ++
+    multiKeys [(modm2, xK_Up          ), (0, xF86XK_AudioStop       )] "mpc -q stop" ++
+    multiKeys [(modm2, xK_Down        ), (0, xF86XK_AudioPlay       )] "mpc -q toggle" ++
+    multiKeys [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] "amixer set Master 2dB+ unmute" ++
+    multiKeys [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] "amixer set Master 2dB- unmute" ++
+    multiKeys [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] "amixer set Master toggle" ++
+    multiKeys [(modm2, xK_F10         ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
 
-    []
+    [ ((modm2 .|. shiftMask, xK_F10), spawn "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'")
+    , ((modm2, xK_Page_Up),           spawn "amixer -c 1 set PCM 2dB+ unmute")
+    , ((modm2, xK_Page_Down),         spawn "amixer -c 1 set PCM 2dB- unmute")
+    , ((modm2, xK_space),             spawn "amixer -c 1 set PCM toggle")
+    , ((modm2, xK_bracketleft),       spawn "mpc -q seek -5%")
+    , ((modm2, xK_bracketright),      spawn "mpc -q seek +5%")
+    ]
   where
     multiKeys lst action = [(x, spawn action) | x <- lst]
     fullScreenCurrent = do

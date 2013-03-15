@@ -201,9 +201,9 @@ myKeys phyScreens pid conf = M.fromList $
     multiKeys [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] "amixer set Master 2dB+ unmute" ++
     multiKeys [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] "amixer set Master 2dB- unmute" ++
     multiKeys [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] "amixer set Master toggle" ++
-    multiKey_ [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] "amixer -c 1 set PCM 2dB+ unmute" ++
-    multiKey_ [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] "amixer -c 1 set PCM 2dB- unmute" ++
-    multiKey_ [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] "amixer -c 1 set PCM toggle" ++
+    multiKey_ [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("amixer -c 1 sset " ++ dacControlName ++ " 2dB+ unmute") ++
+    multiKey_ [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("amixer -c 1 sset " ++ dacControlName ++ " 2dB- unmute") ++
+    multiKey_ [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] ("amixer -c 1 sset " ++ dacControlName ++ " toggle") ++
     multiKeys [(modm2, xK_F10         ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
 
     [ ((modm2 .|. shiftMask, xK_F10),   spawn "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'")
@@ -211,6 +211,9 @@ myKeys phyScreens pid conf = M.fromList $
     , ((modm2 .|. shiftMask, xK_Right), spawn "mpc -q seek +5%")
     ]
   where
+    -- dirty shell hack to obtain USB DAC control name, 'Simple mixer control'
+    -- prefix will be removed from the first line
+    dacControlName = "\"`amixer -c 1 scontrols | head -n 1 | tail -c +22`\""
     multiKeys lst action = [(x, spawn action) | x <- lst]
     multiKey_ lst action = [((x .|. shiftMask, y), spawn action) | (x, y) <- lst]
     fullScreenCurrent = do

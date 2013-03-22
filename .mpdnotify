@@ -1,19 +1,9 @@
 ##!/bin/bash
 #
-# mpdnotify config - any valid bash is allowed, you
-# only need to define handle_event() for the deamon
-# to run properly
+# my customized mpdnotify script, for notify-osd only
 #
-# $mydir exists, and it's value is /home/bjin/.config/mpdnotify
-#
-###
-
-###
-#
-# the actual handle_event() definition
-#
-# this is the only requirement for a valid config
-#
+# use "gsettings set com.canonical.notify-osd multihead-mode focus-follow" to
+# handle dual-screen problem
 ###
 
 # Constants
@@ -80,9 +70,9 @@ handle_event() {
         if [ -f "$coverArtPath" ]; then
             cp "$coverArtPath" $tmpCover;
             mogrify -resize 120x120! $tmpCover;
-            notify-send -i "${tmpCover}" "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
+            notify-send -t 1500 -i "${tmpCover}" "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
         else
-            notify-send "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
+            notify-send -t 1500 "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
         fi
     fi
 }

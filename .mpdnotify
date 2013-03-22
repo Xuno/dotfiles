@@ -70,9 +70,9 @@ handle_event() {
         if [ -f "$coverArtPath" ]; then
             cp "$coverArtPath" $tmpCover;
             mogrify -resize 120x120! $tmpCover;
-            notify-send -t 1500 -i "${tmpCover}" "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
+            notify-send -t 3000 -i "${tmpCover}" "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
         else
-            notify-send -t 1500 "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
+            notify-send -t 3000 "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
         fi
     fi
 }

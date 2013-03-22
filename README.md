@@ -19,6 +19,8 @@ Required Binary
   [lushtags](https://github.com/bitc/lushtags) for tagbar plugin and tags file generation.
 * [clang](http://clang.llvm.org/) for C/C++ omnicomplete and syntax check
 * [ghc-mod](http://www.mew.org/~kazu/proj/ghc-mod/en/) for Haskell omnicomplete & syntax check
+* [mpdnotify](http://git.silverirc.com/cgit.cgi/mpd-libnotify) and
+  [notify-osd](https://launchpad.net/notify-osd)
 * [WenQuanYi Micro Hei (Mono) font](http://wenq.org/index.cgi?MicroHei) for Chinese display
 
 TODO

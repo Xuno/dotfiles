@@ -1,0 +1,88 @@
+##!/bin/bash
+#
+# mpdnotify config - any valid bash is allowed, you
+# only need to define handle_event() for the deamon
+# to run properly
+#
+# $mydir exists, and it's value is /home/bjin/.config/mpdnotify
+#
+###
+
+###
+#
+# the actual handle_event() definition
+#
+# this is the only requirement for a valid config
+#
+###
+
+# Constants
+if [ "$MPD_HOST" ]; then HOST="$MPD_HOST"; else HOST="localhost"; fi
+if [ "$MPD_PORT" ]; then PORT="$MPD_PORT"; else PORT="6600"; fi
+MPD_TCP="/dev/tcp/$HOST/$PORT"
+musicDir="$HOME/Music"
+tmpCover="/tmp/cover"
+myPID="$HOME/.config/mpdnotify/pid"
+mpdPID=$(pidof mpd)
+
+function mpd_sndcommmand() {
+    # $1 command
+    exec 5<> $MPD_TCP 2>/dev/null
+    [[ $? -gt 0 ]] && return 1
+    echo $1 >&5
+    echo "close" >&5
+    tmp=$(cat <&5)
+    exec 5>&-
+    _ret=$(head -n -1 <<< "$tmp" | tail -n +2)
+    return 0
+}
+
+function mpd_getinfo() {
+    mpd_sndcommmand currentsong
+    [[ $? -gt 0 ]] && return 1
+    _tmp=$_ret
+    mpdTitle=$(grep "^Title: " <<< "$_tmp" 2>/dev/null | sed "s/Title: //")
+    mpdArtist=$(grep "^Artist: " <<< "$_tmp" 2>/dev/null | sed "s/Artist: //")
+    mpdAlbum=$(grep "^Album: " <<< "$_tmp" 2>/dev/null | sed "s/Album: //")
+    mpdFile=$(grep "^file: " <<< "$_tmp" 2>/dev/null | sed "s/file: //")
+    mpdMBID=$(grep "^MUSICBRAINZ_ALBUMID: " <<< "$_tmp" 2>/dev/null | sed "s/MUSICBRAINZ_ALBUMID: //")
+    _songtime=$(grep "^Time: " <<< "$_tmp" 2>/dev/null | sed "s/Time: //" | cut -f 1 -d :)
+    (( _mm=$_songtime / 60 ))
+    [[ ${#_mm} -eq 1 ]] && _mm="0$_mm"
+    (( _ss=$_songtime - $_mm * 60 ))
+    [[ ${#_ss} -eq 1 ]] && _ss="0$_ss"
+    mpdLength="$_mm:$_ss"
+}
+
+handle_event() {
+    mpd_sndcommmand status;
+    [[ $? -gt 0 ]] && return 1;
+    mpdState=$(grep "^state: " <<< "$_ret" 2>/dev/null | sed "s/state: //")
+    [[ "$mpdState" != "play" ]] && return 1;
+    if [[ -z $mpdPID ]]; then
+        echo "MPD is not currently running!"
+        if [[ -f "$myPID" ]]; then
+            rm "$myPID";
+        fi
+    else
+        mpd_getinfo
+        if [ -f "/tmp/cover" ]; then rm /tmp/cover; fi
+        if [ "$mpdArtist" == "" ] ; then mpdArtist="Unknown Artist"; fi
+        if [ "$mpdAlbum" == "" ] ; then mpdAlbum="Unknown Album"; fi
+        if [ "$mpdTitle" == "" ] ; then mpdTitle="Unknown Title"; fi
+        mpdAlbum=$(echo "$mpdAlbum" | sed -e 's/&/&amp;/')
+        mpdTitle=$(echo "$mpdTitle" | sed -e 's/&/&amp;/')
+        mpdArtist=$(echo "$mpdArtist" | sed -e 's/&/&amp;/')
+        [[ "${#mpdArtist}" -gt "25" ]] && mpdArtist=$(echo "${mpdArtist:0:25}...")
+        [[ "${#mpdTitle}" -gt "25" ]] && mpdTitle=$(echo "${mpdTitle:0:25}...")
+        [[ "${#mpdAlbum}" -gt "25" ]] && mpdAlbum=$(echo "${mpdAlbum:0:25}...")
+        coverArtPath=$musicDir/`dirname "$mpdFile"`/cover.jpg
+        if [ -f "$coverArtPath" ]; then
+            cp "$coverArtPath" $tmpCover;
+            mogrify -resize 120x120! $tmpCover;
+            notify-send -i "${tmpCover}" "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
+        else
+            notify-send "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
+        fi
+    fi
+}

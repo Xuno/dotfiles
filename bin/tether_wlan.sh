@@ -6,8 +6,6 @@ rc.d start hostapd
 ifconfig wlan1 192.168.233.1
 rc.d start dnsmasq
 echo 1 >/proc/sys/net/ipv4/ip_forward
-iptables -F
-iptables -t nat -F
 iptables -A INPUT -i wlan1 -j ACCEPT
 iptables -A FORWARD -i wlan1 -j ACCEPT
 iptables -A OUTPUT -o wlan1 -j ACCEPT

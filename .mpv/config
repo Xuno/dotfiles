@@ -1,6 +1,5 @@
 subcp=enca:zh:unicode
 autosub-match=fuzzy
-vf-add=screenshot
 af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
 sws=9 #lanczos
@@ -8,3 +7,5 @@ vo=xv,
 osd-color='#88888888'
 osd-border-size=0
 screenshot-format=png
+screenshot-png-compression=9
+screenshot-template=%F.%04n-%P

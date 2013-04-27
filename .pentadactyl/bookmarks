@@ -22,6 +22,7 @@ silent bma -k=hoogle http://www.haskell.org/hoogle/?hoogle=%s
 " Wikipedia
 silent bma -k=wiki http://en.wikipedia.org/w/index.php?search=%s
 silent bma -k=wikizh http://zh.wikipedia.org/w/index.php?search=%s
+silent bma -k=wikijp http://jp.wikipedia.org/w/index.php?search=%s
 
 " WolframAlpha
 silent bma -k=walpha http://www.wolframalpha.com/input/?i=%s

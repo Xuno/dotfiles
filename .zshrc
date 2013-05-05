@@ -17,6 +17,14 @@ done
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+for keycode in '[' '0'; do
+    bindkey "^[${keycode}A" history-substring-search-up
+    bindkey "^[${keycode}B" history-substring-search-down
+done
+unset keycode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
 source $HOME/.zsh/zsh-powerline-theme/powerline.zsh-theme
 
 fpath=($HOME/.zsh/zsh-completions $fpath)

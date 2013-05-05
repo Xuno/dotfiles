@@ -8,4 +8,4 @@ osd-color='#88888888'
 osd-border-size=0
 screenshot-format=png
 screenshot-png-compression=9
-screenshot-template=%F.%04n-%P
+screenshot-template=%F-%P

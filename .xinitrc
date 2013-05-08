@@ -2,7 +2,6 @@
 
 xrdb -load ~/.Xdefaults
 xset +fp ~/.fonts
-xset +fp ~/.fonts/ctrld
 xset +fp /usr/share/fonts/local
 xset fp rehash
 xset -b

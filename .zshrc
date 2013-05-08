@@ -25,7 +25,7 @@ unset keycode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-source $HOME/.zsh/zsh-powerline-theme/powerline.zsh-theme
+source $HOME/.zsh/oh-my-zsh/themes/dst.zsh-theme
 
 fpath=($HOME/.zsh/zsh-completions $fpath)
 

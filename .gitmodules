@@ -97,6 +97,3 @@
 [submodule ".ls_colors"]
 	path = .ls_colors
 	url = git://github.com/trapd00r/LS_COLORS.git
-[submodule ".zsh/zsh-powerline-theme"]
-	path = .zsh/zsh-powerline-theme
-	url = git://github.com/bjin/oh-my-zsh-powerline-theme.git

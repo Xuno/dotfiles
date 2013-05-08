@@ -31,9 +31,6 @@
 [submodule ".vim/bundle/colors-badwolf"]
 	path = .vim/bundle/colors-badwolf
 	url = git://github.com/sjl/badwolf.git
-[submodule ".vim/bundle/powerline"]
-	path = .vim/bundle/powerline
-	url = git://github.com/Lokaltog/vim-powerline.git
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
@@ -97,3 +94,9 @@
 [submodule ".ls_colors"]
 	path = .ls_colors
 	url = git://github.com/trapd00r/LS_COLORS.git
+[submodule "powerline"]
+	path = powerline
+	url = git://github.com/Lokaltog/powerline.git
+[submodule ".fonts/powerline-fonts"]
+	path = .fonts/powerline-fonts
+	url = git://github.com/Lokaltog/powerline-fonts.git

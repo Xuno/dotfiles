@@ -4,7 +4,7 @@ if [ "`whoami`" != "root" ]; then
 fi
 rc.d start hostapd
 ifconfig wlan1 192.168.233.1
-rc.d start dnsmasq
+systemctl start dnsmasq
 echo 1 >/proc/sys/net/ipv4/ip_forward
 iptables -A INPUT -i wlan1 -j ACCEPT
 iptables -A FORWARD -i wlan1 -j ACCEPT

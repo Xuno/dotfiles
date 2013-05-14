@@ -2,7 +2,7 @@ subcp=enca:zh:unicode
 autosub-match=fuzzy
 af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
-vo=opengl:lscale=bicubic_fast:dither-depth=auto:pbo:fbo-format=rgb10,
+vo=opengl,xv,
 osd-color='#88888888'
 osd-border-size=0
 screenshot-format=png
@@ -10,19 +10,19 @@ screenshot-png-compression=9
 screenshot-template=%F-%P
 alang=jpn,jp,eng,en
 
-[faster]
+[fast]
 vo=xv,
 
-[fast]
-vo=opengl,
-
 [slow]
-vo=opengl-hq,
+vo=opengl:lscale=bicubic_fast:dither-depth=auto:pbo:fbo-format=rgb10,
 
 [slower]
-vo=opengl-hq:lscale=spline16,
+vo=opengl-hq,
 
 [veryslow]
+vo=opengl-hq:lscale=spline16,
+
+[placebo]
 vo=opengl-hq:lscale=spline36,
 
 [dac]

@@ -2,7 +2,6 @@ subcp=enca:zh:unicode
 autosub-match=fuzzy
 af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
-sws=9 #lanczos
 vo=xv,
 osd-color='#88888888'
 osd-border-size=0
@@ -10,3 +9,23 @@ screenshot-format=png
 screenshot-png-compression=9
 screenshot-template=%F-%P
 alang=jpn,jp,eng,en
+
+[dac]
+profile-desc="output to USB DAC"
+ao=alsa:device=hw=1.0
+format=s32le
+
+[ivtc]
+profile-desc="enable pullup IVTC filter"
+vf-add=pullup
+hr-seek=yes
+
+[sws.lanczos]
+profile-desc="enable lanczos SWS filter"
+vo=x11
+sws=9
+
+[sws.spline]
+profile-desc="enable spline SWS filter"
+vo=x11
+sws=10

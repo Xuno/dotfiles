@@ -2,13 +2,28 @@ subcp=enca:zh:unicode
 autosub-match=fuzzy
 af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
-vo=xv,
+vo=opengl:lscale=bicubic_fast:dither-depth=auto:pbo:fbo-format=rgb10,
 osd-color='#88888888'
 osd-border-size=0
 screenshot-format=png
 screenshot-png-compression=9
 screenshot-template=%F-%P
 alang=jpn,jp,eng,en
+
+[faster]
+vo=xv,
+
+[fast]
+vo=opengl,
+
+[slow]
+vo=opengl-hq,
+
+[slower]
+vo=opengl-hq:lscale=spline16,
+
+[veryslow]
+vo=opengl-hq:lscale=spline36,
 
 [dac]
 profile-desc="output to USB DAC"

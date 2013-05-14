@@ -73,10 +73,23 @@ silent bma -k=codeforces http://codeforces.com/
 silent bma -k=euler https://projecteuler.net/problems
 " }}}
 
-" {{{ Other
+" {{{ Anime
 silent bma -k=bgm http://bgm.tv/
+silent bma -k=u2 https://u2.dmhy.org/torrents.php
+silent bma -k=baka http://bakabt.me/browse.php
+silent bma -k=nyaa http://www.nyaa.eu/
+silent bma -k=mal http://myanimelist.net/panel.php
+silent bma -k=animebytes https://animebytes.tv/torrents.php
 silent bma -k=bili http://www.bilibili.tv/
+" }}}
+
+" {{{ Music
+silent bma -k=lastfm http://www.last.fm/user/bjin
+silent bma -k=whatcd https://what.cd/torrents.php
+silent bma -k=jpopsuki http://jpopsuki.eu/torrents.php
+" }}}
+
+" {{{ Other
 silent bma -k=gitit http://localhost:5001/
 silent bma -k=mb http://musicbrainz.org/
-silent bma -k=mal http://myanimelist.net/panel.php
 " }}}

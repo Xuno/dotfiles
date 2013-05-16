@@ -32,7 +32,7 @@ format=s32le
 
 [ivtc]
 profile-desc="enable pullup IVTC filter"
-vf-add=pullup
+vf-pre=pullup=mp=1
 hr-seek=yes
 
 [sws.lanczos]

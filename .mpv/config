@@ -8,7 +8,7 @@ osd-border-size=0
 screenshot-format=png
 screenshot-png-compression=9
 screenshot-template=%F-%P
-alang=jpn,jp,eng,en
+alang=jpn,ja,jp,eng,en
 no-ass-vsfilter-aspect-compat
 
 [fast]

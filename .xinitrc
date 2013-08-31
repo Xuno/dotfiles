@@ -21,8 +21,8 @@ case $1 in
         ;;
     *)
         nitrogen --restore &
-        killall xcompmgr
-        xcompmgr &
+        killall compton
+        compton --vsync opengl &
         xscreensaver &
         exec xmonad
         ;;

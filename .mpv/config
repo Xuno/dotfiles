@@ -28,7 +28,7 @@ vo=opengl-hq:lscale=spline36,
 
 [dac]
 profile-desc="output to USB DAC"
-ao=alsa:device=hw=1.0
+ao=alsa:device=hw:1,0
 format=s32le
 
 [ivtc]

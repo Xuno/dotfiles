@@ -232,7 +232,7 @@ instance NFData MPD.State where
 
 safeWrapper :: NFData a => IO a -> IO (Maybe a)
 safeWrapper io = (io >>= \r -> r `deepseq` return (Just r)) `E.catch`
-    (\e -> hPrint stderr (e :: E.SomeException) >> return Nothing)
+    (\e -> print (e :: E.SomeException) >> return Nothing)
 
 printWrapper :: (a -> DString) -> Maybe a -> DString
 printWrapper _ Nothing  = str ""

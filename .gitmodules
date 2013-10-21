@@ -94,9 +94,6 @@
 [submodule ".ls_colors"]
 	path = .ls_colors
 	url = git://github.com/trapd00r/LS_COLORS.git
-[submodule "powerline"]
-	path = powerline
-	url = git://github.com/Lokaltog/powerline.git
 [submodule ".fonts/powerline-fonts"]
 	path = .fonts/powerline-fonts
 	url = git://github.com/Lokaltog/powerline-fonts.git

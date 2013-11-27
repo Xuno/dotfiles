@@ -11,7 +11,7 @@ set textwidth=78
 set formatoptions=croqB
 
 autocmd FileType pandoc,text setlocal formatoptions+=t
-autocmd FileType c,cpp,java,haskell setlocal formatoptions+=lj
+autocmd FileType c,cpp,java,haskell setlocal formatoptions+=l
 
 autocmd FileType vim setlocal ts=2 sts=2 sw=2
 autocmd FileType haskell setlocal sts=2

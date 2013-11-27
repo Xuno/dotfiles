@@ -10,6 +10,7 @@ screenshot-png-compression=9
 screenshot-template=%F-%P
 alang=jpn,ja,jp,eng,en
 no-ass-vsfilter-aspect-compat
+cache=10240
 
 [fast]
 vo=xv,

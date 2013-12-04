@@ -1,5 +1,5 @@
 
-set switchbuf=useopen,split
+set switchbuf=usetab,split
 
 set hidden
 

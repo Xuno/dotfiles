@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import re
@@ -168,7 +168,7 @@ Test Mode:       {test}
     # make audio cuts
     if options.input != None:
         delay = re.search('DELAY ([-]?\d+)',options.input).group(1) if re.search('DELAY ([-]?\d+)',options.input) != None else '0'
-        if audio[0] == "00:00:00.000000000":
+        if audio[0] == "00:00:00.000":
             includefirst = True
             audio = audio[1:]
         else:

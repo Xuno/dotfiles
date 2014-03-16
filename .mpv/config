@@ -2,7 +2,7 @@ subcp=enca:zh:unicode
 autosub-match=fuzzy
 af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
-vo=opengl,xv,
+vo=opengl-hq,
 osd-color='#88888888'
 osd-border-size=0
 screenshot-format=png
@@ -12,20 +12,23 @@ alang=jpn,ja,jp,eng,en
 no-ass-vsfilter-aspect-compat
 cache=10240
 
-[fast]
+[veryfast]
 vo=xv,
 
-[slow]
+[faster]
+vo=opengl,xv,
+
+[fast]
 vo=opengl:lscale=bicubic_fast:dither-depth=auto:pbo:fbo-format=rgb10,
 
-[slower]
-vo=opengl-hq,
-
-[veryslow]
+[slow]
 vo=opengl-hq:lscale=spline16,
 
-[placebo]
+[slower]
 vo=opengl-hq:lscale=spline36,
+
+[vaapi]
+vo=vaapi:scaling=hq,
 
 [dac]
 profile-desc="output to USB DAC"
@@ -34,7 +37,7 @@ format=s32le
 
 [ivtc]
 profile-desc="enable pullup IVTC filter"
-vf-pre=pullup=mp=1
+vf-pre=pullup
 hr-seek=yes
 
 [sws.lanczos]

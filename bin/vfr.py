@@ -27,7 +27,7 @@ def main():
                               version='VFR Chapter Creator 0.6.3',
                               usage='%prog [options] infile.avs')
     p.add_option('--label', '-l', action="store", help="Look for a trim() statement only on lines matching LABEL, interpreted as a regular expression. Default: case insensitive trim", dest="label")
-    p.add_option('--input', '-i', action="store", help='Audio file to be cut', dest="input")
+    p.add_option('--input', '-i', action="append", help='Audio file to be cut', dest="input")
     p.add_option('--output', '-o', action="store", help='Cut audio from MKVMerge', dest="output")
     p.add_option('--fps', '-f', action="store", help='Frames per second (for cfr input)', dest="fps")
     p.add_option('--timecodes', '-t', action="store", help='Timecodes file from the vfr video (v1 needs tcConv)', dest="timecodes")
@@ -67,7 +67,9 @@ def main():
         chapType = ''
     
     if options.output == None and options.input != None:
-        options.output = '%s.%s.mka' % (options.input, args[0][:-4])
+        if len(options.input) != 1:
+            p.error("No output specified.");
+        options.output = '%s.%s.mka' % (options.input[0], args[0][:-4])
     
     if options.verbose == True:
         status = """
@@ -83,7 +85,7 @@ Merge/Rem files: {merge}/{remove}
 Verbose:         {verbose}
 Test Mode:       {test}
 """.format(input=args[0],
-            audio=options.input,
+            audio=",".join(options.input),
             label=options.label,
             cutaudio=options.output,
             timecodes=options.timecodes,
@@ -167,14 +169,17 @@ Test Mode:       {test}
     
     # make audio cuts
     if options.input != None:
-        delay = re.search('DELAY ([-]?\d+)',options.input).group(1) if re.search('DELAY ([-]?\d+)',options.input) != None else '0'
+        mkvInput = []
+        for inputfile in options.input:
+            delay = re.search('DELAY ([-]?\d+)',inputfile).group(1) if re.search('DELAY ([-]?\d+)',inputfile) != None else '0'
+            mkvInput.append('--sync 0:%s "%s"' % (delay, inputfile))
         if audio[0] == "00:00:00.000":
             includefirst = True
             audio = audio[1:]
         else:
             includefirst = False
         cuttimes = ','.join(audio)
-        cutCmd = '"%s" -o "%s" --sync 0:%s "%s" --split timecodes:%s %s' % (mkvmerge, options.output + '.split.mka', delay, options.input, cuttimes, quiet)
+        cutCmd = '"%s" -o "%s" %s --split timecodes:%s %s' % (mkvmerge, options.output + '.split.mka', ' '.join(mkvInput), cuttimes, quiet)
         if options.verbose == True:
             print('Cutting: %s\n' % cutCmd)
         if options.test == None:

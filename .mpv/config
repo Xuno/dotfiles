@@ -49,3 +49,9 @@ sws=9
 profile-desc="enable spline SWS filter"
 vo=x11
 sws=10
+
+[verify]
+vo=null
+ao=null:untimed
+untimed
+msglevel=all=info:file=v:statusline=status

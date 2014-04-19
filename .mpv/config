@@ -67,3 +67,7 @@ vo=null
 ao=null:untimed
 untimed
 msglevel=all=info:file=v:statusline=status
+
+[bigcache]
+cache=512000
+cache-min=50

@@ -40,6 +40,18 @@ profile-desc="enable pullup IVTC filter"
 vf-pre=pullup
 hr-seek=yes
 
+[hwdec]
+profile-desc="enable vaapi hardware decoding"
+hwdec=vaapi
+
+[hwdeint]
+profile-desc="enable vaapi hardware deint"
+vf-pre=vavpp:deint=first-field
+
+[hwdeint-bob]
+profile-desc="enable vaapi hardware deint(bob)"
+vf-pre=vavpp:deint=bob
+
 [sws.lanczos]
 profile-desc="enable lanczos SWS filter"
 vo=x11

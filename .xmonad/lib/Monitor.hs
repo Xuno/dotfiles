@@ -37,8 +37,8 @@ putDate :: String -> DString
 putDate x = foldr (+++) (str "") [if ch `elem` "/-:" then fg fgC2 s else s | ch <- x, let s = str [ch]]
 
 getVolume :: IO (Integer, Integer, Integer, Bool)
-getVolume = do
-    Just control <- getControlByName "default" "Master"
+getVolume = withMixer "default" $ \mixer -> do
+    Just control <- getControlByName mixer "Master"
     let Just playbackVolume = playback $ volume control
         Just playbackSwitch = playback $ switch control
     (minv, maxv) <- getRange playbackVolume

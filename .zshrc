@@ -27,6 +27,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 source $HOME/.zsh/oh-my-zsh/themes/dst.zsh-theme
 
+if [[ -d "/usr/share/zsh/vendor-completions" ]]; then
+    fpath=(/usr/share/zsh/vendor-completions $fpath)
+fi
 fpath=($HOME/.zsh/zsh-completions $fpath)
 
 autoload -U compinit

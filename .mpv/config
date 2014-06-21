@@ -1,5 +1,5 @@
-subcp=enca:zh:unicode
-autosub-match=fuzzy
+sub-codepage=enca:zh:unicode
+sub-auto=fuzzy
 af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
 vo=opengl-hq,
@@ -10,7 +10,6 @@ screenshot-png-compression=9
 screenshot-template=%F-%P
 alang=jpn,ja,jp,eng,en
 no-ass-vsfilter-aspect-compat
-cache=10240
 
 [veryfast]
 vo=xv,
@@ -22,10 +21,10 @@ vo=opengl,xv,
 vo=opengl:lscale=bicubic_fast:dither-depth=auto:pbo:fbo-format=rgb10,
 
 [slow]
-vo=opengl-hq:lscale=spline16,
+vo=opengl-hq:lscale=spline16:no-scale-sep,
 
 [slower]
-vo=opengl-hq:lscale=spline36,
+vo=opengl-hq:lscale=spline36:no-scale-sep,
 
 [vaapi]
 vo=vaapi:scaling=hq,
@@ -33,7 +32,7 @@ vo=vaapi:scaling=hq,
 [dac]
 profile-desc="output to USB DAC"
 ao=alsa:device=[hw:1,0]
-format=s32le
+audio-format=s32le
 
 [ivtc]
 profile-desc="enable pullup IVTC filter"
@@ -66,8 +65,22 @@ sws=10
 vo=null
 ao=null:untimed
 untimed
-msglevel=all=info:file=v:statusline=status
+msg-level=all=info:file=v:statusline=status
 
 [bigcache]
 cache=512000
-cache-min=50
+
+[upscale]
+vf-add=vapoursynth=/home/bjin/.mpv/upscale.py
+
+[fm-bff]
+vf-pre=lavfi="fieldmatch=order=bff"
+
+[fm-tff]
+vf-pre=lavfi="fieldmatch=order=tff"
+
+[yadif]
+vf-pre=yadif
+
+[yadif-bob]
+vf-pre=yadif:field

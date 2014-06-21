@@ -26,5 +26,4 @@ Required Binary
 TODO
 ----
 
-* try emacs, mutt, uzbl, darcs
-* try nix/nixos
+* Use clang-format clang-complete properly

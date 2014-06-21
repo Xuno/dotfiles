@@ -28,3 +28,4 @@ TODO
 
 * Use clang-format clang-complete properly
 * Use UltiSnips heavily
+* Rewrite xmonad config files

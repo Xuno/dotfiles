@@ -1,14 +1,19 @@
 #!/usr/bin/env zsh
 
-OHMYZSH=$HOME/.zsh/oh-my-zsh
+export ZSH=$HOME/.zsh/oh-my-zsh
 
-for lib ($OHMYZSH/lib/*.zsh); do
-    source $lib
-done
+fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
-for plugin in archlinux extract vi-mode; do
-    source $OHMYZSH/plugins/$plugin/$plugin.plugin.zsh
-done
+fpath=($HOME/.zsh/custom-completions $fpath)
+
+plugins=(archlinux extract vi-mode git)
+
+# grep -Ril \? . | xargs grep -RilE "(git|branch)" | wc -l
+ZSH_THEMES=(simonoff dst dieter)
+ZSH_THEME=$ZSH_THEMES[$RANDOM%$#ZSH_THEMES+1]
+# echo Loading $ZSH_THEME
+
+source $ZSH/oh-my-zsh.sh
 
 for conf ($HOME/.zsh/*.zsh); do
     source $conf
@@ -25,10 +30,3 @@ unset keycode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-source $HOME/.zsh/oh-my-zsh/themes/dst.zsh-theme
-
-fpath=($HOME/.zsh/custom-completions $fpath)
-fpath=($HOME/.zsh/zsh-completions/src $fpath)
-
-autoload -U compinit
-compinit -i

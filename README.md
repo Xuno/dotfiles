@@ -28,4 +28,5 @@ TODO
 
 * Use clang-format clang-complete properly
 * Use UltiSnips heavily
+* Try syntastic plugin for vim
 * Rewrite xmonad config files

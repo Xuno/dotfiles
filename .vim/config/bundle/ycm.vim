@@ -8,15 +8,10 @@ endif
 
 let g:ycm_always_populate_location_list = 1
 let g:ycm_key_invoke_completion = '<C-L>'
-let g:ycm_semantic_triggers =  {
-  \   'c' : ['->', '.'],
-  \   'objc' : ['->', '.'],
-  \   'ocaml' : ['.', '#'],
-  \   'cpp,objcpp' : ['->', '.', '::'],
-  \   'perl' : ['->'],
-  \   'php' : ['->', '::'],
-  \   'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go,haskell' : ['.'],
-  \   'ruby' : ['.', '::'],
-  \   'lua' : ['.', ':'],
-  \   'erlang' : [':'],
-  \ }
+let g:ycm_key_list_select_completion = ['<C-N>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-P>', '<Up>']
+let g:ycm_semantic_triggers = {}
+let g:ycm_semantic_triggers.haskell = ['.']
+let g:ycm_semantic_triggers.cpp = ['.', '::', '->']
+let g:ycm_semantic_triggers.c = ['.', '->']
+let g:ycm_semantic_triggers.java = ['.']

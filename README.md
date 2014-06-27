@@ -4,7 +4,8 @@ Here is my configure files, use `ln -s` to put them under `$HOME`
 Install Script
 --------------
 
-* `make build` : build binary for `vim-proc` plugin and `ibus-disable`
+* `make build` : build binaries for vim plugins like `vim-proc` and
+  `YouCompleteMe`
 * `make restore`: revert-back git submodules
 * `make fetch`: fetch git submodules
 * `make update`: update git submodules to HEAD of fetched content
@@ -26,7 +27,6 @@ Required Binary
 TODO
 ----
 
-* Use clang-format clang-complete properly
 * Use UltiSnips heavily
 * Try syntastic plugin for vim
 * Remove unneeded submodules

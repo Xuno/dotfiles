@@ -88,3 +88,6 @@
 [submodule ".vim/bundle/airline"]
 	path = .vim/bundle/airline
 	url = git://github.com/bling/vim-airline.git
+[submodule ".vim/bundle/ycm"]
+	path = .vim/bundle/ycm
+	url = git://github.com/Valloric/YouCompleteMe.git

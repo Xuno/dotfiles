@@ -195,8 +195,8 @@ Basics
 
 ### Quick Fixes
 
-* `Q` : current error
 * `[q` `]q`: prev/next error
+* `{Q` `}Q`: prev/next location list
 * `<L>q` `<L>Q`: open/close quickfix window
 * `[Q` `]Q`: first/last quickfix window
 * `<L>m` `<L>M`: make shortcut

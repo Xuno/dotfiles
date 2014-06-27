@@ -31,3 +31,4 @@ TODO
 * Try syntastic plugin for vim
 * Remove unneeded submodules
 * Rewrite xmonad config files
+* Write blazing fast update-tags

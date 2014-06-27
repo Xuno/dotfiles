@@ -49,9 +49,6 @@
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
-[submodule ".vim/bundle/clang-complete"]
-	path = .vim/bundle/clang-complete
-	url = git://github.com/Rip-Rip/clang_complete.git
 [submodule ".vim/bundle/vimproc"]
 	path = .vim/bundle/vimproc
 	url = git://github.com/Shougo/vimproc.git
@@ -82,15 +79,6 @@
 [submodule ".vim/bundle/gitv"]
 	path = .vim/bundle/gitv
 	url = git://github.com/gregsexton/gitv.git
-[submodule ".vim/bundle/vimux"]
-	path = .vim/bundle/vimux
-	url = git://github.com/benmills/vimux.git
-[submodule ".vim/ftbundle/java/javacomplete"]
-	path = .vim/ftbundle/java/javacomplete
-	url = git://github.com/vim-scripts/javacomplete.git
-[submodule ".vim/bundle/ack"]
-	path = .vim/bundle/ack
-	url = git://github.com/mileszs/ack.vim.git
 [submodule ".ls_colors"]
 	path = .ls_colors
 	url = git://github.com/trapd00r/LS_COLORS.git

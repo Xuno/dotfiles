@@ -15,8 +15,8 @@ Required Binary
 * [dmenu](http://tools.suckless.org/dmenu/) [dzen](https://sites.google.com/site/gotmor/dzen) and 
   [yeganesh](http://dmwit.com/yeganesh/) for xmonad
 * [xclip](http://sourceforge.net/projects/xclip/) and [wmctrl](http://tomas.styblo.name/wmctrl/) for urxvt plugin
-* [ctags](http://ctags.sourceforge.net/) [hasktags](https://github.com/chrisdone/hasktags) and 
-  [lushtags](https://github.com/bitc/lushtags) for tagbar plugin and tags file generation.
+* [ctags](http://ctags.sourceforge.net/) and [hasktags](https://github.com/chrisdone/hasktags)
+  for tagbar plugin and tags file generation.
 * [clang](http://clang.llvm.org/) for C/C++ omnicomplete and syntax check
 * [ghc-mod](http://www.mew.org/~kazu/proj/ghc-mod/en/) for Haskell omnicomplete & syntax check
 * [mpdnotify](http://git.silverirc.com/cgit.cgi/mpd-libnotify) and

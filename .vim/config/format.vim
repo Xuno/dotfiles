@@ -13,6 +13,7 @@ set formatoptions=croqB
 autocmd FileType pandoc,text setlocal formatoptions+=t
 autocmd FileType c,cpp,java,haskell setlocal formatoptions+=l
 
+autocmd FileType c,cpp setlocal formatoptions+=l ts=2 sts=2 sw=2 cino=g1h1+4
 autocmd FileType vim setlocal ts=2 sts=2 sw=2
 autocmd FileType haskell setlocal sts=2
 autocmd FileType make,snippets setlocal noet

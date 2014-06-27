@@ -1,0 +1,12 @@
+---
+BasedOnStyle:  Chromium
+BreakBeforeBraces: Linux
+PointerBindsToType: false
+
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortBlocksOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+...
+

@@ -8,5 +8,5 @@ if filereadable("out/Debug/build.ninja")
   if !filereadable(g:chromium_compdb)
     execute "!".g:chromium_build_compdb_cmd
   endif
-  set makeprg=ninja\ -C\ out/Debug ts=2 sts=2 sw=2 cino=g1h1+4
+  set makeprg=ninja\ -C\ out/Debug
 endif

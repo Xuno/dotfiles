@@ -1,11 +1,10 @@
 #!/usr/bin/env zsh
 
-source $HOME/.profile
+if [ -e $HOME/.default-profile ]; then
+  source $HOME/.default-profile
+fi
 
-export EDITOR="vim"
-export BROWSER="firefox"
+if [ -e $HOME/.profile ]; then
+  source $HOME/.profile
+fi
 
-export AWT_TOOLKIT=MToolkit
-export _JAVA_AWT_WM_NONREPARENTING=1
-
-export CXXFLAGS="-Wall -Wno-sign-compare -Wno-parentheses"

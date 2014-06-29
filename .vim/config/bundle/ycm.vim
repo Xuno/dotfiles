@@ -15,3 +15,5 @@ let g:ycm_semantic_triggers.haskell = ['.']
 let g:ycm_semantic_triggers.cpp = ['.', '::', '->']
 let g:ycm_semantic_triggers.c = ['.', '->']
 let g:ycm_semantic_triggers.java = ['.']
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '--'

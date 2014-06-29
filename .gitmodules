@@ -91,3 +91,6 @@
 [submodule ".vim/bundle/ycm"]
 	path = .vim/bundle/ycm
 	url = git://github.com/Valloric/YouCompleteMe.git
+[submodule ".vim/default-snippets"]
+	path = .vim/default-snippets
+	url = git://github.com/honza/vim-snippets.git

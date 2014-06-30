@@ -1,10 +1,10 @@
 
-if [ -e $HOME/.default-profile ]; then
-  source $HOME/.default-profile
-fi
-
 if [ -e $HOME/.profile ]; then
   source $HOME/.profile
+fi
+
+if [ -e $HOME/.local-profile ]; then
+  source $HOME/.local-profile
 fi
 
 PS1='`a=$?;if [ $a -ne 0 ]; then a="  "$a; echo -ne "\[\e[s\e[1A\e[$((COLUMNS-2))G\e[31m\e[1;41m${a:(-3)}\e[u\]\[\e[0m\e[7m\e[2m\]"; fi`\[\e[1;32m\]\u@\h:\[\e[0m\e[1;34m\]\W\[\e[1;34m\]\$ \[\e[0m\]'

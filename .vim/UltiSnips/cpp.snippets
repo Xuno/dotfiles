@@ -1,0 +1,28 @@
+
+snippet guard "header guard (CR)" b
+#ifndef ${1:`!p snip.rv=re.sub('[^a-zA-Z]','_',path.upper()+"_");`}
+#define $1
+
+${0}
+
+#endif  // $1
+endsnippet
+
+snippet names "namespace definition (CR)" b
+namespace${1:} {
+
+${0}
+
+}  // namespace$1
+endsnippet
+
+snippet inc "#include header (CR)"
+#include "${1}"
+$0
+endsnippet
+
+snippet incl "#include local header (CR)"
+#include "${1:`!p snip.rv=re.sub('\.[^.]+$','.h',path)`}"
+$0
+endsnippet
+

@@ -22,6 +22,7 @@ import           XMonad.Hooks.FadeInactive
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers        hiding (pid)
 import           XMonad.Hooks.SetWMName
+import           XMonad.Hooks.UrgencyHook
 import           XMonad.Layout.Grid
 import           XMonad.Layout.NoBorders
 import qualified XMonad.StackSet                   as W
@@ -63,7 +64,7 @@ main = do
         hputs s = forM_ hrs $ \hr -> hPutStrLn hr (utf8Encode s) >> hFlush hr
     pid <- forkProcess (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
     threadDelay delay
-    xmonad (myConfig (map fst screens, dzens, pid))
+    xmonad $ withUrgencyHook NoUrgencyHook $ myConfig (map fst screens, dzens, pid)
     killP pid
 
 barHeight = 16

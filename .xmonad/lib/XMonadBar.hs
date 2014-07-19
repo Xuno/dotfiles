@@ -110,11 +110,11 @@ xmonadBarPrinter uid (_, h) = printUnderline +++ ((printWS +++ str " ") +=+ (pri
             isF name = or [f | (name', _, _, _, f) <- wsp, name == name']
             isC name = name == cur
             ppWS :: String -> DString
-            ppWS name | isU name           = fg C.red ds
-                      | isC name && multiS = bg bgC2 $ fg C.snow ds
+            ppWS name | isC name && multiS = bg bgC2 $ fg C.snow ds
                       | otherwise          = ds
               where
-                ds | isF name  = fg C.red (str "[") +++ str name +++ fg C.red (str "]")
+                ds | isU name  = fg C.red (str "***" +++ str name +++ str "***")
+                   | isF name  = fg C.red (str "[") +++ str name +++ fg C.red (str "]")
                    | otherwise = str (" " ++ name ++ " ")
     printLayout :: Printer XMonadBarInfo
     printLayout = useFont symbolFont +++ ignoreBg False (bg fgC $ fg bgC $ simple' printer)

@@ -43,16 +43,16 @@ urxvt.keysym.S-F1: command: \
     \033]713;xft:CtrlD:style=Bold:pixelsize=10\007
 
 urxvt.keysym.S-F4: command: \
-    \033]710;xft:MenloForPowerline:regular:pixelsize=16\007 \
-    \033]711;xft:MenloForPowerline:bold:pixelsize=16\007 \
-    \033]712;xft:MenloForPowerline:italic:pixelsize=16\007 \
-    \033]713;xft:MenloForPowerline:bold:italic:pixelsize=16\007
+    \033]710;xft:Source Code Pro for Powerline:pixelsize=16\007 \
+    \033]711;xft:Source Code Pro for Powerline:style=Semibold:pixelsize=16\007 \
+    \033]712;xft:Source Code Pro for Powerline:italic:pixelsize=16\007 \
+    \033]713;xft:Source Code Pro for Powerline:style=Semibold:italic:pixelsize=16\007
 
 urxvt.keysym.S-F5: command: \
-    \033]710;xft:Anonymous Pro for Powerline:style=Regular:pixelsize=16\007 \
-    \033]711;xft:Anonymous Pro for Powerline:style=Bold:pixelsize=16\007 \
-    \033]712;xft:Anonymous Pro for Powerline:style=Italic:pixelsize=16\007 \
-    \033]713;xft:Anonymous Pro for Powerline:style=Bold Italic:pixelsize=16\007
+    \033]710;xft:Anonymice Powerline:style=Regular:pixelsize=16\007 \
+    \033]711;xft:Anonymice Powerline:style=Bold:pixelsize=16\007 \
+    \033]712;xft:Anonymice Powerline:style=Italic:pixelsize=16\007 \
+    \033]713;xft:Anonymice Powerline:style=Bold Italic:pixelsize=16\007
 
 *background: #000000
 *foreground: #ffffff

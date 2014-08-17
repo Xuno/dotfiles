@@ -11,6 +11,7 @@ screenshot-template=%F-%P
 alang=jpn,ja,jp,eng,en
 ass-vsfilter-aspect-compat=no
 demuxer-thread=yes
+ass-use-margins
 
 [veryfast]
 vo=xv,
@@ -78,7 +79,7 @@ vf-add=vapoursynth=/home/bjin/.mpv/deband.py
 
 
 [ivtc]
-vf-pre=lavfi="fieldmatch=field=top:combpel=40:cthresh=6,yadif=mode=send_frame_nospatial:deint=interlaced:parity=tff,fps=30000/1001,decimate,dejudder"
+vf-pre=lavfi="fieldmatch=field=top:combpel=50:cthresh=6,yadif=mode=send_frame_nospatial:deint=interlaced:parity=tff,fps=30000/1001,decimate"
 
 [sharpen]
 vf-add=lavfi="smartblur=ls=-0.5:cs=-1"

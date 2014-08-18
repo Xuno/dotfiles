@@ -32,7 +32,7 @@ profile-desc="enable pullup IVTC filter"
 vf-pre=pullup
 
 [hwdec]
-profile-desc="enable vaapi hardware decoding"
+profile-desc="enable hardware decoding"
 hwdec=auto
 
 [hwdeint]

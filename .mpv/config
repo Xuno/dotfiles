@@ -1,17 +1,18 @@
 sub-codepage=enca:zh:unicode
 sub-auto=fuzzy
-af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
 vo=opengl-hq,xv,
 osd-color='#88888888'
 osd-border-size=0
 screenshot-format=png
 screenshot-png-compression=9
-screenshot-template=%F-%P
+screenshot-template=/tmp/%F-%P
 alang=jpn,ja,jp,eng,en
 ass-vsfilter-aspect-compat=no
-demuxer-thread=yes
+ass-vsfilter-blur-compat=no
+ass-vsfilter-color-compat=no
 ass-use-margins
+audiodrop
 
 [faster]
 vo=xv,
@@ -26,6 +27,11 @@ vo=vaapi:scaling=hq,
 profile-desc="output to USB DAC"
 ao=alsa:device=[hw:1,0]
 audio-format=s32le
+
+[speedy]
+profile-desc="save you a few minutes for (...)"
+af-pre=scaletempo
+speed=1.6
 
 [pullup]
 profile-desc="enable pullup IVTC filter"
@@ -43,21 +49,12 @@ vf-pre=vavpp:deint=first-field
 profile-desc="enable vaapi hardware deint(bob)"
 vf-pre=vavpp:deint=bob
 
-[sws.lanczos]
-profile-desc="enable lanczos SWS filter"
-vo=x11
-sws-scaler=lanczos
-
-[sws.spline]
-profile-desc="enable spline SWS filter"
-vo=x11
-sws-scaler=spline
-
 [verify]
 vo=null
 ao=null:untimed
 untimed
 msg-level=all=info:file=v:statusline=status
+vd-lavc-bitexact
 
 [bigcache]
 cache=512000
@@ -73,3 +70,6 @@ vf-pre=lavfi="fieldmatch=field=top:combpel=50:cthresh=6,yadif=mode=send_frame_no
 
 [sharpen]
 vf-add=lavfi="smartblur=ls=-0.5:cs=-1"
+
+[singlecore]
+vd-lavc-threads=1

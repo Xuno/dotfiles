@@ -10,9 +10,9 @@ ass-vsfilter-color-compat=no
 ass-use-margins
 
 # OSD settings
-osd-border-color='#30000000'
-osd-color='#D0FFFFFF'
-osd-border-size=1
+osd-border-color='#40000000'
+osd-color='#40FFFFFF'
+osd-border-size=2
 
 # Screenshot settings
 screenshot-format=png

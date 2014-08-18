@@ -1,7 +1,7 @@
 sub-codepage=enca:zh:unicode
 sub-auto=fuzzy
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
-vo=opengl-hq,xv,
+vo=opengl-hq:srgb:approx-gamma,xv,
 osd-color='#88888888'
 osd-border-size=0
 screenshot-format=png

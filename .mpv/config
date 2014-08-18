@@ -2,7 +2,7 @@ sub-codepage=enca:zh:unicode
 sub-auto=fuzzy
 af-add=scaletempo
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
-vo=opengl-hq,
+vo=opengl-hq,xv,
 osd-color='#88888888'
 osd-border-size=0
 screenshot-format=png
@@ -13,20 +13,11 @@ ass-vsfilter-aspect-compat=no
 demuxer-thread=yes
 ass-use-margins
 
-[veryfast]
+[faster]
 vo=xv,
 
-[faster]
-vo=opengl,xv,
-
 [fast]
-vo=opengl:lscale=bicubic_fast:dither-depth=auto:pbo:fbo-format=rgb10,
-
-[slow]
-vo=opengl-hq:lscale=spline16:no-scale-sep,
-
-[slower]
-vo=opengl-hq:lscale=spline36:no-scale-sep,
+vo=opengl,xv,
 
 [vaapi]
 vo=vaapi:scaling=hq,
@@ -76,7 +67,6 @@ vf-add=vapoursynth=/home/bjin/.mpv/upscale.py
 
 [deband]
 vf-add=vapoursynth=/home/bjin/.mpv/deband.py
-
 
 [ivtc]
 vf-pre=lavfi="fieldmatch=field=top:combpel=50:cthresh=6,yadif=mode=send_frame_nospatial:deint=interlaced:parity=tff,fps=30000/1001,decimate"

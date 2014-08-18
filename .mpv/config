@@ -51,6 +51,10 @@ vf-pre=pullup
 profile-desc="enable hardware decoding"
 hwdec=auto
 
+[hwdec-copy]
+profile-desc="enable hardware decoding (vaapi-copy)"
+hwdec=vaapi-copy
+
 [hwdeint]
 profile-desc="enable vaapi hardware deint"
 vf-pre=vavpp:deint=first-field

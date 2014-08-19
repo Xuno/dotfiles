@@ -27,7 +27,7 @@ hr-seek-demuxer-offset=0.3
 
 [verbose]
 profile-desc="verbose output"
-msg-level=all=v
+msg-level=all=v:global=status:input=status
 
 [xv]
 profile-desc="xv video output"

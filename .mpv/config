@@ -1,5 +1,5 @@
 # VO settings
-vo=opengl-hq:srgb:approx-gamma,xv,
+vo=opengl-hq:srgb:approx-gamma:scaler-resizes-only,xv,
 
 # Subtitle settings
 sub-codepage=enca:zh:unicode
@@ -111,9 +111,9 @@ vd-lavc-bitexact
 profile-desc="bigcache"
 cache=512000
 
-[spline64]
-profile-desc="spline64 resize to yuv444p16 of my monitor size"
-vf-add=vapoursynth=/home/bjin/.mpv/spline64.vpy
+[upscale]
+profile-desc="spline64(noring) resize to yuv444p16 of my monitor size"
+vf-add=vapoursynth=/home/bjin/.mpv/upscale.vpy
 
 [nnedi3]
 profile-desc="nnedi3 upscale to 2x with center shift corrected, yuv420p8 output"

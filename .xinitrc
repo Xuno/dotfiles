@@ -20,9 +20,9 @@ case $1 in
         exec enlightenment_start
         ;;
     *)
+        killall compton nitrogen xscreensaver
         nitrogen --restore &
-        killall compton
-        compton --vsync opengl &
+        compton --backend glx --vsync opengl-swc --paint-on-overlay --glx-no-stencil &
         xscreensaver &
         exec xmonad
         ;;

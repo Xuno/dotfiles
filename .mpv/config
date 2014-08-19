@@ -60,12 +60,16 @@ profile-desc="enable pullup IVTC filter"
 vf-pre=pullup
 
 [hwdec]
-profile-desc="enable hardware decoding"
+profile-desc="enable hardware decoding (auto)"
 hwdec=auto
 
-[va-copy]
-profile-desc="enable hardware decoding (vaapi-copy)"
-hwdec=vaapi-copy
+[va-hwdec]
+profile-desc="enable hardware decoding (vaapi)"
+hwdec=vaapi-copy # it seems that hwdec=vaapi conflicts with vo=opengl:srgb
+
+[vpd-hwdec]
+profile-desc="enable hardware decoding (vdpau)"
+hwdec=vdpau
 
 [va-deint]
 profile-desc="vaapi deint"

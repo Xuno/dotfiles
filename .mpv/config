@@ -116,8 +116,12 @@ profile-desc="bigcache"
 cache=512000
 
 [upscale]
-profile-desc="spline64(noring) resize to yuv444p16 of my monitor size"
+profile-desc="upscale(yuv444p16 output)"
 vf-add=vapoursynth=/home/bjin/.mpv/upscale.vpy
+
+[upscale420]
+profile-desc="upscale(yuv420p16 output, faster)"
+vf-add=vapoursynth=/home/bjin/.mpv/upscale420.vpy
 
 [nnedi3]
 profile-desc="nnedi3 upscale to 2x with center shift corrected, yuv420p8 output"

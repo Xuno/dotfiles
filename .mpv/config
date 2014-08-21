@@ -57,7 +57,7 @@ speed=1.6
 
 [pullup]
 profile-desc="enable pullup IVTC filter"
-vf-pre=pullup
+vf-add=pullup
 msg-level=vf=v
 
 [hwdec]
@@ -74,12 +74,12 @@ hwdec=vdpau
 
 [va-deint]
 profile-desc="vaapi deint"
-vf-pre=vavpp:deint=first-field
+vf-add=vavpp:deint=first-field
 msg-level=vf=v
 
 [va-deint-bob]
 profile-desc="vaapi deint(bob)"
-vf-pre=vavpp:deint=bob
+vf-add=vavpp:deint=bob
 msg-level=vf=v
 
 [vdp-deint]
@@ -145,9 +145,14 @@ vf-add=vapoursynth=/home/bjin/.mpv/deband.vpy
 msg-level=vf=v
 
 [fm]
-profile-desc="field match"
+profile-desc="field match(vivtc)"
 # decimate introduce delay and unstableness, and my monitor is 60Hz only.
 vf-add=vapoursynth=/home/bjin/.mpv/fm.vpy:6:1
+msg-level=vf=v
+
+[decimate]
+profile-desc="decimate(ffmpeg filter)"
+vf-add=lavfi="fps=30000/1001,decimate"
 msg-level=vf=v
 
 [singlecore]

@@ -18,7 +18,7 @@ clip = video_in
 if clip.width == 720 and clip.height == 480 and (w != clip.width or h != clip.height):
     clip = core.std.CropRel(clip, left=8, right=8)
 
-upscaled = core.fmtc.resample(clip, target_w, target_h, kernel="spline64", csp=vs.YUV444P16)
+upscaled = core.fmtc.resample(clip, target_w, target_h, kernel="spline", taps=6, csp=vs.YUV444P16)
 upscaled_nr = core.fmtc.resample(clip, target_w, target_h, kernel="gauss", a1=100, csp=vs.YUV444P16)
 
 video_out = core.rgvs.Repair(upscaled, upscaled_nr, 1)

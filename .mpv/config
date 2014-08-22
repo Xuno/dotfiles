@@ -128,12 +128,14 @@ cache=512000
 profile-desc="upscale(yuv444p16 output)"
 vf-add=vapoursynth=/home/bjin/.mpv/upscale.vpy
 vf-add=dsize:-1:-1
+video-unscaled
 msg-level=vf=v
 
 [upscale420]
 profile-desc="upscale(yuv420p16 output, faster)"
 vf-add=vapoursynth=/home/bjin/.mpv/upscale420.vpy
 vf-add=dsize:-1:-1
+video-unscaled
 msg-level=vf=v
 
 [nnedi3]

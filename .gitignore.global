@@ -8,3 +8,5 @@ tags
 *.bak
 .netrwhist
 *.orig
+.ycm_extra_conf.py
+.clang-format

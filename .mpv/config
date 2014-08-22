@@ -66,7 +66,7 @@ hwdec=auto
 
 [va-hwdec]
 profile-desc="enable hardware decoding (vaapi)"
-hwdec=vaapi-copy # it seems that hwdec=vaapi conflicts with vo=opengl:srgb
+hwdec=vaapi-copy
 
 [vpd-hwdec]
 profile-desc="enable hardware decoding (vdpau)"
@@ -121,7 +121,7 @@ msg-level=all=info:file=v:statusline=status
 vd-lavc-bitexact
 
 [bigcache]
-profile-desc="bigcache"
+profile-desc="bigcache (mainly for verify)"
 cache=512000
 
 [upscale]
@@ -150,7 +150,6 @@ msg-level=vf=v
 
 [fm]
 profile-desc="field match(vivtc)"
-# decimate introduce delay and unstableness, and my monitor is 60Hz only.
 vf-add=vapoursynth=/home/bjin/.mpv/fm.vpy:6:1
 msg-level=vf=v
 
@@ -159,7 +158,7 @@ profile-desc="field match(vivtc, bottom-field-first)"
 vf-add=vapoursynth=/home/bjin/.mpv/fm-bff.vpy:6:1
 msg-level=vf=v
 
-[decimate]
+[dec]
 profile-desc="decimate(ffmpeg filter)"
 vf-add=lavfi="fps=30000/1001,decimate"
 msg-level=vf=v

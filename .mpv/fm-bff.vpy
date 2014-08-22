@@ -20,7 +20,7 @@ core = vs.get_core()
 
 clip = core.std.Trim(video_in, first=0, length=5000000)
 
-fmed = core.vivtc.VFM(clip.to_yuv420p8(), order=0, blockx=64, cthresh=8, mi=50, micout=False)
+fmed = core.vivtc.VFM(to_yuv420p8(clip), order=0, blockx=64, cthresh=8, mi=50, micout=False)
 cleaned = core.vinverse.Vinverse(fmed)
 
 pped = core.std.FrameEval(fmed, functools.partial(pp_select, origin=fmed, decomb=cleaned), prop_src=fmed)

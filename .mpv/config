@@ -154,7 +154,7 @@ vf-add=vapoursynth=/home/bjin/.mpv/deband.vpy
 msg-level=vf=v
 
 [dither]
-profile-desc="dithering to 8 bit (don't use on opengl vo)"
+profile-desc="dithering to 8 bit (don't use on opengl vo, meaningful for RGB output only)"
 vf-add=vapoursynth=/home/bjin/.mpv/dither.vpy
 msg-level=vf=v
 

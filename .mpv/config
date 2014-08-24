@@ -39,6 +39,7 @@ vo=opengl,xv,
 
 [slow]
 profile-desc="opengl video output(slower)"
+# no-scale-sep is not desired, but implied by no-indirect
 vo=opengl-hq:srgb:approx-gamma:scaler-resizes-only:lscale=spline36:cscale=spline36:no-indirect:no-scale-sep:fancy-downscaling,xv,
 
 [va]

@@ -1,5 +1,5 @@
 # VO settings
-vo=opengl-hq:srgb:approx-gamma:scaler-resizes-only:cscale=bicubic_fast,xv,
+vo=opengl-hq:srgb:approx-gamma:scaler-resizes-only:lscale=spline36:cscale=bicubic_fast:indirect,xv,
 
 # Subtitle settings
 sub-codepage=enca:zh:unicode
@@ -34,8 +34,12 @@ profile-desc="xv video output"
 vo=xv,
 
 [fast]
-profile-desc="fast opengl video output"
+profile-desc="opengl video output(faster)"
 vo=opengl,xv,
+
+[slow]
+profile-desc="opengl video output(slower)"
+vo=opengl-hq:srgb:approx-gamma:scaler-resizes-only:lscale=spline36:cscale=spline36:no-indirect:no-scale-sep:fancy-downscaling,xv,
 
 [va]
 profile-desc="vaapi video output"

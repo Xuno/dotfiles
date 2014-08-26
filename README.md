@@ -27,6 +27,7 @@ Required Binary
 TODO
 ----
 
-* Try syntastic plugin for vim
-* Rewrite xmonad config files
-* Write blazing fast update-tags
+[ ] modify xmodmap, replace Fn(on KBT Pure) with CapsLock
+[ ] Try syntastic plugin for vim
+[ ] Rewrite xmonad config files
+[ ] Write blazing fast update-tags

@@ -7,6 +7,10 @@ xset fp rehash
 xset -b
 xsetroot -cursor_name left_ptr
 
+if [ -s ~/.Xmodmap ]; then
+    xmodmap ~/.Xmodmap
+fi
+
 export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
 export XMODIFIERS="@im=fcitx"

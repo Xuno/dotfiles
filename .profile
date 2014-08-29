@@ -1,6 +1,6 @@
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
-export PATH=$HOME/bin:$HOME/.cabal/bin:$PATH
+export PATH=$HOME/bin:$HOME/.prefix/bin:$HOME/.local/bin:$HOME/.cabal/bin:$PATH
 
 export EDITOR="vim"
 export BROWSER="firefox"

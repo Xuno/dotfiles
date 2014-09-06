@@ -9,7 +9,7 @@ fetch:
 	git submodule foreach 'git fetch origin'
 
 update:
-	git submodule foreach 'git checkout origin/master'
+	git submodule foreach 'git reset --hard origin/master && git submodule sync && git submodule update --init --recursive'
 
 summary:
 	@git submodule summary | sed 's/  </  <<<<<<<<<<<</'

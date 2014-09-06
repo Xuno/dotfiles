@@ -11,10 +11,10 @@ if [ -s ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
 
-export GTK_IM_MODULE=xim
-export QT_IM_MODULE=xim
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
-fcitx
+fcitx -r
 
 case $1 in
     xfce4)

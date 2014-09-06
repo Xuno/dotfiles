@@ -75,9 +75,10 @@ urxvt.keysym.S-F5: command: \
 *color15: #aaaaaa
 
 urxvt.inputMethod: fcitx
-urxvt.preeditType: OverTheSpot
-urxvt.imLocale: en_US.UTF-8
+urxvt.preeditType: OverTheSpot,OnTheSpot,Root
+urxvt.imLocale: zh_CN.UTF-8
 urxvt.imFont: -*-medium-r-*-*-*
+urxvt.iso14755: false
 
 Xft.antialias: true
 Xft.hinting: true

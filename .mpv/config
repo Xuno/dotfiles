@@ -163,6 +163,11 @@ profile-desc="field match(vivtc, bottom-field-first)"
 vf-add=vapoursynth=/home/bjin/.mpv/fm-bff.vpy:6:1
 msg-level=vf=v
 
+[yadif]
+profile-desc="yadif deint"
+vf-add=yadif
+msg-level=vf=v
+
 [dec]
 profile-desc="decimate(ffmpeg filter)"
 vf-add=lavfi="fps=30000/1001,decimate"

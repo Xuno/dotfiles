@@ -122,7 +122,7 @@ profile-desc="verify media files, attempt to detect decoding errors"
 vo=null
 ao=null:untimed
 untimed
-msg-level=all=info:file=v:statusline=status
+msg-level=all=info:file=v:statusline=status:cache=fatal
 vd-lavc-bitexact
 
 [bigcache]

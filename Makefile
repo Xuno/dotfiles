@@ -4,11 +4,13 @@ build: bin/update-tags vim-plugins
 restore:
 	git submodule sync
 	git submodule update --init --recursive
+	git submodule foreach --recursive 'git clean -f -f -d'
 
 fetch:
 	git submodule foreach 'git fetch origin'
 
 update:
+	git submodule foreach --recursive 'git clean -f -f -d'
 	git submodule foreach 'git reset --hard origin/master && git submodule sync && git submodule update --init --recursive'
 
 summary:

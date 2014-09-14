@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source .profile
+
 xrdb -load ~/.Xdefaults
 xset +fp ~/.fonts
 xset +fp /usr/share/fonts/local

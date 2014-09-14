@@ -4,7 +4,7 @@ source ~/.pentadactyl/bookmarks
 colorscheme molokai
 
 set hintkeys="ghfjtydkrusleiawoq"
-set defsearch='ddg'
+set defsearch='g'
 set titlestring='Mozilla Firefox'
 set altwildmode='list:longest'
 set sanitizeitems=cache,downloads,history,offlineapps

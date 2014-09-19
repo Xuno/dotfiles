@@ -7,7 +7,7 @@ nnoremap <silent> <Leader>w :tabnew<CR>
 nnoremap <silent> <Leader>W :tabclose<CR>
 nnoremap <silent> [w :tabprev<CR>
 nnoremap <silent> ]w :tabnext<CR>
-nnoremap <silent> [W :tabfirst<CR>
-nnoremap <silent> ]W :tablast<CR>
+nnoremap <silent> [W :tabmove -1<CR>
+nnoremap <silent> ]W :tabmove +1<CR>
 
 autocmd VimResized * wincmd =

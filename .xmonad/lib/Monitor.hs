@@ -9,7 +9,6 @@ import           System.Locale
 
 import           Control.DeepSeq
 import           Control.Monad
-import qualified Data.ByteString.UTF8 as BS
 import           Data.Char            (isDigit)
 import           Data.IORef
 import           Data.Maybe
@@ -158,18 +157,17 @@ putTemp temp' = symbolFG (str temperature) +++ fgtemp (show' temp) +++ fg fgC2 (
 
     temperature = "\xEEF5"
 
-type MPDInfo = (MPD.State, (Maybe String, Maybe String, Maybe String), (Double, Integer))
+type MPDInfo = (MPD.State, (Maybe String, Maybe String, Maybe String), Maybe (Double, MPD.Seconds))
 
 getMPD :: IO MPDInfo
 getMPD = do
     ret <- MPD.withMPDEx "localhost" 6600 "" $ do
         st <- MPD.status
         song <- MPD.currentSong
-        let get tag s = fmap valueToString $ join $ fmap listToMaybe (MPD.sgGetTag tag s) :: Maybe String
+        let get tag s = fmap MPD.toString $ join $ fmap listToMaybe (MPD.sgGetTag tag s) :: Maybe String
             songTags  = case song of
                 Nothing -> (Nothing, Nothing, Nothing)
                 Just s  -> (get MPD.Artist s, get MPD.Album s, get MPD.Title s)
-            valueToString (MPD.Value bs) = BS.toString bs
         return (MPD.stState st, songTags, MPD.stTime st)
     case ret of
         Left msg -> error $ "monitor: getMPD - " ++ show msg
@@ -186,7 +184,7 @@ putMPD limitLen = inputPrinter printer 0
     printer :: Integer -> Maybe MPDInfo -> (DString, Integer)
     printer offset Nothing                                             = (str "", offset + 1)
     printer offset (Just (MPD.Stopped, _, _))                          = (symbolFG (str music_stopped) +++ str "[off]", offset)
-    printer offset (Just (st, (artist, album, title), (usedT', allT))) =
+    printer offset (Just (st, (artist, album, title), Just (usedT', allT))) =
         (curSong +++ symbolFG state +++ timeInfo, offset + if st == MPD.Playing then 1 else 0)
       where
         state | st == MPD.Playing = str music_play
@@ -220,6 +218,8 @@ putMPD limitLen = inputPrinter printer 0
         rotate s = let pos' = fromIntegral (offset `mod` fromIntegral (length s))
                        (lhs, rhs) = splitAt pos' s
                    in takeByWC limitLen (rhs ++ lhs)
+
+    printer offset _                                                   = (str "<error>", offset + 1)
 
 takeByWC :: Int -> String -> String
 takeByWC _ []                   = []

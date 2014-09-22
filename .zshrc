@@ -13,6 +13,7 @@ ZSH_THEMES=(simonoff dst dieter)
 ZSH_THEME=$ZSH_THEMES[$RANDOM%$#ZSH_THEMES+1]
 # echo Loading $ZSH_THEME
 
+DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 
 for conf ($HOME/.zsh/*.zsh); do

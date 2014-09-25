@@ -53,7 +53,7 @@ vo=vdpau:hqscaling=1,
 [dac]
 profile-desc="output to USB DAC"
 ao=alsa:device=[hw:1,0]
-audio-format=s32le
+audio-format=s32
 
 [speedy]
 profile-desc="save you a few minutes for (...)"

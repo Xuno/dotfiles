@@ -13,6 +13,7 @@ ass-use-margins
 osd-border-color='#40000000'
 osd-color='#40FFFFFF'
 osd-border-size=2
+osd-level=3
 
 # Screenshot settings
 screenshot-format=png

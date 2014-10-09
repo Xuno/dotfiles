@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source .profile
+source ~/.profile
 
 xrdb -load ~/.Xdefaults
 xset +fp ~/.fonts
@@ -18,18 +18,8 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 fcitx -r
 
-case $1 in
-    xfce4)
-        exec startxfce4
-        ;;
-    e17)
-        exec enlightenment_start
-        ;;
-    *)
-        killall compton nitrogen xscreensaver
-        nitrogen --restore &
-        compton --backend glx --vsync opengl-swc --paint-on-overlay --glx-no-stencil --unredir-if-possible -b
-        xscreensaver &
-        exec xmonad
-        ;;
-esac
+killall compton nitrogen xscreensaver
+nitrogen --restore &
+compton --backend glx --vsync opengl-swc --paint-on-overlay --glx-no-stencil --unredir-if-possible -b
+xscreensaver &
+exec xmonad

@@ -131,36 +131,36 @@ cache=512000
 
 [upscale]
 profile-desc="upscale(yuv444p16 output)"
-vf-add=vapoursynth=/home/bjin/.mpv/upscale.vpy
+vf-add=vapoursynth=~~/upscale.vpy
 vf-add=dsize:-1:-1
 video-unscaled
 msg-level=vf=v
 
 [upscale420]
 profile-desc="upscale(yuv420p16 output, faster)"
-vf-add=vapoursynth=/home/bjin/.mpv/upscale420.vpy
+vf-add=vapoursynth=~~/upscale420.vpy
 vf-add=dsize:-1:-1
 video-unscaled
 msg-level=vf=v
 
 [nnedi3]
 profile-desc="nnedi3 upscale to 2x with center shift corrected, yuv420p8 output"
-vf-add=vapoursynth=/home/bjin/.mpv/nnedi3.vpy
+vf-add=vapoursynth=~~/nnedi3.vpy
 msg-level=vf=v
 
 [deband]
 profile-desc="debanding with f3kdb"
-vf-add=vapoursynth=/home/bjin/.mpv/deband.vpy
+vf-add=vapoursynth=~~/deband.vpy
 msg-level=vf=v
 
 [fm]
 profile-desc="field match(vivtc)"
-vf-add=vapoursynth=/home/bjin/.mpv/fm.vpy:6:1
+vf-add=vapoursynth=~~/fm.vpy:6:1
 msg-level=vf=v
 
 [fm-bff]
 profile-desc="field match(vivtc, bottom-field-first)"
-vf-add=vapoursynth=/home/bjin/.mpv/fm-bff.vpy:6:1
+vf-add=vapoursynth=~~/fm-bff.vpy:6:1
 msg-level=vf=v
 
 [yadif]

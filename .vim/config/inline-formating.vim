@@ -6,13 +6,14 @@ augroup inline-formating
 
   " Find the script in ugly way.
   let s:scripts = [
+        \ '/usr/lib/clang-format/clang-format.py',
+        \ '/usr/share/clang/clang-format.py',
         \ getcwd() . '/src/buildtools/clang_format/script/clang-format.py',
         \ getcwd() . '/buildtools/clang_format/script/clang-format.py',
         \ getcwd() . '/../buildtools/clang_format/script/clang-format.py',
         \ getcwd() . '/../../buildtools/clang_format/script/clang-format.py',
         \ getcwd() . '/../../../buildtools/clang_format/script/clang-format.py',
-        \ '/usr/lib/clang-format/clang-format.py',
-        \ '/usr/share/clang/clang-format.py' ]
+        \ ]
 
   for script in s:scripts
     if filereadable(script)

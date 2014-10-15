@@ -16,7 +16,7 @@ def to_yuv420p8(clip):
         return clip
     return core.resize.Bicubic(clip, format=vs.YUV420P8)
 
-core = vs.get_core()
+core = vs.get_core(threads=1)
 
 clip = core.std.Trim(video_in, first=0, length=5000000)
 

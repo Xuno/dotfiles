@@ -18,7 +18,7 @@ summary:
 
 vim-plugins:
 	cd .vim/bundle/vimproc; make -f make_unix.mak
-	cd .vim/bundle/ycm; ./install.sh --clang-completer
+	cd .vim/bundle/ycm; ./install.sh --clang-completer --system-libclang
 
 bin/update-tags: bin/update-tags.hs
 	ghc --make $< -o $@ -O2

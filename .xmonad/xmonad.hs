@@ -62,7 +62,7 @@ main = do
     let dzens   = map fst ret
         hrs     = map snd ret
         hputs s = forM_ hrs $ \hr -> hPutStrLn hr (utf8Encode s) >> hFlush hr
-    pid <- forkProcess (applyForever (putAll 25) (threadDelay delay >> Monitor.getAll ps) hputs)
+    pid <- forkProcess (applyForever (putAll 45) (threadDelay delay >> Monitor.getAll ps) hputs)
     threadDelay delay
     xmonad $ withUrgencyHook NoUrgencyHook $ myConfig (map fst screens, dzens, pid)
     killP pid

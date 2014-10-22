@@ -199,11 +199,11 @@ myKeys phyScreens pid conf = M.fromList $
     multiKeys [(modm2, xK_Right       ), (0, xF86XK_AudioNext       )] "mpc -q next" ++
     multiKeys [(modm2, xK_Up          ), (0, xF86XK_AudioStop       )] "mpc -q stop" ++
     multiKeys [(modm2, xK_Down        ), (0, xF86XK_AudioPlay       )] "mpc -q toggle" ++
-    multiKeys [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("amixer -c 0 sset " ++ dacControlName "0" ++ " 2dB+ unmute") ++
-    multiKeys [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("amixer -c 0 sset " ++ dacControlName "0" ++ " 2dB- unmute") ++
+    multiKeys [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("amixer -c 0 sset " ++ dacControlName "0" ++ " 1dB+ unmute") ++
+    multiKeys [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("amixer -c 0 sset " ++ dacControlName "0" ++ " 1dB- unmute") ++
     multiKeys [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] ("amixer -c 0 sset " ++ dacControlName "0" ++ " toggle") ++
-    multiKey_ [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("amixer -c 1 sset " ++ dacControlName "1" ++ " 2dB+ unmute") ++
-    multiKey_ [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("amixer -c 1 sset " ++ dacControlName "1" ++ " 2dB- unmute") ++
+    multiKey_ [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("amixer -c 1 sset " ++ dacControlName "1" ++ " 1dB+ unmute") ++
+    multiKey_ [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("amixer -c 1 sset " ++ dacControlName "1" ++ " 1dB- unmute") ++
     multiKey_ [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] ("amixer -c 1 sset " ++ dacControlName "1" ++ " toggle") ++
     multiKeys [(modm2, xK_F10         ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
 

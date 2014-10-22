@@ -1,4 +1,3 @@
-
 module Monitor where
 
 import           Data.Char.WCWidth
@@ -35,10 +34,14 @@ getDate = formatTime defaultTimeLocale "%F/%a %H:%M:%S" <$> getZonedTime
 putDate :: String -> DString
 putDate x = foldr (+++) (str "") [if ch `elem` "/-:" then fg fgC2 s else s | ch <- x, let s = str [ch]]
 
-getVolume :: IO (Integer, Integer, Integer, Bool)
-getVolume = withMixer "default" $ \mixer -> do
-    Just control <- getControlByName mixer "Master"
-    let Just playbackVolume = playback $ volume control
+commonControlNames :: [String]
+commonControlNames = ["Master", "PCM", "Speaker", "Headphone"]
+
+getVolume :: String -> IO (Integer, Integer, Integer, Bool)
+getVolume card = withMixer card $ \mixer -> do
+    controlWithNames <- map (\x -> (name x, x)) <$> controls mixer
+    let control = head $ catMaybes $ map (`lookup`controlWithNames) commonControlNames
+        Just playbackVolume = playback $ volume control
         Just playbackSwitch = playback $ switch control
     (minv, maxv) <- getRange playbackVolume
     Just vol   <- getChannel FrontLeft $ value playbackVolume
@@ -236,7 +239,7 @@ safeWrapper io = (io >>= \r -> r `deepseq` return (Just r)) `E.catch`
 
 printWrapper :: (a -> DString) -> Maybe a -> DString
 printWrapper _ Nothing  = str ""
-printWrapper f (Just a) = f a
+printWrapper f (Just a) = str " " +++ f a
 
 getAll ps =
     safeWrapper getMPD ##
@@ -244,14 +247,16 @@ getAll ps =
     safeWrapper getMem ##
     safeWrapper getTemp ##
     safeWrapper getUptime ##
-    safeWrapper getVolume ##
+    safeWrapper (getVolume "hw:0") ##
+    safeWrapper (getVolume "hw:1") ##
     safeWrapper getDate
 
 putAll len =
-    (putMPD len +++ str " ") +++
-    autoPadL 1 (simple (printWrapper putCPULoad) +++ str " ") +++
-    autoPadL 1 (simple (printWrapper putMem) +++ str " ") +++
+    (putMPD len) +++
+    autoPadL 1 (simple (printWrapper putCPULoad)) +++
+    autoPadL 1 (simple (printWrapper putMem)) +++
     autoPadL 1 (simple (printWrapper putTemp)) +++
-    autoPadL 1 (simple (printWrapper putUptime) +++ str " ") +++
-    autoPadL 1 (simple (printWrapper putVolume) +++ str " ") +++
+    autoPadL 1 (simple (printWrapper putUptime)) +++
+    autoPadL 1 (simple (printWrapper putVolume)) +++
+    autoPadL 1 (simple (printWrapper putVolume)) +++
     autoPadL 1 (simple (printWrapper putDate))

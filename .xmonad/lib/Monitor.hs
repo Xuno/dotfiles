@@ -1,3 +1,4 @@
+
 module Monitor where
 
 import           Data.Char.WCWidth
@@ -40,7 +41,7 @@ commonControlNames = ["Master", "PCM", "Speaker", "Headphone"]
 getVolume :: String -> IO (Integer, Integer, Integer, Bool)
 getVolume card = withMixer card $ \mixer -> do
     controlWithNames <- map (\x -> (name x, x)) <$> controls mixer
-    let control = head $ catMaybes $ map (`lookup`controlWithNames) commonControlNames
+    let control = head $ catMaybes (map (`lookup`controlWithNames) commonControlNames) ++ map snd controlWithNames
         Just playbackVolume = playback $ volume control
         Just playbackSwitch = playback $ switch control
     (minv, maxv) <- getRange playbackVolume

@@ -66,7 +66,7 @@ handle_event() {
         [[ "${#mpdArtist}" -gt "25" ]] && mpdArtist=$(echo "${mpdArtist:0:25}...")
         [[ "${#mpdTitle}" -gt "25" ]] && mpdTitle=$(echo "${mpdTitle:0:25}...")
         [[ "${#mpdAlbum}" -gt "25" ]] && mpdAlbum=$(echo "${mpdAlbum:0:25}...")
-        coverArtPath=$musicDir/`dirname "$mpdFile"`/cover.jpg
+        coverArtPath="$musicDir/`dirname \"$mpdFile\"`/cover.jpg"
         if [ -f "$coverArtPath" ]; then
             cp "$coverArtPath" $tmpCover;
             mogrify -resize 120x120! $tmpCover;

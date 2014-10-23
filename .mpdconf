@@ -17,18 +17,17 @@ replaygain_preamp         "-10"
 replaygain_missing_preamp "-10"
 replaygain_limit          "yes"
 
+mixer_type "software"
+
 audio_output {
-    type          "alsa"
-    name          "ALSA output (w/ dmix)"
-    mixer_control "Master"
+    type "alsa"
+    name "ALSA output (w/ dmix)"
 }
 
 audio_output {
-    type          "alsa"
-    name          "ALSA output (w/o dmix)"
-    mixer_device  "hw:0"
-    mixer_control "Master"
-    device        "hw:0,0"
+    type   "alsa"
+    name   "ALSA output (w/o dmix)"
+    device "hw:0,0"
 }
 
 audio_output {
@@ -38,11 +37,9 @@ audio_output {
 }
 
 audio_output {
-    type          "alsa"
-    name          "ALSA output (USB)"
-    device        "hw:1,0"
-    mixer_device  "hw:1"
-    mixer_control "Meridian Clock Selector" # amixer -c 1 scontrols | head -n 1
+    type   "alsa"
+    name   "ALSA output (USB)"
+    device "hw:1,0"
 }
 
 audio_output {

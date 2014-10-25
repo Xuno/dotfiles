@@ -8,8 +8,8 @@ set defsearch='g'
 set titlestring='Mozilla Firefox'
 set altwildmode='list:longest'
 set sanitizeitems=cache,downloads,history,offlineapps
-set nextpattern=\s*下一页|下一张|下页|→\s*,\bNext\b,^>$,^(>>|››|»|More)$,^(>|»),(>|»)$,\bmore\b
-set previouspattern=\s*上一页|上一张|上页|←\s*,\bPrev|previous\b,^<$,^(<<|‹‹|«)$,^(<|«),(<|«)$
+set nextpattern=\s*下一页|下一张|下页|→\s*,\bNext\b,^(>|›)$,^(>>|››|»|More)$,^(>|»),(>|»)$,\bmore\b
+set previouspattern=\s*上一页|上一张|上页|←\s*,\bPrev|previous\b,^(<|‹)$,^(<<|‹‹|«)$,^(<|«),(<|«)$
 
 set passkeys+=duckduckgo.com:jk<CR>
 set passkeys+=twitter.com:jk<CR>.

@@ -25,37 +25,37 @@ audio_output {
 }
 
 audio_output {
-    type   "alsa"
-    name   "ALSA output (w/o dmix)"
+    type "alsa"
+    name "ALSA output (w/o dmix)"
     device "hw:0,0"
 }
 
 audio_output {
-    type   "alsa"
-    name   "ALSA output (S/PDIF)"
+    type "alsa"
+    name "ALSA output (S/PDIF)"
     device "iec958"
 }
 
 audio_output {
-    type   "alsa"
-    name   "ALSA output (USB)"
+    type "alsa"
+    name "ALSA output (USB)"
     device "hw:1,0"
 }
 
 audio_output {
-    type    "fifo"
-    name    "fifo for visualization"
-    path    "/home/bjin/.mpd/mpd.fifo"
+    type "fifo"
+    name "fifo for visualization"
+    path "/home/bjin/.mpd/mpd.fifo"
     enabled "no"
 }
 
 audio_output {
-    type            "httpd"
-    name            "streaming via HTTP"
-    port            "8800"
+    type "httpd"
+    name "streaming via HTTP"
+    port "8800"
     bind_to_address "0.0.0.0"
-    encoder         "lame"
-    bitrate         "320"
-    max_clients     "3"
-    enabled         "no"
+    encoder "lame"
+    bitrate "320"
+    max_clients "3"
+    enabled "no"
 }

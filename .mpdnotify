@@ -69,7 +69,7 @@ handle_event() {
         coverArtPath="$musicDir/`dirname \"$mpdFile\"`/cover.jpg"
         if [ -f "$coverArtPath" ]; then
             cp "$coverArtPath" $tmpCover;
-            mogrify -resize 120x120! $tmpCover;
+            mogrify -thumbnail -resize 64x64\> $tmpCover;
             notify-send -t 3000 -i "${tmpCover}" "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"
         else
             notify-send -t 3000 "${mpdTitle}" "$(echo "${mpdArtist} - ${mpdAlbum}"; )"

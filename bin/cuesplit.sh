@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -o pipefail
+
 # frontend for:            cuetools, shntool, mp3splt
 # optional dependencies:    flac, mac, wavpack, ttaenc
 # v1.3 sen
@@ -29,6 +32,8 @@ ________________________________________
 "
 cd "$DIR"
 TYPE=`ls -t1`
+
+rm -rf split
 
 case $TYPE in
     *.ape*)

@@ -24,6 +24,8 @@ screenshot-template=/tmp/%F-%P
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
 alang=jpn,ja,jp,eng,en
 hr-seek-demuxer-offset=0.3
+no-audio-display
+audio-pitch-correction
 
 [verbose]
 profile-desc="verbose output"

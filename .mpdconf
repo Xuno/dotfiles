@@ -18,11 +18,11 @@ replaygain_preamp         "-10"
 replaygain_missing_preamp "-10"
 replaygain_limit          "yes"
 
-mixer_type "software"
-
 audio_output {
     type "alsa"
     name "ALSA output (w/ dmix)"
+    mixer_type "software"
+
 }
 
 audio_output {
@@ -89,4 +89,5 @@ audio_output {
     bitrate "320"
     max_clients "3"
     enabled "no"
+    mixer_type "software"
 }

@@ -216,8 +216,8 @@ myKeys phyScreens pid conf = M.fromList $
     controlName card = "\"$(amixer -c " ++ card ++ " scontrols | head -n 1 | sed 's/^[^\\x27]*\\x27/\\x27/g')\""
 
     -- dirty shell hack to get main card, prefer second card.
-    fstCard = "$(amixer -c 1 scontrols 1>/dev/null 2>/dev/null && echo 1 || echo 0)"
-    sndCard = "$(amixer -c 1 scontrols 1>/dev/null 2>/dev/null && echo 0 || echo 1)"
+    fstCard = "$(amixer -c 1 scontrols &>/dev/null && echo 1 || echo 0)"
+    sndCard = "$(amixer -c 1 scontrols &>/dev/null && echo 0 || echo 1)"
 
     multiKeys lst action = [(x, spawn action) | x <- lst]
     multiKey_ lst action = [((x .|. shiftMask, y), spawn action) | (x, y) <- lst]

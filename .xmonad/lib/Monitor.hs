@@ -2,22 +2,24 @@
 module Monitor where
 
 import           Data.Char.WCWidth
+import           Data.List
+import           Data.Ord
 import           Data.Time
-import qualified Network.MPD          as MPD
+import qualified Network.MPD         as MPD
 import           Sound.ALSA.Mixer
 import           System.Locale
 
 import           Control.DeepSeq
 import           Control.Monad
-import           Data.Char            (isDigit)
+import           Data.Char           (isDigit)
 import           Data.IORef
 import           Data.Maybe
 import           Data.Ratio
-import           System.IO            (hPrint, stderr)
-import           System.Posix.Files   (fileExist)
+import           System.IO           (hPrint, stderr)
+import           System.Posix.Files  (fileExist)
 
-import           Control.Applicative  ((<$>))
-import qualified Control.Exception    as E
+import           Control.Applicative ((<$>))
+import qualified Control.Exception   as E
 
 import           System.Dzen
 
@@ -40,7 +42,8 @@ commonControlNames = ["Master", "PCM", "Speaker", "Headphone"]
 
 getVolume :: String -> IO (Integer, Integer, Integer, Bool)
 getVolume card = withMixer card $ \mixer -> do
-    controlWithNames <- map (\x -> (name x, x)) <$> controls mixer
+    controlWithNames <- map (\x -> (name x, x)) . sortBy (comparing index) <$> controls mixer
+    print (map fst controlWithNames)
     let control = head $ catMaybes (map (`lookup`controlWithNames) commonControlNames) ++ map snd controlWithNames
         Just playbackVolume = playback $ volume control
         Just playbackSwitch = playback $ switch control

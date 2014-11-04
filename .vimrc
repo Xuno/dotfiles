@@ -2,7 +2,7 @@
 set nocompatible
 
 if has('nvim')
-  runtime! plugin/python_setup.vim
+  runtime! python_setup.vim
 endif
 
 runtime bundle/unbundle/unbundle.vim

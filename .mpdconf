@@ -9,8 +9,8 @@ user                 "bjin"
 port                 "6600"
 restore_paused       "yes"
 samplerate_converter "Best"
-audio_buffer_size    "4096"
-buffer_before_play   "20%"
+audio_buffer_size    "10240"
+buffer_before_play   "30%"
 log_level            "secure"
 
 replaygain                "auto"
@@ -22,7 +22,6 @@ audio_output {
     type "alsa"
     name "ALSA output (w/ dmix)"
     mixer_type "software"
-
 }
 
 audio_output {

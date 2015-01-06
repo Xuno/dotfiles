@@ -44,6 +44,10 @@ profile-desc="opengl video output(slower)"
 # no-scale-sep is not desired, but implied by no-indirect
 vo=opengl-hq:srgb:approx-gamma:scaler-resizes-only:lscale=spline64:cscale=spline64:no-indirect:no-scale-sep:fancy-downscaling,xv,
 
+[smooth]
+profile-desc="smooth-motion for opengl vo"
+vo=opengl-hq:srgb:approx-gamma:scaler-resizes-only:lscale=spline64:cscale=sharpen5:indirect:smoothmotion:smoothmotion-threshold=0.2,xv,
+
 [va]
 profile-desc="vaapi video output"
 vo=vaapi:scaling=hq,

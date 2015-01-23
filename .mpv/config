@@ -36,15 +36,15 @@ profile-desc="xv video output"
 vo=xv,
 
 [fast]
-profile-desc="opengl video output(faster)"
+profile-desc="opengl video output (faster)"
 vo=opengl,
 
 [slow]
-profile-desc="opengl video output(slower)"
+profile-desc="opengl video output (slower)"
 vo=opengl-hq:srgb:scaler-resizes-only:scale=ewa_lanczos:scale-radius=4:scale-antiring=0.6:cscale=spline64:scale-down=spline64:fancy-downscaling:fbo-format=rgba32f,
 
 [smooth]
-profile-desc="opengl video output(w/ smooth motion enabled)"
+profile-desc="opengl video output (w/ smooth motion enabled)"
 vo=opengl-hq:srgb:scaler-resizes-only:scale=spline64:cscale=sharpen5:smoothmotion:smoothmotion-threshold=0.2,
 
 [va]
@@ -125,14 +125,14 @@ profile-desc="bigcache (mainly for verify)"
 cache=512000
 
 [upscale]
-profile-desc="upscale(yuv444p16 output)"
+profile-desc="upscale (yuv444p16 output)"
 vf-add=vapoursynth=~~/upscale.vpy
 vf-add=dsize:-1:-1
 video-unscaled
 msg-level=vf=v
 
 [upscale420]
-profile-desc="upscale(yuv420p16 output, faster)"
+profile-desc="upscale (yuv420p16 output, faster)"
 vf-add=vapoursynth=~~/upscale420.vpy
 vf-add=dsize:-1:-1
 video-unscaled
@@ -149,12 +149,12 @@ vf-add=vapoursynth=~~/deband.vpy
 msg-level=vf=v
 
 [fm]
-profile-desc="field match(vivtc)"
+profile-desc="field match (vivtc)"
 vf-add=vapoursynth=~~/fm.vpy:6:1
 msg-level=vf=v
 
 [fm-bff]
-profile-desc="field match(vivtc, bottom-field-first)"
+profile-desc="field match (vivtc, bottom-field-first)"
 vf-add=vapoursynth=~~/fm-bff.vpy:6:1
 msg-level=vf=v
 
@@ -164,7 +164,7 @@ vf-add=yadif
 msg-level=vf=v
 
 [dec]
-profile-desc="decimate(ffmpeg filter)"
+profile-desc="decimate from NTSC ratio (ffmpeg filter)"
 vf-add=lavfi="fps=30000/1001,decimate"
 msg-level=vf=v
 

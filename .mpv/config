@@ -168,6 +168,21 @@ profile-desc="decimate from NTSC ratio (ffmpeg filter)"
 vf-add=lavfi="fps=30000/1001,decimate"
 msg-level=vf=v
 
+[bifrost]
+profile-desc="derainbow filter (progressive)"
+vf-add=vapoursynth=~~/bifrost.vpy:6:1
+msg-level=vf=v
+
+[bifrost-int]
+profile-desc="derainbow filter (interlace)"
+vf-add=vapoursynth=~~/bifrost-int.vpy:6:1
+msg-level=vf=v
+
+[bifrost-test]
+profile-desc="derainbow filter (testing)"
+vf-add=vapoursynth=~~/bifrost-test.vpy:6:1
+msg-level=vf=v
+
 [singlecore]
 profile-desc="save CPU for other works"
 vd-lavc-threads=1

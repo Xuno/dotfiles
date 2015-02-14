@@ -10,3 +10,4 @@ tags
 *.orig
 .ycm_extra_conf.py
 .clang-format
+/.vim/config/local.vim

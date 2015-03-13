@@ -1,5 +1,5 @@
 # VO settings
-vo=opengl-hq:srgb:scaler-resizes-only:scale=spline64:cscale=sharpen5:swapinterval=0,
+vo=opengl-hq:target-prim=bt709:target-trc=srgb:scaler-resizes-only:swapinterval=0:scale=spline64:cscale=sharpen5,
 
 # Subtitle settings
 sub-codepage=enca:zh:unicode
@@ -41,11 +41,11 @@ vo=opengl,
 
 [slow]
 profile-desc="opengl video output (slower)"
-vo=opengl-hq:srgb:scaler-resizes-only:scale=ewa_lanczos:scale-radius=4:scale-antiring=0.6:cscale=spline64:scale-down=spline64:fancy-downscaling:fbo-format=rgba32f:swapinterval=0,
+vo=opengl-hq:target-prim=bt709:target-trc=srgb:scaler-resizes-only:swapinterval=0:scale=ewa_lanczos:scale-radius=4:scale-antiring=0.6:cscale=spline64:scale-down=spline64:fancy-downscaling:fbo-format=rgba32f,
 
 [smooth]
 profile-desc="opengl video output (w/ smooth motion enabled)"
-vo=opengl-hq:srgb:scaler-resizes-only:scale=spline64:cscale=sharpen5:smoothmotion:smoothmotion-threshold=0.2:swapinterval=0,
+vo=opengl-hq:target-prim=bt709:target-trc=srgb:scaler-resizes-only:swapinterval=0:scale=spline64:cscale=sharpen5:smoothmotion:smoothmotion-threshold=0.2,
 
 [va]
 profile-desc="vaapi video output"

@@ -45,7 +45,7 @@ vo=opengl-hq:target-prim=bt709:target-trc=srgb:scaler-resizes-only:swapinterval=
 
 [smooth]
 profile-desc="opengl video output (with interpolation on, broken with current graphic card and config)"
-vo=opengl-hq:target-prim=bt709:target-trc=srgb:scaler-resizes-only:swapinterval=1:waitvsync:scale=spline64:cscale=sharpen5:interpolation,
+vo=opengl-hq:target-prim=bt709:target-trc=srgb:scaler-resizes-only:swapinterval=1:waitvsync:scale=spline64:cscale=sharpen5:interpolation:tscale-antiring=1,
 
 [va]
 profile-desc="vaapi video output"

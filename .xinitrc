@@ -26,6 +26,6 @@ fcitx -r
 
 killall compton nitrogen xscreensaver
 nitrogen --restore &
-compton --backend glx --vsync opengl-swc --paint-on-overlay --glx-no-stencil --unredir-if-possible -b
+compton --backend glx --paint-on-overlay --glx-no-stencil --unredir-if-possible -b
 xscreensaver &
 exec xmonad

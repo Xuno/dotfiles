@@ -1,5 +1,5 @@
 # VO settings
-vo=opengl-hq:target-prim=bt709:target-trc=srgb:scaler-resizes-only:swapinterval=0:scale=spline64:cscale=sharpen5,
+vo=opengl-hq:scale=spline64:target-prim=bt.709:target-trc=srgb,
 
 # Subtitle settings
 sub-codepage=enca:zh:unicode
@@ -41,11 +41,11 @@ vo=opengl,
 
 [slow]
 profile-desc="opengl video output (slower)"
-vo=opengl-hq:target-prim=bt709:target-trc=srgb:scaler-resizes-only:swapinterval=0:scale=ewa_lanczos:scale-radius=4:scale-antiring=0.6:cscale=spline64:scale-down=spline64:fancy-downscaling:fbo-format=rgba32f,
+vo=opengl-hq:scale=spline64:target-prim=bt.709:target-trc=srgb:scale=haasnsoft,
 
 [smooth]
 profile-desc="opengl video output (with interpolation on, broken with current graphic card and config)"
-vo=opengl-hq:target-prim=bt709:target-trc=srgb:scaler-resizes-only:swapinterval=1:waitvsync:scale=spline64:cscale=sharpen5:interpolation:tscale-antiring=1,
+vo=opengl-hq:scale=spline64:target-prim=bt.709:target-trc=srgb:interpolation,
 
 [va]
 profile-desc="vaapi video output"

@@ -1,6 +1,5 @@
 ---
 BasedOnStyle:  Chromium
-BreakBeforeBraces: Linux
 PointerBindsToType: false
 
 AllowAllParametersOfDeclarationOnNextLine: true

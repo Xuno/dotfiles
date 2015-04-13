@@ -7,7 +7,6 @@ import           Data.Ord
 import           Data.Time
 import qualified Network.MPD         as MPD
 import           Sound.ALSA.Mixer
-import           System.Locale
 
 import           Control.DeepSeq
 import           Control.Monad
@@ -234,7 +233,7 @@ takeByWC len (x:xs) | len < w   = replicate len ' '
   where
     w = wcwidth x
 
-instance NFData MPD.State where
+instance NFData MPD.State where rnf x = seq x ()
 
 safeWrapper :: NFData a => IO a -> IO (Maybe a)
 safeWrapper io = (io >>= \r -> r `deepseq` return (Just r)) `E.catch`

@@ -25,4 +25,5 @@ augroup inline-formating
 
   autocmd FileType haskell noremap <C-K> :%!stylish-haskell<CR>
   autocmd FileType haskell inoremap <C-K> <C-O>:%!stylish-haskell<CR>
+  autocmd FileType python noremap <C-K> :0,$!yapf --style='{based_on_style: google, indent_width: 2}'<CR>
 augroup END

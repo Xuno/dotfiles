@@ -59,6 +59,9 @@ augroup SingleFileHacking
     autocmd FileType haskell :nmap <silent> <Leader>c :make<CR>
     autocmd FileType haskell :nmap <silent> <Leader>r :!./%<<CR>
 
+    autocmd FileType python :nmap <silent> <Leader>r :!python2 %<CR>
+    autocmd FileType python :nmap <silent> <Leader>3r :!python3 %<CR>
+
     autocmd FileType cpp :imap <F9> #include <vector><CR>#include <list><CR>#include <map><CR>#include <set><CR>#include <deque><CR>#include <queue><CR>#include <stack><CR>#include <bitset><CR>#include <algorithm><CR>#include <functional><CR>#include <numeric><CR>#include <utility><CR>#include <complex><CR>#include <sstream><CR>#include <iostream><CR>#include <iomanip><CR>#include <cstdio><CR>#include <cmath><CR>#include <cstdlib><CR>#include <cstring><CR>#include <ctime><CR>#include <cassert><CR>using namespace std;<CR><CR>#define FOR(it,a) for (__typeof((a).begin()) it = (a).begin(); it != (a).end(); ++it)<CR><CR>
 
 augroup END

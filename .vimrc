@@ -5,6 +5,7 @@ if has('nvim')
   runtime! python_setup.vim
 endif
 
+runtime! config/bundle/airline.vim "ugly workaruond
 runtime bundle/unbundle/unbundle.vim
 
 syntax on

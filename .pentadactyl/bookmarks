@@ -16,8 +16,8 @@ silent bma -k=ddg https://duckduckgo.com/?q=%s
 " DuckDuckGo Lite
 silent bma -k=ddgl https://duckduckgo.com/lite/?q=%s
 
-" Hoogle
-silent bma -k=hoogle http://www.haskell.org/hoogle/?hoogle=%s
+" Hoogle (Stackage)
+silent bma -k=hoogle http://www.stackage.org/lts/hoogle?q=%s
 
 " Wikipedia
 silent bma -k=wiki http://en.wikipedia.org/w/index.php?search=%s

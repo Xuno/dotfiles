@@ -18,6 +18,7 @@ import           XMonad.Actions.CycleWS
 import           XMonad.Actions.DwmPromote
 import           XMonad.Actions.FindEmptyWorkspace
 import           XMonad.Actions.UpdatePointer
+import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.FadeInactive
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers        hiding (pid)
@@ -64,7 +65,7 @@ main = do
         hputs s = forM_ hrs $ \hr -> hPutStrLn hr (utf8Encode s) >> hFlush hr
     pid <- forkProcess (applyForever (putAll 45) (threadDelay delay >> Monitor.getAll ps) hputs)
     threadDelay delay
-    xmonad $ withUrgencyHook NoUrgencyHook $ myConfig (map fst screens, dzens, pid)
+    xmonad $ withUrgencyHook NoUrgencyHook $ ewmh $ myConfig (map fst screens, dzens, pid)
     killP pid
 
 barHeight = 16
@@ -86,7 +87,7 @@ myConfig (phyScreens, dzens, pid) = XConfig
   , startupHook        = myStartupHook dzens
   , mouseBindings      = myMouse
   , manageHook         = myManageHook
-  , handleEventHook    = const (return (All True))
+  , handleEventHook    = fullscreenEventHook
   , focusFollowsMouse  = False
   , clickJustFocuses   = False
   }

@@ -6,7 +6,7 @@ if has('nvim')
 endif
 
 runtime! config/bundle/airline.vim "ugly workaruond
-runtime bundle/unbundle/unbundle.vim
+runtime bundle/unbundle/plugin/unbundle.vim
 
 syntax on
 filetype off

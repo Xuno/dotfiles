@@ -39,6 +39,5 @@ imap -builtin <C-v> <pass-next-key><C-v>
 
 cmap <C-Tab> <A-Tab>
 
-set! browser.startup.homepage=https://news.ycombinator.com/news
 set! browser.tabs.closeWindowWithLastTab=false
 set! network.proxy.socks_remote_dns=true

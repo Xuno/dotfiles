@@ -1,5 +1,5 @@
 # VO settings
-vo=opengl-hq:scale=spline64:target-prim=bt.709:target-trc=srgb,
+vo=opengl-hq:scale=spline64:cscale=sharpen3:target-prim=bt.709:target-trc=srgb,
 
 # Subtitle settings
 sub-codepage=enca:zh:unicode
@@ -8,6 +8,7 @@ ass-vsfilter-aspect-compat=no
 ass-vsfilter-blur-compat=no
 ass-vsfilter-color-compat=no
 sub-use-margins
+stretch-image-subs-to-screen
 
 # OSD settings
 osd-border-color='#40000000'
@@ -45,7 +46,7 @@ vo=opengl-hq:scale=spline64:target-prim=bt.709:target-trc=srgb:scale=haasnsoft,
 
 [smooth]
 profile-desc="opengl video output (with interpolation on, broken with current graphic card and config)"
-vo=opengl-hq:scale=spline64:target-prim=bt.709:target-trc=srgb:interpolation,
+vo=opengl-hq:scale=spline64:cscale=sharpen3:target-prim=bt.709:target-trc=srgb:interpolation,
 
 [va]
 profile-desc="vaapi video output"

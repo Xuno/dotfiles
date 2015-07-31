@@ -2,7 +2,7 @@
 set nocompatible
 
 if has('nvim')
-  runtime! python_setup.vim
+  tnoremap <Esc> <C-\><C-n>
 endif
 
 runtime! config/bundle/airline.vim "ugly workaruond

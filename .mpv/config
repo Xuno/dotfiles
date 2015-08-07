@@ -123,7 +123,9 @@ vd-lavc-bitexact
 
 [bigcache]
 profile-desc="bigcache (mainly for verify)"
-cache=512000
+cache=yes
+cache-default=1024000
+cache-secs=60
 
 [upscale]
 profile-desc="upscale (yuv444p16 output)"

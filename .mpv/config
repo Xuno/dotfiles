@@ -26,7 +26,12 @@ heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
 alang=jpn,ja,jp,eng,en
 hr-seek-demuxer-offset=0.3
 no-audio-display
-audio-pitch-correction
+af-add=rubberband
+demuxer-mkv-fix-timestamps
+
+[videosync]
+profile-desc="sync to video"
+video-sync=display-resample
 
 [verbose]
 profile-desc="verbose output"
@@ -63,7 +68,6 @@ audio-format=s32
 
 [speedy]
 profile-desc="save you a few minutes for (...)"
-af-pre=scaletempo
 speed=1.6
 
 [pullup]

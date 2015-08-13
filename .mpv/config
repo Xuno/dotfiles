@@ -1,5 +1,5 @@
 # VO settings
-vo=opengl-hq:scale=spline64:cscale=sharpen3:target-prim=bt.709:target-trc=srgb,
+vo=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb,
 
 # Subtitle settings
 sub-codepage=enca:zh:unicode
@@ -22,16 +22,10 @@ screenshot-png-compression=9
 screenshot-template=/tmp/%F-%P
 
 # Misc settings
-heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
-alang=jpn,ja,jp,eng,en
 hr-seek-demuxer-offset=0.3
 no-audio-display
 af-add=rubberband
 demuxer-mkv-fix-timestamps
-
-[videosync]
-profile-desc="sync to video"
-video-sync=display-resample
 
 [verbose]
 profile-desc="verbose output"
@@ -47,11 +41,12 @@ vo=opengl,
 
 [slow]
 profile-desc="opengl video output (slower)"
-vo=opengl-hq:scale=spline64:target-prim=bt.709:target-trc=srgb:scale=haasnsoft,
+vo=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb,
 
 [smooth]
-profile-desc="opengl video output (with interpolation on, broken with current graphic card and config)"
-vo=opengl-hq:scale=spline64:cscale=sharpen3:target-prim=bt.709:target-trc=srgb:interpolation,
+profile-desc="opengl video output (with interpolation on)"
+vo=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:interpolation,
+video-sync=display-resample
 
 [va]
 profile-desc="vaapi video output"
@@ -173,21 +168,6 @@ msg-level=vf=v
 [dec]
 profile-desc="decimate from NTSC ratio (ffmpeg filter)"
 vf-add=lavfi="fps=30000/1001,decimate"
-msg-level=vf=v
-
-[bifrost]
-profile-desc="derainbow filter (progressive)"
-vf-add=vapoursynth=~~/bifrost.vpy:6:1
-msg-level=vf=v
-
-[bifrost-int]
-profile-desc="derainbow filter (interlace)"
-vf-add=vapoursynth=~~/bifrost-int.vpy:6:1
-msg-level=vf=v
-
-[bifrost-test]
-profile-desc="derainbow filter (testing)"
-vf-add=vapoursynth=~~/bifrost-test.vpy:6:1
 msg-level=vf=v
 
 [singlecore]

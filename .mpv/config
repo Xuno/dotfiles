@@ -27,6 +27,10 @@ no-audio-display
 af-add=rubberband
 demuxer-mkv-fix-timestamps
 
+[sync]
+profile-desc="sync to video"
+video-sync=display-resample
+
 [verbose]
 profile-desc="verbose output"
 msg-level=all=v:global=status:input=status
@@ -46,7 +50,6 @@ vo=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-prim=bt.709:
 [smooth]
 profile-desc="opengl video output (with interpolation on)"
 vo=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:interpolation,
-video-sync=display-resample
 
 [va]
 profile-desc="vaapi video output"

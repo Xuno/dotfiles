@@ -49,7 +49,7 @@ vo=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-prim=bt.709:
 
 [smooth]
 profile-desc="opengl video output (with interpolation on)"
-vo=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:interpolation,
+vo=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:interpolation:tscale-param1=.3,
 
 [va]
 profile-desc="vaapi video output"

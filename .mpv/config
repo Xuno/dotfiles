@@ -1,5 +1,6 @@
 # VO settings
-vo=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb,
+vo-defaults=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb
+vo=opengl-hq,
 
 # Subtitle settings
 sub-codepage=enca:zh:unicode
@@ -20,12 +21,14 @@ osd-level=3
 screenshot-format=png
 screenshot-png-compression=9
 screenshot-template=/tmp/%F-%P
+screenshot-tag-colorspace=yes
 
 # Misc settings
 hr-seek-demuxer-offset=0.3
 no-audio-display
 af-add=rubberband
 demuxer-mkv-fix-timestamps
+ad=lavc:libdcadec
 
 [sync]
 profile-desc="sync to video"
@@ -41,15 +44,19 @@ vo=xv,
 
 [fast]
 profile-desc="opengl video output (faster)"
-vo=opengl,
+vo-defaults=opengl-hq:scale=spline64:cscale=bicubic_fast:dscale=mitchell:target-prim=bt.709:target-trc=srgb
 
 [slow]
 profile-desc="opengl video output (slower)"
-vo=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb,
+vo-defaults=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb
 
 [smooth]
-profile-desc="opengl video output (with interpolation on)"
-vo=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:interpolation:tscale-param1=.3,
+profile-desc="smoothmotion (with interpolation)"
+vo=opengl-hq:interpolation:tscale=oversample:tscale-param1=.3,
+
+[deband]
+profile-desc="deband (with custom shader)"
+vo=opengl-hq:source-shader=~~/deband.glsl,
 
 [va]
 profile-desc="vaapi video output"
@@ -131,36 +138,36 @@ cache-secs=60
 
 [upscale]
 profile-desc="upscale (yuv444p16 output)"
-vf-add=vapoursynth=~~/upscale.vpy
+vf-add=vapoursynth=~~/upscale.vpy:10:4
 vf-add=dsize:-1:-1
 video-unscaled
 msg-level=vf=v
 
 [upscale420]
 profile-desc="upscale (yuv420p16 output, faster)"
-vf-add=vapoursynth=~~/upscale420.vpy
+vf-add=vapoursynth=~~/upscale420.vpy:10:4
 vf-add=dsize:-1:-1
 video-unscaled
 msg-level=vf=v
 
 [nnedi3]
 profile-desc="nnedi3 upscale to 2x with center shift corrected, yuv420p8 output"
-vf-add=vapoursynth=~~/nnedi3.vpy
+vf-add=vapoursynth=~~/nnedi3.vpy:10:4
 msg-level=vf=v
 
-[deband]
+[f3kdb]
 profile-desc="debanding with f3kdb"
-vf-add=vapoursynth=~~/deband.vpy
+vf-add=vapoursynth=~~/deband.vpy:10:4
 msg-level=vf=v
 
 [fm]
 profile-desc="field match (vivtc)"
-vf-add=vapoursynth=~~/fm.vpy:6:1
+vf-add=vapoursynth=~~/fm.vpy:10:1
 msg-level=vf=v
 
 [fm-bff]
 profile-desc="field match (vivtc, bottom-field-first)"
-vf-add=vapoursynth=~~/fm-bff.vpy:6:1
+vf-add=vapoursynth=~~/fm-bff.vpy:10:1
 msg-level=vf=v
 
 [yadif]
@@ -171,6 +178,16 @@ msg-level=vf=v
 [dec]
 profile-desc="decimate from NTSC ratio (ffmpeg filter)"
 vf-add=lavfi="fps=30000/1001,decimate"
+msg-level=vf=v
+
+[mvtools]
+profile-desc="smoothmotion (with mvtools vapoursynth plugin)"
+vf-add=vapoursynth=~~/mvtools.vpy:10:4
+msg-level=vf=v
+
+[yadif]
+profile-desc="yadif deint"
+vf-add=yadif
 msg-level=vf=v
 
 [singlecore]

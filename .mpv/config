@@ -1,5 +1,5 @@
 # VO settings
-vo-defaults=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb
+vo-defaults=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only
 vo=opengl-hq,
 
 # Subtitle settings
@@ -44,11 +44,11 @@ vo=xv,
 
 [fast]
 profile-desc="opengl video output (faster)"
-vo-defaults=opengl-hq:scale=sharpen3:cscale=bilinear:dscale=mitchell:target-prim=bt.709:target-trc=srgb
+vo-defaults=opengl-hq:scale=sharpen3:cscale=bilinear:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only
 
 [slow]
 profile-desc="opengl video output (slower)"
-vo-defaults=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb
+vo-defaults=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only
 
 [smooth]
 profile-desc="smoothmotion (with interpolation)"

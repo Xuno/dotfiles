@@ -29,7 +29,7 @@ demuxer-mkv-fix-timestamps
 
 [sync]
 profile-desc="sync to video"
-video-sync=display-resample
+video-sync=display-resample-vdrop
 
 [verbose]
 profile-desc="verbose output"

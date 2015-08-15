@@ -44,7 +44,7 @@ vo=xv,
 
 [fast]
 profile-desc="opengl video output (faster)"
-vo-defaults=opengl-hq:scale=spline64:cscale=bicubic_fast:dscale=mitchell:target-prim=bt.709:target-trc=srgb
+vo-defaults=opengl-hq:scale=sharpen3:cscale=bilinear:dscale=mitchell:target-prim=bt.709:target-trc=srgb
 
 [slow]
 profile-desc="opengl video output (slower)"

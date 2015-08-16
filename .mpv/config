@@ -60,11 +60,11 @@ vo=opengl-hq:source-shader=~~/deband.glsl,
 
 [va]
 profile-desc="vaapi video output"
-vo=vaapi:scaling=hq,
+vo=vaapi:scaling=fast,
 
 [vdp]
 profile-desc="vdpau video output"
-vo=vdpau:hqscaling=1,
+vo=vdpau,
 
 [dac]
 profile-desc="output to USB DAC"

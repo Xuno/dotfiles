@@ -136,20 +136,6 @@ cache=yes
 cache-default=1024000
 cache-secs=60
 
-[upscale]
-profile-desc="upscale (yuv444p16 output)"
-vf-add=vapoursynth=~~/upscale.vpy:10:4
-vf-add=dsize:-1:-1
-video-unscaled
-msg-level=vf=v
-
-[upscale420]
-profile-desc="upscale (yuv420p16 output, faster)"
-vf-add=vapoursynth=~~/upscale420.vpy:10:4
-vf-add=dsize:-1:-1
-video-unscaled
-msg-level=vf=v
-
 [nnedi3]
 profile-desc="nnedi3 upscale to 2x with center shift corrected, yuv420p8 output"
 vf-add=vapoursynth=~~/nnedi3.vpy:10:4

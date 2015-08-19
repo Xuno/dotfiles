@@ -137,7 +137,7 @@ cache-default=1024000
 cache-secs=60
 
 [nnedi3]
-profile-desc="nnedi3 upscale to 2x with center shift corrected, yuv420p8 output"
+profile-desc="nnedi3 upscale to 2x"
 vf-add=vapoursynth=~~/nnedi3.vpy:10:4
 msg-level=vf=v
 

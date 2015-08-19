@@ -166,11 +166,6 @@ profile-desc="decimate from NTSC ratio (ffmpeg filter)"
 vf-add=lavfi="fps=30000/1001,decimate"
 msg-level=vf=v
 
-[mvtools]
-profile-desc="smoothmotion (with mvtools vapoursynth plugin)"
-vf-add=vapoursynth=~~/mvtools.vpy:10:4
-msg-level=vf=v
-
 [yadif]
 profile-desc="yadif deint"
 vf-add=yadif

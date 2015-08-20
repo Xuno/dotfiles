@@ -75,11 +75,6 @@ audio-format=s32
 profile-desc="save you a few minutes for (...)"
 speed=1.6
 
-[pullup]
-profile-desc="enable pullup IVTC filter"
-vf-add=pullup
-msg-level=vf=v
-
 [hwdec]
 profile-desc="enable hardware decoding (auto)"
 hwdec=auto
@@ -91,36 +86,6 @@ hwdec=vaapi-copy
 [vdp-hwdec]
 profile-desc="enable hardware decoding (vdpau)"
 hwdec=vdpau
-
-[va-deint]
-profile-desc="vaapi deint"
-vf-add=vavpp:deint=first-field
-msg-level=vf=v
-
-[va-deint-bob]
-profile-desc="vaapi deint(bob)"
-vf-add=vavpp:deint=bob
-msg-level=vf=v
-
-[vdp-deint]
-profile-desc="vapau deint"
-vf-add=vdpaupp:deint=yes:deint-mode=temporal-spatial
-msg-level=vf=v
-
-[vdp-deint-fast]
-profile-desc="vapau deint(fast)"
-vf-add=vdpaupp:deint=yes:deint-mode=first-field
-msg-level=vf=v
-
-[vdp-deint-bob]
-profile-desc="vapau deint(bob)"
-vf-add=vdpaupp:deint=yes:deint-mode=bob
-msg-level=vf=v
-
-[vdp-ivtc]
-profile-desc="vapau deint(ivtc)"
-vf-add=vdpaupp:deint=yes:deint-mode=temporal-spatial:pullup
-msg-level=vf=v
 
 [verify]
 profile-desc="verify media files, attempt to detect decoding errors"
@@ -146,14 +111,24 @@ profile-desc="debanding with f3kdb"
 vf-add=vapoursynth=~~/deband.vpy:10:4
 msg-level=vf=v
 
+[pullup]
+profile-desc="pullup filter"
+vf-add=pullup
+msg-level=vf=v
+
+[pullup24]
+profile-desc="pullup filter (ffmpeg filter, to 24fps)"
+vf-add=lavfi="pullup, fps=24000/1001"
+msg-level=vf=v
+
 [fm]
-profile-desc="field match (vivtc)"
-vf-add=vapoursynth=~~/fm.vpy:10:1
+profile-desc="field match (ffmpeg filter)"
+vf-add=lavfi="fieldmatch=order=tff:combmatch=sc:mchroma=0, yadif=parity=tff:deint=interlaced"
 msg-level=vf=v
 
 [fm-bff]
-profile-desc="field match (vivtc, bottom-field-first)"
-vf-add=vapoursynth=~~/fm-bff.vpy:10:1
+profile-desc="field match (ffmpeg filter, bottom-field-first)"
+vf-add=lavfi="fieldmatch=order=bff:combmatch=sc:mchroma=0, yadif=parity=bff:deint=interlaced"
 msg-level=vf=v
 
 [yadif]
@@ -163,12 +138,7 @@ msg-level=vf=v
 
 [dec]
 profile-desc="decimate from NTSC ratio (ffmpeg filter)"
-vf-add=lavfi="fps=30000/1001,decimate"
-msg-level=vf=v
-
-[yadif]
-profile-desc="yadif deint"
-vf-add=yadif
+vf-add=lavfi="fps=30000/1001, decimate"
 msg-level=vf=v
 
 [singlecore]

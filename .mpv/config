@@ -108,7 +108,7 @@ msg-level=vf=v
 
 [f3kdb]
 profile-desc="debanding with f3kdb"
-vf-add=vapoursynth=~~/deband.vpy:10:4
+vf-add=vapoursynth=~~/f3kdb.vpy:10:4
 msg-level=vf=v
 
 [pullup]

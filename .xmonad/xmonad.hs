@@ -122,16 +122,20 @@ myManageHook = composeAll
     ]
     ]
   where
-    myFloats = foldl (<||>) isTC [className =? c | c <- ["Gimp", "fontforge", "Nitrogen"]]
-    myWeb    = className =? "Firefox" <||> className =? "Chromium" <||> className =? "Google-chrome"
-    myTerm   = className =? "URxvt" <||> className =? "Gvim"
-    myMisc   = foldl (<||>) isJava [className =? c | c <- ["Evince", "Thunar", "Vlc", "Transmission-gtk", "Xpdf", "Wine", "mpv"]]
-    inWeb    = fmap (==web) currentWs
-    inT      = fmap (==term) currentWs
-    isJava   = fmap ("sun-"`isPrefixOf`) appName
-    isTC     = fmap ("com-topcoder"`isPrefixOf`) className
-    noShift  = className =? "Gmrun" <||> className =? "Xmessage" <||> className =? "stalonetray"
+    inWeb = fmap (==web) currentWs
+    inT   = fmap (==term) currentWs
+
+    myFloats = isTC <||> isPopup <||> className `hasPrefix` ["Gimp", "fontforge", "Nitrogen", "qemu-system-x86_64"]
+    myWeb    = className `hasPrefix` ["Firefox", "Chromium", "Google-chrome"]
+    myTerm   = className `hasPrefix` ["URxvt", "Gvim"]
+    myMisc   = isJava <||> className `hasPrefix` ["Evince", "Thunar", "Vlc", "Transmission-gtk", "Xpdf", "Wine", "mpv"]
+    isJava   = appName `hasPrefix` ["sun-"]
+    isTC     = className `hasPrefix` ["com-topcoder"]
+    isPopup  = stringProperty "WM_WINDOW_ROLE" `hasPrefix` ["pop-up"]
+    noShift  = className `hasPrefix` ["Gmrun", "Xmessage", "stalonetray"]
     notTerm  = fmap not myTerm
+
+    hasPrefix name prefixes = foldl1 (<||>) [fmap (prefix`isPrefixOf`) name | prefix <- prefixes]
 
 myKeys :: [ScreenId] -> ProcessID -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys phyScreens pid conf = M.fromList $

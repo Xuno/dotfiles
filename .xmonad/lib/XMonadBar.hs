@@ -66,8 +66,8 @@ xmonadBarApply barInfo uid = do
     return output
 
 titleFont  = "WenQuanYi Micro Hei Mono-10" :: String
-fixedFont  = "CtrlD:pixelsize=13"          :: String
-symbolFont = "CtrlD:pixelsize=16"          :: String
+fixedFont  = "CtrlD:pixelsize=26"          :: String
+symbolFont = "CtrlD:pixelsize=32"          :: String
 
 fgC  = sRGB24 0xcc 0xcc 0xcc :: DColour
 bgC  = C.black
@@ -87,7 +87,7 @@ useFont fn = rawStr "^fn(" +++ str fn +++ rawStr ")"
 xmonadBarPrinter :: Int -> (Dimension, Dimension) -> Printer XMonadBarInfo
 xmonadBarPrinter uid (_, h) = printUnderline +++ ((printWS +++ str " ") +=+ (printLayout +++ str " ") +=+ printTitle)
   where
-    printUnderline = rawStr $ "^ib(1)^p(_LOCK_X)^pa(;+" ++ show (h-2) ++ ")^r(9999x2)^p(_UNLOCK_X)^p()"
+    printUnderline = rawStr $ "^ib(1)^p(_LOCK_X)^pa(;+" ++ show (h-4) ++ ")^r(9999x4)^p(_UNLOCK_X)^p()"
     mergeDS :: DString -> DString -> DString
     mergeDS = (+++)
 

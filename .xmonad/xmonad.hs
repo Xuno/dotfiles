@@ -69,14 +69,14 @@ main = do
     xmonad $ withUrgencyHook NoUrgencyHook $ ewmh $ myConfig (map fst screens, dzens, pid)
     killP pid
 
-barHeight = 16
+barHeight = 32
 delay     = 250 * 1000
 
 killP :: MonadIO m => ProcessID -> m ()
 killP pid = liftIO (signalProcess killProcess pid `E.catch` (\e -> (e :: E.SomeException) `seq` return ()))
 
 myConfig (phyScreens, dzens, pid) = XConfig
-  { borderWidth        = 1
+  { borderWidth        = 2
   , workspaces         = myWorkspaces
   , layoutHook         = myLayout
   , terminal           = "urxvt"
@@ -142,7 +142,7 @@ myManageHook = composeAll
 myKeys :: [ScreenId] -> ProcessID -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys phyScreens pid conf = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    , ((modm,               xK_p     ), spawn "exe=`yeganesh -x -- -b -p '>'` && eval \"exec $exe\"")
+    , ((modm,               xK_p     ), spawn "exe=`yeganesh -x -- -b -p '>' -fn CtrlD:pixelsize=32` && eval \"exec $exe\"")
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
     , ((modm .|. shiftMask, xK_c     ), kill)
 

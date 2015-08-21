@@ -2,6 +2,7 @@
 SHELL := /bin/bash
 
 build: bin/update-tags vim-plugins
+	cd .fonts/ctrld; make 2x
 
 restore:
 	git submodule sync

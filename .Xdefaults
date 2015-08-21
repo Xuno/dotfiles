@@ -1,8 +1,8 @@
 
-urxvt.font: xft:CtrlD:style=Regular:pixelsize=16
-urxvt.boldFont: xft:CtrlD:style=Bold:pixelsize=16
-urxvt.italicFont: xft:CtrlD:style=Italic:pixelsize=16
-urxvt.boldItalicFont: xft:CtrlD:style=Bold\ Italic:pixelsize=16
+urxvt.font: xft:CtrlD:style=Regular:pixelsize=32
+urxvt.boldFont: xft:CtrlD:style=Bold:pixelsize=32
+urxvt.italicFont: xft:CtrlD:style=Italic:pixelsize=32
+urxvt.boldItalicFont: xft:CtrlD:style=Bold\ Italic:pixelsize=32
 
 urxvt.perl-ext-common:  tabbedex,fullscreen,keyboard-select,clipboard,font-size
 
@@ -21,22 +21,22 @@ urxvt.keysym.C-A-c: perl:clipboard:copy
 urxvt.keysym.C-A-v: perl:clipboard:paste
 
 urxvt.keysym.S-F3: command: \
-    \033]710;xft:CtrlD:style=Regular:pixelsize=16\007 \
-    \033]711;xft:CtrlD:style=Bold:pixelsize=16\007 \
-    \033]712;xft:CtrlD:style=Italic:pixelsize=16\007 \
-    \033]713;xft:CtrlD:style=Bold Italic:pixelsize=16\007
+    \033]710;xft:CtrlD:style=Regular:pixelsize=32\007 \
+    \033]711;xft:CtrlD:style=Bold:pixelsize=32\007 \
+    \033]712;xft:CtrlD:style=Italic:pixelsize=32\007 \
+    \033]713;xft:CtrlD:style=Bold Italic:pixelsize=32\007
 
 urxvt.keysym.S-F2: command: \
-    \033]710;xft:CtrlD:style=Regular:pixelsize=13\007 \
-    \033]711;xft:CtrlD:style=Bold:pixelsize=13\007 \
-    \033]712;xft:CtrlD:style=Italic:pixelsize=13\007 \
-    \033]713;xft:CtrlD:style=Bold Italic:pixelsize=13\007
+    \033]710;xft:CtrlD:style=Regular:pixelsize=26\007 \
+    \033]711;xft:CtrlD:style=Bold:pixelsize=26\007 \
+    \033]712;xft:CtrlD:style=Italic:pixelsize=26\007 \
+    \033]713;xft:CtrlD:style=Bold Italic:pixelsize=26\007
 
 urxvt.keysym.S-F1: command: \
-    \033]710;xft:CtrlD:style=Regular:pixelsize=10\007 \
-    \033]711;xft:CtrlD:style=Bold:pixelsize=10\007 \
-    \033]712;xft:CtrlD:style=Regular:pixelsize=10\007 \
-    \033]713;xft:CtrlD:style=Bold:pixelsize=10\007
+    \033]710;xft:CtrlD:style=Regular:pixelsize=20\007 \
+    \033]711;xft:CtrlD:style=Bold:pixelsize=20\007 \
+    \033]712;xft:CtrlD:style=Regular:pixelsize=20\007 \
+    \033]713;xft:CtrlD:style=Bold:pixelsize=20\007
 
 urxvt.keysym.S-F4: command: \
     \033]710;xft:Source Code Pro for Powerline:size=12\007 \
@@ -103,7 +103,7 @@ urxvt.urgentOnBell: true
 urxvt.saveLines: 65536
 
 Xcursor.theme: Vanilla-DMZ
-Xcursor.size: 16
+Xcursor.size: 32
 
 xscreensaver.timeout: 5
 xscreensaver.lock: true

@@ -3,6 +3,7 @@ module Monitor where
 
 import           Data.Char.WCWidth
 import           Data.List
+import           Data.Maybe
 import           Data.Ord
 import           Data.Time
 import qualified Network.MPD         as MPD
@@ -137,19 +138,15 @@ putCPULoad ratio = symbolFG (str cpu) +++ fgpct (show' pct) +++ fg fgC2 (str "%"
 
 getTemp :: IO Double
 getTemp = do
-    temp0 <- parse zone0
-    temp1 <- parse zone1
-    return $ case (temp0, temp1) of
-        (Nothing, Nothing) -> error "monitor: getTemp"
-        (Just a,  Just b ) -> (a + b) / 2
-        (Just a,  _      ) -> a
-        (_,       Just b ) -> b
+    temp <- catMaybes <$> mapM parse files
+    return $ if null temp then error "monitor: getTemp" else sum temp / genericLength temp
   where
     parse file = do
         exists <- fileExist file
-        if exists then Just . (/1000) . read <$> readFile file else return Nothing
-    zone0 = "/sys/class/thermal/thermal_zone0/temp"
-    zone1 = "/sys/class/thermal/thermal_zone1/temp"
+        if exists then Just . (/1e3) . read <$> readFile file else return Nothing
+    files = concat [ ["/sys/bus/platform/devices/coretemp.0/hwmon/hwmon1/temp" ++ [i] ++ "_input"
+                     , "/sys/bus/platform/devices/coretemp.0/temp" ++ [i] ++ "_input"
+                     ] | i <- "123" ]
 
 putTemp :: Double -> DString
 putTemp temp' = symbolFG (str temperature) +++ fgtemp (show' temp) +++ fg fgC2 (str "\x00b0")

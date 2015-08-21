@@ -87,7 +87,7 @@ useFont fn = rawStr "^fn(" +++ str fn +++ rawStr ")"
 xmonadBarPrinter :: Int -> (Dimension, Dimension) -> Printer XMonadBarInfo
 xmonadBarPrinter uid (_, h) = printUnderline +++ ((printWS +++ str " ") +=+ (printLayout +++ str " ") +=+ printTitle)
   where
-    printUnderline = rawStr $ "^ib(1)^p(_LOCK_X)^pa(;+" ++ show (h-2) ++ ")^ro(9999x2)^p(_UNLOCK_X)^p()"
+    printUnderline = rawStr $ "^ib(1)^p(_LOCK_X)^pa(;+" ++ show (h-2) ++ ")^r(9999x2)^p(_UNLOCK_X)^p()"
     mergeDS :: DString -> DString -> DString
     mergeDS = (+++)
 

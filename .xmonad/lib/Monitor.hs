@@ -81,7 +81,7 @@ putMem ratio = symbolFG (str mem) +++ fgpct (show' pct) +++ fg fgC2 (str "%")
     pct = round (min 1 ( max 0 ratio) * 100) :: Int
 
     fgpct | pct >= 80 = fg colR
-          | pct <= 20 = fg colG
+          | pct <= 30 = fg colG
           | otherwise = id
 
     mem = "\xEEF2"
@@ -131,7 +131,7 @@ putCPULoad ratio = symbolFG (str cpu) +++ fgpct (show' pct) +++ fg fgC2 (str "%"
     pct = round (min 1 (max 0 ratio) * 100) :: Int
 
     fgpct | pct >= 80 = fg colR
-          | pct <= 20 = fg colG
+          | pct <= 30 = fg colG
           | otherwise = id
 
     cpu = "\xEEF1"
@@ -153,8 +153,8 @@ putTemp temp' = symbolFG (str temperature) +++ fgtemp (show' temp) +++ fg fgC2 (
   where
     temp = round (min 200 (max 0 temp')) :: Int
 
-    fgtemp | temp >= 80 = fg colR
-           | temp <= 50 = fg colG
+    fgtemp | temp >= 85 = fg colR
+           | temp <= 66 = fg colG
            | otherwise  = id
 
     temperature = "\xEEF5"

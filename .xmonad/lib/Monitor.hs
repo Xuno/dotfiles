@@ -72,8 +72,8 @@ putVolume (minv, maxv, vol, enabled) = symbolFG (str lhs) +++ rhs
 
 getMem :: IO Double
 getMem = do
-    [total, free] <- map (read . (!!1) . words) . take 2 . lines <$> readFile "/proc/meminfo"
-    return $ (total - free) / total
+    [total, free, avail] <- map (read . (!!1) . words) . take 3 . lines <$> readFile "/proc/meminfo"
+    return $ (total - avail) / total
 
 putMem :: Double -> DString
 putMem ratio = symbolFG (str mem) +++ fgpct (show' pct) +++ fg fgC2 (str "%")

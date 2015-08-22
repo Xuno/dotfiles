@@ -94,6 +94,7 @@ ao=null:untimed
 untimed
 msg-level=all=info:file=v:statusline=status:cache=fatal
 vd-lavc-bitexact
+framedrop=no
 
 [bigcache]
 profile-desc="bigcache (mainly for verify)"

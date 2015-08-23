@@ -56,7 +56,7 @@ vo=opengl-hq:interpolation:tscale=oversample:tscale-param1=.3,
 
 [deband]
 profile-desc="deband (with custom shader)"
-vo=opengl-hq:source-shader=~~/deband.glsl,
+vo=opengl-hq:source-shader=~~/third-party/deband.glsl,
 
 [va]
 profile-desc="vaapi video output"

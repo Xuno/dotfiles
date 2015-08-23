@@ -204,12 +204,12 @@ myKeys phyScreens pid conf = M.fromList $
     multiKeys [(modm2, xK_Right       ), (0, xF86XK_AudioNext       )] "mpc -q next" ++
     multiKeys [(modm2, xK_Up          ), (0, xF86XK_AudioStop       )] "mpc -q stop" ++
     multiKeys [(modm2, xK_Down        ), (0, xF86XK_AudioPlay       )] "mpc -q toggle" ++
-    multiKeys [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("amixer -c " ++ fstCard ++ " sset " ++ controlName fstCard ++ " 5%+ unmute") ++
-    multiKeys [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("amixer -c " ++ fstCard ++ " sset " ++ controlName fstCard ++ " 5%- unmute") ++
-    multiKeys [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] ("amixer -c " ++ fstCard ++ " sset " ++ controlName fstCard ++ " toggle") ++
-    multiKey_ [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("amixer -c " ++ sndCard ++ " sset " ++ controlName sndCard ++ " 5%+ unmute") ++
-    multiKey_ [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("amixer -c " ++ sndCard ++ " sset " ++ controlName sndCard ++ " 5%- unmute") ++
-    multiKey_ [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] ("amixer -c " ++ sndCard ++ " sset " ++ controlName sndCard ++ " toggle") ++
+    multiKeys [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("card=" ++ fstCard ++ "; amixer -c $card sset " ++ controlName "$card" ++ " 5%+ unmute") ++
+    multiKeys [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("card=" ++ fstCard ++ "; amixer -c $card sset " ++ controlName "$card" ++ " 5%- unmute") ++
+    multiKeys [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] ("card=" ++ fstCard ++ "; amixer -c $card sset " ++ controlName "$card" ++ " toggle") ++
+    multiKey_ [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("card=" ++ sndCard ++ "; amixer -c $card sset " ++ controlName "$card" ++ " 5%+ unmute") ++
+    multiKey_ [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("card=" ++ sndCard ++ "; amixer -c $card sset " ++ controlName "$card" ++ " 5%- unmute") ++
+    multiKey_ [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] ("card=" ++ sndCard ++ "; amixer -c $card sset " ++ controlName "$card" ++ " toggle") ++
     multiKeys [(modm2, xK_F10         ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
 
     [ ((modm2 .|. shiftMask, xK_F10),   spawn "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'")

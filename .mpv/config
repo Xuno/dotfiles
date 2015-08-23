@@ -40,7 +40,7 @@ msg-level=all=v:global=status:input=status
 
 [xv]
 profile-desc="xv video output"
-vo=xv,
+vo=xv
 
 [fast]
 profile-desc="opengl video output (faster)"
@@ -52,19 +52,23 @@ vo-defaults=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-pri
 
 [smooth]
 profile-desc="smoothmotion (with interpolation)"
-vo=opengl-hq:interpolation:tscale=oversample:tscale-param1=.3,
+vo=opengl-hq:interpolation:tscale=oversample:tscale-param1=.3
 
 [deband]
 profile-desc="deband (with custom shader)"
-vo=opengl-hq:source-shader=~~/third-party/deband.glsl,
+vo=opengl-hq:source-shader=~~/third-party/deband.glsl
+
+[pattern23]
+profile-desc="check 2:3 pattern (24Hz -> 60Hz)"
+vo=opengl-hq:waitvsync:check-pattern=3-2
 
 [va]
 profile-desc="vaapi video output"
-vo=vaapi:scaling=fast,
+vo=vaapi:scaling=fast
 
 [vdp]
 profile-desc="vdpau video output"
-vo=vdpau,
+vo=vdpau
 
 [dac]
 profile-desc="output to USB DAC"

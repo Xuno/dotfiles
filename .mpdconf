@@ -19,6 +19,11 @@ replaygain_missing_preamp "-10"
 replaygain_limit          "yes"
 
 audio_output {
+   type "pulse"
+   name "PulseAudio output"
+}
+
+audio_output {
     type "alsa"
     name "ALSA output (w/ dmix)"
     mixer_type "software"
@@ -26,10 +31,10 @@ audio_output {
 
 audio_output {
     type "alsa"
-    name "ALSA output (w/o dmix)"
-    device "hw:0,0"
+    name "ALSA output (Intel PCH, w/o dmix)"
+    device "hw:PCH,0"
     mixer_type "hardware"
-    mixer_device "hw:0"
+    mixer_device "hw:PCH"
     mixer_control "Master"
 }
 
@@ -42,33 +47,33 @@ audio_output {
 audio_output {
     type "alsa"
     name "ALSA output (USB DAC w/ softmix)"
-    device "hw:1,0"
+    device "hw:DAC,0"
 }
 
 audio_output {
     type "alsa"
     name "ALSA output (USB DAC w/ 'Master' control)"
-    device "hw:1,0"
+    device "hw:DAC,0"
     mixer_type "hardware"
-    mixer_device "hw:1"
+    mixer_device "hw:DAC"
     mixer_control "Master"
 }
 
 audio_output {
     type "alsa"
     name "ALSA output (USB DAC w/ 'PCM' control)"
-    device "hw:1,0"
+    device "hw:DAC,0"
     mixer_type "hardware"
-    mixer_device "hw:1"
+    mixer_device "hw:DAC"
     mixer_control "PCM"
 }
 
 audio_output {
     type "alsa"
     name "ALSA output (USB DAC w/ 'Meridian Clock Selector' control)"
-    device "hw:1,0"
+    device "hw:DAC,0"
     mixer_type "hardware"
-    mixer_device "hw:1"
+    mixer_device "hw:DAC"
     mixer_control "Meridian Clock Selector"
 }
 

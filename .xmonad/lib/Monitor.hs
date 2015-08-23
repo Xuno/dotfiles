@@ -51,6 +51,13 @@ getVolume card = withMixer card $ \mixer -> do
     Just sw    <- getChannel FrontLeft playbackSwitch
     return (minv, maxv, vol, sw)
 
+getVolumes :: IO [(Integer, Integer, Integer, Bool)]
+getVolumes = catMaybes <$> mapM getVolumeWrapped cards
+  where
+    cards = ["hw:" ++ [i] | i <- "0123"]
+
+    getVolumeWrapped card = (Just <$> getVolume card) `E.catch` (\e -> (e :: E.SomeException) `seq` return Nothing)
+
 putVolume :: (Integer, Integer, Integer, Bool) -> DString
 putVolume (minv, maxv, vol, enabled) = symbolFG (str lhs) +++ rhs
   where
@@ -69,6 +76,9 @@ putVolume (minv, maxv, vol, enabled) = symbolFG (str lhs) +++ rhs
     vol_1     = "\xEE21"
     vol_2     = "\xEE22"
     vol_3     = "\xEE23"
+
+putVolumes :: [(Integer, Integer, Integer, Bool)] -> DString
+putVolumes = foldl1 (+++) . map putVolume
 
 getMem :: IO Double
 getMem = do
@@ -184,8 +194,8 @@ putMPD limitLen = inputPrinter printer 0
     music_paused  = "\xEE32"
 
     printer :: Integer -> Maybe MPDInfo -> (DString, Integer)
-    printer offset Nothing                                             = (str "", offset + 1)
-    printer offset (Just (MPD.Stopped, _, _))                          = (symbolFG (str music_stopped) +++ str "[off]", offset)
+    printer offset Nothing                    = (str "", offset + 1)
+    printer offset (Just (MPD.Stopped, _, _)) = (symbolFG (str music_stopped) +++ str "[off]", offset)
     printer offset (Just (st, (artist, album, title), Just (usedT', allT))) =
         (curSong +++ symbolFG state +++ timeInfo, offset + if st == MPD.Playing then 1 else 0)
       where
@@ -221,7 +231,7 @@ putMPD limitLen = inputPrinter printer 0
                        (lhs, rhs) = splitAt pos' s
                    in takeByWC limitLen (rhs ++ lhs)
 
-    printer offset _                                                   = (str "<error>", offset + 1)
+    printer offset _                          = (str "<error>", offset + 1)
 
 takeByWC :: Int -> String -> String
 takeByWC _ []                   = []
@@ -246,8 +256,7 @@ getAll ps =
     safeWrapper getMem ##
     safeWrapper getTemp ##
     safeWrapper getUptime ##
-    safeWrapper (getVolume "hw:0") ##
-    safeWrapper (getVolume "hw:1") ##
+    safeWrapper getVolumes ##
     safeWrapper getDate
 
 putAll len =
@@ -256,6 +265,5 @@ putAll len =
     autoPadL 1 (simple (printWrapper putMem)) +++
     autoPadL 1 (simple (printWrapper putTemp)) +++
     autoPadL 1 (simple (printWrapper putUptime)) +++
-    autoPadL 1 (simple (printWrapper putVolume)) +++
-    autoPadL 1 (simple (printWrapper putVolume)) +++
+    autoPadL 1 (simple (printWrapper putVolumes)) +++
     autoPadL 1 (simple (printWrapper putDate))

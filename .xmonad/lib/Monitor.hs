@@ -79,7 +79,7 @@ putVolume (minv, maxv, vol, enabled) = symbolFG (str lhs) +++ rhs
     vol_3     = "\xEE23"
 
 putVolumes :: [(Integer, Integer, Integer, Bool)] -> DString
-putVolumes = foldl1 (+++) . map putVolume
+putVolumes = foldl (+++) (str "") . map putVolume
 
 getMem :: IO Double
 getMem = do

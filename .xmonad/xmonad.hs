@@ -2,6 +2,7 @@
 import           Codec.Binary.UTF8.String
 import           Control.Concurrent                (threadDelay)
 import           Control.Monad                     (forM, forM_, when)
+import qualified Control.Exception                 as E
 import           Data.Colour.SRGB
 import           Data.List                         (isPrefixOf)
 import qualified Data.Map                          as M
@@ -72,7 +73,7 @@ barHeight = 16
 delay     = 250 * 1000
 
 killP :: MonadIO m => ProcessID -> m ()
-killP = liftIO . signalProcess killProcess
+killP pid = liftIO (signalProcess killProcess pid `E.catch` (\e -> (e :: E.SomeException) `seq` return ()))
 
 myConfig (phyScreens, dzens, pid) = XConfig
   { borderWidth        = 3
@@ -135,6 +136,7 @@ myManageHook = composeAll
     noShift  = className `hasPrefix` ["Gmrun", "Xmessage", "stalonetray"]
     notTerm  = fmap not myTerm
 
+    hasPrefix name []       = return False
     hasPrefix name prefixes = foldl1 (<||>) [fmap (prefix`isPrefixOf`) name | prefix <- prefixes]
 
 myKeys :: [ScreenId] -> ProcessID -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())

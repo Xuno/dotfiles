@@ -1,5 +1,5 @@
 
-if ! echo "$PATH" 2>/dev/null | grep -F /.prefix/bin 1>/dev/null 2>/dev/null; then
+if ! echo "$PATH" 2>/dev/null | grep -F /.prefix/bin &>/dev/null; then
   export PATH=$HOME/bin:$HOME/.prefix/bin:$HOME/.local/bin:$HOME/.cabal/bin:$PATH
 fi
 

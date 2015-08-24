@@ -28,4 +28,5 @@ killall compton nitrogen xscreensaver
 nitrogen --restore &
 compton --backend glx --paint-on-overlay --glx-no-stencil --unredir-if-possible -b
 xscreensaver &
+xbacklight = 50
 exec xmonad

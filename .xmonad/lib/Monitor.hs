@@ -149,14 +149,15 @@ putCPULoad ratio = symbolFG (str cpu) +++ fgpct (show' pct) +++ fg fgC2 (str "%"
 getTemp :: IO Double
 getTemp = do
     temp <- catMaybes <$> mapM parse files
-    return $ if null temp then error "monitor: getTemp" else sum temp / genericLength temp
+    return $ if null temp then error "monitor: getTemp" else maximum temp
   where
     parse file = do
         exists <- fileExist file
         if exists then Just . (/1e3) . read <$> readFile file else return Nothing
-    files = concat [ ["/sys/bus/platform/devices/coretemp.0/hwmon/hwmon1/temp" ++ [i] ++ "_input"
+    files = concat [ [ "/sys/bus/platform/devices/coretemp.0/hwmon/hwmon1/temp" ++ [i] ++ "_input"
                      , "/sys/bus/platform/devices/coretemp.0/temp" ++ [i] ++ "_input"
-                     ] | i <- "123" ]
+                     , "/sys/bus/platform/devices/coretemp.1/temp" ++ [i] ++ "_input"
+                     ] | i <- "12345" ]
 
 putTemp :: Double -> DString
 putTemp temp' = symbolFG (str temperature) +++ fgtemp (show' temp) +++ fg fgC2 (str "\x00b0")

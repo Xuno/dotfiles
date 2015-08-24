@@ -16,6 +16,7 @@ import           Data.IORef
 import           Data.Maybe
 import           Data.Ratio
 import           System.IO           (hPrint, stderr)
+import           System.IO.Unsafe    (unsafePerformIO)
 import           System.Posix.Files  (fileExist)
 
 import           Control.Applicative ((<$>))
@@ -148,16 +149,15 @@ putCPULoad ratio = symbolFG (str cpu) +++ fgpct (show' pct) +++ fg fgC2 (str "%"
 
 getTemp :: IO Double
 getTemp = do
-    temp <- catMaybes <$> mapM parse files
+    temp <- mapM (\file -> (/1e3) . read <$> readFile file) actualFiles
     return $ if null temp then error "monitor: getTemp" else maximum temp
   where
-    parse file = do
-        exists <- fileExist file
-        if exists then Just . (/1e3) . read <$> readFile file else return Nothing
-    files = concat [ [ "/sys/bus/platform/devices/coretemp.0/hwmon/hwmon1/temp" ++ [i] ++ "_input"
-                     , "/sys/bus/platform/devices/coretemp.0/temp" ++ [i] ++ "_input"
-                     , "/sys/bus/platform/devices/coretemp.1/temp" ++ [i] ++ "_input"
-                     ] | i <- "12345" ]
+    {-# NOINLINE actualFiles #-}
+    actualFiles = unsafePerformIO $ filterM fileExist files
+
+    files = concat [ [ "/sys/bus/platform/devices/coretemp." ++ show i ++ "/hwmon/hwmon1/temp" ++ show j ++ "_input"
+                     , "/sys/bus/platform/devices/coretemp." ++ show i ++ "/temp" ++ show j ++ "_input"
+                     ] | i <- [0,1], j <- [0..16] ]
 
 putTemp :: Double -> DString
 putTemp temp' = symbolFG (str temperature) +++ fgtemp (show' temp) +++ fg fgC2 (str "\x00b0")

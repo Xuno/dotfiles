@@ -2,4 +2,6 @@
 
 export HISTSIZE=20000
 export SAVEHIST=$HISTSIZE
-# others were already set by oh-my-zsh
+
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS

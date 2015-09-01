@@ -1,4 +1,6 @@
 
+SHELL := /bin/bash
+
 build: bin/update-tags vim-plugins
 
 restore:
@@ -14,7 +16,7 @@ update:
 	git submodule foreach 'git reset --hard origin/master && git submodule sync && git submodule update --init --recursive'
 
 summary:
-	@git submodule summary | sed 's/  </  <<<<<<<<<<<</'
+	@git submodule summary | sed 's/  </  <<<<<<<<<<<</' | tee >(wc -l)
 
 vim-plugins:
 	cd .vim/bundle/vimproc; make -f make_unix.mak

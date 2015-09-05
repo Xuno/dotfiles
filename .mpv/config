@@ -9,6 +9,7 @@ ass-vsfilter-aspect-compat=no
 ass-vsfilter-blur-compat=no
 ass-vsfilter-color-compat=no
 sub-use-margins
+ass-force-margins
 stretch-image-subs-to-screen
 
 # OSD settings
@@ -26,13 +27,14 @@ screenshot-tag-colorspace=yes
 # Misc settings
 hr-seek-demuxer-offset=0.3
 no-audio-display
-af-add=rubberband
+af=rubberband
 demuxer-mkv-fix-timestamps
 ad=lavc:libdcadec
 
 [sync]
 profile-desc="sync to video"
 video-sync=display-resample-vdrop
+af-clr
 
 [verbose]
 profile-desc="verbose output"

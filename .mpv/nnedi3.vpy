@@ -2,6 +2,8 @@ import vapoursynth as vs
 
 core = vs.get_core()
 
-video_out = core.nnedi3.nnedi3_rpow2(video_in, rfactor=2, correct_shift=False)
+double_height = lambda f: core.nnedi3.nnedi3(f, field=1, dh=True, planes=[0, 1, 2], nsize=4, nns=1)
+
+video_out = core.std.Transpose(double_height(core.std.Transpose(double_height(video_in))))
 
 video_out.set_output()

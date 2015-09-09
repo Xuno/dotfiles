@@ -1,5 +1,5 @@
 # VO settings
-vo-defaults=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only
+vo-defaults=opengl-hq:scale=spline64:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only:no-deband
 vo=opengl-hq,
 
 # Subtitle settings
@@ -46,11 +46,11 @@ vo=xv
 
 [fast]
 profile-desc="opengl video output (faster)"
-vo-defaults=opengl-hq:scale=sharpen3:cscale=bilinear:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only
+vo-defaults=opengl-hq:scale=sharpen3:cscale=bilinear:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only:no-deband
 
 [slow]
 profile-desc="opengl video output (slower)"
-vo-defaults=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only
+vo-defaults=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only:no-deband
 
 [smooth]
 profile-desc="smoothmotion (with interpolation)"
@@ -58,7 +58,7 @@ vo=opengl-hq:interpolation:tscale=oversample:tscale-param1=.3
 
 [deband]
 profile-desc="deband (with custom shader)"
-vo=opengl-hq:source-shader=~~/third-party/deband.glsl
+vo=opengl-hq:deband:deband-grain=0
 
 [pattern23]
 profile-desc="check 2:3 pattern (24Hz -> 60Hz)"

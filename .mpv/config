@@ -58,7 +58,7 @@ vo=opengl-hq:interpolation:tscale=oversample:tscale-param1=.3
 
 [deband]
 profile-desc="deband (with custom shader)"
-vo=opengl-hq:deband:deband-grain=0
+vo=opengl-hq:deband:deband-grain=0:deband-iterations=4:deband-threshold=64:deband-range=8
 
 [pattern23]
 profile-desc="check 2:3 pattern (24Hz -> 60Hz)"

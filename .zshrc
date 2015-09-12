@@ -6,7 +6,7 @@ fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
 fpath=($HOME/.zsh/custom-completions $fpath)
 
-plugins=(archlinux extract vi-mode git)
+plugins=(archlinux extract vi-mode git docker cabal jsontools sudo systemd)
 
 # grep -Ril \? . | xargs grep -RilE "(git|branch)" | wc -l
 ZSH_THEMES=(simonoff dst dieter)

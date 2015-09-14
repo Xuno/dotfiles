@@ -1,4 +1,8 @@
 *.hi
 *.o
-xmonad-*
-xmonad.errors
+/xmonad-*
+!/*.cabal
+/xmonad.errors
+/dist
+/.stack-work
+stack.yaml

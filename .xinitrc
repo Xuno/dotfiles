@@ -29,4 +29,10 @@ nitrogen --restore &
 compton --backend glx --paint-on-overlay --glx-no-stencil --unredir-if-possible -b
 xscreensaver &
 xbacklight = 50
+
+XMONAD_STACK=~/.xmonad/stack.yaml
+if [ -s $XMONAD_STACK ] && type stack &>/dev/null; then
+    export GHC_PACKAGE_PATH="$(stack --stack-yaml $XMONAD_STACK path --local-pkg-db):$(stack --stack-yaml $XMONAD_STACK path --snapshot-pkg-db):"
+fi
+
 exec xmonad

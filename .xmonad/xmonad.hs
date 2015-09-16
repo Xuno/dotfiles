@@ -212,9 +212,9 @@ myKeys phyScreens pid conf = M.fromList $
     multiKey_ [(modm,  xK_bracketright), (0, xF86XK_AudioRaiseVolume)] ("card=" ++ sndCard ++ "; amixer -c $card sset " ++ controlName "$card" ++ " 5%+ unmute") ++
     multiKey_ [(modm,  xK_bracketleft ), (0, xF86XK_AudioLowerVolume)] ("card=" ++ sndCard ++ "; amixer -c $card sset " ++ controlName "$card" ++ " 5%- unmute") ++
     multiKey_ [(modm,  xK_backslash   ), (0, xF86XK_AudioMute       )] ("card=" ++ sndCard ++ "; amixer -c $card sset " ++ controlName "$card" ++ " toggle") ++
-    multiKeys [(modm2, xK_F10         ), (0, xK_Print               )] "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'" ++
 
-    [ ((modm2 .|. shiftMask, xK_F10),   spawn "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'")
+    [ ((modm2,               xK_F10),   spawn "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~'")
+    , ((modm2 .|. shiftMask, xK_F10),   spawn "sleep 0.2; scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -s -e 'mv $f ~'")
     , ((modm2 .|. shiftMask, xK_Left),  spawn "mpc -q seek -5%")
     , ((modm2 .|. shiftMask, xK_Right), spawn "mpc -q seek +5%")
     ]

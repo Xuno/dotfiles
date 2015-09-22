@@ -6,3 +6,4 @@
 /dist
 /.stack-work
 stack.yaml
+/cabal.config

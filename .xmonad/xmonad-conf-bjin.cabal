@@ -13,7 +13,6 @@ cabal-version:       >=1.10
 executable xmonad-bjin
   main-is:             xmonad.hs
   other-modules:       Monitor, Screen, XMonadBar
-  other-extensions:    DeriveDataTypeable, OverloadedStrings
   build-depends:       alsa-mixer >=0.2
                      , base >=4.8
                      , colour >=2.3

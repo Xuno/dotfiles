@@ -39,22 +39,22 @@ urxvt.keysym.S-F1: command: \
     \033]713;xft:CtrlD:style=Bold:pixelsize=10\007
 
 urxvt.keysym.S-F4: command: \
-    \033]710;xft:Source Code Pro for Powerline:pixelsize=16\007 \
-    \033]711;xft:Source Code Pro for Powerline:style=Semibold:pixelsize=16\007 \
-    \033]712;xft:Source Code Pro for Powerline:italic:pixelsize=16\007 \
-    \033]713;xft:Source Code Pro for Powerline:style=Semibold:italic:pixelsize=16\007
+    \033]710;xft:Source Code Pro for Powerline:size=12\007 \
+    \033]711;xft:Source Code Pro for Powerline:style=Semibold:size=12\007 \
+    \033]712;xft:Source Code Pro for Powerline:italic:size=12\007 \
+    \033]713;xft:Source Code Pro for Powerline:style=Semibold:italic:size=12\007
 
 urxvt.keysym.S-F5: command: \
-    \033]710;xft:Anonymous Pro for Powerline:style=Regular:pixelsize=16\007 \
-    \033]711;xft:Anonymous Pro for Powerline:style=Bold:pixelsize=16\007 \
-    \033]712;xft:Anonymous Pro for Powerline:style=Italic:pixelsize=16\007 \
-    \033]713;xft:Anonymous Pro for Powerline:style=Bold Italic:pixelsize=16\007
+    \033]710;xft:Anonymous Pro for Powerline:style=Regular:size=14\007 \
+    \033]711;xft:Anonymous Pro for Powerline:style=Bold:size=14\007 \
+    \033]712;xft:Anonymous Pro for Powerline:style=Italic:size=14\007 \
+    \033]713;xft:Anonymous Pro for Powerline:style=Bold Italic:size=14\007
 
 urxvt.keysym.S-F6: command: \
-    \033]710;xft:Hack:style=Regular:pixelsize=16\007 \
-    \033]711;xft:Hack:style=Bold:pixelsize=16\007 \
-    \033]712;xft:Hack:style=Italic:pixelsize=16\007 \
-    \033]713;xft:Hack:style=Bold Italic:pixelsize=16\007
+    \033]710;xft:Hack:style=Regular:size=12\007 \
+    \033]711;xft:Hack:style=Bold:size=12\007 \
+    \033]712;xft:Hack:style=Oblique:size=12\007 \
+    \033]713;xft:Hack:style=BoldOblique:size=12\007
 
 *background: #000000
 *foreground: #ffffff

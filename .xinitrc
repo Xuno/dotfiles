@@ -19,14 +19,16 @@ if [ -s ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
 
+if [ -s ~/.local-xprofile ]; then
+    sh ~/.local-xprofile
+fi
+
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 fcitx -r
 
-killall compton nitrogen xscreensaver
-nitrogen --restore &
+killall compton
 compton --backend glx --paint-on-overlay --glx-no-stencil --unredir-if-possible -b
-xscreensaver &
-xbacklight = 50
+
 exec xmonad

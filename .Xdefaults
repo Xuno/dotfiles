@@ -1,8 +1,4 @@
 
-!urxvt.font: xft:Monaco:regular:pixelsize=12
-!urxvt.boldFont: xft:Monaco:bold:pixelsize=12
-!urxvt.italicFont: xft:Monaco:italic:pixelsize=12
-!urxvt.boldItalicFont: xft:Monaco:bold:italic:pixelsize=12
 urxvt.font: xft:CtrlD:style=Regular:pixelsize=16
 urxvt.boldFont: xft:CtrlD:style=Bold:pixelsize=16
 urxvt.italicFont: xft:CtrlD:style=Italic:pixelsize=16

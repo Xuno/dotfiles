@@ -76,7 +76,7 @@ killP :: MonadIO m => ProcessID -> m ()
 killP pid = liftIO (signalProcess killProcess pid `E.catch` (\e -> (e :: E.SomeException) `seq` return ()))
 
 myConfig (phyScreens, dzens, pid) = XConfig
-  { borderWidth        = 3
+  { borderWidth        = 1
   , workspaces         = myWorkspaces
   , layoutHook         = myLayout
   , terminal           = "urxvt"

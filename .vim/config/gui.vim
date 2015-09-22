@@ -8,6 +8,7 @@ if has("gui_running")
   nmap <S-F3> :set guifont=CtrlD\ 12<CR>
   nmap <S-F4> :set guifont=Source\ Code\ Pro\ for\ Powerline\ 10<CR>
   nmap <S-F5> :set guifont=Anonymous\ Pro\ for\ Powerline\ 12<CR>
+  nmap <S-F6> :set guifont=Hack\ 10<CR>
 
   let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
   let s:minfontsize = 6

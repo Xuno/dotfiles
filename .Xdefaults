@@ -54,6 +54,12 @@ urxvt.keysym.S-F5: command: \
     \033]712;xft:Anonymous Pro for Powerline:style=Italic:pixelsize=16\007 \
     \033]713;xft:Anonymous Pro for Powerline:style=Bold Italic:pixelsize=16\007
 
+urxvt.keysym.S-F6: command: \
+    \033]710;xft:Hack:style=Regular:pixelsize=16\007 \
+    \033]711;xft:Hack:style=Bold:pixelsize=16\007 \
+    \033]712;xft:Hack:style=Italic:pixelsize=16\007 \
+    \033]713;xft:Hack:style=Bold Italic:pixelsize=16\007
+
 *background: #000000
 *foreground: #ffffff
 

@@ -105,7 +105,9 @@ urxvt.saveLines: 65536
 Xcursor.theme: Vanilla-DMZ
 Xcursor.size: 16
 
-xscreensaver.timeout: 10
+xscreensaver.timeout: 5
+xscreensaver.lock: true
+xscreensaver.lockTimeout: 1
 xscreensaver.splash: false
 xscreensaver.mode: blank
 xscreensaver.dpmsEnabled: true

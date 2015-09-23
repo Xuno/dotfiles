@@ -34,4 +34,6 @@ killall --user $USER compton xscreensaver
 compton --backend glx --paint-on-overlay --glx-no-stencil --unredir-if-possible -b
 xscreensaver &
 
+nitrogen --restore
+
 exec xmonad

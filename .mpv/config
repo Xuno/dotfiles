@@ -46,7 +46,7 @@ vo=xv
 
 [fast]
 profile-desc="opengl video output (faster)"
-vo-defaults=opengl-hq:scale=sharpen3:cscale=bilinear:dscale=mitchell:target-prim=bt.709:target-trc=srgb:scaler-resizes-only:no-deband
+vo-defaults=opengl-hq:scale=bicubic_fast:cscale=bilinear:dscale=bilinear:target-prim=bt.709:target-trc=srgb:scaler-resizes-only:no-deband
 
 [slow]
 profile-desc="opengl video output (slower)"
@@ -63,6 +63,10 @@ vo=opengl-hq:deband:deband-grain=0:deband-iterations=4:deband-threshold=64:deban
 [pattern23]
 profile-desc="check 2:3 pattern (24Hz -> 60Hz)"
 vo=opengl-hq:waitvsync:check-pattern=3-2
+
+[sharpen]
+profile-desc="unsharp (don't use)"
+vo=opengl-hq:sharpen=0.5
 
 [va]
 profile-desc="vaapi video output"
@@ -109,7 +113,7 @@ cache-default=1024000
 cache-secs=60
 
 [nnedi3]
-profile-desc="nnedi3 upscale to 2x"
+profile-desc="nnedi3 upscale to 2x (don't use)"
 vf-add=vapoursynth=~~/nnedi3.vpy:10:4
 msg-level=vf=v
 

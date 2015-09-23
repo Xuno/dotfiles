@@ -172,7 +172,7 @@ myKeys phyScreens pid conf = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), killP pid >> io exitSuccess)
     , ((modm .|. shiftMask, xK_r     ), killP pid >> spawn "xmonad --recompile && xmonad --restart")
     , ((modm .|. shiftMask, xK_n     ), killP pid >> spawn "nitrogen --restore; xmonad --restart")
-    , ((modm .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock || dm-tool lock")
+    , ((modm .|. shiftMask, xK_l     ), spawn "dm-tool lock || xscreensaver-command -lock")
     , ((modm .|. shiftMask, xK_t     ), spawn "stalonetray --window-type normal")
 
     , ((modm,               xK_s     ), viewEmptyWorkspace)

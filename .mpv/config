@@ -112,16 +112,6 @@ cache=yes
 cache-default=1024000
 cache-secs=60
 
-[nnedi3]
-profile-desc="nnedi3 upscale to 2x (don't use)"
-vf-add=vapoursynth=~~/nnedi3.vpy:10:4
-msg-level=vf=v
-
-[f3kdb]
-profile-desc="debanding with f3kdb"
-vf-add=vapoursynth=~~/f3kdb.vpy:10:4
-msg-level=vf=v
-
 [pullup]
 profile-desc="pullup filter"
 vf-add=pullup

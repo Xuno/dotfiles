@@ -1,0 +1,35 @@
+
+snippet pragma "Compiler pragma" b
+{-# $1 #-}
+endsnippet
+
+snippet as "Qualified import" b
+import qualified ${1:Data.Map} as ${2:M}
+endsnippet
+
+snippet class "Type class definition" b
+class ${1:Num} ${2:a} where
+	$0
+endsnippet
+
+snippet instance "Instance definition" b
+instance ${1:Num} ${2:a} where
+	$0
+endsnippet
+
+snippet [ "list comprehension" w
+[ ${2:i} | ${1:i <- [0..]} ]
+endsnippet
+
+snippet if "Boolean conditional" w
+if ${1:condition} then ${2:true} else ${3:false}
+endsnippet
+
+snippet case "Pattern match" w
+case ${1:scrutinee} of
+	${2:pattern} -> ${0:expression}
+endsnippet
+
+snippet qq "Quasi quote" w
+[${1:quoter}| ${0:content} |]
+endsnippet

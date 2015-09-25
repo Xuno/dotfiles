@@ -1,0 +1,85 @@
+
+" {{{ Search Engine
+
+" Google
+silent bma -k=g http://google.com/search?hl=en&q=%s
+
+" Google - I'm Feeling Luck
+silent bma -k=gl http://google.com/search?hl=en&btnI=1&q=%s
+
+" Google Encrypted
+silent bma -k=ge https://encrypted.google.com/search?hl=en&q=%s
+
+" DuckDuckGo
+silent bma -k=ddg https://duckduckgo.com/?q=%s
+
+" DuckDuckGo Lite
+silent bma -k=ddgl https://duckduckgo.com/lite/?q=%s
+
+" Hoogle (Stackage)
+silent bma -k=hoogle http://www.stackage.org/lts/hoogle?q=%s
+
+" Wikipedia
+silent bma -k=wiki http://en.wikipedia.org/w/index.php?search=%s
+silent bma -k=wikizh http://zh.wikipedia.org/w/index.php?search=%s
+silent bma -k=wikijp http://jp.wikipedia.org/w/index.php?search=%s
+
+" WolframAlpha
+silent bma -k=walpha http://www.wolframalpha.com/input/?i=%s
+
+" Dict.cn
+silent bma -k=dict http://dict.cn/%s
+
+" MusicBrainz
+silent bma -k=mbartist https://musicbrainz.org/search?query=%s&type=artist&limit=25&method=advanced
+silent bma -k=mbgroup https://musicbrainz.org/search?query=%s&type=release_group&limit=25&method=advanced
+silent bma -k=mbalbum https://musicbrainz.org/search?query=%s&type=release&limit=25&method=advanced
+silent bma -k=mbsong https://musicbrainz.org/search?query=%s&type=recording&limit=25&method=advanced
+
+" VGMdb
+silent bma -k=vgm http://vgmdb.net/search?q=%s
+
+" Japanese
+silent bma -k=furigana_hiragana http://addruby.com/addruby.cgi?txt=%s&target=all&furigana=hiragana&MODE=txt&EXEC=1
+silent bma -k=furigana_roman_yomi http://addruby.com/addruby.cgi?txt=%s&target=all&furigana=roman_yomi&MODE=txt&EXEC=1
+silent bma -k=excite http://www.excite.co.jp/dictionary/japanese_chinese/?match=beginswith&search=%s
+silent bma -k=weblio http://cjjc.weblio.jp/content/%s
+
+
+" }}}
+
+" {{{ Important Sites
+
+silent bma -k=google http://www.google.com/ncr&hl=en
+silent bma -k=gmail https://mail.google.com/mail/?tab=wm
+silent bma -k=github https://github.com/
+silent bma -k=twitter https://twitter.com/
+silent bma -k=hn https://news.ycombinator.com/news
+
+" }}}
+
+" {{{ Development Site
+
+silent bma -k=hackage http://hackage.haskell.org/packages/archive/pkg-list.html
+silent bma -k=hdiff http://hdiff.luite.com/
+silent bma -k=haddock file:///home/bjin/.cabal/share/doc/index.html
+silent bma -k=reddith http://www.reddit.com/r/haskell
+
+" }}}
+
+" {{{ Algorithm Competition
+silent bma -k=topcoder http://www.topcoder.com/tc
+silent bma -k=codeforces http://codeforces.com/
+silent bma -k=euler https://projecteuler.net/problems
+" }}}
+
+" {{{ Anime
+silent bma -k=bgm https://bgm.tv/
+silent bma -k=u2 https://u2.dmhy.org/torrents.php
+silent bma -k=nyaa http://www.nyaa.se
+" }}}
+
+" {{{ Other
+silent bma -k=gitit http://localhost:5001/
+silent bma -k=mb https://musicbrainz.org/
+" }}}

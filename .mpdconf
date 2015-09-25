@@ -1,0 +1,97 @@
+
+music_directory      "/home/bjin/Music"
+playlist_directory   "/home/bjin/.mpd/playlists"
+db_file              "/home/bjin/.mpd/mpd.db"
+log_file             "/home/bjin/.mpd/mpd.log"
+pid_file             "/home/bjin/.mpd/mpd.pid"
+state_file           "/home/bjin/.mpd/mpdstate"
+user                 "bjin"
+port                 "6600"
+restore_paused       "yes"
+samplerate_converter "Best"
+audio_buffer_size    "10240"
+buffer_before_play   "30%"
+log_level            "secure"
+
+replaygain                "auto"
+replaygain_preamp         "-10"
+replaygain_missing_preamp "-10"
+replaygain_limit          "yes"
+
+audio_output {
+   type "pulse"
+   name "PulseAudio output"
+}
+
+audio_output {
+    type "alsa"
+    name "ALSA output (w/ dmix)"
+    mixer_type "software"
+}
+
+audio_output {
+    type "alsa"
+    name "ALSA output (Intel PCH, w/o dmix)"
+    device "hw:PCH,0"
+    mixer_type "hardware"
+    mixer_device "hw:PCH"
+    mixer_control "Master"
+}
+
+audio_output {
+    type "alsa"
+    name "ALSA output (S/PDIF)"
+    device "iec958"
+}
+
+audio_output {
+    type "alsa"
+    name "ALSA output (USB DAC w/ softmix)"
+    device "hw:DAC,0"
+}
+
+audio_output {
+    type "alsa"
+    name "ALSA output (USB DAC w/ 'Master' control)"
+    device "hw:DAC,0"
+    mixer_type "hardware"
+    mixer_device "hw:DAC"
+    mixer_control "Master"
+}
+
+audio_output {
+    type "alsa"
+    name "ALSA output (USB DAC w/ 'PCM' control)"
+    device "hw:DAC,0"
+    mixer_type "hardware"
+    mixer_device "hw:DAC"
+    mixer_control "PCM"
+}
+
+audio_output {
+    type "alsa"
+    name "ALSA output (USB DAC w/ 'Meridian Clock Selector' control)"
+    device "hw:DAC,0"
+    mixer_type "hardware"
+    mixer_device "hw:DAC"
+    mixer_control "Meridian Clock Selector"
+}
+
+audio_output {
+    type "fifo"
+    name "fifo for visualization"
+    path "/home/bjin/.mpd/mpd.fifo"
+    enabled "no"
+}
+
+audio_output {
+    type "httpd"
+    name "streaming via HTTP"
+    port "8800"
+    bind_to_address "0.0.0.0"
+    encoder "lame"
+    bitrate "320"
+    max_clients "3"
+    enabled "no"
+    mixer_type "software"
+}

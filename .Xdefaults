@@ -1,0 +1,114 @@
+
+urxvt.font: xft:CtrlD:style=Regular:pixelsize=16
+urxvt.boldFont: xft:CtrlD:style=Bold:pixelsize=16
+urxvt.italicFont: xft:CtrlD:style=Italic:pixelsize=16
+urxvt.boldItalicFont: xft:CtrlD:style=Bold\ Italic:pixelsize=16
+
+urxvt.perl-ext-common:  tabbedex,fullscreen,keyboard-select,clipboard,font-size
+
+URxvt.clipboard.copycmd:  xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
+
+URxvt.tabbed.autohide: true
+
+urxvt.keysym.S-Escape: perl:keyboard-select:activate
+urxvt.keysym.S-F11: perl:fullscreen:switch
+
+urxvt.keysym.C-Up: perl:font-size:increase
+urxvt.keysym.C-Down: perl:font-size:decrease
+
+urxvt.keysym.C-A-c: perl:clipboard:copy
+urxvt.keysym.C-A-v: perl:clipboard:paste
+
+urxvt.keysym.S-F3: command: \
+    \033]710;xft:CtrlD:style=Regular:pixelsize=16\007 \
+    \033]711;xft:CtrlD:style=Bold:pixelsize=16\007 \
+    \033]712;xft:CtrlD:style=Italic:pixelsize=16\007 \
+    \033]713;xft:CtrlD:style=Bold Italic:pixelsize=16\007
+
+urxvt.keysym.S-F2: command: \
+    \033]710;xft:CtrlD:style=Regular:pixelsize=13\007 \
+    \033]711;xft:CtrlD:style=Bold:pixelsize=13\007 \
+    \033]712;xft:CtrlD:style=Italic:pixelsize=13\007 \
+    \033]713;xft:CtrlD:style=Bold Italic:pixelsize=13\007
+
+urxvt.keysym.S-F1: command: \
+    \033]710;xft:CtrlD:style=Regular:pixelsize=10\007 \
+    \033]711;xft:CtrlD:style=Bold:pixelsize=10\007 \
+    \033]712;xft:CtrlD:style=Regular:pixelsize=10\007 \
+    \033]713;xft:CtrlD:style=Bold:pixelsize=10\007
+
+urxvt.keysym.S-F4: command: \
+    \033]710;xft:Source Code Pro for Powerline:size=12\007 \
+    \033]711;xft:Source Code Pro for Powerline:style=Semibold:size=12\007 \
+    \033]712;xft:Source Code Pro for Powerline:italic:size=12\007 \
+    \033]713;xft:Source Code Pro for Powerline:style=Semibold:italic:size=12\007
+
+urxvt.keysym.S-F5: command: \
+    \033]710;xft:Anonymous Pro for Powerline:style=Regular:size=14\007 \
+    \033]711;xft:Anonymous Pro for Powerline:style=Bold:size=14\007 \
+    \033]712;xft:Anonymous Pro for Powerline:style=Italic:size=14\007 \
+    \033]713;xft:Anonymous Pro for Powerline:style=Bold Italic:size=14\007
+
+urxvt.keysym.S-F6: command: \
+    \033]710;xft:Hack:style=Regular:size=12\007 \
+    \033]711;xft:Hack:style=Bold:size=12\007 \
+    \033]712;xft:Hack:style=Oblique:size=12\007 \
+    \033]713;xft:Hack:style=BoldOblique:size=12\007
+
+*background: #000000
+*foreground: #ffffff
+
+*color0: #000000
+*color1: #ee6363
+*color2: #73ba3e
+*color3: #baa33e
+*color4: #3e73ba
+*color5: #ac3885
+*color6: #3ebaba
+*color7: #eeeeee
+*color8: #333333
+*color9: #cc4444
+*color10: #4d8728
+*color11: #877d28
+*color12: #284d87
+*color13: #812973
+*color14: #288787
+*color15: #aaaaaa
+
+urxvt.inputMethod: fcitx
+urxvt.preeditType: OverTheSpot,OnTheSpot,Root
+urxvt.imLocale: zh_CN.UTF-8
+urxvt.imFont: -*-medium-r-*-*-*
+urxvt.iso14755: false
+
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintlight
+Xft.rgba: rgb
+
+urxvt.depth: 32
+
+urxvt.background: [80]black
+
+urxvt.underlineColor: yellow
+urxvt.fading: 20
+urxvt.fadeColor: #000000
+
+urxvt.scrollstyle: plain
+urxvt.scrollBar: false
+urxvt.visualBell: false
+urxvt.urgentOnBell: true
+
+urxvt.saveLines: 65536
+
+Xcursor.theme: Vanilla-DMZ
+Xcursor.size: 16
+
+xscreensaver.timeout: 5
+xscreensaver.lock: true
+xscreensaver.lockTimeout: 1
+xscreensaver.splash: false
+xscreensaver.mode: blank
+xscreensaver.dpmsEnabled: true
+xscreensaver.dpmsQuickOff: true

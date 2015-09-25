@@ -1,0 +1,22 @@
+
+startup_message off
+crlf off
+defencoding utf8
+defbce on
+defflow off
+
+defscrollback 3000
+
+
+bind < prev
+bind > next
+
+bind h focus left
+bind j focus down
+bind k focus up
+bind l focus right
+
+term screen-256color
+
+hardstatus on
+hardstatus alwayslastline "[%02c] %`%-w%{=b bw}%n %t%{-}%+w"

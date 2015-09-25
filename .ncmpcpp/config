@@ -1,0 +1,32 @@
+## -*- conf -*-
+
+##### connection settings #####
+mpd_host               = "localhost"
+mpd_port               = "6600"
+mpd_music_dir          = "/home/bjin/Music"
+mpd_connection_timeout = "5"
+mpd_crossfade_time     = "5"
+
+##### visualisation #####
+visualizer_fifo_path     = "/home/bjin/.mpd/mpd.fifo"
+visualizer_output_name   = "fifo for visualization"
+visualizer_sync_interval = "1"
+visualizer_type          = "spectrum"
+
+##### colors definitions #####
+colors_enabled                 = "yes"
+empty_tag_color                = "cyan"
+header_window_color            = "default"
+volume_color                   = "default"
+state_line_color               = "default"
+state_flags_color              = "default"
+main_window_color              = "cyan"
+color1                         = "white"
+color2                         = "green"
+main_window_highlight_color    = "blue"
+progressbar_color              = "default"
+statusbar_color                = "default"
+active_column_color            = "red"
+window_border_color            = "green"
+active_window_border           = "red"
+alternative_ui_separator_color = "black"

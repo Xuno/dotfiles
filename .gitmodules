@@ -1,0 +1,102 @@
+[submodule ".fonts/ctrld"]
+	path = .fonts/ctrld
+	url = git://github.com/bjin/ctrld-font.git
+[submodule ".urxvt/urxvt-perls"]
+	path = .urxvt/urxvt-perls
+	url = git://github.com/muennich/urxvt-perls.git
+[submodule ".urxvt/urxvt-font-size"]
+	path = .urxvt/urxvt-font-size
+	url = git://github.com/majutsushi/urxvt-font-size.git
+[submodule ".zsh/oh-my-zsh"]
+	path = .zsh/oh-my-zsh
+	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule ".zsh/zsh-syntax-highlighting"]
+	path = .zsh/zsh-syntax-highlighting
+	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".zsh/zsh-completions"]
+	path = .zsh/zsh-completions
+	url = git://github.com/zsh-users/zsh-completions.git
+[submodule ".vim/bundle/unbundle"]
+	path = .vim/bundle/unbundle
+	url = git://github.com/sunaku/vim-unbundle.git
+[submodule ".vim/bundle/colors-railscasts"]
+	path = .vim/bundle/colors-railscasts
+	url = git://github.com/jpo/vim-railscasts-theme.git
+[submodule ".vim/bundle/colors-solarized"]
+	path = .vim/bundle/colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule ".vim/bundle/colors-badwolf"]
+	path = .vim/bundle/colors-badwolf
+	url = git://github.com/sjl/badwolf.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule ".vim/bundle/tabular"]
+	path = .vim/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git
+[submodule ".vim/bundle/fugitive"]
+	path = .vim/bundle/fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule ".vim/bundle/surround"]
+	path = .vim/bundle/surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/commentary"]
+	path = .vim/bundle/commentary
+	url = git://github.com/tpope/vim-commentary
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = git://github.com/majutsushi/tagbar
+[submodule ".vim/bundle/vimproc"]
+	path = .vim/bundle/vimproc
+	url = git://github.com/Shougo/vimproc.git
+[submodule ".vim/ftbundle/haskell/neco-ghc"]
+	path = .vim/ftbundle/haskell/neco-ghc
+	url = git://github.com/ujihisa/neco-ghc.git
+[submodule ".vim/ftbundle/haskell/ghcmod-vim"]
+	path = .vim/ftbundle/haskell/ghcmod-vim
+	url = git://github.com/eagletmt/ghcmod-vim.git
+[submodule ".vim/bundle/easymotion"]
+	path = .vim/bundle/easymotion
+	url = git://github.com/Lokaltog/vim-easymotion.git
+[submodule ".vim/bundle/ctrl-p"]
+	path = .vim/bundle/ctrl-p
+	url = git://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/unimpaired"]
+	path = .vim/bundle/unimpaired
+	url = git://github.com/tpope/vim-unimpaired.git
+[submodule ".vim/bundle/ultisnips"]
+	path = .vim/bundle/ultisnips
+	url = git://github.com/SirVer/ultisnips.git
+[submodule ".vim/bundle/repeat"]
+	path = .vim/bundle/repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule ".vim/bundle/nerdtree-tabs"]
+	path = .vim/bundle/nerdtree-tabs
+	url = git://github.com/jistr/vim-nerdtree-tabs.git
+[submodule ".vim/bundle/gitv"]
+	path = .vim/bundle/gitv
+	url = git://github.com/gregsexton/gitv.git
+[submodule ".ls_colors"]
+	path = .ls_colors
+	url = git://github.com/trapd00r/LS_COLORS.git
+[submodule ".fonts/powerline-fonts"]
+	path = .fonts/powerline-fonts
+	url = git://github.com/Lokaltog/powerline-fonts.git
+[submodule ".vim/bundle/airline"]
+	path = .vim/bundle/airline
+	url = git://github.com/bling/vim-airline.git
+[submodule ".vim/bundle/ycm"]
+	path = .vim/bundle/ycm
+	url = git://github.com/Valloric/YouCompleteMe.git
+[submodule ".vim/default-snippets"]
+	path = .vim/default-snippets
+	url = git://github.com/honza/vim-snippets.git
+[submodule ".vim/bundle/fileline"]
+	path = .vim/bundle/fileline
+	url = git://github.com/bogado/file-line.git
+[submodule ".vim/bundle/ctrlp-py-matcher"]
+	path = .vim/bundle/ctrlp-py-matcher
+	url = https://github.com/FelikZ/ctrlp-py-matcher
+[submodule ".mpv/third-party/stats"]
+	path = .mpv/third-party/stats
+	url = https://github.com/Argon-/mpv-stats.git

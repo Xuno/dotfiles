@@ -1,0 +1,9 @@
+*.hi
+*.o
+/xmonad-*
+!/*.cabal
+/xmonad.errors
+/dist
+/.stack-work
+stack.yaml
+/cabal.config

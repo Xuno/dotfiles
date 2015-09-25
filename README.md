@@ -1,24 +1,22 @@
 
-Here is my configure files, use `ln -s` to put them under `$HOME`
-
 Install Script
 --------------
 
-* `make build` : build binaries for vim plugins like `vim-proc` and
-  `YouCompleteMe`
-* `make restore`: revert-back git submodules
-* `make fetch`: fetch git submodules
-* `make update`: update git submodules to HEAD of fetched content
+* `make build` : build binaries for vim plugins (and some other utilities)
+* `make restore`: revert-back submodules
+* `make fetch`: fetch submodules
+* `make update`: update submodules to HEAD of fetched content
 
 Required Binary
 ---------------
+
+(This list is incomplete)
 
 * [dmenu](http://tools.suckless.org/dmenu/) [dzen](https://sites.google.com/site/gotmor/dzen) and 
   [yeganesh](http://dmwit.com/yeganesh/) for xmonad
 * [xclip](http://sourceforge.net/projects/xclip/) and [wmctrl](http://tomas.styblo.name/wmctrl/) for urxvt plugin
 * [ctags](http://ctags.sourceforge.net/) and [hasktags](https://github.com/chrisdone/hasktags)
   for tagbar plugin and tags file generation.
-* [clang](http://clang.llvm.org/) for C/C++ omnicomplete and syntax check
 * [ghc-mod](http://www.mew.org/~kazu/proj/ghc-mod/en/) for Haskell omnicomplete & syntax check
 
 Licence

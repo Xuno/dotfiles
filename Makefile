@@ -28,3 +28,4 @@ bin/update-tags: bin/update-tags.hs
 clean:
 	rm -f .vim/bundle/vimproc/autoload/vimproc_*.so
 	rm -f bin/update-tags
+	git submodule foreach --recursive 'git clean -ffdx'

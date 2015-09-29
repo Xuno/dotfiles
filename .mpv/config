@@ -68,6 +68,18 @@ vo=opengl-hq:waitvsync:check-pattern=3-2
 profile-desc="unsharp (don't use)"
 vo=opengl-hq:sharpen=0.5
 
+[superxbr]
+profile-desc="super-xbr prescaler (WIP, don't use)"
+vo=opengl-hq:prescale-shaders="2-2-0-0-0-~~/pre-scalers/super-xbr.glsl,1-1-0-0-1-~~/pre-scalers/super-xbr.glsl"
+
+[nnedi3]
+profile-desc="nnedi3 prescaler (32 neurons, WIP, don't use)"
+vo=opengl-hq:prescale-shaders="1-2-0-0-0-~~/pre-scalers/nnedi3.glsl,2-1-0-0-1-~~/pre-scalers/nnedi3.glsl"
+
+[nnedi3-16]
+profile-desc="nnedi3 prescaler (16 neurons, WIP, don't use)"
+vo=opengl-hq:prescale-shaders="1-2-0-0-2-~~/pre-scalers/nnedi3.glsl,2-1-0-0-3-~~/pre-scalers/nnedi3.glsl"
+
 [va]
 profile-desc="vaapi video output"
 vo=vaapi:scaling=fast

@@ -157,6 +157,7 @@ getTemp = do
 
     files = concat [ [ "/sys/bus/platform/devices/coretemp." ++ show i ++ "/hwmon/hwmon1/temp" ++ show j ++ "_input"
                      , "/sys/bus/platform/devices/coretemp." ++ show i ++ "/hwmon/hwmon2/temp" ++ show j ++ "_input"
+                     , "/sys/bus/platform/devices/coretemp." ++ show i ++ "/hwmon/hwmon0/temp" ++ show j ++ "_input"
                      , "/sys/bus/platform/devices/coretemp." ++ show i ++ "/temp" ++ show j ++ "_input"
                      ] | i <- [0,1], j <- [0..16] ]
 

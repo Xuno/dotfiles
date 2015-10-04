@@ -54,7 +54,7 @@ vo-defaults=opengl-hq:scale=haasnsoft:cscale=spline64:dscale=mitchell:target-pri
 
 [smooth]
 profile-desc="smoothmotion (with interpolation)"
-vo=opengl-hq:interpolation:tscale=oversample:tscale-param1=.3
+vo=opengl-hq:interpolation:tscale=oversample:tscale-param1=.35
 
 [deband]
 profile-desc="deband (with opengl shader)"

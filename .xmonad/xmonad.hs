@@ -190,7 +190,8 @@ myKeys phyScreens pid conf = M.fromList $
     , ((modm,               xK_Escape), toggleWS)
 
     , ((modm .|. shiftMask, xK_f     ), fullScreenCurrent)
-    , ((modm .|. shiftMask, xK_x     ), spawn "gksudo -m 'Enter Password to poweroff' poweroff")
+    , ((modm .|. shiftMask, xK_x     ), spawn "systemctl poweroff || gksudo -m 'Enter Password to poweroff' poweroff")
+    , ((modm .|. shiftMask, xK_z     ), spawn "systemctl suspend")
     ]
     ++
     [((m .|. modm, k), windows $ f i)

@@ -632,16 +632,12 @@ sub tab_key_press {
    return () if ($self->{no_default_keys});
 
    if ($event->{state} & urxvt::ShiftMask) {
-      if ($keysym == 0xff51 || $keysym == 0xff53) {
-         if (@{ $self->{tabs} } > 1) {
-            $self->change_tab($tab, $keysym - 0xff52);
-         }
+      if (($keysym == 0xff51 || $keysym == 0xff53) && @{ $self->{tabs} } > 1) {
+         $self->change_tab($tab, $keysym - 0xff52);
          return 1;
-
       } elsif ($keysym == 0xff54) {
          $self->new_tab(@{$self->{argv}});
          return 1;
-
       } elsif ($keysym == 0xff52) {
          $self->rename_tab($tab);
          return 1;
@@ -649,7 +645,7 @@ sub tab_key_press {
          $self->change_tab($tab, 0);
       }
    } elsif ($event->{state} & urxvt::ControlMask) {
-      if ($keysym == 0xff51 || $keysym == 0xff53) {
+      if (($keysym == 0xff51 || $keysym == 0xff53) && @{ $self->{tabs} } > 1) {
          $self->move_tab($tab, $keysym - 0xff52);
          return 1;
       }
